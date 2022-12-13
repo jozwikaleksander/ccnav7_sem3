@@ -145,14 +145,16 @@ Pakiety OSPFv2 Hello są wysyłane co 10 sekund.
 - **Hub-and-spoke** - umożliwia współużytkowanie pojedynczego interfejsu na routerze centralnym (hub) przez wszystkie routery obwodowe (spoke).
 
 ![Hub-and-spoke](img/12.png)
+
 - **Dual-homed** - zapewnia redundancję. Router centralny jest podwojony w lokalizacji a te nadmiarowo podłączone do routerów obwodowych w chmurze WAN.
 
 ![Dual-homed](img/13.png)
+
 - **Pełnej siatki** - wykorzystuje wiele obwodów wirtualnych do łączenia wszystkich lokalizacji.
 
 ![Topologia pełnej siatki](img/14.png)
 
--**Częściowej siatki** - łączy wiele, ale nie wszystkie lokalizacje.
+- **Częściowej siatki** - łączy wiele, ale nie wszystkie lokalizacje.
 
 ![Topologia częściowej siatki](img/15.png)
 
