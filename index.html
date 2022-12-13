@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>🌐 CCNAv7 sem3</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">🌐 CCNAv7 sem3</h1>
+</header>
+<h1 id="i.-protokół-ospf">I. Protokół OSPF</h1>
+<h2 id="ospf">1. OSPF</h2>
+<p><strong>OSPF</strong> to protokół routingu stanu łącza opracowany jako alternatywa dla RIP. Wykorzystuje on koncepcje obszarów.</p>
+<p><strong>Komunikaty OSPF są wykorzystywane do tworzenia i utrzymywanie trzech następujących baz danych OSPF:</strong></p>
+<ul>
+<li><strong>Baza przyległości (Adjacency database)</strong> - Tworzy tablicę sąsiadów. - <em>show ip ospf neighbor</em></li>
+<li><strong>Baza stanu łącza (Link-state database - LSDB)</strong> - To tworzy tablicę topologii. <em>show ip ospf database</em></li>
+<li><strong>Baza przekazywania (Forwarding database)</strong> - To tworzy tablicę routingu. <em>show ip route</em></li>
+</ul>
+<p>Router używający OSPF buduje tablicę topologii przy użyciu obliczeń opartych na <strong>algorytmie Dijkstry pierwszej najkrótszej ścieżki (shortest-path first - SPF)</strong>.</p>
+<p>W tym celu algorytm SPF tworzy tzw. <strong>drzewo SPF</strong>, każdy router umieszczany jest w korzeniu drzewa, po czym obliczana jest najkrótsza ścieżka do każdego węzła. Następnie na podstawie utworzonego drzewa SPF obliczana jest najlepsza ścieżka. Ostatecznie OSPF wstawia najlepsze ścieżki do tablicy przekazywania, na podstawie której tworzona jest tablica routingu.</p>
+<h2 id="proces-routingu-stanu-łącza">2. Proces routingu stanu łącza</h2>
+<ol type="1">
+<li>Ustanowienie przyległości sąsiadów - wysyłanie pakietów Hello, aby ustalić czy na danym łączu znajdują się sąsiedzi.</li>
+<li>Wymiana komunikatów o stanie łącza (LSA) - pakiety LSA zawierające informacje na temat stanu oraz kosztu każdego bezpośrednio podłączonego łącza wysyłane są zalewowo do wszystkich sąsiadów.</li>
+<li>Tworzenie bazy stanów łącza - Na podstawie pakietów LSA Routery tworzą <strong>tablicę topologii (LSDB)</strong>.</li>
+<li>Wykonanie algorytmu SPF - Routery wykonują algorytm SPF.</li>
+<li>Wybór najlepszej trasy - najlepsze ścieżki oferowane są do tablicy routingu IP.</li>
+</ol>
+<h2 id="ospf-wieloobszarowy-zalety">3. OSPF wieloobszarowy zalety:</h2>
+<ul>
+<li>Mniejsze tablice routingu</li>
+<li>Zmniejszony narzut aktualizacji stanu łącza</li>
+<li>Zmniejszona częstotliwość obliczeń SPF</li>
+</ul>
+<figure>
+<img src="img/1.png" alt="" /><figcaption>Zmiany stanu łącza dotyczą tylko bieżącego obszaru</figcaption>
+</figure>
+<h2 id="osfpv3">4. OSFPv3</h2>
+<p>To odpowiednik OSPFv2 służacy do <strong>wymiany prefiksów IPv6</strong>.</p>
+<h2 id="rodzaje-pakietów-ospf">5. Rodzaje pakietów OSPF</h2>
+<figure>
+<img src="img/2.png" alt="" /><figcaption>Rodzaje pakietów OSPF</figcaption>
+</figure>
+<p><strong>DR</strong> - Designed Router; <strong>BDR</strong> - Backup Designed Router</p>
+<h2 id="stany-protokołu-ospf">6. Stany protokołu OSPF:</h2>
+<figure>
+<img src="img/3.png" alt="" /><figcaption>Stany protokołu OSPF</figcaption>
+</figure>
+<h1 id="ii.-konfiguracja-jednoobszarowego-ospfv2">II. Konfiguracja jednoobszarowego OSPFv2</h1>
+<h2 id="identyfikator-routera">1. Identyfikator routera</h2>
+<p>To wartość 32-bitowa, która służy do jednoznacznej identyfikacji routera. Identyfikator ten służy do wykonywania następujących czynności:</p>
+<ul>
+<li><strong>Uczestniczenie w synchronizacji baz danych OSPF</strong> - Podcas stanu Exchange, router z najwyższym identyfikatorrem routera jako pierwszy wyśle pakiety opisu bazy danych (DBD).</li>
+<li><strong>Uczestniczenie w wyborze routera desygnowanego (DR)</strong> - router z najwyższym id jest DR, drugi najwyższy BDR.</li>
+</ul>
+<h2 id="maska-blankietowa-wildcard-mask">2. Maska blankietowa (wildcard mask)</h2>
+<p>To odwrotność maski podsieci. (255.255.255.0 = 0.0.0.255).</p>
+<figure>
+<img src="img/4.png" alt="" /><figcaption>Proces przypisywania identyfikatora</figcaption>
+</figure>
+<h2 id="interfejsy-pasywne">3. Interfejsy pasywne</h2>
+<p>Domyślnie komunikaty OSPF wysyłane są przez wszystkie interfejsy dołączone do protokołu OSPF. Jednak w praktyce powinny one być wysyłane tylko na tych interfejsach, na których jest połączenie z innym routerami z uruchomionym OSPF.</p>
+<p>Wysyłanie niepotrzebnych komunikatów może wpływać na działanie sieci na trzy sposoby:</p>
+<ul>
+<li><strong>Nieefektywne wykorzystanie pasma</strong></li>
+<li><strong>Nieefektywne wykorzystanie zasobów</strong></li>
+<li><strong>Zwiększone ryzyko bezpieczeństwa</strong></li>
+</ul>
+<h2 id="drother">4. DROTHER</h2>
+<p>Routery, które nie są ani DR ani BDR.</p>
+<h2 id="potrzebne-komendy">5. Potrzebne komendy:</h2>
+<ul>
+<li><strong>router ospf process-id</strong> - włączenie OSPFv2.</li>
+<li><strong>router-id</strong> - ustawienie identyfikatora routera.</li>
+<li><strong>clear ip ospf process</strong> - wyczyszczenie procesu OSPF (w tym reset relacji przylegania).</li>
+<li><strong>show ip protocols</strong> - daje możliwość zobaczenia identyfikatora routera oraz pasywnych interfejsów.</li>
+<li><strong>network network-address wildcard-mask area area-id</strong> - włączenie protokołu OSPF na interfejsach.</li>
+<li><strong>ip ospf process-id area area-id</strong> - pozwala na konfiguracje OSPf bezpośrednio na interfejsie zamiast polecenia <strong>network</strong>.</li>
+<li><strong>passive-interface</strong> - ogranicza wysyłanie komunikatów dotyczących routingu przez interfejs. Komenda <em>passive-interface default</em> sprawia, że wszystkie interfejsy stają się pasywne.</li>
+<li><strong>show ip ospf interface</strong> - wyświetla DR i BDR na interfejsie, rolę routera, bieżący koszt.</li>
+<li><strong>ip ospf network point-to-point</strong> - zmienia typ wyznaczonej sieci na punkt-punkt i wyłącza proces wyboru DR/BDR.</li>
+<li><strong>ip ospf priority value</strong> - ustawia priorytet interfejsu (od 0 do 255).</li>
+<li><strong>auto-cost reference-bandwidth <em>Mbps</em></strong> - zmienia referencyjną szerokośc pasma (co pozwala na zmianę kosztu dla interfejsów szybszych niż Fast Ethernet).</li>
+<li><strong>ip ospf cost <em>value</em></strong> - zmienia wartość kosztu ogłaszaną przez lokalny router OSPF do innych routerów OSPF .</li>
+<li><strong>ip ospf hello-interval <em>seconds</em></strong> - zmienia interwał hello.</li>
+<li><strong>ip ospf dead-interval <em>seconds</em></strong> - zmienia interwał dead.</li>
+<li><strong>ip route 0.0.0.0 0.0.0.0 <em>[next-hop-address | exit-interface]</em></strong> - domyślna trasa statyczna</li>
+<li><strong>default-information originate</strong> - nakazuje routerowi być źródłem informacji o trasie domyślnej i propagowanie statycznej trasy domyślnej w aktualizacjach OSPF.</li>
+<li><strong>show ip interface brief</strong> - sprawdza, czy żądane interfejsy są aktywne z poprawnym adresowaniem IP.</li>
+<li><strong>show ip route</strong> - sprawdza, czy tablica routingu zawiera wszystkie oczekiwane trasy.</li>
+</ul>
+<h2 id="koszt-jako-metryka-w-ospf">6. Koszt jako metryka w OSPF</h2>
+<p>Protokoły routingu używają <strong>metryki</strong> w celu wyznaczenia najlepszej trasy dla pakietu przez sieć. <strong>Metryka</strong> jest miarą nakładu wymaganego do przesłania pakietu przez dany interfejs.</p>
+<p>Protokół OSPF używa jako metryki <strong>kosztu ścieżki</strong>. Im niższy koszt, tym lepsza trasa do celu.</p>
+<p><strong>Koszt = referencyjna szerokość pasma / szerokość pasma interfejsu</strong></p>
+<p>Wartość kosztu OSPF musi być <strong>liczbą całkowitą</strong>.</p>
+<figure>
+<img src="img/5.png" alt="" /><figcaption>Domyślne koszty OSPF na urządzeniach Cisco</figcaption>
+</figure>
+<figure>
+<img src="img/6.png" alt="" /><figcaption>Koszt OSPF przy referencyjnej szerokości pasma dostosowanej do obsługi łączy 10 Gigabit Ethernet</figcaption>
+</figure>
+<h2 id="interwały-pakietów-hello">7. Interwały pakietów Hello</h2>
+<p>Pakiety OSPFv2 Hello są wysyłane co 10 sekund.</p>
+<p><strong>Interwał Dead</strong> to okres, przez jaki router będzie czekał na odbiór pakietu Hello, zanim zadeklaruje, że sąsiad jest wyłączony. (W Cisco domyślnie jest to 4-krotność interwału Hello, czyli 10 sek).</p>
+<h2 id="propagowanie-domyślnej-trasy-statycznej-w-opsfv2">8. Propagowanie domyślnej trasy statycznej w OPSFv2</h2>
+<p><strong>Router brzegowy (router bramy)</strong> - to router podłączony do Internetu, który powinien propagować domyślną trasę do innych routerów w lokalnej sieci.</p>
+<p><strong>Router brzegowy systemu autonomicznego (Autonomous System Boundary Router, ASBR)</strong> - router, który znajduję się pomiędzy domeną routingu OSPF a siecią bez OSPF.</p>
+<h1 id="iii.-koncepcje-bezpieczeństwa-sieci">III. Koncepcje bezpieczeństwa sieci</h1>
+<figure>
+<img src="img/7.png" alt="" /><figcaption>Pojęcia bezpieczeństwa</figcaption>
+</figure>
+<h2 id="wektory-ataków-sieciowych">1. Wektory ataków sieciowych</h2>
+<p><strong>Wekor ataku</strong> - to ścieżka, dzięi której podmiot zagrożenia może uzyskać dostęp do serwera, hosta lub sieci. Wektory mogą pochodzić ze zewnątrz lub wewnąrz.</p>
+<h2 id="typy-hakerów">2. Typy hakerów</h2>
+<figure>
+<img src="img/8.png" alt="" /><figcaption>Typy hakerów</figcaption>
+</figure>
+<h2 id="terminy-dotyczące-hackingu">3. Terminy dotyczące hackingu</h2>
+<figure>
+<img src="img/9.png" alt="" /><figcaption>Terminu dotyczące hackingu</figcaption>
+</figure>
+<h2 id="narzędzia-do-testowania-penetracji">4. Narzędzia do testowania penetracji</h2>
+<figure>
+<img src="img/10.png" alt="" /><figcaption>Narzędzia do testowania penetracji</figcaption>
+</figure>
+<h2 id="typy-ataków">5. Typy ataków</h2>
+<figure>
+<img src="img/11.png" alt="" /><figcaption>Typy ataków</figcaption>
+</figure>
+<h1 id="vii.-koncepcje-sieci-wan">VII. Koncepcje sieci WAN</h1>
+<h2 id="topologie-wan">1. Topologie WAN</h2>
+<ul>
+<li><strong>Punkt-punkt</strong></li>
+<li><strong>Hub-and-spoke</strong> - umożliwia współużytkowanie pojedynczego interfejsu na routerze centralnym (hub) przez wszystkie routery obwodowe (spoke).</li>
+</ul>
+<p><img src="img/12.png" alt="Hub-and-spoke" /> - <strong>Dual-homed</strong> - zapewnia redundancję. Router centralny jest podwojony w lokalizacji a te nadmiarowo podłączone do routerów obwodowych w chmurze WAN.</p>
+<p><img src="img/13.png" alt="Dual-homed" /> - <strong>Pełnej siatki</strong> - wykorzystuje wiele obwodów wirtualnych do łączenia wszystkich lokalizacji.</p>
+<figure>
+<img src="img/14.png" alt="" /><figcaption>Topologia pełnej siatki</figcaption>
+</figure>
+<p>-<strong>Częściowej siatki</strong> - łączy wiele, ale nie wszystkie lokalizacje.</p>
+<figure>
+<img src="img/15.png" alt="" /><figcaption>Topologia częściowej siatki</figcaption>
+</figure>
+<h2 id="łącza-operatorów">2. Łącza operatorów</h2>
+<p>SLA - umowa o poziomie usług podpisywana między organizacją a usługodawcą. Przedstawia ona oczekiwane usługi związane z niezawodnością i dostępnością połączenia.</p>
+<h2 id="standardy-sieci-wan">3. Standardy sieci WAN</h2>
+<p>Nowoczesne standardy sieci WAN są definiowane i zarządzane przez wiele uznanych organów, w tym:</p>
+<ul>
+<li><strong>TIA/EIA</strong> - Telecommunications Industry Association and Electronic Industries Alliance</li>
+<li><strong>ISO</strong> - International Organization for Standardization</li>
+<li><strong>IEEE</strong> - Institute of Electrical and Electronics Engineers</li>
+</ul>
+<h2 id="sieci-wan-w-modelu-osi">4. Sieci WAN w modelu OSI</h2>
+<figure>
+<img src="img/16.png" alt="" /><figcaption>Sieci WAN w modelu OSI</figcaption>
+</figure>
+<h2 id="terminologia-wan">5. Terminologia WAN</h2>
+<figure>
+<img src="img/17.png" alt="" /><figcaption>Terminologia WAN</figcaption>
+</figure>
+<h2 id="urządzenia-sieci-wan">6. Urządzenia sieci WAN</h2>
+<figure>
+<img src="img/18.png" alt="" /><figcaption>Urządzenia sieci WAN</figcaption>
+</figure>
+<h2 id="komunikacja-szeregowa">7. Komunikacja szeregowa</h2>
+<p>W sieciach WAN stosowana jest komunikacja szeregowa.</p>
+<h2 id="komunikacja-z-komutacją-łączy">8. Komunikacja z komutacją łączy</h2>
+<p><strong>Sieć z komutacją łączy</strong> ustanawia dedykowany obwód (lub kanał) między punktami końćowymi, zanim użytkownicy będą mogli się komunikować.</p>
+<p>Podczas transmisji w sieci z komutacją łączy cała komunikacja korzysta z tej samej ścieżki. Cała stała pojemność przydzielona do obwodu jest dostępna na czas połączenia, niezależnie od tego, czy są informacje do transmisji, czy nie. Może to prowadzić do nieefektywności w użyciu obwodu. Z tego powodu komutacja łączy zasadniczo nie nadaje się do przesyłania danych.</p>
+<p>Dwa najpopularniejsze typy technologii WAN z komutacją łączy to <strong>publiczna komutowana sieć telefoniczna (PSTN)</strong> i <strong>sieć cyfrowa z integracją usług (ISDN)</strong>.</p>
+<h2 id="komunikacja-z-przełączaniem-pakietów">9. Komunikacja z przełączaniem pakietów</h2>
+<p>W przeciwieństwie do komutacji łączy, przełączanie pakietów dzieli dane ruchu na pakiety, które są kierowane w sieci współużytkowanej. Przełączanie pakietów, nie wymaga zestawienia specjalnego obwodu/połączenia, ponadto pozwalają kilku urządzeniom komunikować się za pomocą tego samego kanału.</p>
+<p>Typowe rodzaje technologii WAN z przełączaniem pakietów to <strong>Ethernet WAN (Metro Ethernet)</strong>, <strong>Multiprotocol Label Switching (MPLS)</strong>, a także starszy <strong>Frame Relay</strong> i starszy <strong>Asynchronous Transfer Mode (ATM)</strong>.</p>
+<h2 id="sdh-sonet-i-dwdm">10. SDH, SONET i DWDM</h2>
+<p>Istnieją dwa optyczne standardy warstwy 1 OSI dostępne dla dostawców usług:</p>
+<ul>
+<li><strong>Synchronous Digital Hierarchy (SDH)</strong> to globalny standard transportu danych za pomocą kabla światłowodowego.</li>
+<li><strong>Synchronous Optical Networking (SONET)</strong> to norma północnoamerykańska, która świadczy te same usługi co SDH.</li>
+</ul>
+<p><strong>Dense Wavelength Division Multiplexing (DWDM)</strong> to nowsza technologia, która zwiększa nośność danych SDH i SONET poprzez jednoczesne wysyłanie wielu strumieni danych (multipleksowanie) przy użyciu różnych długości fal światła, jak pokazano na rysunku.</p>
+<h2 id="mpls">11. MPLS</h2>
+<p><strong>Multiprotocol Label Switching (MPLS)</strong> to wysokowydajna technologia routingu WAN dla dostawcy usług umożliwiająca łączenie klientów bez względu na metodę dostępu lub typ obciążenia. MPLS obsługuje różne metody dostępu klienta (np. Ethernet, DSL, Cable, Frame Relay). MPLS może enkapsulować ruch wszystkich typy protokołów, w tym IPv4 i IPv6.</p>
+</body>
+</html>
