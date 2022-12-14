@@ -17,11 +17,11 @@ W tym celu algorytm SPF tworzy tzw. **drzewo SPF**, każdy router umieszczany je
 
 ## 2. Proces routingu stanu łącza
 
-1. Ustanowienie przyległości sąsiadów - wysyłanie pakietów Hello, aby ustalić czy na danym łączu znajdują się sąsiedzi.
-2. Wymiana komunikatów o stanie łącza (LSA) - pakiety LSA zawierające informacje na temat stanu oraz kosztu każdego bezpośrednio podłączonego łącza wysyłane są zalewowo do wszystkich sąsiadów.
-3. Tworzenie bazy stanów łącza - Na podstawie pakietów LSA Routery tworzą **tablicę topologii (LSDB)**.
-4. Wykonanie algorytmu SPF - Routery wykonują algorytm SPF.
-5. Wybór najlepszej trasy - najlepsze ścieżki oferowane są do tablicy routingu IP.
+1. **Ustanowienie przyległości sąsiadów** - wysyłanie pakietów Hello, aby ustalić czy na danym łączu znajdują się sąsiedzi.
+2. **Wymiana komunikatów o stanie łącza (LSA)** - pakiety LSA zawierające informacje na temat stanu oraz kosztu każdego bezpośrednio podłączonego łącza wysyłane są zalewowo do wszystkich sąsiadów.
+3. **Tworzenie bazy stanów łącza** - Na podstawie pakietów LSA Routery tworzą **tablicę topologii (LSDB)**.
+4. **Wykonanie algorytmu SPF** - Routery wykonują algorytm SPF.
+5. **Wybór najlepszej trasy** - najlepsze ścieżki oferowane są do tablicy routingu IP.
 
 ## 3. OSPF wieloobszarowy zalety:
 - Mniejsze tablice routingu
@@ -209,3 +209,124 @@ Istnieją dwa optyczne standardy warstwy 1 OSI dostępne dla dostawców usług:
 ## 11. MPLS
 
 **Multiprotocol Label Switching (MPLS)** to wysokowydajna technologia routingu WAN dla dostawcy usług umożliwiająca łączenie klientów bez względu na metodę dostępu lub typ obciążenia. MPLS obsługuje różne metody dostępu klienta (np. Ethernet, DSL, Cable, Frame Relay). MPLS może enkapsulować ruch wszystkich typy protokołów, w tym IPv4 i IPv6.
+
+# IX. Koncepcje QoS
+
+## 1. Stałe opóźnienie
+
+To określony czas, jaki trwa określony proces, na przykład czas potrzebnny na umieszczenie go na nośniku transmisji.
+
+## 2. Zmienne opóźnienie
+
+Zajmuje nieokreślony czas i ma wpływ na takie czynniki, jak ilość ruchu która jest przetwarzana.
+
+## 3. Źródła opoźnienia
+
+![Źródła opóźnienia](img/19.png)
+
+## 4. Jitter
+
+Zmienność wartości opóźnienia odebranych pakietów. Z powodu przeciążenia sieci, niewłaściwego kolejkowania lub błędów konfiguracji, opóźnienie między poszczególnymi pakietami może się zmieniać, a nie pozostawać stałe.
+
+## 5. Utracone pakiety
+
+Bez żadnych mechanizmów QoS pakiety są przetwarzane w kolejności, w jakiej zostały odebrane. W przypadku przeciążenia urządzenia sieciowe mogę odrzucać pakiety. Oznacza to, że pakiety wideo czy głosowe będą odrzucane z taką samą częstotliwością jak inne (np. e-mail, http).
+
+## 6. Bufor opóźnienia
+
+Mechanizm kompensujący napotkany przez router jitter. Musi on burforować pakiety, a następnie odtwarzać je w stały strumieniu. Pakiety cyfrowe są późnień konwertowane na analogowy strumień audio.
+
+![Bufor opóźnienia odtwarzania kompensuje jitter](img/20.png)
+
+W przypadku małym strat (jak pakiet) **cyfrowy procesor sygnałowy (DSP)** interpoluje dźwięk i sprawia że problem nie jest słyszalny. 
+
+## 7. Charakterystyka ruchu głosowego
+
+![Charakterystyka ruchu głosowego](img/21.png)
+
+## 8. Charakterystyka ruchu wideo
+
+![Charakterystyka ruchu wideo](img/22.png)
+
+## 9. Charakterystyka ruchu danych
+
+![Charakterystyka ruchu danych](img/23.png)
+
+## 10. Czynniki, które należy wziąć pod uwagę w przypadku opóźnienia danych
+
+![Czynniki, które należy wziąć pod uwagę w przypadku opóźnienia danych](img/24.png)
+
+## 11. Algorytmy QoS
+
+**Algorytmy QoS przedstawione w kursie:**
+
+- Pierwszy wejście, pierwsze wyjście (First-in, first-out - FIFO)
+- Ważone uczciwe kolejkowanie (Weighted Fair Queuing - WFQ)
+- Uczciwe kolejkowanie oCzęśće na klasach (Class-Based Weighted Fair Queuing - CBWFQ)
+- Kolejkowanie o niskim opóźnieniu (Low Latency Queuing - LLQ)
+
+## 12. First In First Out
+
+Znana również jako **„kto pierwszy, ten lepszy”**, bufory i pakiety przesyłek dalej w kolejności ich przybycia.
+
+## 13. Ważone uczciwe kolejkowanie (Weighted Fair Queuing - WFQ)
+
+Jest zautomatyzowaną metodą planowania, która zapewnia uczciwą alokację przepustowości dla całego ruchu sieciowego. WFQ nie zezwala na konfigurację opcji klasyfikacji. WFQ stosuje priorytet lub wagi do zidentyfikowanego ruchu i klasyfikuje go do rozmów lub przepływów.
+
+WFQ następnie określa, ile przepustowości każdy przepływ jest dozwolony w stosunku do innych przepływów. Algorytm przepływowy używany przez WFQ jednocześnie **planuje interaktywny ruch z przodu kolejki** w celu skrócenia czasu reakcji. Następnie dość dzieli pozostałą przepustowość wśród przepływów o wysokiej przepustowości. Funkcja WFQ umożliwia nadanie niewielkiemu, interaktywnemu ruchowi, na przykład sesjom Telnet i głosu, pierwszeństwa w stosunku do dużego ruchu, takiego jak sesje FTP.
+
+WFQ klasyfikuje ruch na różne przepływy w oparciu o adresowanie nagłówków pakietów.
+
+**Ograniczenia WFQ:**
+
+- Funkcja WFQ nie jest obsługiwana w przypadku tunelowania i szyfrowania, ponieważ te funkcje modyfikują informacje o zawartości pakietów wymagane przez funkcję WFQ do klasyfikacji.
+- Nie oferuje stopnia precyzyjnej kontroli nad alokacją pasma, jaki oferuje CBWFQ.
+
+
+## 14. Uczciwe kolejkowanie oparte na klasach (Class-Based Weighted Fair Queuing - CBWFQ)
+
+**Class-Based Weighted Fair Queuing (CBWFQ)** rozszerza standardową funkcjonalność WFQ, aby zapewnić obsługę klas ruchu zdefiniowanych przez użytkownika. Za pomocą CBWFQ definiujesz klasy ruchu na podstawie kryteriów dopasowania, w tym protokołów, list kontroli dostępu (ACL) i interfejsów wejściowych.
+
+## 15. Kolejkowanie o niskim opóźnieniu (Low Latency Queuing - LLQ)
+**Funkcja kolejki o niskim opóźnieniu (LLQ)** zapewnia ścisłe kolejkowanie priorytetowe (PQ) do CBWFQ. Ścisłe PQ umożliwia wysyłanie pakietów wrażliwych na opóźnienia, takich jak głos przed pakietami w innych kolejkach. LLQ zapewnia ścisłą kolejkę priorytetową dla CBWFQ, zmniejszając drgania w rozmowach głosowych.
+
+![Przykład LLQ](img/25.png)
+
+# 16. Modele do wdrażania QoS
+
+![Modele do wdrażania QoS](img/26.png)
+
+# 17. Best Effort
+
+Podstawowym założeniem Internetu jest dostarczanie pakietów z największą starannością i nie daje żadnych gwarancji. Podejście to jest nadal dominujące w Internecie i pozostaje właściwe dla większości celów.
+
+Model best-effort jest podobny w koncepcji do wysyłania listu za pomocą zwykłej poczty. Twój list jest traktowany dokładnie tak samo jak każdy inny list. W modelu „najlepszych wysiłków” list może nigdy nie nadejść, a jeśli nie masz osobnych ustaleń dotyczących powiadamiania z odbiorcą listu, możesz nigdy nie wiedzieć, że list nie dotarł.
+
+**Korzyści i wady modelu best-effort**
+
+![Korzyści i wady modelu best-effort](img/27.png)
+
+# 18. IntServ
+
+IntServ zapewnia kompleksową QoS, której wymagają aplikacje czasu rzeczywistego. IntServ jawnie zarządza zasobami sieciowymi, aby zapewnić QoS dla poszczególnych przepływów lub strumieni, czasami nazywanych mikroprzepływami. Wykorzystuje mechanizmy rezerwacji zasobów i kontroli dostępu jako elementy składowe do ustanowienia i utrzymania jakości usług. Jest to podobne do koncepcji znanej jako „twarde QoS”. Twarde QoS gwarantuje charakterystykę ruchu, taką jak przepustowość, opóźnienia i współczynniki utraty pakietów, od początku do końca. Twarde QoS zapewnia zarówno przewidywalne, jak i gwarantowane poziomy usług dla aplikacji o znaczeniu krytycznym.
+
+W modelu IntServ aplikacja przed wysłaniem danych żąda określonego rodzaju usługi z sieci. Aplikacja informuje sieć o swoim profilu ruchu i żąda określonego rodzaju usługi, która może obejmować wymagania dotyczące przepustowości i opóźnień. IntServ używa protokołu Resource Reservation Protocol (RSVP) do sygnalizowania zapotrzebowania na QoS ruchu aplikacji wzdłuż urządzeń na ścieżce od końca do końca w sieci. Jeśli urządzenia sieciowe na ścieżce mogą zarezerwować niezbędną przepustowość, pierwotna aplikacja może rozpocząć transmisję. Jeśli żądana rezerwacja nie powiedzie się na ścieżce, aplikacja źródłowa nie wysyła żadnych danych.
+
+# 19. DiffServ
+**Model usług zróżnicowanych (DiffServ)** QoS określa prosty i skalowalny mechanizm klasyfikowania i zarządzania ruchem sieciowym.
+
+DiffServ może zapewnić „prawie gwarantowaną” jakość usług, a jednocześnie jest opłacalne i skalowalne.
+
+Model DiffServ jest podobny w koncepcji do wysyłania paczki za pomocą usługi dostawy. Wysyłając paczkę żądasz (i płacisz) za odpowiedni poziom usług. W całej sieci pakietów poziom usług, za który zapłaciłeś, jest rozpoznawany, a pakiet otrzymuje preferencyjną lub normalną usługę, w zależności od tego, o co prosiłeś.
+
+Gdy host przekazuje ruch do routera, router klasyfikuje przepływy w agregatach (klasach) i zapewnia odpowiednią politykę QoS dla klas. DiffServ wymusza i stosuje mechanizmy jakości usług na zasadzie przeskok po przeskoku, jednolicie nadając globalne znaczenie każdej klasie ruchu, aby zapewnić zarówno elastyczność, jak i skalowalność. Na przykład DiffServ można skonfigurować tak, aby grupował wszystkie przepływy TCP jako jedną klasę i przydzielał przepustowość dla tej klasy, a nie dla poszczególnych przepływów, jak zrobiłby to IntServ. Oprócz klasyfikowania ruchu DiffServ minimalizuje wymagania dotyczące sygnalizacji i utrzymania stanu na każdym węźle sieci.
+
+![Wady i zalety DiffServ](img/30.png)
+
+# 20. Narzędzia do wdrażania QoS
+
+![Narzędzia do wdrażania QoS](img/31.png)
+
+# 21. Sekwencja QoS
+
+![Sekwencja QoS](img/32.png)
