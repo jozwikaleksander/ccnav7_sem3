@@ -159,7 +159,7 @@ Pakiety OSPFv2 Hello są wysyłane co 10 sekund.
 ![Topologia częściowej siatki](img/15.png)
 
 ## 2. Łącza operatorów
-SLA - umowa o poziomie usług podpisywana między organizacją a usługodawcą. Przedstawia ona oczekiwane usługi związane z niezawodnością i dostępnością połączenia.
+**SLA** - umowa o poziomie usług podpisywana między organizacją a usługodawcą. Przedstawia ona oczekiwane usługi związane z niezawodnością i dostępnością połączenia.
 
 ## 3. Standardy sieci WAN
 
