@@ -19,6 +19,124 @@
 <header id="title-block-header">
 <h1 class="title">🌐 CCNAv7 sem3</h1>
 </header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#i.-protokół-ospf">I. Protokół OSPF</a>
+<ul>
+<li><a href="#ospf">1. OSPF</a></li>
+<li><a href="#proces-routingu-stanu-łącza">2. Proces routingu stanu łącza</a></li>
+<li><a href="#ospf-wieloobszarowy-zalety">3. OSPF wieloobszarowy zalety:</a></li>
+<li><a href="#osfpv3">4. OSFPv3</a></li>
+<li><a href="#rodzaje-pakietów-ospf">5. Rodzaje pakietów OSPF</a></li>
+<li><a href="#stany-protokołu-ospf">6. Stany protokołu OSPF:</a></li>
+</ul></li>
+<li><a href="#ii.-konfiguracja-jednoobszarowego-ospfv2">II. Konfiguracja jednoobszarowego OSPFv2</a>
+<ul>
+<li><a href="#identyfikator-routera">1. Identyfikator routera</a></li>
+<li><a href="#maska-blankietowa-wildcard-mask">2. Maska blankietowa (wildcard mask)</a></li>
+<li><a href="#interfejsy-pasywne">3. Interfejsy pasywne</a></li>
+<li><a href="#drother">4. DROTHER</a></li>
+<li><a href="#potrzebne-komendy">5. Potrzebne komendy:</a></li>
+<li><a href="#koszt-jako-metryka-w-ospf">6. Koszt jako metryka w OSPF</a></li>
+<li><a href="#interwały-pakietów-hello">7. Interwały pakietów Hello</a></li>
+<li><a href="#propagowanie-domyślnej-trasy-statycznej-w-opsfv2">8. Propagowanie domyślnej trasy statycznej w OPSFv2</a></li>
+<li><a href="#źródła-uzupełniające">Źródła uzupełniające</a></li>
+</ul></li>
+<li><a href="#iii.-koncepcje-bezpieczeństwa-sieci">III. Koncepcje bezpieczeństwa sieci</a>
+<ul>
+<li><a href="#wektory-ataków-sieciowych">1. Wektory ataków sieciowych</a></li>
+<li><a href="#typy-hakerów">2. Typy hakerów</a></li>
+<li><a href="#terminy-dotyczące-hackingu">3. Terminy dotyczące hackingu</a></li>
+<li><a href="#narzędzia-do-testowania-penetracji">4. Narzędzia do testowania penetracji</a></li>
+<li><a href="#typy-ataków">5. Typy ataków</a></li>
+<li><a href="#rodzaje-złośliwego-oprogramowania">6. Rodzaje złośliwego oprogramowania</a>
+<ul>
+<li><a href="#wirus">Wirus</a></li>
+<li><a href="#koń-trojański">Koń trojański</a></li>
+</ul></li>
+<li><a href="#rekonesans">7. Rekonesans</a></li>
+<li><a href="#ataki-dostępu">8. Ataki dostępu</a>
+<ul>
+<li><a href="#ataki-na-hasło">Ataki na hasło</a></li>
+<li><a href="#ataki-fałszowania">Ataki fałszowania</a></li>
+</ul></li>
+<li><a href="#ataki-socjotechniczne">9. Ataki socjotechniczne</a></li>
+<li><a href="#ataki-dos-i-ddos">10. Ataki DoS i DDoS</a>
+<ul>
+<li><a href="#istnieją-dwa-główne-typy-ataków-dos">Istnieją dwa główne typy ataków DoS:</a></li>
+</ul></li>
+<li><a href="#ataki-ip">11. Ataki IP</a></li>
+<li><a href="#ataki-na-icmp">12. Ataki na ICMP</a></li>
+<li><a href="#ataki-wzmacniania-i-obijania">13. Ataki wzmacniania i obijania</a></li>
+<li><a href="#ataki-fałszowania-1">14. Ataki fałszowania</a></li>
+<li><a href="#usługi-tcp">15. Usługi TCP</a></li>
+<li><a href="#ataki-na-tcp">16. Ataki na TCP</a></li>
+<li><a href="#ataki-na-udp">17. Ataki na UDP</a></li>
+<li><a href="#zatruwanie-arp">18. Zatruwanie ARP</a></li>
+<li><a href="#ataki-na-dns">19. Ataki na DNS</a></li>
+<li><a href="#tunelowanie-dns">20. Tunelowanie DNS</a>
+<ul>
+<li><a href="#proces-tunelowania-dns">Proces tunelowania DNS:</a></li>
+</ul></li>
+<li><a href="#ataki-na-dhcp">21. Ataki na DHCP</a></li>
+<li><a href="#triada-pid">22. Triada PID</a></li>
+<li><a href="#urządzenia-i-usługi-zabezpieczające">23. Urządzenia i usługi zabezpieczające</a></li>
+<li><a href="#zapory">24. Zapory</a></li>
+<li><a href="#ips">25. IPS</a></li>
+<li><a href="#urządzenia-bezpieczeństwa-treści">26. Urządzenia bezpieczeństwa treści</a></li>
+<li><a href="#elementy-bezpiecznej-komunikacji">27. Elementy bezpiecznej komunikacji:</a></li>
+<li><a href="#integralność-danych">28. Integralność danych</a>
+<ul>
+<li><a href="#trzy-znane-funkcje-skrótu">Trzy znane funkcje skrótu</a></li>
+</ul></li>
+<li><a href="#uwierzytelnianie-pochodzenia">29. Uwierzytelnianie pochodzenia</a></li>
+<li><a href="#poufność-danych">30. Poufność danych</a>
+<ul>
+<li><a href="#a.-szyfrowanie-symetryczne">a. Szyfrowanie symetryczne</a></li>
+<li><a href="#b.-szyfrowanie-asymetryczne">b. Szyfrowanie asymetryczne</a></li>
+</ul></li>
+<li><a href="#diffie-hellman-dh">31. Diffie-Hellman (DH)</a></li>
+</ul></li>
+<li><a href="#vii.-koncepcje-sieci-wan">VII. Koncepcje sieci WAN</a>
+<ul>
+<li><a href="#topologie-wan">1. Topologie WAN</a></li>
+<li><a href="#łącza-operatorów">2. Łącza operatorów</a></li>
+<li><a href="#standardy-sieci-wan">3. Standardy sieci WAN</a></li>
+<li><a href="#sieci-wan-w-modelu-osi">4. Sieci WAN w modelu OSI</a></li>
+<li><a href="#terminologia-wan">5. Terminologia WAN</a></li>
+<li><a href="#urządzenia-sieci-wan">6. Urządzenia sieci WAN</a></li>
+<li><a href="#komunikacja-szeregowa">7. Komunikacja szeregowa</a></li>
+<li><a href="#komunikacja-z-komutacją-łączy">8. Komunikacja z komutacją łączy</a></li>
+<li><a href="#komunikacja-z-przełączaniem-pakietów">9. Komunikacja z przełączaniem pakietów</a></li>
+<li><a href="#sdh-sonet-i-dwdm">10. SDH, SONET i DWDM</a></li>
+<li><a href="#mpls">11. MPLS</a></li>
+</ul></li>
+<li><a href="#ix.-koncepcje-qos">IX. Koncepcje QoS</a>
+<ul>
+<li><a href="#stałe-opóźnienie">1. Stałe opóźnienie</a></li>
+<li><a href="#zmienne-opóźnienie">2. Zmienne opóźnienie</a></li>
+<li><a href="#źródła-opoźnienia">3. Źródła opoźnienia</a></li>
+<li><a href="#jitter">4. Jitter</a></li>
+<li><a href="#utracone-pakiety">5. Utracone pakiety</a></li>
+<li><a href="#bufor-opóźnienia">6. Bufor opóźnienia</a></li>
+<li><a href="#charakterystyka-ruchu-głosowego">7. Charakterystyka ruchu głosowego</a></li>
+<li><a href="#charakterystyka-ruchu-wideo">8. Charakterystyka ruchu wideo</a></li>
+<li><a href="#charakterystyka-ruchu-danych">9. Charakterystyka ruchu danych</a></li>
+<li><a href="#czynniki-które-należy-wziąć-pod-uwagę-w-przypadku-opóźnienia-danych">10. Czynniki, które należy wziąć pod uwagę w przypadku opóźnienia danych</a></li>
+<li><a href="#algorytmy-qos">11. Algorytmy QoS</a></li>
+<li><a href="#first-in-first-out">12. First In First Out</a></li>
+<li><a href="#ważone-uczciwe-kolejkowanie-weighted-fair-queuing---wfq">13. Ważone uczciwe kolejkowanie (Weighted Fair Queuing - WFQ)</a></li>
+<li><a href="#uczciwe-kolejkowanie-oparte-na-klasach-class-based-weighted-fair-queuing---cbwfq">14. Uczciwe kolejkowanie oparte na klasach (Class-Based Weighted Fair Queuing - CBWFQ)</a></li>
+<li><a href="#kolejkowanie-o-niskim-opóźnieniu-low-latency-queuing---llq">15. Kolejkowanie o niskim opóźnieniu (Low Latency Queuing - LLQ)</a></li>
+<li><a href="#modele-do-wdrażania-qos">16. Modele do wdrażania QoS</a></li>
+<li><a href="#best-effort">17. Best Effort</a></li>
+<li><a href="#intserv">18. IntServ</a></li>
+<li><a href="#diffserv">19. DiffServ</a></li>
+<li><a href="#narzędzia-do-wdrażania-qos">20. Narzędzia do wdrażania QoS</a></li>
+<li><a href="#sekwencja-qos">21. Sekwencja QoS</a></li>
+</ul></li>
+</ul>
+</nav>
 <h1 id="i.-protokół-ospf">I. Protokół OSPF</h1>
 <h2 id="ospf">1. OSPF</h2>
 <p><strong>OSPF</strong> to protokół routingu stanu łącza opracowany jako alternatywa dla RIP. Wykorzystuje on koncepcje obszarów.</p>
@@ -62,14 +180,14 @@
 <h2 id="identyfikator-routera">1. Identyfikator routera</h2>
 <p>To wartość 32-bitowa, która służy do jednoznacznej identyfikacji routera. Identyfikator ten służy do wykonywania następujących czynności:</p>
 <ul>
-<li><strong>Uczestniczenie w synchronizacji baz danych OSPF</strong> - Podcas stanu Exchange, router z najwyższym identyfikatorrem routera jako pierwszy wyśle pakiety opisu bazy danych (DBD).</li>
+<li><strong>Uczestniczenie w synchronizacji baz danych OSPF</strong> - Podczas stanu Exchange, router z najwyższym identyfikatorrem routera jako pierwszy wyśle pakiety opisu bazy danych (DBD).</li>
 <li><strong>Uczestniczenie w wyborze routera desygnowanego (DR)</strong> - router z najwyższym id jest DR, drugi najwyższy BDR.</li>
 </ul>
-<h2 id="maska-blankietowa-wildcard-mask">2. Maska blankietowa (wildcard mask)</h2>
-<p>To odwrotność maski podsieci. (255.255.255.0 = 0.0.0.255).</p>
 <figure>
 <img src="img/4.png" alt="" /><figcaption>Proces przypisywania identyfikatora</figcaption>
 </figure>
+<h2 id="maska-blankietowa-wildcard-mask">2. Maska blankietowa (wildcard mask)</h2>
+<p>To odwrotność maski podsieci. (255.255.255.0 = 0.0.0.255).</p>
 <h2 id="interfejsy-pasywne">3. Interfejsy pasywne</h2>
 <p>Domyślnie komunikaty OSPF wysyłane są przez wszystkie interfejsy dołączone do protokołu OSPF. Jednak w praktyce powinny one być wysyłane tylko na tych interfejsach, na których jest połączenie z innym routerami z uruchomionym OSPF.</p>
 <p>Wysyłanie niepotrzebnych komunikatów może wpływać na działanie sieci na trzy sposoby:</p>
@@ -118,12 +236,17 @@
 <h2 id="propagowanie-domyślnej-trasy-statycznej-w-opsfv2">8. Propagowanie domyślnej trasy statycznej w OPSFv2</h2>
 <p><strong>Router brzegowy (router bramy)</strong> - to router podłączony do Internetu, który powinien propagować domyślną trasę do innych routerów w lokalnej sieci.</p>
 <p><strong>Router brzegowy systemu autonomicznego (Autonomous System Boundary Router, ASBR)</strong> - router, który znajduję się pomiędzy domeną routingu OSPF a siecią bez OSPF.</p>
+<h2 id="źródła-uzupełniające">Źródła uzupełniające</h2>
+<ul>
+<li>https://www.youtube.com/watch?v=kfvJ8QVJscc</li>
+<li>https://www.youtube.com/watch?v=PIMnj2oqYIo</li>
+</ul>
 <h1 id="iii.-koncepcje-bezpieczeństwa-sieci">III. Koncepcje bezpieczeństwa sieci</h1>
 <figure>
 <img src="img/7.png" alt="" /><figcaption>Pojęcia bezpieczeństwa</figcaption>
 </figure>
 <h2 id="wektory-ataków-sieciowych">1. Wektory ataków sieciowych</h2>
-<p><strong>Wekor ataku</strong> - to ścieżka, dzięi której podmiot zagrożenia może uzyskać dostęp do serwera, hosta lub sieci. Wektory mogą pochodzić ze zewnątrz lub wewnąrz.</p>
+<p><strong>Wekor ataku</strong> - to ścieżka, dzięki której podmiot zagrożenia może uzyskać dostęp do serwera, hosta lub sieci. Wektory mogą pochodzić ze zewnątrz lub wewnąrz.</p>
 <h2 id="typy-hakerów">2. Typy hakerów</h2>
 <figure>
 <img src="img/8.png" alt="" /><figcaption>Typy hakerów</figcaption>
@@ -140,6 +263,193 @@
 <figure>
 <img src="img/11.png" alt="" /><figcaption>Typy ataków</figcaption>
 </figure>
+<h2 id="rodzaje-złośliwego-oprogramowania">6. Rodzaje złośliwego oprogramowania</h2>
+<h3 id="wirus">Wirus</h3>
+<p>Rozprzestrzeniania się i infekuje inne komputery po wykonaniu przez użytkownika określonego działania.</p>
+<figure>
+<img src="img/33.png" alt="" /><figcaption>Rodzaje wirusów</figcaption>
+</figure>
+<h3 id="koń-trojański">Koń trojański</h3>
+<p>Program, który wygląda na przydatny, ale zawiera złośliwy kod.</p>
+<figure>
+<img src="img/34.png" alt="" /><figcaption>Rodzaje koni trojańskich</figcaption>
+</figure>
+<h2 id="rekonesans">7. Rekonesans</h2>
+<p>To zbieranie informacji. Podmioty zagrożenia wykorzystują ataki rozpoznawcze do nieautoryzowanego wykrywania i mapowania systemów, usług lub podatności. Ataki rozpoznawcze poprzedzają ataki dostępu lub ataki DoS.</p>
+<figure>
+<img src="img/35.png" alt="" /><figcaption>Techniki rekonesansu</figcaption>
+</figure>
+<h2 id="ataki-dostępu">8. Ataki dostępu</h2>
+<p>Celem tego typu ataku jest uzyskanie dostępu do dkont internetowych, poufnych baz danych i innych poufnych informacji.</p>
+<h3 id="ataki-na-hasło">Ataki na hasło</h3>
+<p>Próba odkrycia krytyzcznego hasła syst4emowego przy użyciu różnych moetd.</p>
+<h3 id="ataki-fałszowania">Ataki fałszowania</h3>
+<p>Próba pozowania jako inne urządzenie poprzez fałszowanie danych tj. adres IP, adres MAC czy fałszowanie DHCP.</p>
+<h2 id="ataki-socjotechniczne">9. Ataki socjotechniczne</h2>
+<p><strong>Socjotechnika</strong> jest atakiem polegającym na próbie nakłonienia ludzi do wykonania określonych działań lub ujawnienai poufnych informacji.</p>
+<figure>
+<img src="img/36.png" alt="" /><figcaption>Rodzaje ataków socjotechnicznych</figcaption>
+</figure>
+<h2 id="ataki-dos-i-ddos">10. Ataki DoS i DDoS</h2>
+<p><strong>Atak odmowy usług (Denial of Service)</strong> powoduje przerwanie świadczenia usług sieciowych.</p>
+<h3 id="istnieją-dwa-główne-typy-ataków-dos">Istnieją dwa główne typy ataków DoS:</h3>
+<ul>
+<li><strong>Przytłaczająca ilość ruchu</strong> - wysyłanie ogromnej ilości danych z szybkością, której host nie może obsłużyć. Powoduje to spowolnienie czasu transmisji i reakcji, a także awarię urządzenia lub usługi.</li>
+<li><strong>Złośliwie sformatowane pakiety</strong> - wysyłanie złośliwie sformatowanych pakietów do hosta, których nie może on obsłużyć.</li>
+</ul>
+<p><strong>Rozproszony atak DoS (Distributed DoS, DDoS)</strong> - podobny do DoS, lecz pochodzi z wielu skoordynowanych ze sobą urządzeń.</p>
+<h2 id="ataki-ip">11. Ataki IP</h2>
+<figure>
+<img src="img/37.png" alt="" /><figcaption>Techniki ataku na IP</figcaption>
+</figure>
+<h2 id="ataki-na-icmp">12. Ataki na ICMP</h2>
+<p>Aktorzy zagrożeń wykorzystują ICMP do ataków rozpoznawczych i skanowania oraz ataków DoS.</p>
+<figure>
+<img src="img/38.png" alt="" /><figcaption>Typowe komunikaty ICMP używane przez hakerów</figcaption>
+</figure>
+<h2 id="ataki-wzmacniania-i-obijania">13. Ataki wzmacniania i obijania</h2>
+<p>Technika ta nazywana jest <strong>atakiem smurfowym</strong> i jest wykorzystywana do przytłaczania docelowego hosta.</p>
+<figure>
+<img src="img/39.png" alt="" /><figcaption>Atak smurfowy</figcaption>
+</figure>
+<h2 id="ataki-fałszowania-1">14. Ataki fałszowania</h2>
+<p>Podmiot zagrożenie tworzy pakiety z fałszywymi źródłowymi informacjami adresowymi IP, aby ukryć tożsamość nadawcy lub pozować innego uprawnionego użytkownika.</p>
+<p>Ataki fałszowania mogą być nieślepe lub ślepe:</p>
+<ul>
+<li><strong>Nieślepe fałszowanie</strong> - haker może zobaczyć ruch między hostem a celem.</li>
+<li><strong>Ślepe fałszowanie</strong> - haker nie widzi ruchu między hostem a celem. Jest używane w atakach DoS.</li>
+</ul>
+<h2 id="usługi-tcp">15. Usługi TCP</h2>
+<ul>
+<li><strong>Niezawodne dostarczanie</strong></li>
+<li><strong>Kontrola przepływu</strong> - potwierdzanie wiele segmentów jednym segment potwierdzenia.</li>
+<li><strong>Komunikacja stanowa</strong> - występuje między podczas uzgadniania trójetapowego TCP (three-way handshake), które otwiera połączenie TCP.</li>
+</ul>
+<figure>
+<img src="img/40.png" alt="" /><figcaption>Three-way handshake</figcaption>
+</figure>
+<h2 id="ataki-na-tcp">16. Ataki na TCP</h2>
+<ul>
+<li><p><strong>Atak TCP SYN Flood</strong> <img src="img/41.png" alt="TCP SYN Flood" /></p></li>
+<li><p><strong>Atak TCP RESET</strong>- służy do przerwania komunikacji TCP między dwoma hostami.</p></li>
+</ul>
+<figure>
+<img src="img/42.png" alt="" /><figcaption>Zakończenie połączenia TCP</figcaption>
+</figure>
+<ul>
+<li><strong>Przejęcie sesji TCP</strong> - aktor zagrożenia przejmuje uwierzytelnionego hosta, gdy komunikuje się z celem. Haker fałszuje adres IP jednego hosta, przewiduje następny numer sekwencji i wysyła ACK do drugiego hosta. Jeżeli atak się powiedzie, podmiot zagrożenia może wysyłać, ale nie odbierać dane z urządzenia docelowego.</li>
+</ul>
+<h2 id="ataki-na-udp">17. Ataki na UDP</h2>
+<ul>
+<li><strong>Atak zalewania UDP</strong> - haker używa narzędzia tj. <strong>UDP Unicorn</strong> czy <strong>Low Orbit Ion Cannon</strong>. Narzędzie te zalewają pakietami UDP. Program wyszukuje zamknięte porty, na co serwer odpowiada komunikatem ICMP o nieosiągalnym porcie (większość portów na serwerze jest zamkniętych, co powoduje duży ruch na segmencie).</li>
+</ul>
+<h2 id="zatruwanie-arp">18. Zatruwanie ARP</h2>
+<p>Może być używane do uruchamiania różnych ataków man-in-the-middle. Wysyłając fałszywe gratisowe odpowiedzi ARP zawierające swój adres MAC dla wskazanych adresów IP docelowych zmienia on pamięć podręczną ARP urządzeń i stawia się między ofiarą, a wszystkimi innymi systemami w sieci.</p>
+<p><strong>Rodzaje zatrucia ARP:</strong></p>
+<ul>
+<li><strong>bierne</strong> - polega na kradzieży poufnych informacji.</li>
+<li><strong>aktywne</strong> - polega na modyfikacji przesyłanych danych.</li>
+</ul>
+<h2 id="ataki-na-dns">19. Ataki na DNS</h2>
+<ul>
+<li><strong>Ataki DNS typu open resolver</strong>
+<ul>
+<li><strong>Ataki zatrucia pamięci podręcznej DNS</strong> - wysyłanie sfałszowanych informacji dotyczących zawartości rekordu do sererwa odwzorowania DNS w przekierowania użytkowników na złośliwe stsrony.</li>
+<li><strong>Ataki wzmacniania i odbijania DNS</strong> - haker wysyła zapytania DNS na które otwarty system odwzorowania odpowiada.</li>
+<li><strong>Ataki wykorzystania zasobów DNS</strong> - atak DoS, który zużywa zasoby otwartych systemów odwzorowania DNS.</li>
+</ul></li>
+<li><strong>Ataki z ukrycia DNS</strong> - celem jest ukrycie swojej tożsamości. Techniki z ukrycia DNS:
+<ul>
+<li><strong>Fast Flux</strong> - adres IP DNS złośliwego serwera jest stale zmieniany w ciągu kilku minut, co pozwala na jego ukrycie.</li>
+<li><strong>Double IP Flux</strong> - używany do szybkiej zmiany nazwy hosta na mapowanie adresu IP, a także do zmainy autorytatwynwego serwera nazw. Zwiększ to trudność identyfikacji źródła ataku.</li>
+<li><strong>Algorytmy generowania domen</strong> - losowe generowania nazwy domen, które mogą być używane jako punkty spotkań dla ich serwerów komend i sterowania (CnC).</li>
+</ul></li>
+<li><strong>Ataki cieniowania domeny DNS</strong> - polega na zbieraniu poświadczeń konta domeny przez podmiot zagrożenia, aby po cichu utworzyć wiele pod-domen, które mają być używane podczas ataków.</li>
+</ul>
+<h2 id="tunelowanie-dns">20. Tunelowanie DNS</h2>
+<p>Haker umieszcza ruch inny niż DNS w ruchu DNS. Metoda ta często omija rozwiązania zabezpieczające, gdy podmiot zagrożenia chce komunikować się z botami wewnątrz chronionej sieci lub wyeksportować dane z organizacji.</p>
+<h3 id="proces-tunelowania-dns">Proces tunelowania DNS:</h3>
+<figure>
+<img src="img/43.png" alt="" /><figcaption>Tunelowanie DNS</figcaption>
+</figure>
+<h2 id="ataki-na-dhcp">21. Ataki na DHCP</h2>
+<ul>
+<li>Atak fałszowania DHCP - obcy serwer DHCP dostarcza fałszywych parametrów konfiguracji IP uprawinonym klientom. Może on dostarczać informacji tj.
+<ul>
+<li>Brama domyślna - nieprawidłowa brama lub adres IP swojego hosta, aby utworzyć MITM.</li>
+<li>Niewłaściwy serwer DNS - aby kierować użytkowników na złośliwą stronę internetową.</li>
+<li>Zły adres IP - haker zapewnia nieprawidłowe dane, a następnie tworzy atak DoS na klienta DHCP.</li>
+</ul></li>
+</ul>
+<h2 id="triada-pid">22. Triada PID</h2>
+<ul>
+<li>Poufność - tylko upoważnione osoby, podmioty lub procesy mogą uzyskać dostęp do poufnych informacji.</li>
+<li>Integralność - odnosi się do ochrony danych przed nieautoryzowanymi zmianami.</li>
+<li>Dostępność - autoryzowani użytkownicy muszą mieć nieprzerwany dostęp do ważnych zasobów i danych. Wymaga wdrożenia nadmiarowych usług, bram i łączy.</li>
+</ul>
+<h2 id="urządzenia-i-usługi-zabezpieczające">23. Urządzenia i usługi zabezpieczające</h2>
+<ul>
+<li>VPN</li>
+<li>ASA Firewall - dedykowane urzadzenia zapewniające stanowe usługi zapory. Sprawia, że ruch zewnętrzny nie może inicjować połączeń do wewnętrznych hostów.</li>
+<li>IPS (Intrusion Prevention System) - system zapobiegania włamaniom, monitrouje ruch przychodzący i wychodzący oraz zatrzumuje rozpoznane zagrożenia.</li>
+<li>ESA/WSA - urządzenia zabezpieczające e-mail filtruje span i podejrzane wiadomości e-mail. Urządzenie zabezpieczające sieci Web filtruje znane i podejrzane strony internetowe złośliwego oprogramowania.</li>
+<li>Serwer AAA - zawiera informacje, kto jest upoważniony do dostepu i zarządzania urządzeniami sieciowymi.</li>
+</ul>
+<h2 id="zapory">24. Zapory</h2>
+<p>Zapora jest systemem lub grupą systemów, która wymusza politykę kontroli dostępu między sieciami.</p>
+<h2 id="ips">25. IPS</h2>
+<p><strong>IDS</strong> - Intrusion Detection System <strong>IPS</strong> - Intrusion Prevension System</p>
+<p>Wykrywają one wzorce ruchu sieciowego za pomocą <strong>sygnatur</strong>. <strong>Sygnatura</strong> to zestaw reguł używanych do wykrywania złośliwej aktywności.</p>
+<h2 id="urządzenia-bezpieczeństwa-treści">26. Urządzenia bezpieczeństwa treści</h2>
+<p>Cisco Email Security Appliance (ESA) przeznaczone do monitorowania Simple Mail Transfer Protocol (SMTP).</p>
+<p>Cisco Web Security Appliance (WSA) to technologia ograniczania zagrożeń internetowych.</p>
+<h2 id="elementy-bezpiecznej-komunikacji">27. Elementy bezpiecznej komunikacji:</h2>
+<ul>
+<li><strong>Integralność danych</strong> - gwarantuje, że komunikat nie został zmieniony. Wszelkie zmiany w tranzycei zostaną wykryte.</li>
+<li><strong>Uwierzytelnianie pochodzenia</strong> - gwarantuje, że wiadomość nie jest sfałszowana i pochodzi od właściwej osoby.</li>
+<li><strong>Poufnych danych</strong> - tylko autoryzowani użytkownicy mogą odczytać wiadomość.</li>
+<li><strong>Niezaprzeczalność danych</strong> - nadawca nie może odrzucić lub zaprzeczyć ważności wysłanej wiadomości.</li>
+</ul>
+<h2 id="integralność-danych">28. Integralność danych</h2>
+<p><strong>Funkcje skrótu</strong> są wykorzystywane w celu zapewnienia integralności wiadomości. Gwarantują one, że dane wiadomości nie uległy zmianie przypadkowo lub celowo.</p>
+<h3 id="trzy-znane-funkcje-skrótu">Trzy znane funkcje skrótu</h3>
+<ol type="a">
+<li>MD5 z 128-bitowym odciskiem - funkcja jednokierunkowa, która generuje 128-bitowy skrócony komunikat. Lepszym rozwiązaniem jest SHA-2.</li>
+<li>Algorytm skrótu SHA - wersja SHA-1 i SHA-2.</li>
+</ol>
+<p>Funkcje skrótu (mieszanie) są podatne na MITM i niez apewnia bezpieczeństwa przesyłanych danych.</p>
+<h2 id="uwierzytelnianie-pochodzenia">29. Uwierzytelnianie pochodzenia</h2>
+<p>Aby dodać uwierzytelnianie do zapewnienia integralności można użyć <strong>kodu uwierzytelniania wiadomości z kluczem skrótu (HMAC)</strong>. HMAC wykorzystuje dodatkowy klucz tajny jako wejście dla funkcji skrótu.</p>
+<h2 id="poufność-danych">30. Poufność danych</h2>
+<p>Do zapewnienia poufności danych używane są dwie klasy szyfrowania: symetryczne i asymetryczne.</p>
+<figure>
+<img src="img/44.png" alt="" /><figcaption>Porównanie klas szyfrowania</figcaption>
+</figure>
+<h3 id="a.-szyfrowanie-symetryczne">a. Szyfrowanie symetryczne</h3>
+<figure>
+<img src="img/45.png" alt="" /><figcaption>Znane symetryczne algorytmy szyfrowania</figcaption>
+</figure>
+<p><strong>Szyfr strumieniowy</strong> szyfruje jeden bajt lub jeden bit na raz.</p>
+<h3 id="b.-szyfrowanie-asymetryczne">b. Szyfrowanie asymetryczne</h3>
+<p>Algorytmy asymetryczne używają <strong>klucza publicznego</strong> i <strong>klucza prywatnego</strong>.</p>
+<p>Przykłady protokołów wykorzystujących szyfrowanie asymtryczne:</p>
+<ul>
+<li><strong>Internet Key Exchange (IKE)</strong></li>
+<li><strong>Secure Socket Layer (SSL)</strong></li>
+<li><strong>Secure Shell (SSH)</strong></li>
+<li><strong>Pretty Good Privacy (PGP)</strong></li>
+</ul>
+<figure>
+<img src="img/46.png" alt="" /><figcaption>Znane asymetryczne algorytmy szyfrowania</figcaption>
+</figure>
+<h2 id="diffie-hellman-dh">31. Diffie-Hellman (DH)</h2>
+<p>Asymetryczny algorytm matemyczny, w którym dwa PC generują identyczny klucz tajny bez komunikowania się ze sobą.</p>
+<p>DH jest używany w:</p>
+<ul>
+<li>VPN IPSec</li>
+<li>SSL, TLS</li>
+<li>SSH</li>
+</ul>
 <h1 id="vii.-koncepcje-sieci-wan">VII. Koncepcje sieci WAN</h1>
 <h2 id="topologie-wan">1. Topologie WAN</h2>
 <ul>
@@ -267,21 +577,21 @@
 <figure>
 <img src="img/25.png" alt="" /><figcaption>Przykład LLQ</figcaption>
 </figure>
-<h1 id="modele-do-wdrażania-qos">16. Modele do wdrażania QoS</h1>
+<h2 id="modele-do-wdrażania-qos">16. Modele do wdrażania QoS</h2>
 <figure>
 <img src="img/26.png" alt="" /><figcaption>Modele do wdrażania QoS</figcaption>
 </figure>
-<h1 id="best-effort">17. Best Effort</h1>
+<h2 id="best-effort">17. Best Effort</h2>
 <p>Podstawowym założeniem Internetu jest dostarczanie pakietów z największą starannością i nie daje żadnych gwarancji. Podejście to jest nadal dominujące w Internecie i pozostaje właściwe dla większości celów.</p>
 <p>Model best-effort jest podobny w koncepcji do wysyłania listu za pomocą zwykłej poczty. Twój list jest traktowany dokładnie tak samo jak każdy inny list. W modelu „najlepszych wysiłków” list może nigdy nie nadejść, a jeśli nie masz osobnych ustaleń dotyczących powiadamiania z odbiorcą listu, możesz nigdy nie wiedzieć, że list nie dotarł.</p>
 <p><strong>Korzyści i wady modelu best-effort</strong></p>
 <figure>
 <img src="img/27.png" alt="" /><figcaption>Korzyści i wady modelu best-effort</figcaption>
 </figure>
-<h1 id="intserv">18. IntServ</h1>
+<h2 id="intserv">18. IntServ</h2>
 <p>IntServ zapewnia kompleksową QoS, której wymagają aplikacje czasu rzeczywistego. IntServ jawnie zarządza zasobami sieciowymi, aby zapewnić QoS dla poszczególnych przepływów lub strumieni, czasami nazywanych mikroprzepływami. Wykorzystuje mechanizmy rezerwacji zasobów i kontroli dostępu jako elementy składowe do ustanowienia i utrzymania jakości usług. Jest to podobne do koncepcji znanej jako „twarde QoS”. Twarde QoS gwarantuje charakterystykę ruchu, taką jak przepustowość, opóźnienia i współczynniki utraty pakietów, od początku do końca. Twarde QoS zapewnia zarówno przewidywalne, jak i gwarantowane poziomy usług dla aplikacji o znaczeniu krytycznym.</p>
 <p>W modelu IntServ aplikacja przed wysłaniem danych żąda określonego rodzaju usługi z sieci. Aplikacja informuje sieć o swoim profilu ruchu i żąda określonego rodzaju usługi, która może obejmować wymagania dotyczące przepustowości i opóźnień. IntServ używa protokołu Resource Reservation Protocol (RSVP) do sygnalizowania zapotrzebowania na QoS ruchu aplikacji wzdłuż urządzeń na ścieżce od końca do końca w sieci. Jeśli urządzenia sieciowe na ścieżce mogą zarezerwować niezbędną przepustowość, pierwotna aplikacja może rozpocząć transmisję. Jeśli żądana rezerwacja nie powiedzie się na ścieżce, aplikacja źródłowa nie wysyła żadnych danych.</p>
-<h1 id="diffserv">19. DiffServ</h1>
+<h2 id="diffserv">19. DiffServ</h2>
 <p><strong>Model usług zróżnicowanych (DiffServ)</strong> QoS określa prosty i skalowalny mechanizm klasyfikowania i zarządzania ruchem sieciowym.</p>
 <p>DiffServ może zapewnić „prawie gwarantowaną” jakość usług, a jednocześnie jest opłacalne i skalowalne.</p>
 <p>Model DiffServ jest podobny w koncepcji do wysyłania paczki za pomocą usługi dostawy. Wysyłając paczkę żądasz (i płacisz) za odpowiedni poziom usług. W całej sieci pakietów poziom usług, za który zapłaciłeś, jest rozpoznawany, a pakiet otrzymuje preferencyjną lub normalną usługę, w zależności od tego, o co prosiłeś.</p>
@@ -289,11 +599,11 @@
 <figure>
 <img src="img/30.png" alt="" /><figcaption>Wady i zalety DiffServ</figcaption>
 </figure>
-<h1 id="narzędzia-do-wdrażania-qos">20. Narzędzia do wdrażania QoS</h1>
+<h2 id="narzędzia-do-wdrażania-qos">20. Narzędzia do wdrażania QoS</h2>
 <figure>
 <img src="img/31.png" alt="" /><figcaption>Narzędzia do wdrażania QoS</figcaption>
 </figure>
-<h1 id="sekwencja-qos">21. Sekwencja QoS</h1>
+<h2 id="sekwencja-qos">21. Sekwencja QoS</h2>
 <figure>
 <img src="img/32.png" alt="" /><figcaption>Sekwencja QoS</figcaption>
 </figure>

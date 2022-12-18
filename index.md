@@ -48,13 +48,13 @@ To odpowiednik OSPFv2 służacy do **wymiany prefiksów IPv6**.
 ## 1. Identyfikator routera
 To wartość 32-bitowa, która służy do jednoznacznej identyfikacji routera. Identyfikator ten służy do wykonywania następujących czynności:
 
-- **Uczestniczenie w synchronizacji baz danych OSPF** - Podcas stanu Exchange, router z najwyższym identyfikatorrem routera jako pierwszy wyśle pakiety opisu bazy danych (DBD).
+- **Uczestniczenie w synchronizacji baz danych OSPF** - Podczas stanu Exchange, router z najwyższym identyfikatorrem routera jako pierwszy wyśle pakiety opisu bazy danych (DBD).
 - **Uczestniczenie w wyborze routera desygnowanego (DR)** - router z najwyższym id jest DR, drugi najwyższy BDR.
+
+![Proces przypisywania identyfikatora](img/4.png)
 
 ## 2. Maska blankietowa (wildcard mask)
 To odwrotność maski podsieci. (255.255.255.0 = 0.0.0.255).
-
-![Proces przypisywania identyfikatora](img/4.png)
 
 ## 3. Interfejsy pasywne 
 Domyślnie komunikaty OSPF wysyłane są przez wszystkie interfejsy dołączone do protokołu OSPF. Jednak w praktyce powinny one być wysyłane tylko na tych interfejsach, na których jest połączenie z innym routerami z uruchomionym OSPF. 
@@ -112,13 +112,18 @@ Pakiety OSPFv2 Hello są wysyłane co 10 sekund.
 
 **Router brzegowy systemu autonomicznego (Autonomous System Boundary Router, ASBR)** - router, który znajduję się pomiędzy domeną routingu OSPF a siecią bez OSPF.
 
+## Źródła uzupełniające
+- https://www.youtube.com/watch?v=kfvJ8QVJscc
+- https://www.youtube.com/watch?v=PIMnj2oqYIo
+
+
 # III. Koncepcje bezpieczeństwa sieci
 
 ![Pojęcia bezpieczeństwa](img/7.png)
 
 ## 1. Wektory ataków sieciowych
 
-**Wekor ataku** - to ścieżka, dzięi której podmiot zagrożenia może uzyskać dostęp do serwera, hosta lub sieci. Wektory mogą pochodzić ze zewnątrz lub wewnąrz.
+**Wekor ataku** - to ścieżka, dzięki której podmiot zagrożenia może uzyskać dostęp do serwera, hosta lub sieci. Wektory mogą pochodzić ze zewnątrz lub wewnąrz.
 
 ## 2. Typy hakerów
 
@@ -136,6 +141,218 @@ Pakiety OSPFv2 Hello są wysyłane co 10 sekund.
 ## 5. Typy ataków
 
 ![Typy ataków](img/11.png)
+
+## 6. Rodzaje złośliwego oprogramowania
+
+### Wirus
+Rozprzestrzeniania się i infekuje inne komputery po wykonaniu przez użytkownika określonego działania.
+
+![Rodzaje wirusów](img/33.png)
+
+### Koń trojański
+Program, który wygląda na przydatny, ale zawiera złośliwy kod.
+
+![Rodzaje koni trojańskich](img/34.png)
+
+## 7. Rekonesans
+
+To zbieranie informacji. Podmioty zagrożenia wykorzystują ataki rozpoznawcze do nieautoryzowanego wykrywania i mapowania systemów, usług lub podatności. Ataki rozpoznawcze poprzedzają ataki dostępu lub ataki DoS.
+
+![Techniki rekonesansu](img/35.png)
+
+## 8. Ataki dostępu
+
+Celem tego typu ataku jest uzyskanie dostępu do dkont internetowych, poufnych baz danych i innych poufnych informacji.
+
+### Ataki na hasło
+
+Próba odkrycia krytyzcznego hasła syst4emowego przy użyciu różnych moetd.
+
+### Ataki fałszowania
+
+Próba pozowania jako inne urządzenie poprzez fałszowanie danych tj. adres IP, adres MAC czy fałszowanie DHCP.
+
+## 9. Ataki socjotechniczne
+
+**Socjotechnika** jest atakiem polegającym na próbie nakłonienia ludzi do wykonania określonych działań lub ujawnienai poufnych informacji.
+
+![Rodzaje ataków socjotechnicznych](img/36.png)
+
+## 10. Ataki DoS i DDoS
+
+**Atak odmowy usług (Denial of Service)** powoduje przerwanie świadczenia usług sieciowych.
+
+### Istnieją dwa główne typy ataków DoS:
+
+- **Przytłaczająca ilość ruchu** - wysyłanie ogromnej ilości danych z szybkością, której host nie może obsłużyć. Powoduje to spowolnienie czasu transmisji i reakcji, a także awarię urządzenia lub usługi.
+- **Złośliwie sformatowane pakiety** - wysyłanie złośliwie sformatowanych pakietów do hosta, których nie może on obsłużyć.
+
+**Rozproszony atak DoS (Distributed DoS, DDoS)** - podobny do DoS, lecz pochodzi z wielu skoordynowanych ze sobą urządzeń.
+
+## 11. Ataki IP
+
+![Techniki ataku na IP](img/37.png)
+
+## 12. Ataki na ICMP
+
+Aktorzy zagrożeń wykorzystują ICMP do ataków rozpoznawczych i skanowania oraz ataków DoS.
+
+![Typowe komunikaty ICMP używane przez hakerów](img/38.png)
+
+## 13. Ataki wzmacniania i obijania
+
+Technika ta nazywana jest **atakiem smurfowym** i jest wykorzystywana do przytłaczania docelowego hosta.
+
+![Atak smurfowy](img/39.png)
+
+## 14. Ataki fałszowania
+
+Podmiot zagrożenie tworzy pakiety z fałszywymi źródłowymi informacjami adresowymi IP, aby ukryć tożsamość nadawcy lub pozować innego uprawnionego użytkownika.
+
+Ataki fałszowania mogą być nieślepe lub ślepe:
+
+- **Nieślepe fałszowanie** - haker może zobaczyć ruch między hostem a celem.
+- **Ślepe fałszowanie** - haker nie widzi ruchu między hostem a celem. Jest używane w atakach DoS.
+
+## 15. Usługi TCP
+
+- **Niezawodne dostarczanie**
+- **Kontrola przepływu** - potwierdzanie wiele segmentów jednym segment potwierdzenia.
+- **Komunikacja stanowa** - występuje między podczas uzgadniania trójetapowego TCP (three-way handshake), które otwiera połączenie TCP.
+
+![Three-way handshake](img/40.png)
+
+## 16. Ataki na TCP
+
+- **Atak TCP SYN Flood**
+![TCP SYN Flood](img/41.png)
+
+- **Atak TCP RESET**- służy do przerwania komunikacji TCP między dwoma hostami.
+
+![Zakończenie połączenia TCP](img/42.png)
+
+- **Przejęcie sesji TCP** - aktor zagrożenia przejmuje uwierzytelnionego hosta, gdy komunikuje się z celem. Haker fałszuje adres IP jednego hosta, przewiduje następny numer sekwencji i wysyła ACK do drugiego hosta. Jeżeli atak się powiedzie, podmiot zagrożenia może wysyłać, ale nie odbierać dane z urządzenia docelowego.
+
+## 17. Ataki na UDP
+
+- **Atak zalewania UDP** - haker używa narzędzia tj. **UDP Unicorn** czy **Low Orbit Ion Cannon**. Narzędzie te zalewają pakietami UDP. Program wyszukuje zamknięte porty, na co serwer odpowiada komunikatem ICMP o nieosiągalnym porcie (większość portów na serwerze jest zamkniętych, co powoduje duży ruch na segmencie).
+
+## 18. Zatruwanie ARP
+
+Może być używane do uruchamiania różnych ataków man-in-the-middle. Wysyłając fałszywe gratisowe odpowiedzi ARP zawierające swój adres MAC dla wskazanych adresów IP docelowych zmienia on pamięć podręczną ARP urządzeń i stawia się między ofiarą, a wszystkimi innymi systemami w sieci.
+
+**Rodzaje zatrucia ARP:**
+
+- **bierne** - polega na kradzieży poufnych informacji.
+- **aktywne** - polega na modyfikacji przesyłanych danych.
+
+## 19. Ataki na DNS
+
+- **Ataki DNS typu open resolver**
+    - **Ataki zatrucia pamięci podręcznej DNS** - wysyłanie sfałszowanych informacji dotyczących zawartości rekordu do sererwa odwzorowania DNS w przekierowania użytkowników na złośliwe stsrony.
+    - **Ataki wzmacniania i odbijania DNS** - haker wysyła zapytania DNS na które otwarty system odwzorowania odpowiada.
+    - **Ataki wykorzystania zasobów DNS** - atak DoS, który zużywa zasoby otwartych systemów odwzorowania DNS.
+- **Ataki z ukrycia DNS** - celem jest ukrycie swojej tożsamości. Techniki z ukrycia DNS:
+    - **Fast Flux** - adres IP DNS złośliwego serwera jest stale zmieniany w ciągu kilku minut, co pozwala na jego ukrycie.
+    - **Double IP Flux** - używany do szybkiej zmiany nazwy hosta na mapowanie adresu IP, a także do zmainy autorytatwynwego serwera nazw. Zwiększ to trudność identyfikacji źródła ataku.
+    - **Algorytmy generowania domen** - losowe generowania nazwy domen, które mogą być używane jako punkty spotkań dla ich serwerów komend i sterowania (CnC).
+- **Ataki cieniowania domeny DNS** - polega na zbieraniu poświadczeń konta domeny przez podmiot zagrożenia, aby po cichu utworzyć wiele pod-domen, które mają być używane podczas ataków.
+
+## 20. Tunelowanie DNS
+Haker umieszcza ruch inny niż DNS w ruchu DNS. Metoda ta często omija rozwiązania zabezpieczające, gdy podmiot zagrożenia chce komunikować się z botami wewnątrz chronionej sieci lub wyeksportować dane z organizacji.
+
+### Proces tunelowania DNS:
+![Tunelowanie DNS](img/43.png)
+
+## 21. Ataki na DHCP
+
+- Atak fałszowania DHCP - obcy serwer DHCP dostarcza fałszywych parametrów konfiguracji IP uprawinonym klientom. Może on dostarczać informacji tj.
+    - Brama domyślna - nieprawidłowa brama lub adres IP swojego hosta, aby utworzyć MITM.
+    - Niewłaściwy serwer DNS - aby kierować użytkowników na złośliwą stronę internetową.
+    - Zły adres IP - haker zapewnia nieprawidłowe dane, a następnie tworzy atak DoS na klienta DHCP.
+
+## 22. Triada PID
+- Poufność - tylko upoważnione osoby, podmioty lub procesy mogą uzyskać dostęp do poufnych informacji.
+- Integralność - odnosi się do ochrony danych przed nieautoryzowanymi zmianami.
+- Dostępność - autoryzowani użytkownicy muszą mieć nieprzerwany dostęp do ważnych zasobów i danych. Wymaga wdrożenia nadmiarowych usług, bram i łączy.
+
+## 23. Urządzenia i usługi zabezpieczające
+
+- VPN
+- ASA Firewall - dedykowane urzadzenia zapewniające stanowe usługi zapory. Sprawia, że ruch zewnętrzny nie może inicjować połączeń do wewnętrznych hostów.
+- IPS (Intrusion Prevention System) - system zapobiegania włamaniom, monitrouje ruch przychodzący i wychodzący oraz zatrzumuje rozpoznane zagrożenia.
+- ESA/WSA - urządzenia zabezpieczające e-mail filtruje span i podejrzane wiadomości e-mail. Urządzenie zabezpieczające sieci Web filtruje znane i podejrzane strony internetowe złośliwego oprogramowania.
+- Serwer AAA - zawiera informacje, kto jest upoważniony do dostepu i zarządzania urządzeniami sieciowymi.
+
+## 24. Zapory
+
+Zapora jest systemem lub grupą systemów, która wymusza politykę kontroli dostępu między sieciami.
+
+## 25. IPS
+
+**IDS** - Intrusion Detection System
+**IPS** - Intrusion Prevension System
+
+Wykrywają one wzorce ruchu sieciowego za pomocą **sygnatur**. **Sygnatura** to zestaw reguł używanych do wykrywania złośliwej aktywności.
+
+## 26. Urządzenia bezpieczeństwa treści
+
+Cisco Email Security Appliance (ESA) przeznaczone do monitorowania Simple Mail Transfer Protocol (SMTP).
+
+Cisco Web Security Appliance (WSA) to technologia ograniczania zagrożeń internetowych.
+
+## 27. Elementy bezpiecznej komunikacji:
+
+- **Integralność danych** - gwarantuje, że komunikat nie został zmieniony. Wszelkie zmiany w tranzycei zostaną wykryte.
+- **Uwierzytelnianie pochodzenia** - gwarantuje, że wiadomość nie jest sfałszowana i pochodzi od właściwej osoby.
+- **Poufnych danych** - tylko autoryzowani użytkownicy mogą odczytać wiadomość.
+- **Niezaprzeczalność danych** - nadawca nie może odrzucić lub zaprzeczyć ważności wysłanej wiadomości. 
+
+## 28. Integralność danych
+
+**Funkcje skrótu** są wykorzystywane w celu zapewnienia integralności wiadomości. Gwarantują one, że dane wiadomości nie uległy zmianie przypadkowo lub celowo.
+
+### Trzy znane funkcje skrótu
+a. MD5 z 128-bitowym odciskiem - funkcja jednokierunkowa, która generuje 128-bitowy skrócony komunikat. Lepszym rozwiązaniem jest SHA-2.
+b. Algorytm skrótu SHA - wersja SHA-1 i SHA-2.
+
+Funkcje skrótu (mieszanie) są podatne na MITM i niez apewnia bezpieczeństwa przesyłanych danych.
+
+## 29. Uwierzytelnianie pochodzenia
+Aby dodać uwierzytelnianie do zapewnienia integralności można użyć **kodu uwierzytelniania wiadomości z kluczem skrótu (HMAC)**. HMAC wykorzystuje dodatkowy klucz tajny jako wejście dla funkcji skrótu.
+
+## 30. Poufność danych
+Do zapewnienia poufności danych używane są dwie klasy szyfrowania: symetryczne i asymetryczne.
+
+![Porównanie klas szyfrowania](img/44.png)
+
+### a. Szyfrowanie symetryczne
+
+![Znane symetryczne algorytmy szyfrowania](img/45.png)
+
+**Szyfr strumieniowy** szyfruje jeden bajt lub jeden bit na raz.
+
+### b. Szyfrowanie asymetryczne
+
+Algorytmy asymetryczne używają **klucza publicznego** i **klucza prywatnego**.
+
+Przykłady protokołów wykorzystujących szyfrowanie asymtryczne:
+
+- **Internet Key Exchange (IKE)**
+- **Secure Socket Layer (SSL)**
+- **Secure Shell (SSH)**
+- **Pretty Good Privacy (PGP)**
+
+![Znane asymetryczne algorytmy szyfrowania](img/46.png)
+
+## 31. Diffie-Hellman (DH)
+Asymetryczny algorytm matemyczny, w którym dwa PC generują identyczny klucz tajny bez komunikowania się ze sobą.
+
+DH jest używany w:
+
+- VPN IPSec
+- SSL, TLS
+- SSH
 
 # VII. Koncepcje sieci WAN
 
@@ -292,11 +509,11 @@ WFQ klasyfikuje ruch na różne przepływy w oparciu o adresowanie nagłówków 
 
 ![Przykład LLQ](img/25.png)
 
-# 16. Modele do wdrażania QoS
+## 16. Modele do wdrażania QoS
 
 ![Modele do wdrażania QoS](img/26.png)
 
-# 17. Best Effort
+## 17. Best Effort
 
 Podstawowym założeniem Internetu jest dostarczanie pakietów z największą starannością i nie daje żadnych gwarancji. Podejście to jest nadal dominujące w Internecie i pozostaje właściwe dla większości celów.
 
@@ -306,13 +523,13 @@ Model best-effort jest podobny w koncepcji do wysyłania listu za pomocą zwykł
 
 ![Korzyści i wady modelu best-effort](img/27.png)
 
-# 18. IntServ
+## 18. IntServ
 
 IntServ zapewnia kompleksową QoS, której wymagają aplikacje czasu rzeczywistego. IntServ jawnie zarządza zasobami sieciowymi, aby zapewnić QoS dla poszczególnych przepływów lub strumieni, czasami nazywanych mikroprzepływami. Wykorzystuje mechanizmy rezerwacji zasobów i kontroli dostępu jako elementy składowe do ustanowienia i utrzymania jakości usług. Jest to podobne do koncepcji znanej jako „twarde QoS”. Twarde QoS gwarantuje charakterystykę ruchu, taką jak przepustowość, opóźnienia i współczynniki utraty pakietów, od początku do końca. Twarde QoS zapewnia zarówno przewidywalne, jak i gwarantowane poziomy usług dla aplikacji o znaczeniu krytycznym.
 
 W modelu IntServ aplikacja przed wysłaniem danych żąda określonego rodzaju usługi z sieci. Aplikacja informuje sieć o swoim profilu ruchu i żąda określonego rodzaju usługi, która może obejmować wymagania dotyczące przepustowości i opóźnień. IntServ używa protokołu Resource Reservation Protocol (RSVP) do sygnalizowania zapotrzebowania na QoS ruchu aplikacji wzdłuż urządzeń na ścieżce od końca do końca w sieci. Jeśli urządzenia sieciowe na ścieżce mogą zarezerwować niezbędną przepustowość, pierwotna aplikacja może rozpocząć transmisję. Jeśli żądana rezerwacja nie powiedzie się na ścieżce, aplikacja źródłowa nie wysyła żadnych danych.
 
-# 19. DiffServ
+## 19. DiffServ
 **Model usług zróżnicowanych (DiffServ)** QoS określa prosty i skalowalny mechanizm klasyfikowania i zarządzania ruchem sieciowym.
 
 DiffServ może zapewnić „prawie gwarantowaną” jakość usług, a jednocześnie jest opłacalne i skalowalne.
@@ -323,10 +540,10 @@ Gdy host przekazuje ruch do routera, router klasyfikuje przepływy w agregatach 
 
 ![Wady i zalety DiffServ](img/30.png)
 
-# 20. Narzędzia do wdrażania QoS
+## 20. Narzędzia do wdrażania QoS
 
 ![Narzędzia do wdrażania QoS](img/31.png)
 
-# 21. Sekwencja QoS
+## 21. Sekwencja QoS
 
 ![Sekwencja QoS](img/32.png)
