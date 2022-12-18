@@ -39,7 +39,7 @@ To odpowiednik OSPFv2 służacy do **wymiany prefiksów IPv6**.
 
 **DR** - Designed Router; **BDR** - Backup Designed Router
 
-## 6. Stany protokołu OSPF:
+## 6. Stany protokołu OSPF
 
 ![Stany protokołu OSPF](img/3.png)
 
@@ -68,7 +68,7 @@ Wysyłanie niepotrzebnych komunikatów może wpływać na działanie sieci na tr
 ## 4. DROTHER
 Routery, które nie są ani DR ani BDR.
 
-## 5. Potrzebne komendy:
+## 5. Potrzebne komendy
 - **router ospf process-id** - włączenie OSPFv2.
 - **router-id** - ustawienie identyfikatora routera.
 - **clear ip ospf process** - wyczyszczenie procesu OSPF (w tym reset relacji przylegania).
@@ -112,7 +112,7 @@ Pakiety OSPFv2 Hello są wysyłane co 10 sekund.
 
 **Router brzegowy systemu autonomicznego (Autonomous System Boundary Router, ASBR)** - router, który znajduję się pomiędzy domeną routingu OSPF a siecią bez OSPF.
 
-## Źródła uzupełniające
+## 9. Źródła uzupełniające
 - https://www.youtube.com/watch?v=kfvJ8QVJscc
 - https://www.youtube.com/watch?v=PIMnj2oqYIo
 
@@ -144,12 +144,12 @@ Pakiety OSPFv2 Hello są wysyłane co 10 sekund.
 
 ## 6. Rodzaje złośliwego oprogramowania
 
-### Wirus
+### 6.1 Wirus
 Rozprzestrzeniania się i infekuje inne komputery po wykonaniu przez użytkownika określonego działania.
 
 ![Rodzaje wirusów](img/33.png)
 
-### Koń trojański
+### 6.2 Koń trojański
 Program, który wygląda na przydatny, ale zawiera złośliwy kod.
 
 ![Rodzaje koni trojańskich](img/34.png)
@@ -164,11 +164,11 @@ To zbieranie informacji. Podmioty zagrożenia wykorzystują ataki rozpoznawcze d
 
 Celem tego typu ataku jest uzyskanie dostępu do dkont internetowych, poufnych baz danych i innych poufnych informacji.
 
-### Ataki na hasło
+### 8.1. Ataki na hasło
 
 Próba odkrycia krytyzcznego hasła syst4emowego przy użyciu różnych moetd.
 
-### Ataki fałszowania
+### 8.2. Ataki fałszowania
 
 Próba pozowania jako inne urządzenie poprzez fałszowanie danych tj. adres IP, adres MAC czy fałszowanie DHCP.
 
@@ -182,7 +182,7 @@ Próba pozowania jako inne urządzenie poprzez fałszowanie danych tj. adres IP,
 
 **Atak odmowy usług (Denial of Service)** powoduje przerwanie świadczenia usług sieciowych.
 
-### Istnieją dwa główne typy ataków DoS:
+### 10.1 Główne typy ataków DoS:
 
 - **Przytłaczająca ilość ruchu** - wysyłanie ogromnej ilości danych z szybkością, której host nie może obsłużyć. Powoduje to spowolnienie czasu transmisji i reakcji, a także awarię urządzenia lub usługi.
 - **Złośliwie sformatowane pakiety** - wysyłanie złośliwie sformatowanych pakietów do hosta, których nie może on obsłużyć.
@@ -261,32 +261,32 @@ Może być używane do uruchamiania różnych ataków man-in-the-middle. Wysyła
 ## 20. Tunelowanie DNS
 Haker umieszcza ruch inny niż DNS w ruchu DNS. Metoda ta często omija rozwiązania zabezpieczające, gdy podmiot zagrożenia chce komunikować się z botami wewnątrz chronionej sieci lub wyeksportować dane z organizacji.
 
-### Proces tunelowania DNS:
+### 20.1. Proces tunelowania DNS:
 ![Tunelowanie DNS](img/43.png)
 
 ## 21. Ataki na DHCP
 
-- Atak fałszowania DHCP - obcy serwer DHCP dostarcza fałszywych parametrów konfiguracji IP uprawinonym klientom. Może on dostarczać informacji tj.
-    - Brama domyślna - nieprawidłowa brama lub adres IP swojego hosta, aby utworzyć MITM.
-    - Niewłaściwy serwer DNS - aby kierować użytkowników na złośliwą stronę internetową.
-    - Zły adres IP - haker zapewnia nieprawidłowe dane, a następnie tworzy atak DoS na klienta DHCP.
+- **Atak fałszowania DHCP** - obcy serwer DHCP dostarcza fałszywych parametrów konfiguracji IP uprawinonym klientom. Może on dostarczać informacji tj.
+    - **Brama domyślna** - nieprawidłowa brama lub adres IP swojego hosta, aby utworzyć MITM.
+    - **Niewłaściwy serwer DNS** - aby kierować użytkowników na złośliwą stronę internetową.
+    - **Zły adres IP** - haker zapewnia nieprawidłowe dane, a następnie tworzy atak DoS na klienta DHCP.
 
 ## 22. Triada PID
-- Poufność - tylko upoważnione osoby, podmioty lub procesy mogą uzyskać dostęp do poufnych informacji.
-- Integralność - odnosi się do ochrony danych przed nieautoryzowanymi zmianami.
-- Dostępność - autoryzowani użytkownicy muszą mieć nieprzerwany dostęp do ważnych zasobów i danych. Wymaga wdrożenia nadmiarowych usług, bram i łączy.
+- **Poufność** - tylko upoważnione osoby, podmioty lub procesy mogą uzyskać dostęp do poufnych informacji.
+- **Integralność** - odnosi się do ochrony danych przed nieautoryzowanymi zmianami.
+- **Dostępność** - autoryzowani użytkownicy muszą mieć nieprzerwany dostęp do ważnych zasobów i danych. Wymaga wdrożenia nadmiarowych usług, bram i łączy.
 
 ## 23. Urządzenia i usługi zabezpieczające
 
-- VPN
-- ASA Firewall - dedykowane urzadzenia zapewniające stanowe usługi zapory. Sprawia, że ruch zewnętrzny nie może inicjować połączeń do wewnętrznych hostów.
-- IPS (Intrusion Prevention System) - system zapobiegania włamaniom, monitrouje ruch przychodzący i wychodzący oraz zatrzumuje rozpoznane zagrożenia.
-- ESA/WSA - urządzenia zabezpieczające e-mail filtruje span i podejrzane wiadomości e-mail. Urządzenie zabezpieczające sieci Web filtruje znane i podejrzane strony internetowe złośliwego oprogramowania.
-- Serwer AAA - zawiera informacje, kto jest upoważniony do dostepu i zarządzania urządzeniami sieciowymi.
+- **VPN**
+- **ASA Firewall** - dedykowane urzadzenia zapewniające stanowe usługi zapory. Sprawia, że ruch zewnętrzny nie może inicjować połączeń do wewnętrznych hostów.
+- **IPS (Intrusion Prevention System)** - system zapobiegania włamaniom, monitrouje ruch przychodzący i wychodzący oraz zatrzumuje rozpoznane zagrożenia.
+- **ESA/WSA** - urządzenia zabezpieczające e-mail filtruje span i podejrzane wiadomości e-mail. Urządzenie zabezpieczające sieci Web filtruje znane i podejrzane strony internetowe złośliwego oprogramowania.
+- **Serwer AAA** - zawiera informacje, kto jest upoważniony do dostepu i zarządzania urządzeniami sieciowymi.
 
 ## 24. Zapory
 
-Zapora jest systemem lub grupą systemów, która wymusza politykę kontroli dostępu między sieciami.
+**Zapora** jest systemem lub grupą systemów, która wymusza politykę kontroli dostępu między sieciami.
 
 ## 25. IPS
 
@@ -297,9 +297,9 @@ Wykrywają one wzorce ruchu sieciowego za pomocą **sygnatur**. **Sygnatura** to
 
 ## 26. Urządzenia bezpieczeństwa treści
 
-Cisco Email Security Appliance (ESA) przeznaczone do monitorowania Simple Mail Transfer Protocol (SMTP).
+**Cisco Email Security Appliance (ESA)** przeznaczone do monitorowania Simple Mail Transfer Protocol (SMTP).
 
-Cisco Web Security Appliance (WSA) to technologia ograniczania zagrożeń internetowych.
+**Cisco Web Security Appliance (WSA)** to technologia ograniczania zagrożeń internetowych.
 
 ## 27. Elementy bezpiecznej komunikacji:
 
@@ -312,17 +312,17 @@ Cisco Web Security Appliance (WSA) to technologia ograniczania zagrożeń intern
 
 **Funkcje skrótu** są wykorzystywane w celu zapewnienia integralności wiadomości. Gwarantują one, że dane wiadomości nie uległy zmianie przypadkowo lub celowo.
 
-### Trzy znane funkcje skrótu
-a. MD5 z 128-bitowym odciskiem - funkcja jednokierunkowa, która generuje 128-bitowy skrócony komunikat. Lepszym rozwiązaniem jest SHA-2.
-b. Algorytm skrótu SHA - wersja SHA-1 i SHA-2.
+### 28.1. Trzy znane funkcje skrótu
+a. **MD5 z 128-bitowym odciskiem** - funkcja jednokierunkowa, która generuje 128-bitowy skrócony komunikat. Lepszym rozwiązaniem jest SHA-2.
+b. **Algorytm skrótu SHA** - wersja SHA-1 i SHA-2.
 
-Funkcje skrótu (mieszanie) są podatne na MITM i niez apewnia bezpieczeństwa przesyłanych danych.
+**Funkcje skrótu (mieszanie)** są podatne na MITM i niez apewnia bezpieczeństwa przesyłanych danych.
 
 ## 29. Uwierzytelnianie pochodzenia
 Aby dodać uwierzytelnianie do zapewnienia integralności można użyć **kodu uwierzytelniania wiadomości z kluczem skrótu (HMAC)**. HMAC wykorzystuje dodatkowy klucz tajny jako wejście dla funkcji skrótu.
 
 ## 30. Poufność danych
-Do zapewnienia poufności danych używane są dwie klasy szyfrowania: symetryczne i asymetryczne.
+Do zapewnienia poufności danych używane są dwie klasy szyfrowania: **symetryczne** i **asymetryczne**.
 
 ![Porównanie klas szyfrowania](img/44.png)
 
@@ -346,13 +346,137 @@ Przykłady protokołów wykorzystujących szyfrowanie asymtryczne:
 ![Znane asymetryczne algorytmy szyfrowania](img/46.png)
 
 ## 31. Diffie-Hellman (DH)
-Asymetryczny algorytm matemyczny, w którym dwa PC generują identyczny klucz tajny bez komunikowania się ze sobą.
+Asymetryczny algorytm matemyczny, w którym dwa PC generują **identyczny klucz tajny bez komunikowania się ze sobą**.
 
-DH jest używany w:
+**DH jest używany w:**
 
 - VPN IPSec
 - SSL, TLS
 - SSH
+
+# IV. Koncepcje ACL
+
+## 1. Lista ACL
+
+Lista kontroli dostępu to seria poleceń IOS używanych do **filtrowania pakietów na podstawie informacji w nagłówku**. Lista ACL używa sekwencyjnyej listy instrukcji zezwalania lub odmowy, zwanych **wpisami kontroli dostępu** (ACE; często również nazywanych regułami ACL).
+
+### 1.1 Filtrowanie ramek
+Proces, w których router porównuje informacje zawarte w pakiecie ze wpisami ACE.
+
+### 1.2. Zadanie ACL
+
+- Ograniczanie ruchu w celu zwiększenia wydajności
+- Zapewnienia kontroli przepływu
+- Zapewnienie podstawowych zabezpieczeń
+- Filtrowanie ruchu w oparciu o typ ruchu
+- Kontrolowanie hostów aby zezwolić lub zablokować dostęp do usług sieciowych
+- Zapewnienie priorytetu określonym klasom ruchu sieciowego
+
+### 1.3. Filtrowanie pakietów w modelu ISO/OSI
+
+#### 1.3.1 Typy list ACL
+
+- **Standardowe ACL** - ACL filtruje tylko w warstwie 3 przy użyciu źródłowego adresu IPv4.
+- **Rozszerzone ACL** - ACL filtruje w warstwie 3 przy użyciu źródłowego i/lub docelowego IP. Mogą również filtrować w warstwie 4 przy użyciu portów TCP, UDP i opcjonalnych informacji o typie protokołu.
+
+![ACL w modelu OSI](img/1.3.1.png)
+
+### 1.4. Wejściowa i wyjściowa lista ACL
+
+- **Wejściowa lista ACL** - filtruje pakiety, zanim zostaną skierowane do interfejsu wychodzącego. Jeśli pakiet jest dopuszczony przez listę ACL, jest następnie przekazywany do routingu. Najlepiej się sprawdza kiedy sieć dołączona do interfejsu wejściowego jest jedynym źródłem pakietów, które mają być filtrowane.
+
+- **Wyjściowa lista ACL** - filtruje pakiety wychodzące, po przetworzeniu ich w procesiue routingu, niezależnie od użytego interfejsu wejściowego. Takie podejście jest najbardziej użyteczne w sytuacji, gdy te same reguły filtrowania mają być zastosowane do pakietów przychodzących z wielu interfejsów wejściowych, zanim opuszczą interfejs wyjściowy.
+
+### 1.5. Sposób działania standardowej listy ACL
+
+a. Router wyodrębnia źródłowy adres IPv4 z nagłówka pakietów.
+b. Router rozpoczyna od góry listy ACL i porównuje źródłowy adres IPv4 z każdym wpisem ACE w kolejności sekwencyjnej.
+c. Po dokonaniu dopasowania router wykonuje instrukcję, zezwalając na pakiet lub odmawiając mu, a pozostałe wpisy ACE w ACL, jeśli takie istnieją, nie są analizowane.
+d. Jeśli źródłowy adres IPv4 nie pasuje do żadnego ACE w ACL, pakiet zostanie odrzucony, ponieważ istnieje ACE niejawnej odmowy automatycznie zastosowany we wszystkich ACL.
+
+**Jeśli ACL nie zaiwera instrukcji zezwolenia, domyślnie odmawia się całego ruchu.**
+
+Niejawny wpis **deny any** odrzuca kazdy pakiet, który nie pasuje do żadnego poprzedniego wpisu ACE.
+
+## 2. Maski blankietowe
+
+**Wpis ACE** dla IPv4 używa 32-bitowej **maski blankietowej**, aby określić, które bity adresu mają zostać zbadane pod kątem dopasowania. Maski blankietowe są również używane przez protokół [Open Shortest Path First (OSPF)](#maska-blankietowa-wildcard-mask).
+
+### 2.1. Reguły dopasowania masek blankietowych
+
+- **Bit 0 maski blankietowej** - dopasowuje odpowiednią wartość bitu w adresie.
+- **Bit 1 maski blankietowej** - ignoruje odpowiednią wartość bitu w adresie
+
+### 2.2. Typy masek blankietowych
+
+- **Maska blankietowa dopasowana do hosta** - używana do dopasowania określonego adresu IPv4 hosta. (jest równa 0.0.0.0)
+- **Maska blankietowa dopasowana do podsieci** - odwrócona maska podsieci.
+- **Maska blankietowa dopasowania zakresu adresów IPv4**
+
+### 2.3. Obliczanie maski blankietowej
+
+![Przykład 1](img/4.2.3.1.png)
+
+![Przykład 2](img/4.2.3.2.png)
+
+![Przykład 3](img/4.2.3.3.png)
+
+![Przykład 4](img/4.2.3.3.png)
+
+### 2.4. Słowa kluczowe w maskach blankietowych
+
+Aby uprościć korzystanie z masek blankietowych Cisco IOS udostępnia dwa słowa kluczowe:
+
+- **host** - zastępuje maskę 0.0.0.0 (filtruje tylko jeden adres hosta).
+- **any** - zastępuje maskę 255.255.255.255 (pasuje do każdego adresu).
+
+## 3. Wytyczne tworzenia ACL
+
+### 3.1. Ograniczona liczba ACL na interfejs
+
+Konkretny interfejs routera może mieć:
+
+- jeden wychodzący IPv4 ACL
+- jeden przychodzący IPv4 ACL
+- jeden przychodzący IPv6 ACL
+- jeden wychodzący IPv6 ACL
+
+### 3.2. Najlepsze praktyki
+
+![Najlepsze praktyki ACL](img/4.3.2.png)
+
+### 3.3. Kolejność instrukcji ACL
+
+Najbardziej szczegółowe instrukcje ACL należy wprowadzić jako pierwsze ze względu na odgórny, sekwencyjny charakter list ACL.
+
+## 4. Numerowane i nazwane ACL
+
+### 4.1. Numerowane ACL
+Listy ACL o numerach od 1 do 99 lub od 1300 do 1999 to standardowe listy ACL, podczas gdy listy ACL o numerach od 100 do 199 lub od 2000 do 2699 to rozszerzone listy ACL.
+
+### 4.2. Nazwane ACL
+Nazwane ACL są preferowaną metodą użycia podczas konfigurowania ACL.
+
+**Poniżej przedstawiono podsumowanie zasad, które należy przestrzegać dla nazwanych ACL:**
+- Przypisz nazwę w celu identyfikowania listy ACL.
+- Nazwy mogą zawierać znaki alfanumeryczne.
+- Nazwy nie mogą zawierać spacji ani znaków interpunkcyjnych.
+- Sugeruje się, aby nazwę pisać WIELKIMI LITERAMI.
+- Wewnątrz listy ACL wpisy mogą być dodawane lub usuwane.
+
+## 5. Umieszczanie listy ACL
+
+**Rozszerzone listy ACL** powinny znajdować się jak najbliżej źródła ruchu, który ma być filtrowany.
+
+**Standardowe ACL** powinny znajdować się jak najbliżej miejsca docelowego.
+
+### 5.1. Czynniki wpływające na umieszczenie ACL
+
+![Czynniki wpływające na umieszczenie ACL](img/4.5.1.png)
+
+## 6. Źródła uzupełniające
+
+- [https://www.youtube.com/watch?v=vMshgkItW5g](https://www.youtube.com/watch?v=vMshgkItW5g)
 
 # VII. Koncepcje sieci WAN
 
@@ -393,7 +517,6 @@ Nowoczesne standardy sieci WAN są definiowane i zarządzane przez wiele uznanyc
 ## 5. Terminologia WAN
 
 ![Terminologia WAN](img/17.png)
-
 
 ## 6. Urządzenia sieci WAN
 

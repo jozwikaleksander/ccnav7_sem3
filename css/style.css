@@ -3,6 +3,8 @@
 	--background-color: #2c323d;
 	--font-color: #ffffff;
 	--magenta-color: #B48EAD;
+	--red-color: #BF616A;
+	--yellow-color: #EBCB8B;
 	--orange-color: #D08770;
 	--blue-color: #5E81AC;
 	--figcaption-color: #D8DEE9;
@@ -175,4 +177,10 @@
   h2{
 	font-weight: bold;
 	color: var(--blue-color);
+  }
+  a{
+	color: var(--yellow-color);
+  }
+  a:hover{
+	color: var(--red-color);
   }

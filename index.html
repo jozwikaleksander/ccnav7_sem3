@@ -28,7 +28,7 @@
 <li><a href="#ospf-wieloobszarowy-zalety">3. OSPF wieloobszarowy zalety:</a></li>
 <li><a href="#osfpv3">4. OSFPv3</a></li>
 <li><a href="#rodzaje-pakietów-ospf">5. Rodzaje pakietów OSPF</a></li>
-<li><a href="#stany-protokołu-ospf">6. Stany protokołu OSPF:</a></li>
+<li><a href="#stany-protokołu-ospf">6. Stany protokołu OSPF</a></li>
 </ul></li>
 <li><a href="#ii.-konfiguracja-jednoobszarowego-ospfv2">II. Konfiguracja jednoobszarowego OSPFv2</a>
 <ul>
@@ -36,11 +36,11 @@
 <li><a href="#maska-blankietowa-wildcard-mask">2. Maska blankietowa (wildcard mask)</a></li>
 <li><a href="#interfejsy-pasywne">3. Interfejsy pasywne</a></li>
 <li><a href="#drother">4. DROTHER</a></li>
-<li><a href="#potrzebne-komendy">5. Potrzebne komendy:</a></li>
+<li><a href="#potrzebne-komendy">5. Potrzebne komendy</a></li>
 <li><a href="#koszt-jako-metryka-w-ospf">6. Koszt jako metryka w OSPF</a></li>
 <li><a href="#interwały-pakietów-hello">7. Interwały pakietów Hello</a></li>
 <li><a href="#propagowanie-domyślnej-trasy-statycznej-w-opsfv2">8. Propagowanie domyślnej trasy statycznej w OPSFv2</a></li>
-<li><a href="#źródła-uzupełniające">Źródła uzupełniające</a></li>
+<li><a href="#źródła-uzupełniające">9. Źródła uzupełniające</a></li>
 </ul></li>
 <li><a href="#iii.-koncepcje-bezpieczeństwa-sieci">III. Koncepcje bezpieczeństwa sieci</a>
 <ul>
@@ -51,19 +51,19 @@
 <li><a href="#typy-ataków">5. Typy ataków</a></li>
 <li><a href="#rodzaje-złośliwego-oprogramowania">6. Rodzaje złośliwego oprogramowania</a>
 <ul>
-<li><a href="#wirus">Wirus</a></li>
-<li><a href="#koń-trojański">Koń trojański</a></li>
+<li><a href="#wirus">6.1 Wirus</a></li>
+<li><a href="#koń-trojański">6.2 Koń trojański</a></li>
 </ul></li>
 <li><a href="#rekonesans">7. Rekonesans</a></li>
 <li><a href="#ataki-dostępu">8. Ataki dostępu</a>
 <ul>
-<li><a href="#ataki-na-hasło">Ataki na hasło</a></li>
-<li><a href="#ataki-fałszowania">Ataki fałszowania</a></li>
+<li><a href="#ataki-na-hasło">8.1. Ataki na hasło</a></li>
+<li><a href="#ataki-fałszowania">8.2. Ataki fałszowania</a></li>
 </ul></li>
 <li><a href="#ataki-socjotechniczne">9. Ataki socjotechniczne</a></li>
 <li><a href="#ataki-dos-i-ddos">10. Ataki DoS i DDoS</a>
 <ul>
-<li><a href="#istnieją-dwa-główne-typy-ataków-dos">Istnieją dwa główne typy ataków DoS:</a></li>
+<li><a href="#główne-typy-ataków-dos">10.1 Główne typy ataków DoS:</a></li>
 </ul></li>
 <li><a href="#ataki-ip">11. Ataki IP</a></li>
 <li><a href="#ataki-na-icmp">12. Ataki na ICMP</a></li>
@@ -76,7 +76,7 @@
 <li><a href="#ataki-na-dns">19. Ataki na DNS</a></li>
 <li><a href="#tunelowanie-dns">20. Tunelowanie DNS</a>
 <ul>
-<li><a href="#proces-tunelowania-dns">Proces tunelowania DNS:</a></li>
+<li><a href="#proces-tunelowania-dns">20.1. Proces tunelowania DNS:</a></li>
 </ul></li>
 <li><a href="#ataki-na-dhcp">21. Ataki na DHCP</a></li>
 <li><a href="#triada-pid">22. Triada PID</a></li>
@@ -87,7 +87,7 @@
 <li><a href="#elementy-bezpiecznej-komunikacji">27. Elementy bezpiecznej komunikacji:</a></li>
 <li><a href="#integralność-danych">28. Integralność danych</a>
 <ul>
-<li><a href="#trzy-znane-funkcje-skrótu">Trzy znane funkcje skrótu</a></li>
+<li><a href="#trzy-znane-funkcje-skrótu">28.1. Trzy znane funkcje skrótu</a></li>
 </ul></li>
 <li><a href="#uwierzytelnianie-pochodzenia">29. Uwierzytelnianie pochodzenia</a></li>
 <li><a href="#poufność-danych">30. Poufność danych</a>
@@ -96,6 +96,40 @@
 <li><a href="#b.-szyfrowanie-asymetryczne">b. Szyfrowanie asymetryczne</a></li>
 </ul></li>
 <li><a href="#diffie-hellman-dh">31. Diffie-Hellman (DH)</a></li>
+</ul></li>
+<li><a href="#iv.-koncepcje-acl">IV. Koncepcje ACL</a>
+<ul>
+<li><a href="#lista-acl">1. Lista ACL</a>
+<ul>
+<li><a href="#filtrowanie-ramek">1.1 Filtrowanie ramek</a></li>
+<li><a href="#zadanie-acl">1.2. Zadanie ACL</a></li>
+<li><a href="#filtrowanie-pakietów-w-modelu-isoosi">1.3. Filtrowanie pakietów w modelu ISO/OSI</a></li>
+<li><a href="#wejściowa-i-wyjściowa-lista-acl">1.4. Wejściowa i wyjściowa lista ACL</a></li>
+<li><a href="#sposób-działania-standardowej-listy-acl">1.5. Sposób działania standardowej listy ACL</a></li>
+</ul></li>
+<li><a href="#maski-blankietowe">2. Maski blankietowe</a>
+<ul>
+<li><a href="#reguły-dopasowania-masek-blankietowych">2.1. Reguły dopasowania masek blankietowych</a></li>
+<li><a href="#typy-masek-blankietowych">2.2. Typy masek blankietowych</a></li>
+<li><a href="#obliczanie-maski-blankietowej">2.3. Obliczanie maski blankietowej</a></li>
+<li><a href="#słowa-kluczowe-w-maskach-blankietowych">2.4. Słowa kluczowe w maskach blankietowych</a></li>
+</ul></li>
+<li><a href="#wytyczne-tworzenia-acl">3. Wytyczne tworzenia ACL</a>
+<ul>
+<li><a href="#ograniczona-liczba-acl-na-interfejs">3.1. Ograniczona liczba ACL na interfejs</a></li>
+<li><a href="#najlepsze-praktyki">3.2. Najlepsze praktyki</a></li>
+<li><a href="#kolejność-instrukcji-acl">3.3. Kolejność instrukcji ACL</a></li>
+</ul></li>
+<li><a href="#numerowane-i-nazwane-acl">4. Numerowane i nazwane ACL</a>
+<ul>
+<li><a href="#numerowane-acl">4.1. Numerowane ACL</a></li>
+<li><a href="#nazwane-acl">4.2. Nazwane ACL</a></li>
+</ul></li>
+<li><a href="#umieszczanie-listy-acl">5. Umieszczanie listy ACL</a>
+<ul>
+<li><a href="#czynniki-wpływające-na-umieszczenie-acl">5.1. Czynniki wpływające na umieszczenie ACL</a></li>
+</ul></li>
+<li><a href="#źródła-uzupełniające-1">6. Źródła uzupełniające</a></li>
 </ul></li>
 <li><a href="#vii.-koncepcje-sieci-wan">VII. Koncepcje sieci WAN</a>
 <ul>
@@ -172,7 +206,7 @@
 <img src="img/2.png" alt="" /><figcaption>Rodzaje pakietów OSPF</figcaption>
 </figure>
 <p><strong>DR</strong> - Designed Router; <strong>BDR</strong> - Backup Designed Router</p>
-<h2 id="stany-protokołu-ospf">6. Stany protokołu OSPF:</h2>
+<h2 id="stany-protokołu-ospf">6. Stany protokołu OSPF</h2>
 <figure>
 <img src="img/3.png" alt="" /><figcaption>Stany protokołu OSPF</figcaption>
 </figure>
@@ -198,7 +232,7 @@
 </ul>
 <h2 id="drother">4. DROTHER</h2>
 <p>Routery, które nie są ani DR ani BDR.</p>
-<h2 id="potrzebne-komendy">5. Potrzebne komendy:</h2>
+<h2 id="potrzebne-komendy">5. Potrzebne komendy</h2>
 <ul>
 <li><strong>router ospf process-id</strong> - włączenie OSPFv2.</li>
 <li><strong>router-id</strong> - ustawienie identyfikatora routera.</li>
@@ -236,7 +270,7 @@
 <h2 id="propagowanie-domyślnej-trasy-statycznej-w-opsfv2">8. Propagowanie domyślnej trasy statycznej w OPSFv2</h2>
 <p><strong>Router brzegowy (router bramy)</strong> - to router podłączony do Internetu, który powinien propagować domyślną trasę do innych routerów w lokalnej sieci.</p>
 <p><strong>Router brzegowy systemu autonomicznego (Autonomous System Boundary Router, ASBR)</strong> - router, który znajduję się pomiędzy domeną routingu OSPF a siecią bez OSPF.</p>
-<h2 id="źródła-uzupełniające">Źródła uzupełniające</h2>
+<h2 id="źródła-uzupełniające">9. Źródła uzupełniające</h2>
 <ul>
 <li>https://www.youtube.com/watch?v=kfvJ8QVJscc</li>
 <li>https://www.youtube.com/watch?v=PIMnj2oqYIo</li>
@@ -264,12 +298,12 @@
 <img src="img/11.png" alt="" /><figcaption>Typy ataków</figcaption>
 </figure>
 <h2 id="rodzaje-złośliwego-oprogramowania">6. Rodzaje złośliwego oprogramowania</h2>
-<h3 id="wirus">Wirus</h3>
+<h3 id="wirus">6.1 Wirus</h3>
 <p>Rozprzestrzeniania się i infekuje inne komputery po wykonaniu przez użytkownika określonego działania.</p>
 <figure>
 <img src="img/33.png" alt="" /><figcaption>Rodzaje wirusów</figcaption>
 </figure>
-<h3 id="koń-trojański">Koń trojański</h3>
+<h3 id="koń-trojański">6.2 Koń trojański</h3>
 <p>Program, który wygląda na przydatny, ale zawiera złośliwy kod.</p>
 <figure>
 <img src="img/34.png" alt="" /><figcaption>Rodzaje koni trojańskich</figcaption>
@@ -281,9 +315,9 @@
 </figure>
 <h2 id="ataki-dostępu">8. Ataki dostępu</h2>
 <p>Celem tego typu ataku jest uzyskanie dostępu do dkont internetowych, poufnych baz danych i innych poufnych informacji.</p>
-<h3 id="ataki-na-hasło">Ataki na hasło</h3>
+<h3 id="ataki-na-hasło">8.1. Ataki na hasło</h3>
 <p>Próba odkrycia krytyzcznego hasła syst4emowego przy użyciu różnych moetd.</p>
-<h3 id="ataki-fałszowania">Ataki fałszowania</h3>
+<h3 id="ataki-fałszowania">8.2. Ataki fałszowania</h3>
 <p>Próba pozowania jako inne urządzenie poprzez fałszowanie danych tj. adres IP, adres MAC czy fałszowanie DHCP.</p>
 <h2 id="ataki-socjotechniczne">9. Ataki socjotechniczne</h2>
 <p><strong>Socjotechnika</strong> jest atakiem polegającym na próbie nakłonienia ludzi do wykonania określonych działań lub ujawnienai poufnych informacji.</p>
@@ -292,7 +326,7 @@
 </figure>
 <h2 id="ataki-dos-i-ddos">10. Ataki DoS i DDoS</h2>
 <p><strong>Atak odmowy usług (Denial of Service)</strong> powoduje przerwanie świadczenia usług sieciowych.</p>
-<h3 id="istnieją-dwa-główne-typy-ataków-dos">Istnieją dwa główne typy ataków DoS:</h3>
+<h3 id="główne-typy-ataków-dos">10.1 Główne typy ataków DoS:</h3>
 <ul>
 <li><strong>Przytłaczająca ilość ruchu</strong> - wysyłanie ogromnej ilości danych z szybkością, której host nie może obsłużyć. Powoduje to spowolnienie czasu transmisji i reakcji, a także awarię urządzenia lub usługi.</li>
 <li><strong>Złośliwie sformatowane pakiety</strong> - wysyłanie złośliwie sformatowanych pakietów do hosta, których nie może on obsłużyć.</li>
@@ -368,41 +402,41 @@
 </ul>
 <h2 id="tunelowanie-dns">20. Tunelowanie DNS</h2>
 <p>Haker umieszcza ruch inny niż DNS w ruchu DNS. Metoda ta często omija rozwiązania zabezpieczające, gdy podmiot zagrożenia chce komunikować się z botami wewnątrz chronionej sieci lub wyeksportować dane z organizacji.</p>
-<h3 id="proces-tunelowania-dns">Proces tunelowania DNS:</h3>
+<h3 id="proces-tunelowania-dns">20.1. Proces tunelowania DNS:</h3>
 <figure>
 <img src="img/43.png" alt="" /><figcaption>Tunelowanie DNS</figcaption>
 </figure>
 <h2 id="ataki-na-dhcp">21. Ataki na DHCP</h2>
 <ul>
-<li>Atak fałszowania DHCP - obcy serwer DHCP dostarcza fałszywych parametrów konfiguracji IP uprawinonym klientom. Może on dostarczać informacji tj.
+<li><strong>Atak fałszowania DHCP</strong> - obcy serwer DHCP dostarcza fałszywych parametrów konfiguracji IP uprawinonym klientom. Może on dostarczać informacji tj.
 <ul>
-<li>Brama domyślna - nieprawidłowa brama lub adres IP swojego hosta, aby utworzyć MITM.</li>
-<li>Niewłaściwy serwer DNS - aby kierować użytkowników na złośliwą stronę internetową.</li>
-<li>Zły adres IP - haker zapewnia nieprawidłowe dane, a następnie tworzy atak DoS na klienta DHCP.</li>
+<li><strong>Brama domyślna</strong> - nieprawidłowa brama lub adres IP swojego hosta, aby utworzyć MITM.</li>
+<li><strong>Niewłaściwy serwer DNS</strong> - aby kierować użytkowników na złośliwą stronę internetową.</li>
+<li><strong>Zły adres IP</strong> - haker zapewnia nieprawidłowe dane, a następnie tworzy atak DoS na klienta DHCP.</li>
 </ul></li>
 </ul>
 <h2 id="triada-pid">22. Triada PID</h2>
 <ul>
-<li>Poufność - tylko upoważnione osoby, podmioty lub procesy mogą uzyskać dostęp do poufnych informacji.</li>
-<li>Integralność - odnosi się do ochrony danych przed nieautoryzowanymi zmianami.</li>
-<li>Dostępność - autoryzowani użytkownicy muszą mieć nieprzerwany dostęp do ważnych zasobów i danych. Wymaga wdrożenia nadmiarowych usług, bram i łączy.</li>
+<li><strong>Poufność</strong> - tylko upoważnione osoby, podmioty lub procesy mogą uzyskać dostęp do poufnych informacji.</li>
+<li><strong>Integralność</strong> - odnosi się do ochrony danych przed nieautoryzowanymi zmianami.</li>
+<li><strong>Dostępność</strong> - autoryzowani użytkownicy muszą mieć nieprzerwany dostęp do ważnych zasobów i danych. Wymaga wdrożenia nadmiarowych usług, bram i łączy.</li>
 </ul>
 <h2 id="urządzenia-i-usługi-zabezpieczające">23. Urządzenia i usługi zabezpieczające</h2>
 <ul>
-<li>VPN</li>
-<li>ASA Firewall - dedykowane urzadzenia zapewniające stanowe usługi zapory. Sprawia, że ruch zewnętrzny nie może inicjować połączeń do wewnętrznych hostów.</li>
-<li>IPS (Intrusion Prevention System) - system zapobiegania włamaniom, monitrouje ruch przychodzący i wychodzący oraz zatrzumuje rozpoznane zagrożenia.</li>
-<li>ESA/WSA - urządzenia zabezpieczające e-mail filtruje span i podejrzane wiadomości e-mail. Urządzenie zabezpieczające sieci Web filtruje znane i podejrzane strony internetowe złośliwego oprogramowania.</li>
-<li>Serwer AAA - zawiera informacje, kto jest upoważniony do dostepu i zarządzania urządzeniami sieciowymi.</li>
+<li><strong>VPN</strong></li>
+<li><strong>ASA Firewall</strong> - dedykowane urzadzenia zapewniające stanowe usługi zapory. Sprawia, że ruch zewnętrzny nie może inicjować połączeń do wewnętrznych hostów.</li>
+<li><strong>IPS (Intrusion Prevention System)</strong> - system zapobiegania włamaniom, monitrouje ruch przychodzący i wychodzący oraz zatrzumuje rozpoznane zagrożenia.</li>
+<li><strong>ESA/WSA</strong> - urządzenia zabezpieczające e-mail filtruje span i podejrzane wiadomości e-mail. Urządzenie zabezpieczające sieci Web filtruje znane i podejrzane strony internetowe złośliwego oprogramowania.</li>
+<li><strong>Serwer AAA</strong> - zawiera informacje, kto jest upoważniony do dostepu i zarządzania urządzeniami sieciowymi.</li>
 </ul>
 <h2 id="zapory">24. Zapory</h2>
-<p>Zapora jest systemem lub grupą systemów, która wymusza politykę kontroli dostępu między sieciami.</p>
+<p><strong>Zapora</strong> jest systemem lub grupą systemów, która wymusza politykę kontroli dostępu między sieciami.</p>
 <h2 id="ips">25. IPS</h2>
 <p><strong>IDS</strong> - Intrusion Detection System <strong>IPS</strong> - Intrusion Prevension System</p>
 <p>Wykrywają one wzorce ruchu sieciowego za pomocą <strong>sygnatur</strong>. <strong>Sygnatura</strong> to zestaw reguł używanych do wykrywania złośliwej aktywności.</p>
 <h2 id="urządzenia-bezpieczeństwa-treści">26. Urządzenia bezpieczeństwa treści</h2>
-<p>Cisco Email Security Appliance (ESA) przeznaczone do monitorowania Simple Mail Transfer Protocol (SMTP).</p>
-<p>Cisco Web Security Appliance (WSA) to technologia ograniczania zagrożeń internetowych.</p>
+<p><strong>Cisco Email Security Appliance (ESA)</strong> przeznaczone do monitorowania Simple Mail Transfer Protocol (SMTP).</p>
+<p><strong>Cisco Web Security Appliance (WSA)</strong> to technologia ograniczania zagrożeń internetowych.</p>
 <h2 id="elementy-bezpiecznej-komunikacji">27. Elementy bezpiecznej komunikacji:</h2>
 <ul>
 <li><strong>Integralność danych</strong> - gwarantuje, że komunikat nie został zmieniony. Wszelkie zmiany w tranzycei zostaną wykryte.</li>
@@ -412,16 +446,16 @@
 </ul>
 <h2 id="integralność-danych">28. Integralność danych</h2>
 <p><strong>Funkcje skrótu</strong> są wykorzystywane w celu zapewnienia integralności wiadomości. Gwarantują one, że dane wiadomości nie uległy zmianie przypadkowo lub celowo.</p>
-<h3 id="trzy-znane-funkcje-skrótu">Trzy znane funkcje skrótu</h3>
+<h3 id="trzy-znane-funkcje-skrótu">28.1. Trzy znane funkcje skrótu</h3>
 <ol type="a">
-<li>MD5 z 128-bitowym odciskiem - funkcja jednokierunkowa, która generuje 128-bitowy skrócony komunikat. Lepszym rozwiązaniem jest SHA-2.</li>
-<li>Algorytm skrótu SHA - wersja SHA-1 i SHA-2.</li>
+<li><strong>MD5 z 128-bitowym odciskiem</strong> - funkcja jednokierunkowa, która generuje 128-bitowy skrócony komunikat. Lepszym rozwiązaniem jest SHA-2.</li>
+<li><strong>Algorytm skrótu SHA</strong> - wersja SHA-1 i SHA-2.</li>
 </ol>
-<p>Funkcje skrótu (mieszanie) są podatne na MITM i niez apewnia bezpieczeństwa przesyłanych danych.</p>
+<p><strong>Funkcje skrótu (mieszanie)</strong> są podatne na MITM i niez apewnia bezpieczeństwa przesyłanych danych.</p>
 <h2 id="uwierzytelnianie-pochodzenia">29. Uwierzytelnianie pochodzenia</h2>
 <p>Aby dodać uwierzytelnianie do zapewnienia integralności można użyć <strong>kodu uwierzytelniania wiadomości z kluczem skrótu (HMAC)</strong>. HMAC wykorzystuje dodatkowy klucz tajny jako wejście dla funkcji skrótu.</p>
 <h2 id="poufność-danych">30. Poufność danych</h2>
-<p>Do zapewnienia poufności danych używane są dwie klasy szyfrowania: symetryczne i asymetryczne.</p>
+<p>Do zapewnienia poufności danych używane są dwie klasy szyfrowania: <strong>symetryczne</strong> i <strong>asymetryczne</strong>.</p>
 <figure>
 <img src="img/44.png" alt="" /><figcaption>Porównanie klas szyfrowania</figcaption>
 </figure>
@@ -443,12 +477,113 @@
 <img src="img/46.png" alt="" /><figcaption>Znane asymetryczne algorytmy szyfrowania</figcaption>
 </figure>
 <h2 id="diffie-hellman-dh">31. Diffie-Hellman (DH)</h2>
-<p>Asymetryczny algorytm matemyczny, w którym dwa PC generują identyczny klucz tajny bez komunikowania się ze sobą.</p>
-<p>DH jest używany w:</p>
+<p>Asymetryczny algorytm matemyczny, w którym dwa PC generują <strong>identyczny klucz tajny bez komunikowania się ze sobą</strong>.</p>
+<p><strong>DH jest używany w:</strong></p>
 <ul>
 <li>VPN IPSec</li>
 <li>SSL, TLS</li>
 <li>SSH</li>
+</ul>
+<h1 id="iv.-koncepcje-acl">IV. Koncepcje ACL</h1>
+<h2 id="lista-acl">1. Lista ACL</h2>
+<p>Lista kontroli dostępu to seria poleceń IOS używanych do <strong>filtrowania pakietów na podstawie informacji w nagłówku</strong>. Lista ACL używa sekwencyjnyej listy instrukcji zezwalania lub odmowy, zwanych <strong>wpisami kontroli dostępu</strong> (ACE; często również nazywanych regułami ACL).</p>
+<h3 id="filtrowanie-ramek">1.1 Filtrowanie ramek</h3>
+<p>Proces, w których router porównuje informacje zawarte w pakiecie ze wpisami ACE.</p>
+<h3 id="zadanie-acl">1.2. Zadanie ACL</h3>
+<ul>
+<li>Ograniczanie ruchu w celu zwiększenia wydajności</li>
+<li>Zapewnienia kontroli przepływu</li>
+<li>Zapewnienie podstawowych zabezpieczeń</li>
+<li>Filtrowanie ruchu w oparciu o typ ruchu</li>
+<li>Kontrolowanie hostów aby zezwolić lub zablokować dostęp do usług sieciowych</li>
+<li>Zapewnienie priorytetu określonym klasom ruchu sieciowego</li>
+</ul>
+<h3 id="filtrowanie-pakietów-w-modelu-isoosi">1.3. Filtrowanie pakietów w modelu ISO/OSI</h3>
+<h4 id="typy-list-acl">1.3.1 Typy list ACL</h4>
+<ul>
+<li><strong>Standardowe ACL</strong> - ACL filtruje tylko w warstwie 3 przy użyciu źródłowego adresu IPv4.</li>
+<li><strong>Rozszerzone ACL</strong> - ACL filtruje w warstwie 3 przy użyciu źródłowego i/lub docelowego IP. Mogą również filtrować w warstwie 4 przy użyciu portów TCP, UDP i opcjonalnych informacji o typie protokołu.</li>
+</ul>
+<figure>
+<img src="img/1.3.1.png" alt="" /><figcaption>ACL w modelu OSI</figcaption>
+</figure>
+<h3 id="wejściowa-i-wyjściowa-lista-acl">1.4. Wejściowa i wyjściowa lista ACL</h3>
+<ul>
+<li><p><strong>Wejściowa lista ACL</strong> - filtruje pakiety, zanim zostaną skierowane do interfejsu wychodzącego. Jeśli pakiet jest dopuszczony przez listę ACL, jest następnie przekazywany do routingu. Najlepiej się sprawdza kiedy sieć dołączona do interfejsu wejściowego jest jedynym źródłem pakietów, które mają być filtrowane.</p></li>
+<li><p><strong>Wyjściowa lista ACL</strong> - filtruje pakiety wychodzące, po przetworzeniu ich w procesiue routingu, niezależnie od użytego interfejsu wejściowego. Takie podejście jest najbardziej użyteczne w sytuacji, gdy te same reguły filtrowania mają być zastosowane do pakietów przychodzących z wielu interfejsów wejściowych, zanim opuszczą interfejs wyjściowy.</p></li>
+</ul>
+<h3 id="sposób-działania-standardowej-listy-acl">1.5. Sposób działania standardowej listy ACL</h3>
+<ol type="a">
+<li>Router wyodrębnia źródłowy adres IPv4 z nagłówka pakietów.</li>
+<li>Router rozpoczyna od góry listy ACL i porównuje źródłowy adres IPv4 z każdym wpisem ACE w kolejności sekwencyjnej.</li>
+<li>Po dokonaniu dopasowania router wykonuje instrukcję, zezwalając na pakiet lub odmawiając mu, a pozostałe wpisy ACE w ACL, jeśli takie istnieją, nie są analizowane.</li>
+<li>Jeśli źródłowy adres IPv4 nie pasuje do żadnego ACE w ACL, pakiet zostanie odrzucony, ponieważ istnieje ACE niejawnej odmowy automatycznie zastosowany we wszystkich ACL.</li>
+</ol>
+<p><strong>Jeśli ACL nie zaiwera instrukcji zezwolenia, domyślnie odmawia się całego ruchu.</strong></p>
+<p>Niejawny wpis <strong>deny any</strong> odrzuca kazdy pakiet, który nie pasuje do żadnego poprzedniego wpisu ACE.</p>
+<h2 id="maski-blankietowe">2. Maski blankietowe</h2>
+<p><strong>Wpis ACE</strong> dla IPv4 używa 32-bitowej <strong>maski blankietowej</strong>, aby określić, które bity adresu mają zostać zbadane pod kątem dopasowania. Maski blankietowe są również używane przez protokół <a href="#maska-blankietowa-wildcard-mask">Open Shortest Path First (OSPF)</a>.</p>
+<h3 id="reguły-dopasowania-masek-blankietowych">2.1. Reguły dopasowania masek blankietowych</h3>
+<ul>
+<li><strong>Bit 0 maski blankietowej</strong> - dopasowuje odpowiednią wartość bitu w adresie.</li>
+<li><strong>Bit 1 maski blankietowej</strong> - ignoruje odpowiednią wartość bitu w adresie</li>
+</ul>
+<h3 id="typy-masek-blankietowych">2.2. Typy masek blankietowych</h3>
+<ul>
+<li><strong>Maska blankietowa dopasowana do hosta</strong> - używana do dopasowania określonego adresu IPv4 hosta. (jest równa 0.0.0.0)</li>
+<li><strong>Maska blankietowa dopasowana do podsieci</strong> - odwrócona maska podsieci.</li>
+<li><strong>Maska blankietowa dopasowania zakresu adresów IPv4</strong></li>
+</ul>
+<h3 id="obliczanie-maski-blankietowej">2.3. Obliczanie maski blankietowej</h3>
+<figure>
+<img src="img/4.2.3.1.png" alt="" /><figcaption>Przykład 1</figcaption>
+</figure>
+<figure>
+<img src="img/4.2.3.2.png" alt="" /><figcaption>Przykład 2</figcaption>
+</figure>
+<figure>
+<img src="img/4.2.3.3.png" alt="" /><figcaption>Przykład 3</figcaption>
+</figure>
+<figure>
+<img src="img/4.2.3.3.png" alt="" /><figcaption>Przykład 4</figcaption>
+</figure>
+<h3 id="słowa-kluczowe-w-maskach-blankietowych">2.4. Słowa kluczowe w maskach blankietowych</h3>
+<p>Aby uprościć korzystanie z masek blankietowych Cisco IOS udostępnia dwa słowa kluczowe:</p>
+<ul>
+<li><strong>host</strong> - zastępuje maskę 0.0.0.0 (filtruje tylko jeden adres hosta).</li>
+<li><strong>any</strong> - zastępuje maskę 255.255.255.255 (pasuje do każdego adresu).</li>
+</ul>
+<h2 id="wytyczne-tworzenia-acl">3. Wytyczne tworzenia ACL</h2>
+<h3 id="ograniczona-liczba-acl-na-interfejs">3.1. Ograniczona liczba ACL na interfejs</h3>
+<p>Konkretny interfejs routera może mieć:</p>
+<ul>
+<li>jeden wychodzący IPv4 ACL</li>
+<li>jeden przychodzący IPv4 ACL</li>
+<li>jeden przychodzący IPv6 ACL</li>
+<li>jeden wychodzący IPv6 ACL</li>
+</ul>
+<h3 id="najlepsze-praktyki">3.2. Najlepsze praktyki</h3>
+<figure>
+<img src="img/4.3.2.png" alt="" /><figcaption>Najlepsze praktyki ACL</figcaption>
+</figure>
+<h3 id="kolejność-instrukcji-acl">3.3. Kolejność instrukcji ACL</h3>
+<p>Najbardziej szczegółowe instrukcje ACL należy wprowadzić jako pierwsze ze względu na odgórny, sekwencyjny charakter list ACL.</p>
+<h2 id="numerowane-i-nazwane-acl">4. Numerowane i nazwane ACL</h2>
+<h3 id="numerowane-acl">4.1. Numerowane ACL</h3>
+<p>Listy ACL o numerach od 1 do 99 lub od 1300 do 1999 to standardowe listy ACL, podczas gdy listy ACL o numerach od 100 do 199 lub od 2000 do 2699 to rozszerzone listy ACL.</p>
+<h3 id="nazwane-acl">4.2. Nazwane ACL</h3>
+<p>Nazwane ACL są preferowaną metodą użycia podczas konfigurowania ACL.</p>
+<p><strong>Poniżej przedstawiono podsumowanie zasad, które należy przestrzegać dla nazwanych ACL:</strong> - Przypisz nazwę w celu identyfikowania listy ACL. - Nazwy mogą zawierać znaki alfanumeryczne. - Nazwy nie mogą zawierać spacji ani znaków interpunkcyjnych. - Sugeruje się, aby nazwę pisać WIELKIMI LITERAMI. - Wewnątrz listy ACL wpisy mogą być dodawane lub usuwane.</p>
+<h2 id="umieszczanie-listy-acl">5. Umieszczanie listy ACL</h2>
+<p><strong>Rozszerzone listy ACL</strong> powinny znajdować się jak najbliżej źródła ruchu, który ma być filtrowany.</p>
+<p><strong>Standardowe ACL</strong> powinny znajdować się jak najbliżej miejsca docelowego.</p>
+<h3 id="czynniki-wpływające-na-umieszczenie-acl">5.1. Czynniki wpływające na umieszczenie ACL</h3>
+<figure>
+<img src="img/4.5.1.png" alt="" /><figcaption>Czynniki wpływające na umieszczenie ACL</figcaption>
+</figure>
+<h2 id="źródła-uzupełniające-1">6. Źródła uzupełniające</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=vMshgkItW5g">https://www.youtube.com/watch?v=vMshgkItW5g</a></li>
 </ul>
 <h1 id="vii.-koncepcje-sieci-wan">VII. Koncepcje sieci WAN</h1>
 <h2 id="topologie-wan">1. Topologie WAN</h2>
