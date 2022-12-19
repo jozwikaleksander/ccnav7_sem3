@@ -182,7 +182,7 @@ Próba pozowania jako inne urządzenie poprzez fałszowanie danych tj. adres IP,
 
 **Atak odmowy usług (Denial of Service)** powoduje przerwanie świadczenia usług sieciowych.
 
-### 10.1 Główne typy ataków DoS:
+### 10.1 Główne typy ataków DoS
 
 - **Przytłaczająca ilość ruchu** - wysyłanie ogromnej ilości danych z szybkością, której host nie może obsłużyć. Powoduje to spowolnienie czasu transmisji i reakcji, a także awarię urządzenia lub usługi.
 - **Złośliwie sformatowane pakiety** - wysyłanie złośliwie sformatowanych pakietów do hosta, których nie może on obsłużyć.
@@ -477,6 +477,88 @@ Nazwane ACL są preferowaną metodą użycia podczas konfigurowania ACL.
 ## 6. Źródła uzupełniające
 
 - [https://www.youtube.com/watch?v=vMshgkItW5g](https://www.youtube.com/watch?v=vMshgkItW5g)
+
+# V. Konfiguracja ACL
+
+## 1. Konfiguracja standardowych lists ACL IPv4
+
+### 1.1. Standardowa numerowana ACL
+
+    Router(config)# access-list access-list-number {deny | permit | remark text} source [source-wildcard] [log]
+
+![Wyjaśnienie składni standardowej listy ACL](img/5.1.1.png)
+
+### 1.2. Standardowa nazywana ACL
+
+    Router(config)# ip access-list standard access-list-name
+
+### 1.3. Stosowanie standardowych list ACL IPv4
+
+    Router(config-if) # ip access-group {access-list-number | access-list-name} {in | out}
+
+Komenda wywołana w **trybie konfiguracji interfejsu**.
+
+## 2. Modyfikowanie list ACL IPv4
+
+### 2.1. Dwie metody modyfikacji ACL
+
+#### 2.1.1. Metoda edytora tekstu
+
+![Metoda edytora tekstu](img/5.2.1.1.png)
+
+#### 2.1.2. Metoda numerów sekwencyjnych
+
+![Metoda numerów sekwencyjnych](img/5.2.1.2.png)
+
+### 2.2. Statystyki ACL
+
+![Statystyki ACL](img/5.2.2.png)
+
+Polecenie **show access-lists** wyświetla liczbędopasowań dla poszczególnych wpisów.
+
+Polecenie **clear access-list counters** czyści statystyki ACL.
+
+## 3. Zabezpieczanie portów VTY przy pomocy standardowej ACL IPv4
+
+### 3.1. Polecenie access-class
+
+    R1(config-line)# access-class {access-list-number | access-list-name} { in | out } 
+
+Polecenie **access-class** stosujemy podczas konfigurowania linii vty.
+
+Słowo kluczowe **in jest najczęściej używaną opcją** filtrowania przychodzącego ruchu vty. Parametr **out** filtruje wychodzący ruch vty i **jest rzadko stosowany**.
+
+### 3.2. Przykład zabezpieczania dostępu VTY
+
+![Przykład zabezpieczania dostępu VTY](img/5.3.2.png)
+
+## 4. Konfiguracja rozszerzonych list ACL IPv4
+
+### 4.1. Rozszerzona numerowana lista ACL IPv4
+
+#### 4.1.1. Składnia polecenia
+
+    Router(config)# access-list access-list-number {deny | permit | remark text} protocol source source-wildcard [operator {port}] destination destination-wildcard [operator {port}] [established] [log]
+
+#### 4.1.2. Stosowanie
+
+![Stosowanie numerowanej rozszerzonej listy ACL IPv4](img/5.4.1.2.png)
+
+### 4.2. Rozszerzona ACL z opcją Established TCP
+
+Słowo kluczowe establish umożliwia wychodzenie ruchowi z wewnętrznej sieci prywatnej i pozwala powracającemu ruchowi odpowiedzi na wejście do wewnętrznej sieci prywatnej.
+
+![Stosowanie słowa kluczowego established](img/5.4.2.png)
+
+### 4.3. Rozszerzona nazywana lista ACL IPv4
+
+#### 4.3.1. Składnia polecenia
+
+    Router(config)# ip access-list extended access-list-name 
+
+#### 4.3.2. Przykład nazywanej rozszerzonej listy ACL IPv4
+
+![Stosowanie słowa kluczowego established](img/5.4.3.2.png)
 
 # VII. Koncepcje sieci WAN
 

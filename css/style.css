@@ -17,7 +17,7 @@
 }
   body {
 	margin: 0 auto;
-	max-width: 36em;
+	max-width: 38em;
 	padding-left: 50px;
 	padding-right: 50px;
 	padding-top: 50px;
@@ -81,13 +81,18 @@
 	color: #606060;
   }
   code {
-	font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+	font-family: 'Fira Code',Menlo, Monaco, 'Lucida Console', Consolas, monospace;
 	font-size: 85%;
 	margin: 0;
+	
+	display: block;
   }
   pre {
 	margin: 1em 0;
 	overflow: auto;
+	background-color: #1c212b;
+	padding: 20px;
+	border-radius: 10px;
   }
   pre code {
 	padding: 0;
