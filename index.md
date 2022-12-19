@@ -480,7 +480,7 @@ Nazwane ACL są preferowaną metodą użycia podczas konfigurowania ACL.
 
 # V. Konfiguracja ACL
 
-## 1. Konfiguracja standardowych lists ACL IPv4
+## 1. Konfiguracja standardowych list ACL IPv4
 
 ### 1.1. Standardowa numerowana ACL
 
