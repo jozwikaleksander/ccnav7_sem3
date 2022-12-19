@@ -23,7 +23,7 @@ W tym celu algorytm SPF tworzy tzw. **drzewo SPF**, każdy router umieszczany je
 4. **Wykonanie algorytmu SPF** - Routery wykonują algorytm SPF.
 5. **Wybór najlepszej trasy** - najlepsze ścieżki oferowane są do tablicy routingu IP.
 
-## 3. OSPF wieloobszarowy zalety:
+## 3. Zalety wieloobszarowego OSPF
 - Mniejsze tablice routingu
 - Zmniejszony narzut aktualizacji stanu łącza
 - Zmniejszona częstotliwość obliczeń SPF
@@ -144,12 +144,12 @@ Pakiety OSPFv2 Hello są wysyłane co 10 sekund.
 
 ## 6. Rodzaje złośliwego oprogramowania
 
-### 6.1 Wirus
+### 6.1. Wirus
 Rozprzestrzeniania się i infekuje inne komputery po wykonaniu przez użytkownika określonego działania.
 
 ![Rodzaje wirusów](img/33.png)
 
-### 6.2 Koń trojański
+### 6.2. Koń trojański
 Program, który wygląda na przydatny, ale zawiera złośliwy kod.
 
 ![Rodzaje koni trojańskich](img/34.png)
@@ -166,15 +166,31 @@ Celem tego typu ataku jest uzyskanie dostępu do dkont internetowych, poufnych b
 
 ### 8.1. Ataki na hasło
 
-Próba odkrycia krytyzcznego hasła syst4emowego przy użyciu różnych moetd.
+Próba odkrycia krytycznego hasła systemowego przy użyciu różnych moetd.
 
 ### 8.2. Ataki fałszowania
 
 Próba pozowania jako inne urządzenie poprzez fałszowanie danych tj. adres IP, adres MAC czy fałszowanie DHCP.
 
+### 8.3. Wykorzystanie zaufania
+Polega na korzystaniu z nieautoryzowanych uprawnień w celu uzyskania dostępu do systemu, co może zagrozić celowi.
+
+![Wykorzystanie zaufania](img/3.8.3.png)
+
+### 8.4. Przekierowanie portów
+Podmiot zagrożenia używa zagrożonego systemu jako bazy ataków na inne cele.
+![Przekierowanie portów](img/4.8.4.png)
+
+### 8.5. Atak Man-in-the-middle
+Podmiot zagrożenia umieszczony jest pomiędzy dwoma uprawnionymi podmiotami w celu odczytania lub modyfikowania danych przekazywanych między dwoma stronami.
+![Przekierowanie portów](img/4.8.5.png)
+
+### 8.6. Przepełnienie bufora
+Aktor zagrożenia wykorzystuje pamięć bufora i przytłacza ją nieoczekiwanymi wartościami. Zwykle powoduje to, że system nie działa, tworząc atak DoS.
+
 ## 9. Ataki socjotechniczne
 
-**Socjotechnika** jest atakiem polegającym na próbie nakłonienia ludzi do wykonania określonych działań lub ujawnienai poufnych informacji.
+**Socjotechnika** jest atakiem polegającym na próbie nakłonienia ludzi do wykonania określonych działań lub ujawnienia poufnych informacji.
 
 ![Rodzaje ataków socjotechnicznych](img/36.png)
 
@@ -182,7 +198,7 @@ Próba pozowania jako inne urządzenie poprzez fałszowanie danych tj. adres IP,
 
 **Atak odmowy usług (Denial of Service)** powoduje przerwanie świadczenia usług sieciowych.
 
-### 10.1 Główne typy ataków DoS
+### 10.1. Główne typy ataków DoS
 
 - **Przytłaczająca ilość ruchu** - wysyłanie ogromnej ilości danych z szybkością, której host nie może obsłużyć. Powoduje to spowolnienie czasu transmisji i reakcji, a także awarię urządzenia lub usługi.
 - **Złośliwie sformatowane pakiety** - wysyłanie złośliwie sformatowanych pakietów do hosta, których nie może on obsłużyć.
@@ -239,9 +255,9 @@ Ataki fałszowania mogą być nieślepe lub ślepe:
 
 ## 18. Zatruwanie ARP
 
-Może być używane do uruchamiania różnych ataków man-in-the-middle. Wysyłając fałszywe gratisowe odpowiedzi ARP zawierające swój adres MAC dla wskazanych adresów IP docelowych zmienia on pamięć podręczną ARP urządzeń i stawia się między ofiarą, a wszystkimi innymi systemami w sieci.
+Może być używane do uruchamiania różnych ataków **man-in-the-middle**. Wysyłając fałszywe gratisowe odpowiedzi ARP zawierające swój adres MAC dla wskazanych adresów IP docelowych zmienia on pamięć podręczną ARP urządzeń i stawia się między ofiarą, a wszystkimi innymi systemami w sieci.
 
-**Rodzaje zatrucia ARP:**
+### 18.1. Rodzaje zatrucia ARP
 
 - **bierne** - polega na kradzieży poufnych informacji.
 - **aktywne** - polega na modyfikacji przesyłanych danych.

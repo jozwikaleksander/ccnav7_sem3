@@ -25,7 +25,7 @@
 <ul>
 <li><a href="#ospf">1. OSPF</a></li>
 <li><a href="#proces-routingu-stanu-łącza">2. Proces routingu stanu łącza</a></li>
-<li><a href="#ospf-wieloobszarowy-zalety">3. OSPF wieloobszarowy zalety:</a></li>
+<li><a href="#zalety-wieloobszarowego-ospf">3. Zalety wieloobszarowego OSPF</a></li>
 <li><a href="#osfpv3">4. OSFPv3</a></li>
 <li><a href="#rodzaje-pakietów-ospf">5. Rodzaje pakietów OSPF</a></li>
 <li><a href="#stany-protokołu-ospf">6. Stany protokołu OSPF</a></li>
@@ -51,19 +51,23 @@
 <li><a href="#typy-ataków">5. Typy ataków</a></li>
 <li><a href="#rodzaje-złośliwego-oprogramowania">6. Rodzaje złośliwego oprogramowania</a>
 <ul>
-<li><a href="#wirus">6.1 Wirus</a></li>
-<li><a href="#koń-trojański">6.2 Koń trojański</a></li>
+<li><a href="#wirus">6.1. Wirus</a></li>
+<li><a href="#koń-trojański">6.2. Koń trojański</a></li>
 </ul></li>
 <li><a href="#rekonesans">7. Rekonesans</a></li>
 <li><a href="#ataki-dostępu">8. Ataki dostępu</a>
 <ul>
 <li><a href="#ataki-na-hasło">8.1. Ataki na hasło</a></li>
 <li><a href="#ataki-fałszowania">8.2. Ataki fałszowania</a></li>
+<li><a href="#wykorzystanie-zaufania">8.3. Wykorzystanie zaufania</a></li>
+<li><a href="#przekierowanie-portów">8.4. Przekierowanie portów</a></li>
+<li><a href="#atak-man-in-the-middle">8.5. Atak Man-in-the-middle</a></li>
+<li><a href="#przepełnienie-bufora">8.6. Przepełnienie bufora</a></li>
 </ul></li>
 <li><a href="#ataki-socjotechniczne">9. Ataki socjotechniczne</a></li>
 <li><a href="#ataki-dos-i-ddos">10. Ataki DoS i DDoS</a>
 <ul>
-<li><a href="#główne-typy-ataków-dos">10.1 Główne typy ataków DoS</a></li>
+<li><a href="#główne-typy-ataków-dos">10.1. Główne typy ataków DoS</a></li>
 </ul></li>
 <li><a href="#ataki-ip">11. Ataki IP</a></li>
 <li><a href="#ataki-na-icmp">12. Ataki na ICMP</a></li>
@@ -72,7 +76,10 @@
 <li><a href="#usługi-tcp">15. Usługi TCP</a></li>
 <li><a href="#ataki-na-tcp">16. Ataki na TCP</a></li>
 <li><a href="#ataki-na-udp">17. Ataki na UDP</a></li>
-<li><a href="#zatruwanie-arp">18. Zatruwanie ARP</a></li>
+<li><a href="#zatruwanie-arp">18. Zatruwanie ARP</a>
+<ul>
+<li><a href="#rodzaje-zatrucia-arp">18.1. Rodzaje zatrucia ARP</a></li>
+</ul></li>
 <li><a href="#ataki-na-dns">19. Ataki na DNS</a></li>
 <li><a href="#tunelowanie-dns">20. Tunelowanie DNS</a>
 <ul>
@@ -133,7 +140,7 @@
 </ul></li>
 <li><a href="#v.-konfiguracja-acl">V. Konfiguracja ACL</a>
 <ul>
-<li><a href="#konfiguracja-standardowych-lists-acl-ipv4">1. Konfiguracja standardowych lists ACL IPv4</a>
+<li><a href="#konfiguracja-standardowych-list-acl-ipv4">1. Konfiguracja standardowych list ACL IPv4</a>
 <ul>
 <li><a href="#standardowa-numerowana-acl">1.1. Standardowa numerowana ACL</a></li>
 <li><a href="#standardowa-nazywana-acl">1.2. Standardowa nazywana ACL</a></li>
@@ -215,7 +222,7 @@
 <li><strong>Wykonanie algorytmu SPF</strong> - Routery wykonują algorytm SPF.</li>
 <li><strong>Wybór najlepszej trasy</strong> - najlepsze ścieżki oferowane są do tablicy routingu IP.</li>
 </ol>
-<h2 id="ospf-wieloobszarowy-zalety">3. OSPF wieloobszarowy zalety:</h2>
+<h2 id="zalety-wieloobszarowego-ospf">3. Zalety wieloobszarowego OSPF</h2>
 <ul>
 <li>Mniejsze tablice routingu</li>
 <li>Zmniejszony narzut aktualizacji stanu łącza</li>
@@ -323,12 +330,12 @@
 <img src="img/11.png" alt="" /><figcaption>Typy ataków</figcaption>
 </figure>
 <h2 id="rodzaje-złośliwego-oprogramowania">6. Rodzaje złośliwego oprogramowania</h2>
-<h3 id="wirus">6.1 Wirus</h3>
+<h3 id="wirus">6.1. Wirus</h3>
 <p>Rozprzestrzeniania się i infekuje inne komputery po wykonaniu przez użytkownika określonego działania.</p>
 <figure>
 <img src="img/33.png" alt="" /><figcaption>Rodzaje wirusów</figcaption>
 </figure>
-<h3 id="koń-trojański">6.2 Koń trojański</h3>
+<h3 id="koń-trojański">6.2. Koń trojański</h3>
 <p>Program, który wygląda na przydatny, ale zawiera złośliwy kod.</p>
 <figure>
 <img src="img/34.png" alt="" /><figcaption>Rodzaje koni trojańskich</figcaption>
@@ -341,17 +348,28 @@
 <h2 id="ataki-dostępu">8. Ataki dostępu</h2>
 <p>Celem tego typu ataku jest uzyskanie dostępu do dkont internetowych, poufnych baz danych i innych poufnych informacji.</p>
 <h3 id="ataki-na-hasło">8.1. Ataki na hasło</h3>
-<p>Próba odkrycia krytyzcznego hasła syst4emowego przy użyciu różnych moetd.</p>
+<p>Próba odkrycia krytycznego hasła systemowego przy użyciu różnych moetd.</p>
 <h3 id="ataki-fałszowania">8.2. Ataki fałszowania</h3>
 <p>Próba pozowania jako inne urządzenie poprzez fałszowanie danych tj. adres IP, adres MAC czy fałszowanie DHCP.</p>
+<h3 id="wykorzystanie-zaufania">8.3. Wykorzystanie zaufania</h3>
+<p>Polega na korzystaniu z nieautoryzowanych uprawnień w celu uzyskania dostępu do systemu, co może zagrozić celowi.</p>
+<figure>
+<img src="img/3.8.3.png" alt="" /><figcaption>Wykorzystanie zaufania</figcaption>
+</figure>
+<h3 id="przekierowanie-portów">8.4. Przekierowanie portów</h3>
+<p>Podmiot zagrożenia używa zagrożonego systemu jako bazy ataków na inne cele. <img src="img/4.8.4.png" alt="Przekierowanie portów" /></p>
+<h3 id="atak-man-in-the-middle">8.5. Atak Man-in-the-middle</h3>
+<p>Podmiot zagrożenia umieszczony jest pomiędzy dwoma uprawnionymi podmiotami w celu odczytania lub modyfikowania danych przekazywanych między dwoma stronami. <img src="img/4.8.5.png" alt="Przekierowanie portów" /></p>
+<h3 id="przepełnienie-bufora">8.6. Przepełnienie bufora</h3>
+<p>Aktor zagrożenia wykorzystuje pamięć bufora i przytłacza ją nieoczekiwanymi wartościami. Zwykle powoduje to, że system nie działa, tworząc atak DoS.</p>
 <h2 id="ataki-socjotechniczne">9. Ataki socjotechniczne</h2>
-<p><strong>Socjotechnika</strong> jest atakiem polegającym na próbie nakłonienia ludzi do wykonania określonych działań lub ujawnienai poufnych informacji.</p>
+<p><strong>Socjotechnika</strong> jest atakiem polegającym na próbie nakłonienia ludzi do wykonania określonych działań lub ujawnienia poufnych informacji.</p>
 <figure>
 <img src="img/36.png" alt="" /><figcaption>Rodzaje ataków socjotechnicznych</figcaption>
 </figure>
 <h2 id="ataki-dos-i-ddos">10. Ataki DoS i DDoS</h2>
 <p><strong>Atak odmowy usług (Denial of Service)</strong> powoduje przerwanie świadczenia usług sieciowych.</p>
-<h3 id="główne-typy-ataków-dos">10.1 Główne typy ataków DoS</h3>
+<h3 id="główne-typy-ataków-dos">10.1. Główne typy ataków DoS</h3>
 <ul>
 <li><strong>Przytłaczająca ilość ruchu</strong> - wysyłanie ogromnej ilości danych z szybkością, której host nie może obsłużyć. Powoduje to spowolnienie czasu transmisji i reakcji, a także awarię urządzenia lub usługi.</li>
 <li><strong>Złośliwie sformatowane pakiety</strong> - wysyłanie złośliwie sformatowanych pakietów do hosta, których nie może on obsłużyć.</li>
@@ -403,8 +421,8 @@
 <li><strong>Atak zalewania UDP</strong> - haker używa narzędzia tj. <strong>UDP Unicorn</strong> czy <strong>Low Orbit Ion Cannon</strong>. Narzędzie te zalewają pakietami UDP. Program wyszukuje zamknięte porty, na co serwer odpowiada komunikatem ICMP o nieosiągalnym porcie (większość portów na serwerze jest zamkniętych, co powoduje duży ruch na segmencie).</li>
 </ul>
 <h2 id="zatruwanie-arp">18. Zatruwanie ARP</h2>
-<p>Może być używane do uruchamiania różnych ataków man-in-the-middle. Wysyłając fałszywe gratisowe odpowiedzi ARP zawierające swój adres MAC dla wskazanych adresów IP docelowych zmienia on pamięć podręczną ARP urządzeń i stawia się między ofiarą, a wszystkimi innymi systemami w sieci.</p>
-<p><strong>Rodzaje zatrucia ARP:</strong></p>
+<p>Może być używane do uruchamiania różnych ataków <strong>man-in-the-middle</strong>. Wysyłając fałszywe gratisowe odpowiedzi ARP zawierające swój adres MAC dla wskazanych adresów IP docelowych zmienia on pamięć podręczną ARP urządzeń i stawia się między ofiarą, a wszystkimi innymi systemami w sieci.</p>
+<h3 id="rodzaje-zatrucia-arp">18.1. Rodzaje zatrucia ARP</h3>
 <ul>
 <li><strong>bierne</strong> - polega na kradzieży poufnych informacji.</li>
 <li><strong>aktywne</strong> - polega na modyfikacji przesyłanych danych.</li>
@@ -611,7 +629,7 @@
 <li><a href="https://www.youtube.com/watch?v=vMshgkItW5g">https://www.youtube.com/watch?v=vMshgkItW5g</a></li>
 </ul>
 <h1 id="v.-konfiguracja-acl">V. Konfiguracja ACL</h1>
-<h2 id="konfiguracja-standardowych-lists-acl-ipv4">1. Konfiguracja standardowych lists ACL IPv4</h2>
+<h2 id="konfiguracja-standardowych-list-acl-ipv4">1. Konfiguracja standardowych list ACL IPv4</h2>
 <h3 id="standardowa-numerowana-acl">1.1. Standardowa numerowana ACL</h3>
 <pre><code>Router(config)# access-list access-list-number {deny | permit | remark text} source [source-wildcard] [log]</code></pre>
 <figure>
