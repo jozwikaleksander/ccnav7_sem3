@@ -99,8 +99,8 @@
 <li><a href="#uwierzytelnianie-pochodzenia">29. Uwierzytelnianie pochodzenia</a></li>
 <li><a href="#poufność-danych">30. Poufność danych</a>
 <ul>
-<li><a href="#a.-szyfrowanie-symetryczne">a. Szyfrowanie symetryczne</a></li>
-<li><a href="#b.-szyfrowanie-asymetryczne">b. Szyfrowanie asymetryczne</a></li>
+<li><a href="#szyfrowanie-symetryczne">30.1. Szyfrowanie symetryczne</a></li>
+<li><a href="#szyfrowanie-asymetryczne">30.2. Szyfrowanie asymetryczne</a></li>
 </ul></li>
 <li><a href="#diffie-hellman-dh">31. Diffie-Hellman (DH)</a></li>
 </ul></li>
@@ -161,6 +161,21 @@
 <li><a href="#rozszerzona-numerowana-lista-acl-ipv4">4.1. Rozszerzona numerowana lista ACL IPv4</a></li>
 <li><a href="#rozszerzona-acl-z-opcją-established-tcp">4.2. Rozszerzona ACL z opcją Established TCP</a></li>
 <li><a href="#rozszerzona-nazywana-lista-acl-ipv4">4.3. Rozszerzona nazywana lista ACL IPv4</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#vi.-nat-dla-ipv4">VI. NAT dla IPv4</a>
+<ul>
+<li><a href="#charakterystyka-nat">1. Charakterystyka NAT</a>
+<ul>
+<li><a href="#prywatne-adresy-internetowe-definiowane-w-dokumencie-rfc-1918">1.1. Prywatne adresy internetowe definiowane w dokumencie RFC 1918</a></li>
+<li><a href="#czym-jest-nat">1.2. Czym jest NAT?</a></li>
+<li><a href="#terminologia-nat">1.3. Terminologia NAT</a></li>
+</ul></li>
+<li><a href="#typy-nat">2. Typy NAT</a>
+<ul>
+<li><a href="#statyczny-nat">2.1. Statyczny NAT</a></li>
+<li><a href="#dynamiczny-nat">2.2. Dynamiczny NAT</a></li>
+<li><a href="#translacja-pat">2.3. Translacja PAT</a></li>
 </ul></li>
 </ul></li>
 <li><a href="#vii.-koncepcje-sieci-wan">VII. Koncepcje sieci WAN</a>
@@ -502,12 +517,12 @@
 <figure>
 <img src="img/44.png" alt="" /><figcaption>Porównanie klas szyfrowania</figcaption>
 </figure>
-<h3 id="a.-szyfrowanie-symetryczne">a. Szyfrowanie symetryczne</h3>
+<h3 id="szyfrowanie-symetryczne">30.1. Szyfrowanie symetryczne</h3>
 <figure>
 <img src="img/45.png" alt="" /><figcaption>Znane symetryczne algorytmy szyfrowania</figcaption>
 </figure>
 <p><strong>Szyfr strumieniowy</strong> szyfruje jeden bajt lub jeden bit na raz.</p>
-<h3 id="b.-szyfrowanie-asymetryczne">b. Szyfrowanie asymetryczne</h3>
+<h3 id="szyfrowanie-asymetryczne">30.2. Szyfrowanie asymetryczne</h3>
 <p>Algorytmy asymetryczne używają <strong>klucza publicznego</strong> i <strong>klucza prywatnego</strong>.</p>
 <p>Przykłady protokołów wykorzystujących szyfrowanie asymtryczne:</p>
 <ul>
@@ -684,6 +699,60 @@
 <h4 id="przykład-nazywanej-rozszerzonej-listy-acl-ipv4">4.3.2. Przykład nazywanej rozszerzonej listy ACL IPv4</h4>
 <figure>
 <img src="img/5.4.3.2.png" alt="" /><figcaption>Stosowanie słowa kluczowego established</figcaption>
+</figure>
+<h1 id="vi.-nat-dla-ipv4">VI. NAT dla IPv4</h1>
+<h2 id="charakterystyka-nat">1. Charakterystyka NAT</h2>
+<h3 id="prywatne-adresy-internetowe-definiowane-w-dokumencie-rfc-1918">1.1. Prywatne adresy internetowe definiowane w dokumencie RFC 1918</h3>
+<figure>
+<img src="img/6.1.1.png" alt="" /><figcaption>Zakres adresów wewnętrznych z RFC 1918</figcaption>
+</figure>
+<h3 id="czym-jest-nat">1.2. Czym jest NAT?</h3>
+<p>Głównym zastosowaniem <strong>NAT</strong> jest oszczędzanie publicznych adresów IPv4 poprzez <strong>transalcję adresów prywatnych na publiczne</strong>. Dodatkowo <strong>NAT</strong> zwiększa prywatnośći bezpieczeńśtwo sieci, ponieważ ukrywa wewnętrzne adresy IPv4 przez siecami zewnętrznymi.</p>
+<h4 id="pula-nat">1.2.1. Pula NAT</h4>
+<p>Jeden lub więcej publicznych adresów IPv4, których router z NAT używa do tłumaczenia.</p>
+<h4 id="sieć-szczątkowa">1.2.2. Sieć szczątkowa</h4>
+<p>Sieć lub sieci z pojedynczym połączeniem z siecią siąsiedzką, jedną drogą do i jedną drogą z sieci. I to właśnie na tych sieciach najczęściej działa router NAT.</p>
+<figure>
+<img src="img/6.1.2.1.png" alt="" /><figcaption>Sieć szczątkowa</figcaption>
+</figure>
+<h3 id="terminologia-nat">1.3. Terminologia NAT</h3>
+<h4 id="sieć-wewnętrzna-i-zewnętrzna">1.3.1 Sieć wewnętrzna i zewnętrzna</h4>
+<p><strong>Sieć wewnętrzna</strong> to zestaw sieci podlegających translacji. <strong>Sieć zewnętrzna</strong> obejmuje wszystkie pozostałe sieci.</p>
+<h4 id="rodzaje-adresów">1.3.2. Rodzaje adresów</h4>
+<ul>
+<li><strong>Adres wewnętrzny</strong> - adres urządzenia podlegającego translacji z użyciem NAT.</li>
+<li><strong>Adres zewnętrzny</strong> - adres urządzenia docelowego.</li>
+<li><strong>Adres lokalny</strong> - to dowolny adres obecny po wewnętrznej stronie sieci.</li>
+<li><strong>Adres globalny</strong> - to dowolny adres obecny po zewnętrznej stronie sieci.</li>
+</ul>
+<h5 id="podsumowanie">1.3.2.1. Podsumowanie</h5>
+<ul>
+<li><strong>Adres wewnętrzny lokalny</strong> - adres źródła widziany z perspektywy wnętrza sieci (np. 192.168.10.10).</li>
+<li><strong>Adres wewnętrzny globalny</strong> - adres źródła widziany z zewnątrz sieci (np. tłumaczony z 192.168.10.10 na 209.165.200.226)</li>
+<li><strong>Adres zewnętrzny globalny</strong> - adres docelowy widziany z zewnątrz sieci.</li>
+<li><strong>Adres zewnętrzny lokalny</strong> - adres docelowy widziany z perspektywy wnętrza sieci. Zazwyczaj jest taki sam jak adres zewnętrzny globalny.</li>
+</ul>
+<figure>
+<img src="img/6.1.3.2.1.png" alt="" /><figcaption>Rodzaje adresów</figcaption>
+</figure>
+<h2 id="typy-nat">2. Typy NAT</h2>
+<h3 id="statyczny-nat">2.1. Statyczny NAT</h3>
+<p><strong>Statyczna translacja NAT</strong> umożliwia utworzenie odwzorowania typu jeden-do-jednego pomiędzy lokalnymi i globalnymi adresami. Te odwzorowania są konfigurowane przez administratora sieci i pozostają niezmienne. Szczególnie przydatny w serwerach WWW albo urządzeniach, które muszą mieć niezmienny adres.</p>
+<h3 id="dynamiczny-nat">2.2. Dynamiczny NAT</h3>
+<p><strong>Dynamiczny NAT</strong> przyznaje adresy publiczne obsługując żądania w kolejności zgłoszenia. Kiedy urządzenie wewnętrzne zażąda dostępu do sieci zewnętrznej, <strong>dynamiczny NAT</strong> przypisuje dostępny adres IPv4 z puli.</p>
+<h3 id="translacja-pat">2.3. Translacja PAT</h3>
+<p><strong>Translacja adresów portów (PAT)</strong>, znana także jako <strong>przeciążenie NAT</strong>, powoduje przekształcenie wielu prywatnych adresów IPv4 na pojedynczy lub klika publicznych adresów IPv4. To właśnie robi większość routerów domowych. Dostawca usług internetowych przypisuje routerowi jeden adres, ale kilku domowników może jednocześnie uzyskać dostęp do Internetu. Jest to najczęstsza forma NAT zarówno dla domu, jak i przedsiębiorstwa.</p>
+<p>PAT identyfikuje adres prywatny za pomocą <strong>numeru portu</strong>.</p>
+<h4 id="następny-dostepny-port">2.3.4. Następny dostepny port</h4>
+<p>Jeżeli numer porty wybrany przez hosta jest już skojarzony z innymi aktywnymi sesjami to PAT przypisuje pierwszy dostępny numer portu zaczynając od początku odpowiedniej grupy portów 0-511, 512-1 023 lub 1024-65 535. Kiedy zabraknie dostępnych portów, ale jest dostępny więcej niż jeden adres zewnętrzny w puli, mechanizm PAT przechodzi do następnego adresu IP.</p>
+<figure>
+<img src="img/6.2.3.4.png" alt="" /><figcaption>Następny dostepny port</figcaption>
+</figure>
+<h4 id="pakiety-bez-segmentu-warstwy-4">2.3.5. Pakiety bez segmentu warstwy 4</h4>
+<p>W przypadku pakietu, który nie zawiera numeru portu warstwy 4. tj. jak (ICMPv4) PAT obsługuje je w inny sposób dla każdego protokołu. W komunikatach ICMP wystepuje np. Query ID (identyfikator zapytania), który powiązuje zapytanie z odpowiedzią na nie.</p>
+<h4 id="porównanie-nat-i-pat">2.4. Porównanie NAT i PAT</h4>
+<figure>
+<img src="img/6.2.4.png" alt="" /><figcaption>Porównanie PAT i NAT</figcaption>
 </figure>
 <h1 id="vii.-koncepcje-sieci-wan">VII. Koncepcje sieci WAN</h1>
 <h2 id="topologie-wan">1. Topologie WAN</h2>
