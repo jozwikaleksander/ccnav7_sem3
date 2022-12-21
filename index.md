@@ -342,13 +342,13 @@ Do zapewnienia poufności danych używane są dwie klasy szyfrowania: **symetryc
 
 ![Porównanie klas szyfrowania](img/44.png)
 
-### a. Szyfrowanie symetryczne
+### 30.1. Szyfrowanie symetryczne
 
 ![Znane symetryczne algorytmy szyfrowania](img/45.png)
 
 **Szyfr strumieniowy** szyfruje jeden bajt lub jeden bit na raz.
 
-### b. Szyfrowanie asymetryczne
+### 30.2. Szyfrowanie asymetryczne
 
 Algorytmy asymetryczne używają **klucza publicznego** i **klucza prywatnego**.
 
@@ -575,6 +575,80 @@ Słowo kluczowe establish umożliwia wychodzenie ruchowi z wewnętrznej sieci pr
 #### 4.3.2. Przykład nazywanej rozszerzonej listy ACL IPv4
 
 ![Stosowanie słowa kluczowego established](img/5.4.3.2.png)
+
+# VI. NAT dla IPv4
+
+## 1. Charakterystyka NAT
+
+### 1.1. Prywatne adresy internetowe definiowane w dokumencie RFC 1918
+
+![Zakres adresów wewnętrznych z RFC 1918](img/6.1.1.png)
+
+### 1.2. Czym jest NAT?
+
+Głównym zastosowaniem **NAT** jest oszczędzanie publicznych adresów IPv4 poprzez **transalcję adresów prywatnych na publiczne**. Dodatkowo **NAT** zwiększa prywatnośći bezpieczeńśtwo sieci, ponieważ ukrywa wewnętrzne adresy IPv4 przez siecami zewnętrznymi.
+
+#### 1.2.1. Pula NAT
+
+Jeden lub więcej publicznych adresów IPv4, których router z NAT używa do tłumaczenia.
+
+#### 1.2.2. Sieć szczątkowa
+
+Sieć lub sieci z pojedynczym połączeniem z siecią siąsiedzką, jedną drogą do i jedną drogą z sieci. I to właśnie na tych sieciach najczęściej działa router NAT.
+
+![Sieć szczątkowa](img/6.1.2.1.png)
+
+### 1.3. Terminologia NAT
+
+#### 1.3.1 Sieć wewnętrzna i zewnętrzna
+
+**Sieć wewnętrzna** to zestaw sieci podlegających translacji.
+**Sieć zewnętrzna** obejmuje wszystkie pozostałe sieci.
+
+#### 1.3.2. Rodzaje adresów
+
+- **Adres wewnętrzny** - adres urządzenia podlegającego translacji z użyciem NAT.
+- **Adres zewnętrzny** - adres urządzenia docelowego.
+- **Adres lokalny** - to dowolny adres obecny po wewnętrznej stronie sieci.
+- **Adres globalny** - to dowolny adres obecny po zewnętrznej stronie sieci.
+
+##### 1.3.2.1. Podsumowanie
+- **Adres wewnętrzny lokalny** - adres źródła widziany z perspektywy wnętrza sieci (np. 192.168.10.10).
+- **Adres wewnętrzny globalny** - adres źródła widziany z zewnątrz sieci (np. tłumaczony z 192.168.10.10 na 209.165.200.226)
+- **Adres zewnętrzny globalny** - adres docelowy widziany z zewnątrz sieci.
+- **Adres zewnętrzny lokalny**  - adres docelowy widziany z perspektywy wnętrza sieci. Zazwyczaj jest taki sam jak adres zewnętrzny globalny.
+
+![Rodzaje adresów](img/6.1.3.2.1.png)
+
+## 2. Typy NAT
+
+### 2.1.  Statyczny NAT
+
+**Statyczna translacja NAT** umożliwia utworzenie odwzorowania typu jeden-do-jednego pomiędzy lokalnymi i globalnymi adresami. Te odwzorowania są konfigurowane przez administratora sieci i pozostają niezmienne. Szczególnie przydatny w serwerach WWW albo urządzeniach, które muszą mieć niezmienny adres.
+
+### 2.2.  Dynamiczny NAT
+
+**Dynamiczny NAT** przyznaje adresy publiczne obsługując żądania w kolejności zgłoszenia. Kiedy urządzenie wewnętrzne zażąda dostępu do sieci zewnętrznej, **dynamiczny NAT** przypisuje dostępny adres IPv4 z puli.
+
+### 2.3. Translacja PAT
+
+**Translacja adresów portów (PAT)**, znana także jako **przeciążenie NAT**, powoduje przekształcenie wielu prywatnych adresów IPv4 na pojedynczy lub klika publicznych adresów IPv4. To właśnie robi większość routerów domowych. Dostawca usług internetowych przypisuje routerowi jeden adres, ale kilku domowników może jednocześnie uzyskać dostęp do Internetu. Jest to najczęstsza forma NAT zarówno dla domu, jak i przedsiębiorstwa.
+
+PAT identyfikuje adres prywatny za pomocą **numeru portu**.
+
+#### 2.3.4. Następny dostepny port
+
+Jeżeli numer porty wybrany przez hosta jest już skojarzony z innymi aktywnymi sesjami to PAT przypisuje pierwszy dostępny numer portu zaczynając od początku odpowiedniej grupy portów 0-511, 512-1 023 lub 1024-65 535. Kiedy zabraknie dostępnych portów, ale jest dostępny więcej niż jeden adres zewnętrzny w puli, mechanizm PAT przechodzi do następnego adresu IP.
+
+![Następny dostepny port](img/6.2.3.4.png)
+
+#### 2.3.5. Pakiety bez segmentu warstwy 4
+
+W przypadku pakietu, który nie zawiera numeru portu warstwy 4. tj. jak (ICMPv4) PAT obsługuje je w inny sposób dla każdego protokołu. W komunikatach ICMP wystepuje np. Query ID (identyfikator zapytania), który powiązuje zapytanie z odpowiedzią na nie.
+
+#### 2.4. Porównanie NAT i PAT
+
+![Porównanie PAT i NAT](img/6.2.4.png)
 
 # VII. Koncepcje sieci WAN
 
