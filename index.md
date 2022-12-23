@@ -878,32 +878,46 @@ NAT dla IPv6 jest wykorzystywany w całkowicie odmiennym kontekście niż NAT dl
 
 ## 6. Źródła uzupełniające
 
-[https://www.youtube.com/watch?v=qij5qpHcbBk](https://www.youtube.com/watch?v=qij5qpHcbBk)
-[https://www.youtube.com/watch?v=FTUV0t6JaDA](https://www.youtube.com/watch?v=FTUV0t6JaDA)
+- [https://www.youtube.com/watch?v=qij5qpHcbBk](https://www.youtube.com/watch?v=qij5qpHcbBk)
+- [https://www.youtube.com/watch?v=FTUV0t6JaDA](https://www.youtube.com/watch?v=FTUV0t6JaDA)
 
 # VII. Koncepcje sieci WAN
 
 ## 1. Topologie WAN
 
-- **Punkt-punkt**
-- **Hub-and-spoke** - umożliwia współużytkowanie pojedynczego interfejsu na routerze centralnym (hub) przez wszystkie routery obwodowe (spoke).
+### 1.1. Punkt-punkt
+### 1.2. Hub-and-spoke
+Umożliwia współużytkowanie pojedynczego interfejsu na routerze centralnym (hub) przez wszystkie routery obwodowe (spoke).
 
 ![Hub-and-spoke](img/12.png)
 
-- **Dual-homed** - zapewnia redundancję. Router centralny jest podwojony w lokalizacji a te nadmiarowo podłączone do routerów obwodowych w chmurze WAN.
+### 1.3. Dual-homed
+Zapewnia redundancję. Router centralny jest podwojony w lokalizacji a te nadmiarowo podłączone do routerów obwodowych w chmurze WAN.
 
 ![Dual-homed](img/13.png)
 
-- **Pełnej siatki** - wykorzystuje wiele obwodów wirtualnych do łączenia wszystkich lokalizacji.
+### 1.4. Pełnej siatki
+Wykorzystuje wiele obwodów wirtualnych do łączenia wszystkich lokalizacji.
 
 ![Topologia pełnej siatki](img/14.png)
 
-- **Częściowej siatki** - łączy wiele, ale nie wszystkie lokalizacje.
+### 1.5. Częściowej siatki
+Łączy wiele, ale nie wszystkie lokalizacje.
 
 ![Topologia częściowej siatki](img/15.png)
 
 ## 2. Łącza operatorów
-**SLA** - umowa o poziomie usług podpisywana między organizacją a usługodawcą. Przedstawia ona oczekiwane usługi związane z niezawodnością i dostępnością połączenia.
+
+### 2.1. SLA
+Umowa o poziomie usług podpisywana między organizacją a usługodawcą. Przedstawia ona oczekiwane usługi związane z niezawodnością i dostępnością połączenia. Usługodawca może, ale nie musi, być faktycznym operatorem. Operator posiada i utrzymuje fizyczne połączenie i sprzęt między dostawcą a klientem. Zazwyczaj organizacja wybierze połączenie WAN z jednym operatorem lub dwoma operatorami.
+
+### 2.2. Połączenie WAN z pojedynczym operatorem
+Połączenie z jednym operatorem ma miejsce, gdy organizacja łączy się tylko z jednym dostawcą usług. Wadą tego podejścia jest połączenie operatora i dostawca usług są pojedynczymi punktami awarii.
+
+### 2.3. Połączenie WAN z dwoma operatorami
+Połączenie z dwoma operatorami zapewnia nadmiarowość i zwiększa dostępność sieci, jak pokazano na rysunku. Organizacja negocjuje oddzielne umowy SLA z dwoma różnymi dostawcami usług. Organizacja powinna zapewnić, że dwaj dostawcy korzystają z innego operatora. Chociaż droższe w implementacji, drugie połączenie może być używane do nadmiarowości jako łącze zapasowe. Może być również stosowany do poprawy wydajności sieci i równoważenia obciążenia ruchu internetowego.
+
+![Połączenie WAN z dwoma operatorami](img/7.2.3.png)
 
 ## 3. Standardy sieci WAN
 

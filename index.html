@@ -215,8 +215,20 @@
 </ul></li>
 <li><a href="#vii.-koncepcje-sieci-wan">VII. Koncepcje sieci WAN</a>
 <ul>
-<li><a href="#topologie-wan">1. Topologie WAN</a></li>
-<li><a href="#łącza-operatorów">2. Łącza operatorów</a></li>
+<li><a href="#topologie-wan">1. Topologie WAN</a>
+<ul>
+<li><a href="#punkt-punkt">1.1. Punkt-punkt</a></li>
+<li><a href="#hub-and-spoke">1.2. Hub-and-spoke</a></li>
+<li><a href="#dual-homed">1.3. Dual-homed</a></li>
+<li><a href="#pełnej-siatki">1.4. Pełnej siatki</a></li>
+<li><a href="#częściowej-siatki">1.5. Częściowej siatki</a></li>
+</ul></li>
+<li><a href="#łącza-operatorów">2. Łącza operatorów</a>
+<ul>
+<li><a href="#sla">2.1. SLA</a></li>
+<li><a href="#połączenie-wan-z-pojedynczym-operatorem">2.2. Połączenie WAN z pojedynczym operatorem</a></li>
+<li><a href="#połączenie-wan-z-dwoma-operatorami">2.3. Połączenie WAN z dwoma operatorami</a></li>
+</ul></li>
 <li><a href="#standardy-sieci-wan">3. Standardy sieci WAN</a></li>
 <li><a href="#sieci-wan-w-modelu-osi">4. Sieci WAN w modelu OSI</a></li>
 <li><a href="#terminologia-wan">5. Terminologia WAN</a></li>
@@ -949,36 +961,43 @@ R2#</code></pre>
 <p>IPv6 zapewnia translacja protokołów między IPv4 i IPv6 znaną jako <strong>NAT64</strong>.</p>
 <p>NAT dla IPv6 jest wykorzystywany w całkowicie odmiennym kontekście niż NAT dla IPv4 i nie jest wykorzystywany do translacji adresów prywatynch IPv6 na globalne IPv6.</p>
 <h2 id="źródła-uzupełniające-2">6. Źródła uzupełniające</h2>
-<p><a href="https://www.youtube.com/watch?v=qij5qpHcbBk">https://www.youtube.com/watch?v=qij5qpHcbBk</a> <a href="https://www.youtube.com/watch?v=FTUV0t6JaDA">https://www.youtube.com/watch?v=FTUV0t6JaDA</a></p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=qij5qpHcbBk">https://www.youtube.com/watch?v=qij5qpHcbBk</a></li>
+<li><a href="https://www.youtube.com/watch?v=FTUV0t6JaDA">https://www.youtube.com/watch?v=FTUV0t6JaDA</a></li>
+</ul>
 <h1 id="vii.-koncepcje-sieci-wan">VII. Koncepcje sieci WAN</h1>
 <h2 id="topologie-wan">1. Topologie WAN</h2>
-<ul>
-<li><strong>Punkt-punkt</strong></li>
-<li><strong>Hub-and-spoke</strong> - umożliwia współużytkowanie pojedynczego interfejsu na routerze centralnym (hub) przez wszystkie routery obwodowe (spoke).</li>
-</ul>
+<h3 id="punkt-punkt">1.1. Punkt-punkt</h3>
+<h3 id="hub-and-spoke">1.2. Hub-and-spoke</h3>
+<p>Umożliwia współużytkowanie pojedynczego interfejsu na routerze centralnym (hub) przez wszystkie routery obwodowe (spoke).</p>
 <figure>
 <img src="img/12.png" alt="" /><figcaption>Hub-and-spoke</figcaption>
 </figure>
-<ul>
-<li><strong>Dual-homed</strong> - zapewnia redundancję. Router centralny jest podwojony w lokalizacji a te nadmiarowo podłączone do routerów obwodowych w chmurze WAN.</li>
-</ul>
+<h3 id="dual-homed">1.3. Dual-homed</h3>
+<p>Zapewnia redundancję. Router centralny jest podwojony w lokalizacji a te nadmiarowo podłączone do routerów obwodowych w chmurze WAN.</p>
 <figure>
 <img src="img/13.png" alt="" /><figcaption>Dual-homed</figcaption>
 </figure>
-<ul>
-<li><strong>Pełnej siatki</strong> - wykorzystuje wiele obwodów wirtualnych do łączenia wszystkich lokalizacji.</li>
-</ul>
+<h3 id="pełnej-siatki">1.4. Pełnej siatki</h3>
+<p>Wykorzystuje wiele obwodów wirtualnych do łączenia wszystkich lokalizacji.</p>
 <figure>
 <img src="img/14.png" alt="" /><figcaption>Topologia pełnej siatki</figcaption>
 </figure>
-<ul>
-<li><strong>Częściowej siatki</strong> - łączy wiele, ale nie wszystkie lokalizacje.</li>
-</ul>
+<h3 id="częściowej-siatki">1.5. Częściowej siatki</h3>
+<p>Łączy wiele, ale nie wszystkie lokalizacje.</p>
 <figure>
 <img src="img/15.png" alt="" /><figcaption>Topologia częściowej siatki</figcaption>
 </figure>
 <h2 id="łącza-operatorów">2. Łącza operatorów</h2>
-<p><strong>SLA</strong> - umowa o poziomie usług podpisywana między organizacją a usługodawcą. Przedstawia ona oczekiwane usługi związane z niezawodnością i dostępnością połączenia.</p>
+<h3 id="sla">2.1. SLA</h3>
+<p>Umowa o poziomie usług podpisywana między organizacją a usługodawcą. Przedstawia ona oczekiwane usługi związane z niezawodnością i dostępnością połączenia. Usługodawca może, ale nie musi, być faktycznym operatorem. Operator posiada i utrzymuje fizyczne połączenie i sprzęt między dostawcą a klientem. Zazwyczaj organizacja wybierze połączenie WAN z jednym operatorem lub dwoma operatorami.</p>
+<h3 id="połączenie-wan-z-pojedynczym-operatorem">2.2. Połączenie WAN z pojedynczym operatorem</h3>
+<p>Połączenie z jednym operatorem ma miejsce, gdy organizacja łączy się tylko z jednym dostawcą usług. Wadą tego podejścia jest połączenie operatora i dostawca usług są pojedynczymi punktami awarii.</p>
+<h3 id="połączenie-wan-z-dwoma-operatorami">2.3. Połączenie WAN z dwoma operatorami</h3>
+<p>Połączenie z dwoma operatorami zapewnia nadmiarowość i zwiększa dostępność sieci, jak pokazano na rysunku. Organizacja negocjuje oddzielne umowy SLA z dwoma różnymi dostawcami usług. Organizacja powinna zapewnić, że dwaj dostawcy korzystają z innego operatora. Chociaż droższe w implementacji, drugie połączenie może być używane do nadmiarowości jako łącze zapasowe. Może być również stosowany do poprawy wydajności sieci i równoważenia obciążenia ruchu internetowego.</p>
+<figure>
+<img src="img/7.2.3.png" alt="" /><figcaption>Połączenie WAN z dwoma operatorami</figcaption>
+</figure>
 <h2 id="standardy-sieci-wan">3. Standardy sieci WAN</h2>
 <p>Nowoczesne standardy sieci WAN są definiowane i zarządzane przez wiele uznanych organów, w tym:</p>
 <ul>
