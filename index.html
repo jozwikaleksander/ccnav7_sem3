@@ -83,7 +83,7 @@
 <li><a href="#ataki-na-dns">19. Ataki na DNS</a></li>
 <li><a href="#tunelowanie-dns">20. Tunelowanie DNS</a>
 <ul>
-<li><a href="#proces-tunelowania-dns">20.1. Proces tunelowania DNS:</a></li>
+<li><a href="#proces-tunelowania-dns">20.1. Proces tunelowania DNS</a></li>
 </ul></li>
 <li><a href="#ataki-na-dhcp">21. Ataki na DHCP</a></li>
 <li><a href="#triada-pid">22. Triada PID</a></li>
@@ -177,6 +177,33 @@
 <li><a href="#dynamiczny-nat">2.2. Dynamiczny NAT</a></li>
 <li><a href="#translacja-pat">2.3. Translacja PAT</a></li>
 </ul></li>
+<li><a href="#zalety-i-wady-nat">3. Zalety i wady NAT</a>
+<ul>
+<li><a href="#zalety-nat">3.1. Zalety NAT</a></li>
+<li><a href="#wady-nat">3.2. Wady NAT</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#konfiguracja-nat">4. Konfiguracja NAT</a>
+<ul>
+<li><a href="#konfiguracja-statycznego-nat">4.1. Konfiguracja statycznego NAT</a>
+<ul>
+<li><a href="#polecenie-ip-nat-inside-source-static">4.1.1. Polecenie ip nat inside source static</a></li>
+<li><a href="#polecenie-ip-nat">4.1.2. Polecenie ip nat</a></li>
+<li><a href="#polecenie-show-ip-nat-translations">4.1.3. Polecenie show ip nat translations</a></li>
+<li><a href="#polecenie-show-ip-nat-statistics">4.1.4. Polecenie show ip nat statistics</a></li>
+<li><a href="#polecenie-clear-ip-nat-statistics">4.1.5. Polecenie clear ip nat statistics</a></li>
+</ul></li>
+<li><a href="#konfiguracja-dynamicznego-nat">4.2. Konfiguracja dynamicznego NAT</a>
+<ul>
+<li><a href="#polecenie-ip-nat-pool">4.2.1. Polecenie ip nat pool</a></li>
+<li><a href="#polecenie-access-list">4.2.2. Polecenie access-list</a></li>
+<li><a href="#polecenie-ip-nat-inside-source-list">4.2.3. Polecenie ip nat inside source list</a></li>
+<li><a href="#polecenie-ip-nat-1">4.2.4. Polecenie ip nat</a></li>
+<li><a href="#polecenie-show-ip-nat-translations-1">4.2.5. Polecenie show ip nat translations</a></li>
+<li><a href="#polecenie-ip-nat-translation-timeout">4.2.6. Polecenie ip nat translation timeout</a></li>
+<li><a href="#polecenie-clear-ip-nat-translation">4.2.7. Polecenie clear ip nat translation</a></li>
+<li><a href="#polecenie-show-ip-nat-statistics-1">4.2.8. Polecenie show ip nat statistics</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#vii.-koncepcje-sieci-wan">VII. Koncepcje sieci WAN</a>
 <ul>
@@ -216,6 +243,7 @@
 <li><a href="#narzędzia-do-wdrażania-qos">20. Narzędzia do wdrażania QoS</a></li>
 <li><a href="#sekwencja-qos">21. Sekwencja QoS</a></li>
 </ul></li>
+<li><a href="#koncepcje-vpn-i-ipsec">8. Koncepcje VPN i IPSec</a></li>
 </ul>
 </nav>
 <h1 id="i.-protokół-ospf">I. Protokół OSPF</h1>
@@ -460,7 +488,7 @@
 </ul>
 <h2 id="tunelowanie-dns">20. Tunelowanie DNS</h2>
 <p>Haker umieszcza ruch inny niż DNS w ruchu DNS. Metoda ta często omija rozwiązania zabezpieczające, gdy podmiot zagrożenia chce komunikować się z botami wewnątrz chronionej sieci lub wyeksportować dane z organizacji.</p>
-<h3 id="proces-tunelowania-dns">20.1. Proces tunelowania DNS:</h3>
+<h3 id="proces-tunelowania-dns">20.1. Proces tunelowania DNS</h3>
 <figure>
 <img src="img/43.png" alt="" /><figcaption>Tunelowanie DNS</figcaption>
 </figure>
@@ -707,13 +735,13 @@
 <img src="img/6.1.1.png" alt="" /><figcaption>Zakres adresów wewnętrznych z RFC 1918</figcaption>
 </figure>
 <h3 id="czym-jest-nat">1.2. Czym jest NAT?</h3>
-<p>Głównym zastosowaniem <strong>NAT</strong> jest oszczędzanie publicznych adresów IPv4 poprzez <strong>transalcję adresów prywatnych na publiczne</strong>. Dodatkowo <strong>NAT</strong> zwiększa prywatnośći bezpieczeńśtwo sieci, ponieważ ukrywa wewnętrzne adresy IPv4 przez siecami zewnętrznymi.</p>
+<p>Głównym zastosowaniem <strong>NAT</strong> jest oszczędzanie publicznych adresów IPv4 poprzez <strong>transalcję adresów prywatnych na publiczne</strong>. Dodatkowo <strong>NAT</strong> zwiększa prywatność i bezpieczeństwo sieci, ponieważ ukrywa wewnętrzne adresy IPv4 przez siecami zewnętrznymi.</p>
 <h4 id="pula-nat">1.2.1. Pula NAT</h4>
 <p>Jeden lub więcej publicznych adresów IPv4, których router z NAT używa do tłumaczenia.</p>
 <h4 id="sieć-szczątkowa">1.2.2. Sieć szczątkowa</h4>
-<p>Sieć lub sieci z pojedynczym połączeniem z siecią siąsiedzką, jedną drogą do i jedną drogą z sieci. I to właśnie na tych sieciach najczęściej działa router NAT.</p>
+<p>Sieć lub sieci z pojedynczym połączeniem z siecią sąsiedzką, jedną drogą do i jedną drogą z sieci. I to właśnie w tych sieciach najczęściej działa router NAT.</p>
 <figure>
-<img src="img/6.1.2.1.png" alt="" /><figcaption>Sieć szczątkowa</figcaption>
+<img src="img/6.1.2.2.png" alt="" /><figcaption>Sieć szczątkowa</figcaption>
 </figure>
 <h3 id="terminologia-nat">1.3. Terminologia NAT</h3>
 <h4 id="sieć-wewnętrzna-i-zewnętrzna">1.3.1 Sieć wewnętrzna i zewnętrzna</h4>
@@ -743,17 +771,122 @@
 <h3 id="translacja-pat">2.3. Translacja PAT</h3>
 <p><strong>Translacja adresów portów (PAT)</strong>, znana także jako <strong>przeciążenie NAT</strong>, powoduje przekształcenie wielu prywatnych adresów IPv4 na pojedynczy lub klika publicznych adresów IPv4. To właśnie robi większość routerów domowych. Dostawca usług internetowych przypisuje routerowi jeden adres, ale kilku domowników może jednocześnie uzyskać dostęp do Internetu. Jest to najczęstsza forma NAT zarówno dla domu, jak i przedsiębiorstwa.</p>
 <p>PAT identyfikuje adres prywatny za pomocą <strong>numeru portu</strong>.</p>
-<h4 id="następny-dostepny-port">2.3.4. Następny dostepny port</h4>
-<p>Jeżeli numer porty wybrany przez hosta jest już skojarzony z innymi aktywnymi sesjami to PAT przypisuje pierwszy dostępny numer portu zaczynając od początku odpowiedniej grupy portów 0-511, 512-1 023 lub 1024-65 535. Kiedy zabraknie dostępnych portów, ale jest dostępny więcej niż jeden adres zewnętrzny w puli, mechanizm PAT przechodzi do następnego adresu IP.</p>
+<h4 id="następny-dostepny-port">2.3.1. Następny dostepny port</h4>
+<p>Jeżeli numer porty wybrany przez hosta jest już skojarzony z innymi aktywnymi sesjami to PAT przypisuje <strong>pierwszy dostępny numer portu</strong> zaczynając od początku <strong>odpowiedniej grupy portów 0-511, 512-1 023 lub 1024-65 535</strong>. Kiedy zabraknie dostępnych portów, ale jest dostępny więcej niż jeden adres zewnętrzny w puli, mechanizm PAT przechodzi do następnego adresu IP.</p>
 <figure>
 <img src="img/6.2.3.4.png" alt="" /><figcaption>Następny dostepny port</figcaption>
 </figure>
-<h4 id="pakiety-bez-segmentu-warstwy-4">2.3.5. Pakiety bez segmentu warstwy 4</h4>
+<h4 id="pakiety-bez-segmentu-warstwy-4">2.3.2. Pakiety bez segmentu warstwy 4</h4>
 <p>W przypadku pakietu, który nie zawiera numeru portu warstwy 4. tj. jak (ICMPv4) PAT obsługuje je w inny sposób dla każdego protokołu. W komunikatach ICMP wystepuje np. Query ID (identyfikator zapytania), który powiązuje zapytanie z odpowiedzią na nie.</p>
 <h4 id="porównanie-nat-i-pat">2.4. Porównanie NAT i PAT</h4>
 <figure>
 <img src="img/6.2.4.png" alt="" /><figcaption>Porównanie PAT i NAT</figcaption>
 </figure>
+<h2 id="zalety-i-wady-nat">3. Zalety i wady NAT</h2>
+<h3 id="zalety-nat">3.1. Zalety NAT</h3>
+<ul>
+<li>oszczędzanie adresów</li>
+<li>zwiększa elastyczność połączeń z siecią publiczną (wiele pul, pule zapasowe, pule równoważące obciążenie).</li>
+<li>zapewnia spójność wewnętrznych schematów adresowania</li>
+<li>ukrywanie adresów IPv4 hostów</li>
+</ul>
+<h3 id="wady-nat">3.2. Wady NAT</h3>
+<ul>
+<li>mniejsza wydajność, zwiększenie opóźnień przekazywania wynikające z translacji. Carrier Grade NAT proces dwóch warstw tłumaczenia NAT, kiedy pule publicznych adresów dla ISP wyczerpią się. (tłumaczenie z prywatnego na prywatny na publiczny);</li>
+<li>utrata adresowania od końca do końca (zasada end-to-end);</li>
+<li>komplikuje użycie protokołów tunelowania tj. <a href="#8-koncepcje-vpn-i-ipsec">IPSec</a> (modyfikuje wartości w nagłówkach - niepowodzenie sprawdzania integralności)</li>
+<li>usługi wymagające zainicjowania połączeń TCP z sieci zewnętrznych, lub protokoły bezstanowe, np. te wykorzystujące UDP, mogą zostać zakłócone.</li>
+</ul>
+<h1 id="konfiguracja-nat">4. Konfiguracja NAT</h1>
+<h2 id="konfiguracja-statycznego-nat">4.1. Konfiguracja statycznego NAT</h2>
+<h3 id="polecenie-ip-nat-inside-source-static">4.1.1. Polecenie ip nat inside source static</h3>
+<pre><code>R2(config)# ip nat inside source static wewnętrzny_adres_lokalny wewnęrzny_adres_globalny</code></pre>
+<p>Polecenie to tworzy odwzorowanie między wewnętrznym adresem lokalnym (np. 192.168.10.254), a wewnętrznym adresem globalnym (np. 209.165.201.0). Jest to polecenie trybu konfiguracji globalnej.</p>
+<h3 id="polecenie-ip-nat">4.1.2. Polecenie ip nat</h3>
+<pre><code>R2(config-if)# ip nat [inside | outside]</code></pre>
+<p>Polecenie to przypisuje dany interfejs do translacji NAT. Z tego polecenie korzystamy w trybie konfiguracji szczegółowej danego interfesju.</p>
+<h3 id="polecenie-show-ip-nat-translations">4.1.3. Polecenie show ip nat translations</h3>
+<pre><code>R2# show ip nat translations
+Pro  Inside global       Inside local        Outside local         Outside global
+tcp  209.165.201.5       192.168.10.254      209.165.200.254       209.165.200.254
+---  209.165.201.5       192.168.10.254        ---                   ---
+Total number of translations: 2</code></pre>
+<p>Polecenie <strong>show ip nat translations</strong> pokazuje aktywne translacje NAT.</p>
+<h3 id="polecenie-show-ip-nat-statistics">4.1.4. Polecenie show ip nat statistics</h3>
+<pre><code>R2# show ip nat statistics
+Total active translations: 1 (1 static, 0 dynamic; 0 extended)
+Outside interfaces:
+Serial0/1/1
+Inside interfaces:
+Serial0/1/0
+Hits: 0  Misses: 0
+(output omitted)</code></pre>
+<p>Polecenie <strong>show ip nat statistics</strong> wyświetla informacje o całkowitej liczbie aktywnych tłumaczeń, parametrach konfiguracyjnych NAT, liczbie adresów w puli oraz liczbie przydzielonych adresów.</p>
+<h3 id="polecenie-clear-ip-nat-statistics">4.1.5. Polecenie clear ip nat statistics</h3>
+<pre><code>R2# clear ip nat statistics</code></pre>
+<p>Aby zweryfikować translacje najlepiej wyczyścić statystyki poprzednich translacji za pomocą polecenia <strong>clear ip nat statistics</strong>.</p>
+<h2 id="konfiguracja-dynamicznego-nat">4.2. Konfiguracja dynamicznego NAT</h2>
+<h3 id="polecenie-ip-nat-pool">4.2.1. Polecenie ip nat pool</h3>
+<pre><code>R2(config)# ip nat pool NAT-POOL1 209.165.200.226 209.165.200.240 netmask 255.255.255.224</code></pre>
+<p>Polecenie to tworzy pula adresów publicznych wykorzystaywantch do translacji.</p>
+<h3 id="polecenie-access-list">4.2.2. Polecenie access-list</h3>
+<pre><code>R2(config)# access-list 1 permit 192.168.0.0 0.0.255.255</code></pre>
+<p>Konfiguruje standardową liste ACL zawierającą tylko adresy, które mają być poddawane translacji.</p>
+<h3 id="polecenie-ip-nat-inside-source-list">4.2.3. Polecenie ip nat inside source list</h3>
+<pre><code>R2(config-if)# ip nat inside source list 1 pool NAT-POOL1</code></pre>
+<p>Powiązuje liste ACL z pulą.</p>
+<h3 id="polecenie-ip-nat-1">4.2.4. Polecenie ip nat</h3>
+<p>R2(config-if)# ip nat inside</p>
+<p>Określa interfejsy wewnętrzne, zewnętrzne w odniesieniu do NAT.</p>
+<h3 id="polecenie-show-ip-nat-translations-1">4.2.5. Polecenie show ip nat translations</h3>
+<pre><code>R2# show ip nat translations
+Pro Inside global      Inside local       Outside local      Outside global
+--- 209.165.200.228    192.168.10.10      ---                ---
+--- 209.165.200.229    192.168.11.10      ---                ---
+R2#</code></pre>
+<p>Wyświetla wszystkie skonfigurowane zamiany adresów.</p>
+<pre><code>R2# show ip nat translation verbose
+Pro Inside global      Inside local       Outside local      Outside global
+tcp 209.165.200.228    192.168.10.10      ---                ---
+    create 00:02:11, use 00:02:11 timeout:86400000, left 23:57:48, Map-Id(In): 1, 
+    flags: 
+none, use_count: 0, entry-id: 10, lc_entries: 0
+tcp 209.165.200.229    192.168.11.10      ---                ---
+    create 00:02:10, use 00:02:10 timeout:86400000, left 23:57:49, Map-Id(In): 1, 
+    flags: 
+none, use_count: 0, entry-id: 12, lc_entries: 0
+R2#</code></pre>
+<p>Dodanie do polecenia opcji <strong>verbose</strong> powoduje wyświetlenie dodatkowych informacji o każdym wpisie w tablicy translacji.</p>
+<h3 id="polecenie-ip-nat-translation-timeout">4.2.6. Polecenie ip nat translation timeout</h3>
+<pre><code>#R2(config)# ip nat translation timeout timeout-seconds</code></pre>
+<p>Domyślnie wpisy translacji wygasają po 24 godzinach, za pomocą tego polecenia możemy ustawić ten czas na inny.</p>
+<h3 id="polecenie-clear-ip-nat-translation">4.2.7. Polecenie clear ip nat translation</h3>
+<pre><code>R2# clear ip nat translation *
+R2# show ip nat translation</code></pre>
+<p>Czyszczenie wpisów dynamicznych przed upływem limitu czasu.</p>
+<figure>
+<img src="img/6.4.2.7.png" alt="" /><figcaption>Opcje polecenia clear ip nat translation</figcaption>
+</figure>
+<h3 id="polecenie-show-ip-nat-statistics-1">4.2.8. Polecenie show ip nat statistics</h3>
+<pre><code>R2# show ip nat statistics 
+Total active translations: 4 (0 static, 4 dynamic; 0 extended)
+Peak translations: 4, occurred 00:31:43 ago
+Outside interfaces:
+Serial0/1/1
+Inside interfaces: 
+Serial0/1/0
+Hits: 47  Misses: 0
+CEF Translated packets: 47, CEF Punted packets: 0
+Expired translations: 5
+Dynamic mappings:
+-- Inside Source
+[Id: 1] access-list 1 pool NAT-POOL1 refcount 4
+pool NAT-POOL1: netmask 255.255.255.224
+    start 209.165.200.226 end 209.165.200.240
+    type generic, total addresses 15, allocated 2 (13%), misses 0
+(output omitted)
+R2#</code></pre>
+<p>Powoduje wyświetlenie informacji o: <strong>całkowitej liczbie aktywnych translacji</strong>, <strong>parametrach konfiguracyjnych NAT</strong>, <strong>liczbie adresów w puli</strong> oraz <strong>liczbie przydzielonych adresów</strong>.</p>
 <h1 id="vii.-koncepcje-sieci-wan">VII. Koncepcje sieci WAN</h1>
 <h2 id="topologie-wan">1. Topologie WAN</h2>
 <ul>
@@ -911,5 +1044,6 @@
 <figure>
 <img src="img/32.png" alt="" /><figcaption>Sekwencja QoS</figcaption>
 </figure>
+<h1 id="koncepcje-vpn-i-ipsec">8. Koncepcje VPN i IPSec</h1>
 </body>
 </html>
