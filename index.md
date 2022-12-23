@@ -799,6 +799,88 @@ Czyszczenie wpisów dynamicznych przed upływem limitu czasu.
 
 Powoduje wyświetlenie informacji o: **całkowitej liczbie aktywnych translacji**, **parametrach konfiguracyjnych NAT**, **liczbie adresów w puli** oraz **liczbie przydzielonych adresów**.
 
+## 4.3. Konfiguracja PAT
+
+### 4.3.1. Konfiguracja PAT do używania pojedynczego adresu IPv4
+
+    R2(config)# ip nat inside source list 1 interface serial 0/1/1 overload
+    R2(config)# access-list 1 permit 192.168.0.0 0.0.255.255
+    R2(config)# interface serial0/1/0
+    R2(config-if)# ip nat inside
+    R2(config-if)# exit
+    R2(config)# interface Serial0/1/1
+    R2(config-if)# ip nat outside
+
+Aby skonfigurować PAT wystarczy do polecenia ip nat inside source dodać **słowo kluczowe overload**. Reszta konfiguracji przebiega podobnie do statycznego lub dynamicznego NAT.
+
+### 4.3.2. Konfigurowanie PAT do korzystania z puli adresów
+
+    R2(config)# ip nat pool NAT-POOL2 209.165.200.226 209.165.200.240 netmask 255.255.255.224
+    R2(config)# access-list 1 permit 192.168.0.0 0.0.255.255
+    R2(config)# ip nat inside source list 1 pool NAT-POOL2 overload
+    R2(config)# 
+    R2(config)# interface serial0/1/0
+    R2(config-if)# ip nat inside
+    R2(config-if)# exit
+    R2(config)# interface serial0/1/1
+    R2(config-if)# ip nat outside
+    R2(config-if)# end
+    R2#
+
+Aby skonfigurować PAT dla dynamicznej puli adresów NAT ponownie wystarczy dodać **overload** do polecenia ip nat inside source.
+
+### 4.3.3. Weryfikowanie PAT
+
+#### 4.3.3.1. Polecenie show ip nat translations
+
+R2# show ip nat translations
+Pro Inside global          Inside local         Outside local      Outside global
+tcp 209.165.200.225:1444  192.168.10.10:1444  209.165.201.1:80   209.165.201.1:80
+tcp 209.165.200.225:1445  192.168.11.10:1444  209.165.202.129:80 209.165.202.129:80
+R2#
+
+Pokazuje translacje z różnych hostów do różnych serwerów WWW.
+
+#### 4.3.3.2. Polecenie show ip nat statistics
+
+    R2# show ip nat statistics 
+    Total active translations: 4 (0 static, 2 dynamic; 2 extended)
+    Peak translations: 2, occurred 00:31:43 ago
+    Outside interfaces:
+    Serial0/1/1
+    Inside interfaces: 
+    Serial0/1/0
+    Hits: 4  Misses: 0
+    CEF Translated packets: 47, CEF Punted packets: 0
+    Expired translations: 0
+    Dynamic mappings:
+    -- Inside Source
+    [Id: 3] access-list 1 pool NAT-POOL2 refcount 2
+    pool NAT-POOL2: netmask 255.255.255.224
+        start 209.165.200.225 end 209.165.200.240
+        type generic, total addresses 15, allocated 1 (6%), misses 0
+    (output omitted)
+    R2#
+
+Potwierdza, że NAT-POOL2 dokonała alokacji pojedynczego adresu dla obu translacji. W wyniku zawarta jest informacja o liczbie i typie aktywnych translacji, parametrach konfiguracyjnych NAT, liczbie adresów w puli oraz jak wiele z nich zostało przydzielonych.
+
+## 5. NAT dla IPv6
+
+Ponieważ wiele sieci używa zarówno IPv4, jak i IPv6, musi istnieć sposób na korzystanie z protokołu IPv6 z NAT.
+
+IPv6 został opracowany, aby wyeliminować konieczność translacji NAT adresów publicznych i prywatnych IPv4. Jednak IPv6 zawiera własną prywatną przestrzeń adresową IPv6, **unikalne adresy lokalne (ULA)**.
+
+Adresy ULA IPv6 są podobne do adresów prywatnych IPv4 RFC 1918, lecz istnieją także istotne różnice. Adresy ULA przeznaczone są **wyłącznie do komunikacji lokalnej w obrębie lokalizacji**. Adresy ULA **nie mają na celu zapewnienia dodatkowej przestrzeni adresowej IPv6** ani **zapewnienia poziomu bezpieczeństwa**.
+
+IPv6 zapewnia translacja protokołów między IPv4 i IPv6 znaną jako **NAT64**.
+
+NAT dla IPv6 jest wykorzystywany w całkowicie odmiennym kontekście niż NAT dla IPv4 i nie jest wykorzystywany do translacji adresów prywatynch IPv6 na globalne IPv6.
+
+## 6. Źródła uzupełniające
+
+[https://www.youtube.com/watch?v=qij5qpHcbBk](https://www.youtube.com/watch?v=qij5qpHcbBk)
+[https://www.youtube.com/watch?v=FTUV0t6JaDA](https://www.youtube.com/watch?v=FTUV0t6JaDA)
+
 # VII. Koncepcje sieci WAN
 
 ## 1. Topologie WAN
