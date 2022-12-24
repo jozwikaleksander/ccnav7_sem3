@@ -1044,23 +1044,23 @@ Jest technologią, która umożliwia przesyłanie głosu, obrazów wideo i danyc
 
 Sieci ATM zostały w dużej mierze zastąpione szybszymi Metro Ethernet i rozwiązaniami internetowymi.
 
-# 4. Nowoczesne technologie WAN
+## 4. Nowoczesne technologie WAN
 
-## 4.1. Nowoczesne opcje łączności WAN
+### 4.1. Nowoczesne opcje łączności WAN
 ![Nowoczesne opcje łączności WAN](img/7.4.png)
 
-### 4.1.1. Dedykowane szerokopasmowe
+#### 4.1.1. Dedykowane szerokopasmowe
 **Ciemne włókno** kabel światłowodowy, który nie jest w użyciu, a zatem "nieoświetlony".
 
-### 4.1.2. Przełączanie pakietów
+#### 4.1.2. Przełączanie pakietów
 
-#### 4.1.2.1. Metro Ethernet
+##### 4.1.2.1. Metro Ethernet
 
-#### 4.1.2.2. Multi-ptocol Label Switching (MPLS)
+##### 4.1.2.2. Multi-ptocol Label Switching (MPLS)
 
-### 4.1.3. Internetowe szerokopasmowe
+#### 4.1.3. Internetowe szerokopasmowe
 
-## 4.2. Ethernet WAN
+### 4.2. Ethernet WAN
 
 Operatorzy ISP oferują obecnie usługę **Ethernet WAN** z wykorzystaniem włókien światłowodowych. Usługa Ethernet WAN może mieć wiele nazw, w tym następujące:
 
@@ -1068,13 +1068,13 @@ Operatorzy ISP oferują obecnie usługę **Ethernet WAN** z wykorzystaniem włó
 - Ethernet over MPLS (EoMPLS)
 - Usługa wirtualnej prywatnej sieci LAN (Virtual Private LAN Service - VPLS)
 
-### 4.2.1. Korzyści Ethernet WAN
+#### 4.2.1. Korzyści Ethernet WAN
 
 - Mniejsze wydatki i administracja - szybkie przełączanie w warstwie 2, łącząc różne formy ruchu takie jak, głos, video i dane w jednej infrastrukturze. Dzięki temu otrzymuje się większe pasmo i eliminuje kosztowny proces konwersji do innych technologii WAN. Technologia umożliwia przedsiębiorstwom niedrogie łączenie wielu lokalizacji w obszarze metropolitalnym, między sobą oraz z Internetem.
 - Łatwa intergracja z istniejącymi sieciami - Ethernet WAN w łatwy sposób można przyłączyć do istniejących sieci Ethernet LAN, redukując tym samym koszty i czas.
 - Zwiększona produktywność biznesowa - Ethernet WAN umożliwia firmom czerpanie korzyści, ze stosowania aplikacji IP , takich jak streaming wideo, technologia VoIP i komunikacja IP pomiędzy komputerami.
 
-## 4.3. MPLS
+### 4.3. MPLS
 
 **Multiprotocol Label Switching (MPLS)** to wysokowydajna technologia routingu WAN dla dostawcy usług umożliwiająca łączenie klientów bez względu na metodę dostępu lub typ obciążenia. MPLS obsługuje różne metody dostępu klienta (np. Ethernet, DSL, Cable, Frame Relay). MPLS może enkapsulować ruch wszystkich typy protokołów, w tym IPv4 i IPv6.
 
