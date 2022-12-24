@@ -1005,9 +1005,191 @@ Istnieją dwa optyczne standardy warstwy 1 OSI dostępne dla dostawców usług:
 
 ![Tradycyjne opcje łączności WAN](img/7.3.1.png)
 
-## 11. MPLS
+### 3.2. Terminologia WAN
+
+#### 3.2.1. Łącza dzierżawione
+Łącza typu punkt-punkt dierżawione od usługowacy. Ten termin odnosi się do faktu, iż firma podnajmująca łącza płacie stały abonament za jego użytkowanie.
+
+Inne nazwy łącz dzierżawionych to łącza szeregowe, łącza punkt-punkt, linie T1/E1, T3/E3.
+
+##### 3.2.1.1. Systemy definiowania pojemności cyfrowej łącza szeregowego między nośnikami miedzianymi:
+- **Łącze T** - używane w Ameryce Północnej, zapewnia łącza T1 obsługujące przepustowość do 1,544 Mb/s i łącza T3 obsługujące przepustowość do 43,7 Mb/s.
+- **Łącze E** - używane w Europie, zapewnia łącze E1 obsługujące przepustowość do 2,048 Mb/s oraz łącza E3 obsługujące przepustowość do 34,368 Mb/s.
+
+##### 3.2.1.2. Zalety i wady linii dzierżawionych.
+
+![Zalety i wady linii dzierżawionych](img/7.3.2.1.2.png)
+
+### 3.3. Opcje z komutacją łączy
+
+Połączenia z komutacją łączy są dostarczane przez **operatorów publicznych sieci telefonicznych (PSTN)**. Pętla lokalna łącząca CPE do CO to **media miedziane**. Istnieją dwie tradycyjne opcje komutacji łącza.
+
+#### 3.3.1. Usługi PSTN (Public Switched Telephone Network)
+
+Dostęp Dialup WAN używa PSTN jako połączenia WAN. Tradycyjne sieci telefoniczne, mogą przesyłać dane binarne za pomocą modemów analogowych. Modem moduluje dane cyfrowe na sygnał analogowy u źródła i demoduluje sygnał analogowy na dane cyfrowe w miejscu docelowym. Szybkość przesyłania sygnałów jest ograniczona przez parametry fizyczne pętli lokalnej oraz jej połączenie z siecią PSTN. Prędkość ta wynosi **mniej niż 56kb/s**.
+
+Dostęp dialup jest uważany za **przestarzałą technologię WAN**. Jednak nadal może być opłacalne rozwiązanie, gdy żadna inna technologia WAN nie jest dostępna.
+
+#### 3.3.2. ISDN (Integrated Services Digital Network)
+**ISDN** to technologia komutacji łączy, która umożliwia pętli lokalnej PSTN przenoszenie sygnałów cyfrowych. Zapewniało to większą pojemność połączeń przełączanych niż dostęp do dialup. ISDN zapewnia szybkość transmisji danych **od 45 Kbps do 2,048 Mb/s**.
+
+### 3.4. Opcje z przełączaniem pakietów
+#### 3.4.1. Frame Relay
+Jest technologią warstwy 2 (siecią wielodostępową bez obsługi rozgłaszania - NBMA), WAN używaną do łączenia zdalnych lokalizacji między sobą. Pojedynczy interfejs routera może służyć do połączeń z wieloma sieciami za pomocą różnych PVC. PVC są wykorzystywane do przenoszenia zarówno głosu jak i danych, pomiędzy adresem źródłowym i docelowym. Oferowana przez nie prędkość sięga 4 Mb/s, choć niektórzy operatorzy są w stanie zapewnić większe przepustowości.
+
+Frame Relay tworzy stałe połączenia wirtualne, a każde z nich jest identyfikowane w sposób unikalny za pomocą identyfikatora DLCI (data link connection identifier).
+
+#### 3.4.2. Asynchronous Transfer Mode (ATM)
+Jest technologią, która umożliwia przesyłanie głosu, obrazów wideo i danych przez sieci prywatne i publiczne. Jest ona oparta na architekturze komórek, a nie ramek. Komórki ATM mają stałą długość 53 bajtów. 53-bajtowa komórka ATM zawiera 5-bajtowy nagłówek ATM i 48 bajtów treści zasadniczej. Małe komórki o stałej długości doskonale nadają się do przesyłania głosu i obrazów wideo, ponieważ ruch ten nie toleruje opóźnień. Ruch zawierający obrazy wideo i głos nie musi czekać na przesłanie większego pakietu danych.
+
+Sieci ATM zostały w dużej mierze zastąpione szybszymi Metro Ethernet i rozwiązaniami internetowymi.
+
+# 4. Nowoczesne technologie WAN
+
+## 4.1. Nowoczesne opcje łączności WAN
+![Nowoczesne opcje łączności WAN](img/7.4.png)
+
+### 4.1.1. Dedykowane szerokopasmowe
+**Ciemne włókno** kabel światłowodowy, który nie jest w użyciu, a zatem "nieoświetlony".
+
+### 4.1.2. Przełączanie pakietów
+
+#### 4.1.2.1. Metro Ethernet
+
+#### 4.1.2.2. Multi-ptocol Label Switching (MPLS)
+
+### 4.1.3. Internetowe szerokopasmowe
+
+## 4.2. Ethernet WAN
+
+Operatorzy ISP oferują obecnie usługę **Ethernet WAN** z wykorzystaniem włókien światłowodowych. Usługa Ethernet WAN może mieć wiele nazw, w tym następujące:
+
+- Metropolitan Ethernet (Metro E)
+- Ethernet over MPLS (EoMPLS)
+- Usługa wirtualnej prywatnej sieci LAN (Virtual Private LAN Service - VPLS)
+
+### 4.2.1. Korzyści Ethernet WAN
+
+- Mniejsze wydatki i administracja - szybkie przełączanie w warstwie 2, łącząc różne formy ruchu takie jak, głos, video i dane w jednej infrastrukturze. Dzięki temu otrzymuje się większe pasmo i eliminuje kosztowny proces konwersji do innych technologii WAN. Technologia umożliwia przedsiębiorstwom niedrogie łączenie wielu lokalizacji w obszarze metropolitalnym, między sobą oraz z Internetem.
+- Łatwa intergracja z istniejącymi sieciami - Ethernet WAN w łatwy sposób można przyłączyć do istniejących sieci Ethernet LAN, redukując tym samym koszty i czas.
+- Zwiększona produktywność biznesowa - Ethernet WAN umożliwia firmom czerpanie korzyści, ze stosowania aplikacji IP , takich jak streaming wideo, technologia VoIP i komunikacja IP pomiędzy komputerami.
+
+## 4.3. MPLS
 
 **Multiprotocol Label Switching (MPLS)** to wysokowydajna technologia routingu WAN dla dostawcy usług umożliwiająca łączenie klientów bez względu na metodę dostępu lub typ obciążenia. MPLS obsługuje różne metody dostępu klienta (np. Ethernet, DSL, Cable, Frame Relay). MPLS może enkapsulować ruch wszystkich typy protokołów, w tym IPv4 i IPv6.
+
+![Topologia prostej sieci z obsługą MPLS](img/7.4.3.png)
+
+**Router MPLS** może być **routerem krawędzi klienta (CE)**, **routerem krawędzi dostawcy (PE)** lub **routerem wewnętrznym dostawcy (P)**. Zauważ, że MPLS obsługuje różne połączenia dostępu klienta.
+
+**Routery MPLS** są **routerami z przełączaniem etykiet (LSR)**. Oznacza to, że dołączają etykiety do pakietów, które są następnie używane przez inne routery MPLS do przesyłania ruchu. Gdy ruch opuszcza CE, router MPLS PE dodaje krótką etykietę o stałej długości pomiędzy nagłówkiem ramki a nagłówkiem pakietu. Routery MPLS P używają etykiety, aby określić następny przeskok pakietu. Etykieta jest usuwana przez router PE, gdy pakiet opuszcza sieć MPLS.
+
+## 5. Łączność internetowa
+
+### 5.1. Technologia DSL
+
+**Cyfrowa linia abonencka (DSL)** to szybka, o stałym połączeniu technologia, która **wykorzystuje istniejące skrętki telefoniczne** do świadczenia usług IP użytkownikom. DSL jest popularnym wyborem dla użytkowników domowych i dla działów IT przedsiębiorstwa do wspierania telepracowników.
+
+### 5.2. Połączenia DSL
+
+Połączenie jest ustanawiane między modemem DSL a multiplekserem dostępu DSL (DSLAM).
+
+![Połęczenie DSL](img/7.5.2.png)
+
+**Modem DSL** konwertuje sygnały Ethernet z urządzenia telepracownika na sygnał DSL, który jest przesyłany do **multipleksera dostępu DSL (DSLAM)** w lokalizacji dostawcy.
+
+**DSLAM** jest urządzeniem, znajdującym się w **Biurze Centralnym (CO)** dostawcy, a jego zadaniem jest połączenie wielu abonentów DSL. **DSLAM** jest zazwyczaj częścią routera, odpowiadającego za agregację.
+
+### 5.3. DSL i PPP
+
+**Protokół Point-to-Point (PPP)** to protokół warstwy 2, który był powszechnie używany przez dostawców usług telefonicznych do nawiązywania połączeń router do routera i host do sieci za pośrednictwem dostępowej sieci telefonicznej i ISDN.
+
+ISP nadal używają **protokołu PPP** jako protokołu Layer 2 dla szerokopasmowych połączeń DSL ze względu na następujące czynniki:
+
+- PPP może być używany do uwierzytelniania abonenta.
+- PPP może przypisać publiczny adres IPv4 do abonenta.
+- PPP zapewnia funkcje zarządzania jakością łączy.
+
+#### 5.3.1. Sposoby wdrażania PPP over Ethernet (PPPoE).
+
+- **Host z klientem PPPoE**
+![Host z klientem PPPoE](img/7.5.3.1.1.png)
+
+- **Router z klientem PPPoE**
+![Router z klientem PPPoE](img/7.5.3.1.2.png)
+
+### 5.4. Technologia kablowa
+
+**Technologia kablowa** to szybka, stale połączona technologia, która wykorzystuje kabel koncentryczny firmy kablowej do świadczenia usług IP użytkownikom.
+
+**DOCSIS (Data over Cable Service Interface Specification)** to międzynarodowy standard dodawania danych o dużej przepustowości do istniejącego systemu kablowego.
+
+Operatorzy kablowi wdrażają **hybrydowe sieci światłowodowe (HFC)**, aby umożliwić szybką transmisję danych do modemów kablowych. System ten używa kabli koncentrycznych, przenoszących sygnał radiowy w całej sieci. HFC wykorzystuje kabel światłowodowy i koncentryczny w różnych częściach sieci.
+
+![Hybrydowe sieci światłowodowe](img/7.5.4.png)
+
+### 5.5. Łącza światłowodowe
+
+**Fiber do x (FTTX)** - instalacja kabla światłowodowego do lokalizacji użytkownika. Obejmuje:
+
+- Fiber to the Home (FTTH) - włókno dociera do granic miejsca zamieszkania.
+- Fiber to the building (FTTB) - włókno dociera do granicy budynku, a ostateczne połączenie z indywidualną przestrzenią mieszkalną odbywa się za pomocą alternatywnych środów.
+- Fiber to the Node/Neighborhood(FFTN) - okablowanie optyczne dociera do węzła optycznego, który konwertuje sygnały optyczne do formatu dopuszczalnego dla skrętki lub kabla koncentrycznego do pomieszczenia.
+
+### 5.6. Bezprzewodowy internet szerokopasmowy
+
+Rozwiązania umożliwiające szerokopasmową technologię bezprzewodową:
+
+#### 5.6.1. Miejska sieć W-Fi
+#### 5.6.2. Sieć komórkowa
+
+**Terminy przemysłu komórkowego:**
+- Sieci 3G/4G/5G
+- Long-Term-Evolution (LTE)
+
+#### 5.6.3. Internet satelitarny
+
+Zwykle używany przez **użytkowników wiejskich** lub **w odległych lokalizacjach**, gdzie połączenia kablowe i DSL nie są dostępne. Aby abonent mógł skorzystać z *dostępu satelitarnego*, potrzebuje on **talerza satelitarnego**, dwóch modemów (wysyłanie i pobieranie) oraz kabla koncentrycznego łączącego modem z talerzem.
+
+**Prędkość pobierania** wynosi od 5 Mb/s do 25 Mb/s. Natomiast **prędkość wysyłania** to około jednej dziesiątej prędkości pobierania.
+
+#### 5.6.4. WiMAX
+
+Jest nową technologią opisaną w standardzie **IEEE 802.16**. Działa na podobnej zasadzie jak stacje bazowe telefonii komórkowej.
+
+### 5.7. Technologia VPN
+
+Pozwala na przekazywanie ruchu w sposób zaszyfrowany pomiędzy komputerami w sieci prywatnej lub publicznej, takiej jak Internet. Zamiast używać dedykowanego połączenia warstwy 2 (tj. linia dzierżawiona) VPN używa połączeń wirtualnych zwanych **tunelami sieci VPN**. Tunele VPN są kierowane przez Internet z prywatnej sieci firmy do zdalnej witryny lub hosta pracownika.
+
+#### 5.7.1. Korzyści sieci VPN
+
+- oszczędności wydatków
+- bezpieczeństwo
+- skalowalność
+- kompatybilność z technologią szerokopasmową
+
+#### 5.7.2. Sposoby realizowania VPN
+
+- Site-to-site VPN - VPN konfigurowane na routerach. Klienci nie są świadomi, że ich dane są szyfrowane.
+- Dostęp zdalny - użytkownik jest świadomy i inicjuje połączenie dostępu zdalnego.
+
+### 5.8. Opcje łączenia do dostawcy usług
+
+#### 5.8.1. Połączenie pojedyncze (single-homed)
+
+![Połączenie pojedyncze](img/7.5.8.1.png)
+
+#### 5.8.2. Połączenie podwójne (dual-homed)
+
+![Połączenie podwójne](img/7.5.8.2.png)
+
+#### 5.8.3. Połączenie wielokrotne (multihomed)
+
+![Połączenie wielokrotne](img/7.5.8.3.png)
+
+#### 5.8.4. Połączenie wielokrotne podwójne (dual-mulithomed)
+
+![Połączenie wielokrotne podwójne](img/7.5.8.4.png)
 
 # IX. Koncepcje QoS
 
