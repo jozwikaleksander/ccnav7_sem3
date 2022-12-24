@@ -14,6 +14,8 @@
     ul.task-list{list-style: none;}
   </style>
   <link rel="stylesheet" href="css/style.css" />
+  <script src="scripts/scroll.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 <header id="title-block-header">
@@ -182,11 +184,9 @@
 <li><a href="#zalety-nat">3.1. Zalety NAT</a></li>
 <li><a href="#wady-nat">3.2. Wady NAT</a></li>
 </ul></li>
-</ul></li>
 <li><a href="#konfiguracja-nat">4. Konfiguracja NAT</a>
 <ul>
-<li><a href="#konfiguracja-statycznego-nat">4.1. Konfiguracja statycznego NAT</a>
-<ul>
+<li><a href="#konfiguracja-statycznego-nat">4.1. Konfiguracja statycznego NAT</a></li>
 <li><a href="#polecenie-ip-nat-inside-source-static">4.1.1. Polecenie ip nat inside source static</a></li>
 <li><a href="#polecenie-ip-nat">4.1.2. Polecenie ip nat</a></li>
 <li><a href="#polecenie-show-ip-nat-translations">4.1.3. Polecenie show ip nat translations</a></li>
@@ -215,28 +215,29 @@
 </ul></li>
 <li><a href="#vii.-koncepcje-sieci-wan">VII. Koncepcje sieci WAN</a>
 <ul>
-<li><a href="#topologie-wan">1. Topologie WAN</a>
+<li><a href="#cele-sieci-wan">1. Cele sieci WAN</a>
 <ul>
-<li><a href="#punkt-punkt">1.1. Punkt-punkt</a></li>
-<li><a href="#hub-and-spoke">1.2. Hub-and-spoke</a></li>
-<li><a href="#dual-homed">1.3. Dual-homed</a></li>
-<li><a href="#pełnej-siatki">1.4. Pełnej siatki</a></li>
-<li><a href="#częściowej-siatki">1.5. Częściowej siatki</a></li>
+<li><a href="#różnice-między-lan-i-wan">1.1 Różnice między LAN i WAN</a></li>
+<li><a href="#prywatne-i-publiczne-sieci-wan">1.2. Prywatne i publiczne sieci WAN</a></li>
+<li><a href="#topologie-wan">1.3. Topologie WAN</a></li>
+<li><a href="#łącza-operatorów">1.4. Łącza operatorów</a></li>
+<li><a href="#ewolucja-sieci">1.5 Ewolucja sieci</a></li>
 </ul></li>
-<li><a href="#łącza-operatorów">2. Łącza operatorów</a>
+<li><a href="#operacje-wan">2. Operacje WAN</a>
 <ul>
-<li><a href="#sla">2.1. SLA</a></li>
-<li><a href="#połączenie-wan-z-pojedynczym-operatorem">2.2. Połączenie WAN z pojedynczym operatorem</a></li>
-<li><a href="#połączenie-wan-z-dwoma-operatorami">2.3. Połączenie WAN z dwoma operatorami</a></li>
+<li><a href="#standardy-sieci-wan">2.1. Standardy sieci WAN</a></li>
+<li><a href="#sieci-wan-w-modelu-osi">2.2. Sieci WAN w modelu OSI</a></li>
+<li><a href="#terminologia-wan">2.3. Terminologia WAN</a></li>
+<li><a href="#urządzenia-sieci-wan">2.4. Urządzenia sieci WAN</a></li>
+<li><a href="#komunikacja-szeregowa">2.5. Komunikacja szeregowa</a></li>
+<li><a href="#komunikacja-z-komutacją-łączy">2.6. Komunikacja z komutacją łączy</a></li>
+<li><a href="#komunikacja-z-przełączaniem-pakietów">2.7. Komunikacja z przełączaniem pakietów</a></li>
+<li><a href="#sdh-sonet-i-dwdm">2.8. SDH, SONET i DWDM</a></li>
 </ul></li>
-<li><a href="#standardy-sieci-wan">3. Standardy sieci WAN</a></li>
-<li><a href="#sieci-wan-w-modelu-osi">4. Sieci WAN w modelu OSI</a></li>
-<li><a href="#terminologia-wan">5. Terminologia WAN</a></li>
-<li><a href="#urządzenia-sieci-wan">6. Urządzenia sieci WAN</a></li>
-<li><a href="#komunikacja-szeregowa">7. Komunikacja szeregowa</a></li>
-<li><a href="#komunikacja-z-komutacją-łączy">8. Komunikacja z komutacją łączy</a></li>
-<li><a href="#komunikacja-z-przełączaniem-pakietów">9. Komunikacja z przełączaniem pakietów</a></li>
-<li><a href="#sdh-sonet-i-dwdm">10. SDH, SONET i DWDM</a></li>
+<li><a href="#tradycyjna-łączność-wan">3. Tradycyjna łączność WAN</a>
+<ul>
+<li><a href="#tradycyjne-opcje-łączności-wan">3.1. Tradycyjne opcje łączności WAN</a></li>
+</ul></li>
 <li><a href="#mpls">11. MPLS</a></li>
 </ul></li>
 <li><a href="#ix.-koncepcje-qos">IX. Koncepcje QoS</a>
@@ -817,8 +818,8 @@
 <li>komplikuje użycie protokołów tunelowania tj. <a href="#8-koncepcje-vpn-i-ipsec">IPSec</a> (modyfikuje wartości w nagłówkach - niepowodzenie sprawdzania integralności)</li>
 <li>usługi wymagające zainicjowania połączeń TCP z sieci zewnętrznych, lub protokoły bezstanowe, np. te wykorzystujące UDP, mogą zostać zakłócone.</li>
 </ul>
-<h1 id="konfiguracja-nat">4. Konfiguracja NAT</h1>
-<h2 id="konfiguracja-statycznego-nat">4.1. Konfiguracja statycznego NAT</h2>
+<h2 id="konfiguracja-nat">4. Konfiguracja NAT</h2>
+<h3 id="konfiguracja-statycznego-nat">4.1. Konfiguracja statycznego NAT</h3>
 <h3 id="polecenie-ip-nat-inside-source-static">4.1.1. Polecenie ip nat inside source static</h3>
 <pre><code>R2(config)# ip nat inside source static wewnętrzny_adres_lokalny wewnęrzny_adres_globalny</code></pre>
 <p>Polecenie to tworzy odwzorowanie między wewnętrznym adresem lokalnym (np. 192.168.10.254), a wewnętrznym adresem globalnym (np. 209.165.201.0). Jest to polecenie trybu konfiguracji globalnej.</p>
@@ -966,73 +967,101 @@ R2#</code></pre>
 <li><a href="https://www.youtube.com/watch?v=FTUV0t6JaDA">https://www.youtube.com/watch?v=FTUV0t6JaDA</a></li>
 </ul>
 <h1 id="vii.-koncepcje-sieci-wan">VII. Koncepcje sieci WAN</h1>
-<h2 id="topologie-wan">1. Topologie WAN</h2>
-<h3 id="punkt-punkt">1.1. Punkt-punkt</h3>
-<h3 id="hub-and-spoke">1.2. Hub-and-spoke</h3>
+<h2 id="cele-sieci-wan">1. Cele sieci WAN</h2>
+<h3 id="różnice-między-lan-i-wan">1.1 Różnice między LAN i WAN</h3>
+<figure>
+<img src="img/7.1.png" alt="" /><figcaption>Różnice między LAN i WAN</figcaption>
+</figure>
+<h3 id="prywatne-i-publiczne-sieci-wan">1.2. Prywatne i publiczne sieci WAN</h3>
+<h4 id="publiczna-sieć-wan">1.2.1. Publiczna sieć WAN</h4>
+<p>Jest zazwyczaj dostarczana przez dostawcę usług internetowych lub dostawcę usług telekomunikacyjnych korzystającego z Internetu.</p>
+<h4 id="prywatna-sieć-wan">1.2.2. Prywatna sieć WAN</h4>
+<p>To połączenie dedykowane dla jednego klienta. Zapewnia to następujące elementy: - Gwarantowany poziom usług - Spójna szerokość pasma - Bezpieczeństwo</p>
+<h3 id="topologie-wan">1.3. Topologie WAN</h3>
+<h4 id="topologie-fizyczne-i-logiczne">1.3.1. Topologie fizyczne i logiczne</h4>
+<h5 id="topologie-fizyczne">1.3.1.1. Topologie fizyczne</h5>
+<p>Opisują fizyczną infrastrukturę sieciową wykorzystywaną przez dane podczas przesyłania ze źródła do miejsca docelowego. Fizyczna topologia WAN stosowana w sieci WAN jest złożona i w przeważającej części nieznana użytkownikom.</p>
+<h5 id="topologie-logiczne">1.3.1.2. Topologie logiczne</h5>
+<p>Topologie WAN są opisane przy użyciu topologii logicznej. opologie logiczne opisują wirtualne połączenie między źródłem a miejscem docelowym. Na przykład, połączenie wideokonferencyjne między użytkownikiem w Nowym Jorku i Japonii byłoby logicznym połączeniem punkt-punkt.</p>
+<h4 id="rodzaje-topologii-logicznych">1.3.2. Rodzaje topologii logicznych</h4>
+<h5 id="punkt-punkt">1.3.2.1. Punkt-punkt</h5>
+<p>Łącza typu punkt-punkt często obejmują dedykowane połączenia dzierżawione z korporacyjnego punktu granicznego do sieci dostawcy. Połączenie punkt-punkt obejmuje usługę transportową warstwy 2 za pośrednictwem sieci dostawcy usług. Pakiety wysyłane z jednej strony są dostarczane do drugiej strony i odwrotnie. Połączenie punkt-punkt jest przezroczyste dla sieci klienta. Wydaje się, że istnieje bezpośrednie fizyczne powiązanie między dwoma punktami końcowymi.</p>
+<figure>
+<img src="img/7.3.2.1.png" alt="" /><figcaption>Punkt-punkt</figcaption>
+</figure>
+<h5 id="hub-and-spoke">1.3.2.2. Hub-and-spoke</h5>
 <p>Umożliwia współużytkowanie pojedynczego interfejsu na routerze centralnym (hub) przez wszystkie routery obwodowe (spoke).</p>
 <figure>
 <img src="img/12.png" alt="" /><figcaption>Hub-and-spoke</figcaption>
 </figure>
-<h3 id="dual-homed">1.3. Dual-homed</h3>
+<h5 id="dual-homed">1.3.2.3. Dual-homed</h5>
 <p>Zapewnia redundancję. Router centralny jest podwojony w lokalizacji a te nadmiarowo podłączone do routerów obwodowych w chmurze WAN.</p>
 <figure>
 <img src="img/13.png" alt="" /><figcaption>Dual-homed</figcaption>
 </figure>
-<h3 id="pełnej-siatki">1.4. Pełnej siatki</h3>
+<h5 id="pełnej-siatki">1.3.2.4. Pełnej siatki</h5>
 <p>Wykorzystuje wiele obwodów wirtualnych do łączenia wszystkich lokalizacji.</p>
 <figure>
 <img src="img/14.png" alt="" /><figcaption>Topologia pełnej siatki</figcaption>
 </figure>
-<h3 id="częściowej-siatki">1.5. Częściowej siatki</h3>
+<h5 id="częściowej-siatki">1.3.2.5. Częściowej siatki</h5>
 <p>Łączy wiele, ale nie wszystkie lokalizacje.</p>
 <figure>
 <img src="img/15.png" alt="" /><figcaption>Topologia częściowej siatki</figcaption>
 </figure>
-<h2 id="łącza-operatorów">2. Łącza operatorów</h2>
-<h3 id="sla">2.1. SLA</h3>
+<h3 id="łącza-operatorów">1.4. Łącza operatorów</h3>
+<h4 id="sla">1.4.1. SLA</h4>
 <p>Umowa o poziomie usług podpisywana między organizacją a usługodawcą. Przedstawia ona oczekiwane usługi związane z niezawodnością i dostępnością połączenia. Usługodawca może, ale nie musi, być faktycznym operatorem. Operator posiada i utrzymuje fizyczne połączenie i sprzęt między dostawcą a klientem. Zazwyczaj organizacja wybierze połączenie WAN z jednym operatorem lub dwoma operatorami.</p>
-<h3 id="połączenie-wan-z-pojedynczym-operatorem">2.2. Połączenie WAN z pojedynczym operatorem</h3>
+<h4 id="połączenie-wan-z-pojedynczym-operatorem">1.4.2. Połączenie WAN z pojedynczym operatorem</h4>
 <p>Połączenie z jednym operatorem ma miejsce, gdy organizacja łączy się tylko z jednym dostawcą usług. Wadą tego podejścia jest połączenie operatora i dostawca usług są pojedynczymi punktami awarii.</p>
-<h3 id="połączenie-wan-z-dwoma-operatorami">2.3. Połączenie WAN z dwoma operatorami</h3>
+<h4 id="połączenie-wan-z-dwoma-operatorami">1.4.3. Połączenie WAN z dwoma operatorami</h4>
 <p>Połączenie z dwoma operatorami zapewnia nadmiarowość i zwiększa dostępność sieci, jak pokazano na rysunku. Organizacja negocjuje oddzielne umowy SLA z dwoma różnymi dostawcami usług. Organizacja powinna zapewnić, że dwaj dostawcy korzystają z innego operatora. Chociaż droższe w implementacji, drugie połączenie może być używane do nadmiarowości jako łącze zapasowe. Może być również stosowany do poprawy wydajności sieci i równoważenia obciążenia ruchu internetowego.</p>
 <figure>
 <img src="img/7.2.3.png" alt="" /><figcaption>Połączenie WAN z dwoma operatorami</figcaption>
 </figure>
-<h2 id="standardy-sieci-wan">3. Standardy sieci WAN</h2>
+<h3 id="ewolucja-sieci">1.5 Ewolucja sieci</h3>
+<p>Mała sieć &gt; Sieć kampusowa &gt; Sieć z oddziałami &gt; Sieć rozproszona</p>
+<h2 id="operacje-wan">2. Operacje WAN</h2>
+<h3 id="standardy-sieci-wan">2.1. Standardy sieci WAN</h3>
 <p>Nowoczesne standardy sieci WAN są definiowane i zarządzane przez wiele uznanych organów, w tym:</p>
 <ul>
 <li><strong>TIA/EIA</strong> - Telecommunications Industry Association and Electronic Industries Alliance</li>
 <li><strong>ISO</strong> - International Organization for Standardization</li>
 <li><strong>IEEE</strong> - Institute of Electrical and Electronics Engineers</li>
 </ul>
-<h2 id="sieci-wan-w-modelu-osi">4. Sieci WAN w modelu OSI</h2>
+<h3 id="sieci-wan-w-modelu-osi">2.2. Sieci WAN w modelu OSI</h3>
 <figure>
 <img src="img/16.png" alt="" /><figcaption>Sieci WAN w modelu OSI</figcaption>
 </figure>
-<h2 id="terminologia-wan">5. Terminologia WAN</h2>
+<h3 id="terminologia-wan">2.3. Terminologia WAN</h3>
 <figure>
 <img src="img/17.png" alt="" /><figcaption>Terminologia WAN</figcaption>
 </figure>
-<h2 id="urządzenia-sieci-wan">6. Urządzenia sieci WAN</h2>
+<h3 id="urządzenia-sieci-wan">2.4. Urządzenia sieci WAN</h3>
 <figure>
 <img src="img/18.png" alt="" /><figcaption>Urządzenia sieci WAN</figcaption>
 </figure>
-<h2 id="komunikacja-szeregowa">7. Komunikacja szeregowa</h2>
-<p>W sieciach WAN stosowana jest komunikacja szeregowa.</p>
-<h2 id="komunikacja-z-komutacją-łączy">8. Komunikacja z komutacją łączy</h2>
+<h3 id="komunikacja-szeregowa">2.5. Komunikacja szeregowa</h3>
+<p>Przesyła bity sekwencyjnie na jednym kanale. Prawie cała komunikacja sieciowa odbywa się za jej pomocą.</p>
+<h3 id="komunikacja-z-komutacją-łączy">2.6. Komunikacja z komutacją łączy</h3>
 <p><strong>Sieć z komutacją łączy</strong> ustanawia dedykowany obwód (lub kanał) między punktami końćowymi, zanim użytkownicy będą mogli się komunikować.</p>
 <p>Podczas transmisji w sieci z komutacją łączy cała komunikacja korzysta z tej samej ścieżki. Cała stała pojemność przydzielona do obwodu jest dostępna na czas połączenia, niezależnie od tego, czy są informacje do transmisji, czy nie. Może to prowadzić do nieefektywności w użyciu obwodu. Z tego powodu komutacja łączy zasadniczo nie nadaje się do przesyłania danych.</p>
 <p>Dwa najpopularniejsze typy technologii WAN z komutacją łączy to <strong>publiczna komutowana sieć telefoniczna (PSTN)</strong> i <strong>sieć cyfrowa z integracją usług (ISDN)</strong>.</p>
-<h2 id="komunikacja-z-przełączaniem-pakietów">9. Komunikacja z przełączaniem pakietów</h2>
+<h3 id="komunikacja-z-przełączaniem-pakietów">2.7. Komunikacja z przełączaniem pakietów</h3>
 <p>W przeciwieństwie do komutacji łączy, przełączanie pakietów dzieli dane ruchu na pakiety, które są kierowane w sieci współużytkowanej. Przełączanie pakietów, nie wymaga zestawienia specjalnego obwodu/połączenia, ponadto pozwalają kilku urządzeniom komunikować się za pomocą tego samego kanału.</p>
 <p>Typowe rodzaje technologii WAN z przełączaniem pakietów to <strong>Ethernet WAN (Metro Ethernet)</strong>, <strong>Multiprotocol Label Switching (MPLS)</strong>, a także starszy <strong>Frame Relay</strong> i starszy <strong>Asynchronous Transfer Mode (ATM)</strong>.</p>
-<h2 id="sdh-sonet-i-dwdm">10. SDH, SONET i DWDM</h2>
+<h3 id="sdh-sonet-i-dwdm">2.8. SDH, SONET i DWDM</h3>
 <p>Istnieją dwa optyczne standardy warstwy 1 OSI dostępne dla dostawców usług:</p>
 <ul>
 <li><strong>Synchronous Digital Hierarchy (SDH)</strong> to globalny standard transportu danych za pomocą kabla światłowodowego.</li>
 <li><strong>Synchronous Optical Networking (SONET)</strong> to norma północnoamerykańska, która świadczy te same usługi co SDH.</li>
 </ul>
 <p><strong>Dense Wavelength Division Multiplexing (DWDM)</strong> to nowsza technologia, która zwiększa nośność danych SDH i SONET poprzez jednoczesne wysyłanie wielu strumieni danych (multipleksowanie) przy użyciu różnych długości fal światła, jak pokazano na rysunku.</p>
+<h2 id="tradycyjna-łączność-wan">3. Tradycyjna łączność WAN</h2>
+<h3 id="tradycyjne-opcje-łączności-wan">3.1. Tradycyjne opcje łączności WAN</h3>
+<figure>
+<img src="img/7.3.1.png" alt="" /><figcaption>Tradycyjne opcje łączności WAN</figcaption>
+</figure>
 <h2 id="mpls">11. MPLS</h2>
 <p><strong>Multiprotocol Label Switching (MPLS)</strong> to wysokowydajna technologia routingu WAN dla dostawcy usług umożliwiająca łączenie klientów bez względu na metodę dostępu lub typ obciążenia. MPLS obsługuje różne metody dostępu klienta (np. Ethernet, DSL, Cable, Frame Relay). MPLS może enkapsulować ruch wszystkich typy protokołów, w tym IPv4 i IPv6.</p>
 <h1 id="ix.-koncepcje-qos">IX. Koncepcje QoS</h1>

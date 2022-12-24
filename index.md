@@ -666,9 +666,9 @@ W przypadku pakietu, który nie zawiera numeru portu warstwy 4. tj. jak (ICMPv4)
 - komplikuje użycie protokołów tunelowania tj. [IPSec](#8-koncepcje-vpn-i-ipsec) (modyfikuje wartości w nagłówkach - niepowodzenie sprawdzania integralności)
 - usługi wymagające zainicjowania połączeń TCP z sieci zewnętrznych, lub protokoły bezstanowe, np. te wykorzystujące UDP, mogą zostać zakłócone.
 
-# 4. Konfiguracja NAT
+## 4. Konfiguracja NAT
 
-## 4.1. Konfiguracja statycznego NAT
+### 4.1. Konfiguracja statycznego NAT
 
 ### 4.1.1. Polecenie ip nat inside source static
 
@@ -883,43 +883,79 @@ NAT dla IPv6 jest wykorzystywany w całkowicie odmiennym kontekście niż NAT dl
 
 # VII. Koncepcje sieci WAN
 
-## 1. Topologie WAN
+## 1. Cele sieci WAN
 
-### 1.1. Punkt-punkt
-### 1.2. Hub-and-spoke
+### 1.1 Różnice między LAN i WAN
+
+![Różnice między LAN i WAN](img/7.1.png)
+
+### 1.2. Prywatne i publiczne sieci WAN
+
+#### 1.2.1. Publiczna sieć WAN
+Jest zazwyczaj dostarczana przez dostawcę usług internetowych lub dostawcę usług telekomunikacyjnych korzystającego z Internetu.
+
+#### 1.2.2. Prywatna sieć WAN
+To połączenie dedykowane dla jednego klienta. Zapewnia to następujące elementy:
+- Gwarantowany poziom usług
+- Spójna szerokość pasma
+- Bezpieczeństwo
+
+### 1.3. Topologie WAN
+
+#### 1.3.1. Topologie fizyczne i logiczne
+
+##### 1.3.1.1. Topologie fizyczne 
+Opisują fizyczną infrastrukturę sieciową wykorzystywaną przez dane podczas przesyłania ze źródła do miejsca docelowego. Fizyczna topologia WAN stosowana w sieci WAN jest złożona i w przeważającej części nieznana użytkownikom.
+
+##### 1.3.1.2. Topologie logiczne
+Topologie WAN są opisane przy użyciu topologii logicznej. opologie logiczne opisują wirtualne połączenie między źródłem a miejscem docelowym. Na przykład, połączenie wideokonferencyjne między użytkownikiem w Nowym Jorku i Japonii byłoby logicznym połączeniem punkt-punkt.
+
+#### 1.3.2. Rodzaje topologii logicznych
+##### 1.3.2.1. Punkt-punkt
+Łącza typu punkt-punkt często obejmują dedykowane połączenia dzierżawione z korporacyjnego punktu granicznego do sieci dostawcy. Połączenie punkt-punkt obejmuje usługę transportową warstwy 2 za pośrednictwem sieci dostawcy usług. Pakiety wysyłane z jednej strony są dostarczane do drugiej strony i odwrotnie. Połączenie punkt-punkt jest przezroczyste dla sieci klienta. Wydaje się, że istnieje bezpośrednie fizyczne powiązanie między dwoma punktami końcowymi.
+
+![Punkt-punkt](img/7.3.2.1.png)
+
+##### 1.3.2.2. Hub-and-spoke
 Umożliwia współużytkowanie pojedynczego interfejsu na routerze centralnym (hub) przez wszystkie routery obwodowe (spoke).
 
 ![Hub-and-spoke](img/12.png)
 
-### 1.3. Dual-homed
+##### 1.3.2.3. Dual-homed
 Zapewnia redundancję. Router centralny jest podwojony w lokalizacji a te nadmiarowo podłączone do routerów obwodowych w chmurze WAN.
 
 ![Dual-homed](img/13.png)
 
-### 1.4. Pełnej siatki
+##### 1.3.2.4. Pełnej siatki
 Wykorzystuje wiele obwodów wirtualnych do łączenia wszystkich lokalizacji.
 
 ![Topologia pełnej siatki](img/14.png)
 
-### 1.5. Częściowej siatki
+##### 1.3.2.5. Częściowej siatki
 Łączy wiele, ale nie wszystkie lokalizacje.
 
 ![Topologia częściowej siatki](img/15.png)
 
-## 2. Łącza operatorów
+### 1.4. Łącza operatorów
 
-### 2.1. SLA
+#### 1.4.1. SLA
 Umowa o poziomie usług podpisywana między organizacją a usługodawcą. Przedstawia ona oczekiwane usługi związane z niezawodnością i dostępnością połączenia. Usługodawca może, ale nie musi, być faktycznym operatorem. Operator posiada i utrzymuje fizyczne połączenie i sprzęt między dostawcą a klientem. Zazwyczaj organizacja wybierze połączenie WAN z jednym operatorem lub dwoma operatorami.
 
-### 2.2. Połączenie WAN z pojedynczym operatorem
+#### 1.4.2. Połączenie WAN z pojedynczym operatorem
 Połączenie z jednym operatorem ma miejsce, gdy organizacja łączy się tylko z jednym dostawcą usług. Wadą tego podejścia jest połączenie operatora i dostawca usług są pojedynczymi punktami awarii.
 
-### 2.3. Połączenie WAN z dwoma operatorami
+#### 1.4.3. Połączenie WAN z dwoma operatorami
 Połączenie z dwoma operatorami zapewnia nadmiarowość i zwiększa dostępność sieci, jak pokazano na rysunku. Organizacja negocjuje oddzielne umowy SLA z dwoma różnymi dostawcami usług. Organizacja powinna zapewnić, że dwaj dostawcy korzystają z innego operatora. Chociaż droższe w implementacji, drugie połączenie może być używane do nadmiarowości jako łącze zapasowe. Może być również stosowany do poprawy wydajności sieci i równoważenia obciążenia ruchu internetowego.
 
 ![Połączenie WAN z dwoma operatorami](img/7.2.3.png)
 
-## 3. Standardy sieci WAN
+### 1.5 Ewolucja sieci
+
+Mała sieć > Sieć kampusowa > Sieć z oddziałami > Sieć rozproszona
+
+## 2. Operacje WAN
+
+### 2.1. Standardy sieci WAN
 
 Nowoczesne standardy sieci WAN są definiowane i zarządzane przez wiele uznanych organów, w tym:
 
@@ -927,41 +963,47 @@ Nowoczesne standardy sieci WAN są definiowane i zarządzane przez wiele uznanyc
 - **ISO** - International Organization for Standardization
 - **IEEE** - Institute of Electrical and Electronics Engineers
 
-## 4. Sieci WAN w modelu OSI
+### 2.2. Sieci WAN w modelu OSI
 
 ![Sieci WAN w modelu OSI](img/16.png)
 
-## 5. Terminologia WAN
+### 2.3. Terminologia WAN
 
 ![Terminologia WAN](img/17.png)
 
-## 6. Urządzenia sieci WAN
+### 2.4. Urządzenia sieci WAN
 
 ![Urządzenia sieci WAN](img/18.png)
 
-## 7. Komunikacja szeregowa
-W sieciach WAN stosowana jest komunikacja szeregowa.
+### 2.5. Komunikacja szeregowa
+Przesyła bity sekwencyjnie na jednym kanale. Prawie cała komunikacja sieciowa odbywa się za jej pomocą.
 
-## 8. Komunikacja z komutacją łączy
+### 2.6. Komunikacja z komutacją łączy
 **Sieć z komutacją łączy** ustanawia dedykowany obwód (lub kanał) między punktami końćowymi, zanim użytkownicy będą mogli się komunikować.
 
 Podczas transmisji w sieci z komutacją łączy cała komunikacja korzysta z tej samej ścieżki. Cała stała pojemność przydzielona do obwodu jest dostępna na czas połączenia, niezależnie od tego, czy są informacje do transmisji, czy nie. Może to prowadzić do nieefektywności w użyciu obwodu. Z tego powodu komutacja łączy zasadniczo nie nadaje się do przesyłania danych.
 
 Dwa najpopularniejsze typy technologii WAN z komutacją łączy to **publiczna komutowana sieć telefoniczna (PSTN)** i **sieć cyfrowa z integracją usług (ISDN)**.
 
-## 9. Komunikacja z przełączaniem pakietów
+### 2.7. Komunikacja z przełączaniem pakietów
 
 W przeciwieństwie do komutacji łączy, przełączanie pakietów dzieli dane ruchu na pakiety, które są kierowane w sieci współużytkowanej. Przełączanie pakietów, nie wymaga zestawienia specjalnego obwodu/połączenia, ponadto pozwalają kilku urządzeniom komunikować się za pomocą tego samego kanału.
 
 Typowe rodzaje technologii WAN z przełączaniem pakietów to **Ethernet WAN (Metro Ethernet)**, **Multiprotocol Label Switching (MPLS)**, a także starszy **Frame Relay** i starszy **Asynchronous Transfer Mode (ATM)**.
 
-## 10. SDH, SONET i DWDM
+### 2.8. SDH, SONET i DWDM
 Istnieją dwa optyczne standardy warstwy 1 OSI dostępne dla dostawców usług:
 
 - **Synchronous Digital Hierarchy (SDH)** to globalny standard transportu danych za pomocą kabla światłowodowego.
 - **Synchronous Optical Networking (SONET)** to norma północnoamerykańska, która świadczy te same usługi co SDH.
 
 **Dense Wavelength Division Multiplexing (DWDM)** to nowsza technologia, która zwiększa nośność danych SDH i SONET poprzez jednoczesne wysyłanie wielu strumieni danych (multipleksowanie) przy użyciu różnych długości fal światła, jak pokazano na rysunku.
+
+## 3. Tradycyjna łączność WAN
+
+### 3.1. Tradycyjne opcje łączności WAN
+
+![Tradycyjne opcje łączności WAN](img/7.3.1.png)
 
 ## 11. MPLS
 
