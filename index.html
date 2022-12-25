@@ -256,10 +256,10 @@
 <li><a href="#ssl-vpn-a-ipsec">2.2. SSL VPN, a IPsec</a></li>
 <li><a href="#vpn-site-to-site-ipsec">2.3. VPN site-to-site IPSec</a></li>
 <li><a href="#gre-przez-ipsec">2.4. GRE przez IPsec</a></li>
-</ul></li>
 <li><a href="#dynamiczne-wielopunktowe-sieci-vpn">2.5. Dynamiczne wielopunktowe sieci VPN</a></li>
 <li><a href="#interfejs-wirtualnego-tunelu-ipsec">2.6. Interfejs wirtualnego tunelu IPsec</a></li>
 <li><a href="#dostawca-usług-mpls-vpn">2.7. Dostawca usług MPLS VPN</a></li>
+</ul></li>
 <li><a href="#ipsec">3. IPSec</a>
 <ul>
 <li><a href="#technologie-ipsec">3.1. Technologie IPSec</a></li>
@@ -1541,11 +1541,11 @@ Bezklientowe połączenie SSL
 <li><strong>Protokół przewoźnika</strong> - GRE jest protokołem przewoźnika, który obudowuje oryginalny pakiet pasażerski.</li>
 <li><strong>Protokół transportowy</strong> - protokół, który faktycznie będzie używany do przekazywania pakietu. Może to być IPv4 lub IPv6.</li>
 </ul>
-<h2 id="dynamiczne-wielopunktowe-sieci-vpn">2.5. Dynamiczne wielopunktowe sieci VPN</h2>
+<h3 id="dynamiczne-wielopunktowe-sieci-vpn">2.5. Dynamiczne wielopunktowe sieci VPN</h3>
 <p><strong>Dynamic Multipoint VPN (DMVPN)</strong> - oprogramowanie Cisco tworzoące wiele sici VPN w łatwy, dynamiczny i skalowalny sposób. DMVPN polega na IPSec.</p>
-<h2 id="interfejs-wirtualnego-tunelu-ipsec">2.6. Interfejs wirtualnego tunelu IPsec</h2>
+<h3 id="interfejs-wirtualnego-tunelu-ipsec">2.6. Interfejs wirtualnego tunelu IPsec</h3>
 <p><strong>IPsec Virtual Tunnel Interface (VTI)</strong> upraszcza proces konfiguracji wymagany do obsługi wielu lokalizacji i zdalnego dostępu. Konfiguracje IPsec VTI są stosowane do interfejsu wirtualnego zamiast statycznego mapowania sesji IPsec na interfejs fizyczny. Obsługuje ruch unicast i multicast, więc konfigurowanie tuneli GRE nie jest konieczne.</p>
-<h2 id="dostawca-usług-mpls-vpn">2.7. Dostawca usług MPLS VPN</h2>
+<h3 id="dostawca-usług-mpls-vpn">2.7. Dostawca usług MPLS VPN</h3>
 <p>Typy rozwiązań MPLS VPN obsługiwanych przez dostawców usług:</p>
 <ul>
 <li><strong>MPLS VPN Warstwy 3</strong> - Dostawca usług uczestniczy w kierowaniu klientów przez ustanowienie komunikacji równorzędnej między routerami klienta i routerami dostawcy. Następnie trasy klientów odebrane przez router dostawcy są następnie ponownie dystrybuowane przez sieć MPLS do zdalnych lokalizacji klienta.</li>

@@ -1361,15 +1361,15 @@ Sieci VPN typu lokacja-lokacja są zwykle tworzone i zabezpieczane przy użyciu 
 - **Protokół przewoźnika** - GRE jest protokołem przewoźnika, który obudowuje oryginalny pakiet pasażerski.
 - **Protokół transportowy** - protokół, który faktycznie będzie używany do przekazywania pakietu. Może to być IPv4 lub IPv6.
 
-## 2.5. Dynamiczne wielopunktowe sieci VPN
+### 2.5. Dynamiczne wielopunktowe sieci VPN
 
 **Dynamic Multipoint VPN (DMVPN)** - oprogramowanie Cisco tworzoące wiele sici VPN w łatwy, dynamiczny i skalowalny sposób. DMVPN polega na IPSec.
 
-## 2.6. Interfejs wirtualnego tunelu IPsec
+### 2.6. Interfejs wirtualnego tunelu IPsec
 
 **IPsec Virtual Tunnel Interface (VTI)** upraszcza proces konfiguracji wymagany do obsługi wielu lokalizacji i zdalnego dostępu. Konfiguracje IPsec VTI są stosowane do interfejsu wirtualnego zamiast statycznego mapowania sesji IPsec na interfejs fizyczny. Obsługuje ruch unicast i multicast, więc konfigurowanie tuneli GRE nie jest konieczne.
 
-## 2.7. Dostawca usług MPLS VPN
+### 2.7. Dostawca usług MPLS VPN
 
 Typy rozwiązań MPLS VPN obsługiwanych przez dostawców usług:
 
