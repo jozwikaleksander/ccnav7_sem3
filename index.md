@@ -670,19 +670,19 @@ W przypadku pakietu, który nie zawiera numeru portu warstwy 4. tj. jak (ICMPv4)
 
 ### 4.1. Konfiguracja statycznego NAT
 
-### 4.1.1. Polecenie ip nat inside source static
+#### 4.1.1. Polecenie ip nat inside source static
 
     R2(config)# ip nat inside source static wewnętrzny_adres_lokalny wewnęrzny_adres_globalny
 
 Polecenie to tworzy odwzorowanie między wewnętrznym adresem lokalnym (np. 192.168.10.254), a wewnętrznym adresem globalnym (np. 209.165.201.0). Jest to polecenie trybu konfiguracji globalnej.
 
-### 4.1.2. Polecenie ip nat
+#### 4.1.2. Polecenie ip nat
 
     R2(config-if)# ip nat [inside | outside]
 
 Polecenie to przypisuje dany interfejs do translacji NAT. Z tego polecenie korzystamy w trybie konfiguracji szczegółowej danego interfesju.
 
-### 4.1.3. Polecenie show ip nat translations
+#### 4.1.3. Polecenie show ip nat translations
 
     R2# show ip nat translations
     Pro  Inside global       Inside local        Outside local         Outside global
@@ -692,7 +692,7 @@ Polecenie to przypisuje dany interfejs do translacji NAT. Z tego polecenie korzy
 
 Polecenie **show ip nat translations** pokazuje aktywne translacje NAT.
 
-### 4.1.4. Polecenie show ip nat statistics
+#### 4.1.4. Polecenie show ip nat statistics
 
     R2# show ip nat statistics
     Total active translations: 1 (1 static, 0 dynamic; 0 extended)
@@ -705,39 +705,39 @@ Polecenie **show ip nat translations** pokazuje aktywne translacje NAT.
 
 Polecenie **show ip nat statistics** wyświetla informacje o całkowitej liczbie aktywnych tłumaczeń, parametrach konfiguracyjnych NAT, liczbie adresów w puli oraz liczbie przydzielonych adresów.
 
-### 4.1.5. Polecenie clear ip nat statistics
+#### 4.1.5. Polecenie clear ip nat statistics
 
     R2# clear ip nat statistics
 
 Aby zweryfikować translacje najlepiej wyczyścić statystyki poprzednich translacji za pomocą polecenia **clear ip nat statistics**.
 
-## 4.2. Konfiguracja dynamicznego NAT
+### 4.2. Konfiguracja dynamicznego NAT
 
-### 4.2.1. Polecenie ip nat pool
+#### 4.2.1. Polecenie ip nat pool
 
     R2(config)# ip nat pool NAT-POOL1 209.165.200.226 209.165.200.240 netmask 255.255.255.224
 
 Polecenie to tworzy pula adresów publicznych wykorzystaywantch do translacji.
 
-### 4.2.2. Polecenie access-list
+#### 4.2.2. Polecenie access-list
 
     R2(config)# access-list 1 permit 192.168.0.0 0.0.255.255
 
 Konfiguruje standardową liste ACL zawierającą tylko adresy, które mają być poddawane translacji.
 
-### 4.2.3. Polecenie ip nat inside source list
+#### 4.2.3. Polecenie ip nat inside source list
 
     R2(config-if)# ip nat inside source list 1 pool NAT-POOL1
 
 Powiązuje liste ACL z pulą.
 
-### 4.2.4. Polecenie ip nat
+#### 4.2.4. Polecenie ip nat
 
 R2(config-if)# ip nat inside
 
 Określa interfejsy wewnętrzne, zewnętrzne w odniesieniu do NAT.
 
-### 4.2.5. Polecenie show ip nat translations
+#### 4.2.5. Polecenie show ip nat translations
 
     R2# show ip nat translations
     Pro Inside global      Inside local       Outside local      Outside global
@@ -761,13 +761,13 @@ Wyświetla wszystkie skonfigurowane zamiany adresów.
 
 Dodanie do polecenia opcji **verbose** powoduje wyświetlenie dodatkowych informacji o każdym wpisie w tablicy translacji.
 
-### 4.2.6. Polecenie ip nat translation timeout
+#### 4.2.6. Polecenie ip nat translation timeout
 
     #R2(config)# ip nat translation timeout timeout-seconds
 
 Domyślnie wpisy translacji wygasają po 24 godzinach, za pomocą tego polecenia możemy ustawić ten czas na inny.
 
-### 4.2.7. Polecenie clear ip nat translation
+#### 4.2.7. Polecenie clear ip nat translation
 
     R2# clear ip nat translation *
     R2# show ip nat translation
@@ -776,7 +776,7 @@ Czyszczenie wpisów dynamicznych przed upływem limitu czasu.
 
 ![Opcje polecenia clear ip nat translation](img/6.4.2.7.png)
 
-### 4.2.8. Polecenie show ip nat statistics
+#### 4.2.8. Polecenie show ip nat statistics
 
     R2# show ip nat statistics 
     Total active translations: 4 (0 static, 4 dynamic; 0 extended)
@@ -799,9 +799,9 @@ Czyszczenie wpisów dynamicznych przed upływem limitu czasu.
 
 Powoduje wyświetlenie informacji o: **całkowitej liczbie aktywnych translacji**, **parametrach konfiguracyjnych NAT**, **liczbie adresów w puli** oraz **liczbie przydzielonych adresów**.
 
-## 4.3. Konfiguracja PAT
+### 4.3. Konfiguracja PAT
 
-### 4.3.1. Konfiguracja PAT do używania pojedynczego adresu IPv4
+#### 4.3.1. Konfiguracja PAT do używania pojedynczego adresu IPv4
 
     R2(config)# ip nat inside source list 1 interface serial 0/1/1 overload
     R2(config)# access-list 1 permit 192.168.0.0 0.0.255.255
@@ -813,7 +813,7 @@ Powoduje wyświetlenie informacji o: **całkowitej liczbie aktywnych translacji*
 
 Aby skonfigurować PAT wystarczy do polecenia ip nat inside source dodać **słowo kluczowe overload**. Reszta konfiguracji przebiega podobnie do statycznego lub dynamicznego NAT.
 
-### 4.3.2. Konfigurowanie PAT do korzystania z puli adresów
+#### 4.3.2. Konfigurowanie PAT do korzystania z puli adresów
 
     R2(config)# ip nat pool NAT-POOL2 209.165.200.226 209.165.200.240 netmask 255.255.255.224
     R2(config)# access-list 1 permit 192.168.0.0 0.0.255.255
@@ -829,9 +829,9 @@ Aby skonfigurować PAT wystarczy do polecenia ip nat inside source dodać **sło
 
 Aby skonfigurować PAT dla dynamicznej puli adresów NAT ponownie wystarczy dodać **overload** do polecenia ip nat inside source.
 
-### 4.3.3. Weryfikowanie PAT
+#### 4.3.3. Weryfikowanie PAT
 
-#### 4.3.3.1. Polecenie show ip nat translations
+##### 4.3.3.1. Polecenie show ip nat translations
 
 R2# show ip nat translations
 Pro Inside global          Inside local         Outside local      Outside global
@@ -841,7 +841,7 @@ R2#
 
 Pokazuje translacje z różnych hostów do różnych serwerów WWW.
 
-#### 4.3.3.2. Polecenie show ip nat statistics
+##### 4.3.3.2. Polecenie show ip nat statistics
 
     R2# show ip nat statistics 
     Total active translations: 4 (0 static, 2 dynamic; 2 extended)
@@ -896,6 +896,7 @@ Jest zazwyczaj dostarczana przez dostawcę usług internetowych lub dostawcę us
 
 #### 1.2.2. Prywatna sieć WAN
 To połączenie dedykowane dla jednego klienta. Zapewnia to następujące elementy:
+
 - Gwarantowany poziom usług
 - Spójna szerokość pasma
 - Bezpieczeństwo
@@ -908,7 +909,7 @@ To połączenie dedykowane dla jednego klienta. Zapewnia to następujące elemen
 Opisują fizyczną infrastrukturę sieciową wykorzystywaną przez dane podczas przesyłania ze źródła do miejsca docelowego. Fizyczna topologia WAN stosowana w sieci WAN jest złożona i w przeważającej części nieznana użytkownikom.
 
 ##### 1.3.1.2. Topologie logiczne
-Topologie WAN są opisane przy użyciu topologii logicznej. opologie logiczne opisują wirtualne połączenie między źródłem a miejscem docelowym. Na przykład, połączenie wideokonferencyjne między użytkownikiem w Nowym Jorku i Japonii byłoby logicznym połączeniem punkt-punkt.
+Topologie WAN są opisane przy użyciu topologii logicznej. Topologie logiczne opisują wirtualne połączenie między źródłem a miejscem docelowym. Na przykład, połączenie wideokonferencyjne między użytkownikiem w Nowym Jorku i Japonii byłoby logicznym połączeniem punkt-punkt.
 
 #### 1.3.2. Rodzaje topologii logicznych
 ##### 1.3.2.1. Punkt-punkt
@@ -979,7 +980,7 @@ Nowoczesne standardy sieci WAN są definiowane i zarządzane przez wiele uznanyc
 Przesyła bity sekwencyjnie na jednym kanale. Prawie cała komunikacja sieciowa odbywa się za jej pomocą.
 
 ### 2.6. Komunikacja z komutacją łączy
-**Sieć z komutacją łączy** ustanawia dedykowany obwód (lub kanał) między punktami końćowymi, zanim użytkownicy będą mogli się komunikować.
+**Sieć z komutacją łączy** ustanawia dedykowany obwód (lub kanał) między punktami końcowymi, zanim użytkownicy będą mogli się komunikować.
 
 Podczas transmisji w sieci z komutacją łączy cała komunikacja korzysta z tej samej ścieżki. Cała stała pojemność przydzielona do obwodu jest dostępna na czas połączenia, niezależnie od tego, czy są informacje do transmisji, czy nie. Może to prowadzić do nieefektywności w użyciu obwodu. Z tego powodu komutacja łączy zasadniczo nie nadaje się do przesyłania danych.
 
@@ -1008,7 +1009,7 @@ Istnieją dwa optyczne standardy warstwy 1 OSI dostępne dla dostawców usług:
 ### 3.2. Terminologia WAN
 
 #### 3.2.1. Łącza dzierżawione
-Łącza typu punkt-punkt dierżawione od usługowacy. Ten termin odnosi się do faktu, iż firma podnajmująca łącza płacie stały abonament za jego użytkowanie.
+Łącza typu punkt-punkt dzierżawione od usługodawcy. Ten termin odnosi się do faktu, iż firma podnajmująca łącza płaci stały abonament za jego użytkowanie.
 
 Inne nazwy łącz dzierżawionych to łącza szeregowe, łącza punkt-punkt, linie T1/E1, T3/E3.
 
@@ -1070,9 +1071,9 @@ Operatorzy ISP oferują obecnie usługę **Ethernet WAN** z wykorzystaniem włó
 
 #### 4.2.1. Korzyści Ethernet WAN
 
-- Mniejsze wydatki i administracja - szybkie przełączanie w warstwie 2, łącząc różne formy ruchu takie jak, głos, video i dane w jednej infrastrukturze. Dzięki temu otrzymuje się większe pasmo i eliminuje kosztowny proces konwersji do innych technologii WAN. Technologia umożliwia przedsiębiorstwom niedrogie łączenie wielu lokalizacji w obszarze metropolitalnym, między sobą oraz z Internetem.
-- Łatwa intergracja z istniejącymi sieciami - Ethernet WAN w łatwy sposób można przyłączyć do istniejących sieci Ethernet LAN, redukując tym samym koszty i czas.
-- Zwiększona produktywność biznesowa - Ethernet WAN umożliwia firmom czerpanie korzyści, ze stosowania aplikacji IP , takich jak streaming wideo, technologia VoIP i komunikacja IP pomiędzy komputerami.
+- **Mniejsze wydatki i administracja** - szybkie przełączanie w warstwie 2, łącząc różne formy ruchu takie jak, głos, video i dane w jednej infrastrukturze. Dzięki temu otrzymuje się większe pasmo i eliminuje kosztowny proces konwersji do innych technologii WAN. Technologia umożliwia przedsiębiorstwom niedrogie łączenie wielu lokalizacji w obszarze metropolitalnym, między sobą oraz z Internetem.
+- **Łatwa intergracja z istniejącymi sieciami** - Ethernet WAN w łatwy sposób można przyłączyć do istniejących sieci Ethernet LAN, redukując tym samym koszty i czas.
+- **Zwiększona produktywność biznesowa** - Ethernet WAN umożliwia firmom czerpanie korzyści, ze stosowania aplikacji IP , takich jak streaming wideo, technologia VoIP i komunikacja IP pomiędzy komputerami.
 
 ### 4.3. MPLS
 
@@ -1132,9 +1133,9 @@ Operatorzy kablowi wdrażają **hybrydowe sieci światłowodowe (HFC)**, aby umo
 
 **Fiber do x (FTTX)** - instalacja kabla światłowodowego do lokalizacji użytkownika. Obejmuje:
 
-- Fiber to the Home (FTTH) - włókno dociera do granic miejsca zamieszkania.
-- Fiber to the building (FTTB) - włókno dociera do granicy budynku, a ostateczne połączenie z indywidualną przestrzenią mieszkalną odbywa się za pomocą alternatywnych środów.
-- Fiber to the Node/Neighborhood(FFTN) - okablowanie optyczne dociera do węzła optycznego, który konwertuje sygnały optyczne do formatu dopuszczalnego dla skrętki lub kabla koncentrycznego do pomieszczenia.
+- **Fiber to the Home (FTTH)** - włókno dociera do granic miejsca zamieszkania.
+- **Fiber to the building (FTTB)** - włókno dociera do granicy budynku, a ostateczne połączenie z indywidualną przestrzenią mieszkalną odbywa się za pomocą alternatywnych środów.
+- **Fiber to the Node/Neighborhood(FFTN)** - okablowanie optyczne dociera do węzła optycznego, który konwertuje sygnały optyczne do formatu dopuszczalnego dla skrętki lub kabla koncentrycznego do pomieszczenia.
 
 ### 5.6. Bezprzewodowy internet szerokopasmowy
 
@@ -1170,8 +1171,8 @@ Pozwala na przekazywanie ruchu w sposób zaszyfrowany pomiędzy komputerami w si
 
 #### 5.7.2. Sposoby realizowania VPN
 
-- Site-to-site VPN - VPN konfigurowane na routerach. Klienci nie są świadomi, że ich dane są szyfrowane.
-- Dostęp zdalny - użytkownik jest świadomy i inicjuje połączenie dostępu zdalnego.
+- **Site-to-site VPN** - VPN konfigurowane na routerach. Klienci nie są świadomi, że ich dane są szyfrowane.
+- **Dostęp zdalny** - użytkownik jest świadomy i inicjuje połączenie dostępu zdalnego.
 
 ### 5.8. Opcje łączenia do dostawcy usług
 
@@ -1190,6 +1191,23 @@ Pozwala na przekazywanie ruchu w sposób zaszyfrowany pomiędzy komputerami w si
 #### 5.8.4. Połączenie wielokrotne podwójne (dual-mulithomed)
 
 ![Połączenie wielokrotne podwójne](img/7.5.8.4.png)
+
+# VIII. Koncepcje VPN i IPSec
+
+## 1. Technologia VPN
+
+## 1.1. Wirtualne sieci prywatne
+
+VPN służy do tworzenia prywatnych połączeń sieciowych w celu zabezpieczenia ruchu sieciowego między lokacjami a użytkownikami.
+
+## 1.2. Korzyści z VPN
+
+| Korzyść | Opis |
+|---|---|
+| Oszczędności | Wraz z pojawieniem się opłacalnych technologii o dużej przepustowości, organizacje mogły używać VPN, aby obniżyć koszty połączeń jednocześnie zwiększając przepustowość połączenia zdalnego. |
+| Ochrona | VPN zapewniają najwyższy poziom bezpieczeństwa, korzystając z zaawansowanych protokołów szyfrowania i uwierzytelniania, które chronią dane przed nieautoryzowanym dostępem. |
+| Skalowalność | VPN umożliwiają organizacjom korzystanie z Internetu, co ułatwia dodawanie nowych użytkowników bez dodawania znaczącej infrastruktury. |
+| Kompatybilność | VPN można zaimplementować w wielu różnych opcjach łącza WAN w tym wszystkich popularnych technologiach szerokopasmowych. Pracownicy zdalni mogą korzystać z tych szybkich połączeń, aby uzyskać bezpieczny dostęp do ich sieci korporacyjnych. |
 
 # IX. Koncepcje QoS
 
@@ -1311,5 +1329,3 @@ Gdy host przekazuje ruch do routera, router klasyfikuje przepływy w agregatach 
 ## 21. Sekwencja QoS
 
 ![Sekwencja QoS](img/32.png)
-
-# 8. Koncepcje VPN i IPSec

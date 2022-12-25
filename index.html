@@ -187,28 +187,8 @@
 <li><a href="#konfiguracja-nat">4. Konfiguracja NAT</a>
 <ul>
 <li><a href="#konfiguracja-statycznego-nat">4.1. Konfiguracja statycznego NAT</a></li>
-<li><a href="#polecenie-ip-nat-inside-source-static">4.1.1. Polecenie ip nat inside source static</a></li>
-<li><a href="#polecenie-ip-nat">4.1.2. Polecenie ip nat</a></li>
-<li><a href="#polecenie-show-ip-nat-translations">4.1.3. Polecenie show ip nat translations</a></li>
-<li><a href="#polecenie-show-ip-nat-statistics">4.1.4. Polecenie show ip nat statistics</a></li>
-<li><a href="#polecenie-clear-ip-nat-statistics">4.1.5. Polecenie clear ip nat statistics</a></li>
-</ul></li>
-<li><a href="#konfiguracja-dynamicznego-nat">4.2. Konfiguracja dynamicznego NAT</a>
-<ul>
-<li><a href="#polecenie-ip-nat-pool">4.2.1. Polecenie ip nat pool</a></li>
-<li><a href="#polecenie-access-list">4.2.2. Polecenie access-list</a></li>
-<li><a href="#polecenie-ip-nat-inside-source-list">4.2.3. Polecenie ip nat inside source list</a></li>
-<li><a href="#polecenie-ip-nat-1">4.2.4. Polecenie ip nat</a></li>
-<li><a href="#polecenie-show-ip-nat-translations-1">4.2.5. Polecenie show ip nat translations</a></li>
-<li><a href="#polecenie-ip-nat-translation-timeout">4.2.6. Polecenie ip nat translation timeout</a></li>
-<li><a href="#polecenie-clear-ip-nat-translation">4.2.7. Polecenie clear ip nat translation</a></li>
-<li><a href="#polecenie-show-ip-nat-statistics-1">4.2.8. Polecenie show ip nat statistics</a></li>
-</ul></li>
-<li><a href="#konfiguracja-pat">4.3. Konfiguracja PAT</a>
-<ul>
-<li><a href="#konfiguracja-pat-do-używania-pojedynczego-adresu-ipv4">4.3.1. Konfiguracja PAT do używania pojedynczego adresu IPv4</a></li>
-<li><a href="#konfigurowanie-pat-do-korzystania-z-puli-adresów">4.3.2. Konfigurowanie PAT do korzystania z puli adresów</a></li>
-<li><a href="#weryfikowanie-pat">4.3.3. Weryfikowanie PAT</a></li>
+<li><a href="#konfiguracja-dynamicznego-nat">4.2. Konfiguracja dynamicznego NAT</a></li>
+<li><a href="#konfiguracja-pat">4.3. Konfiguracja PAT</a></li>
 </ul></li>
 <li><a href="#nat-dla-ipv6">5. NAT dla IPv6</a></li>
 <li><a href="#źródła-uzupełniające-2">6. Źródła uzupełniające</a></li>
@@ -259,6 +239,12 @@
 <li><a href="#opcje-łączenia-do-dostawcy-usług">5.8. Opcje łączenia do dostawcy usług</a></li>
 </ul></li>
 </ul></li>
+<li><a href="#viii.-koncepcje-vpn-i-ipsec">VIII. Koncepcje VPN i IPSec</a>
+<ul>
+<li><a href="#technologia-vpn-1">1. Technologia VPN</a></li>
+<li><a href="#wirtualne-sieci-prywatne">1.1. Wirtualne sieci prywatne</a></li>
+<li><a href="#korzyści-z-vpn">1.2. Korzyści z VPN</a></li>
+</ul></li>
 <li><a href="#ix.-koncepcje-qos">IX. Koncepcje QoS</a>
 <ul>
 <li><a href="#stałe-opóźnienie">1. Stałe opóźnienie</a></li>
@@ -283,7 +269,6 @@
 <li><a href="#narzędzia-do-wdrażania-qos">20. Narzędzia do wdrażania QoS</a></li>
 <li><a href="#sekwencja-qos">21. Sekwencja QoS</a></li>
 </ul></li>
-<li><a href="#koncepcje-vpn-i-ipsec">8. Koncepcje VPN i IPSec</a></li>
 </ul>
 </nav>
 <h1 id="i.-protokół-ospf">I. Protokół OSPF</h1>
@@ -839,20 +824,20 @@
 </ul>
 <h2 id="konfiguracja-nat">4. Konfiguracja NAT</h2>
 <h3 id="konfiguracja-statycznego-nat">4.1. Konfiguracja statycznego NAT</h3>
-<h3 id="polecenie-ip-nat-inside-source-static">4.1.1. Polecenie ip nat inside source static</h3>
+<h4 id="polecenie-ip-nat-inside-source-static">4.1.1. Polecenie ip nat inside source static</h4>
 <pre><code>R2(config)# ip nat inside source static wewnętrzny_adres_lokalny wewnęrzny_adres_globalny</code></pre>
 <p>Polecenie to tworzy odwzorowanie między wewnętrznym adresem lokalnym (np. 192.168.10.254), a wewnętrznym adresem globalnym (np. 209.165.201.0). Jest to polecenie trybu konfiguracji globalnej.</p>
-<h3 id="polecenie-ip-nat">4.1.2. Polecenie ip nat</h3>
+<h4 id="polecenie-ip-nat">4.1.2. Polecenie ip nat</h4>
 <pre><code>R2(config-if)# ip nat [inside | outside]</code></pre>
 <p>Polecenie to przypisuje dany interfejs do translacji NAT. Z tego polecenie korzystamy w trybie konfiguracji szczegółowej danego interfesju.</p>
-<h3 id="polecenie-show-ip-nat-translations">4.1.3. Polecenie show ip nat translations</h3>
+<h4 id="polecenie-show-ip-nat-translations">4.1.3. Polecenie show ip nat translations</h4>
 <pre><code>R2# show ip nat translations
 Pro  Inside global       Inside local        Outside local         Outside global
 tcp  209.165.201.5       192.168.10.254      209.165.200.254       209.165.200.254
 ---  209.165.201.5       192.168.10.254        ---                   ---
 Total number of translations: 2</code></pre>
 <p>Polecenie <strong>show ip nat translations</strong> pokazuje aktywne translacje NAT.</p>
-<h3 id="polecenie-show-ip-nat-statistics">4.1.4. Polecenie show ip nat statistics</h3>
+<h4 id="polecenie-show-ip-nat-statistics">4.1.4. Polecenie show ip nat statistics</h4>
 <pre><code>R2# show ip nat statistics
 Total active translations: 1 (1 static, 0 dynamic; 0 extended)
 Outside interfaces:
@@ -862,23 +847,23 @@ Serial0/1/0
 Hits: 0  Misses: 0
 (output omitted)</code></pre>
 <p>Polecenie <strong>show ip nat statistics</strong> wyświetla informacje o całkowitej liczbie aktywnych tłumaczeń, parametrach konfiguracyjnych NAT, liczbie adresów w puli oraz liczbie przydzielonych adresów.</p>
-<h3 id="polecenie-clear-ip-nat-statistics">4.1.5. Polecenie clear ip nat statistics</h3>
+<h4 id="polecenie-clear-ip-nat-statistics">4.1.5. Polecenie clear ip nat statistics</h4>
 <pre><code>R2# clear ip nat statistics</code></pre>
 <p>Aby zweryfikować translacje najlepiej wyczyścić statystyki poprzednich translacji za pomocą polecenia <strong>clear ip nat statistics</strong>.</p>
-<h2 id="konfiguracja-dynamicznego-nat">4.2. Konfiguracja dynamicznego NAT</h2>
-<h3 id="polecenie-ip-nat-pool">4.2.1. Polecenie ip nat pool</h3>
+<h3 id="konfiguracja-dynamicznego-nat">4.2. Konfiguracja dynamicznego NAT</h3>
+<h4 id="polecenie-ip-nat-pool">4.2.1. Polecenie ip nat pool</h4>
 <pre><code>R2(config)# ip nat pool NAT-POOL1 209.165.200.226 209.165.200.240 netmask 255.255.255.224</code></pre>
 <p>Polecenie to tworzy pula adresów publicznych wykorzystaywantch do translacji.</p>
-<h3 id="polecenie-access-list">4.2.2. Polecenie access-list</h3>
+<h4 id="polecenie-access-list">4.2.2. Polecenie access-list</h4>
 <pre><code>R2(config)# access-list 1 permit 192.168.0.0 0.0.255.255</code></pre>
 <p>Konfiguruje standardową liste ACL zawierającą tylko adresy, które mają być poddawane translacji.</p>
-<h3 id="polecenie-ip-nat-inside-source-list">4.2.3. Polecenie ip nat inside source list</h3>
+<h4 id="polecenie-ip-nat-inside-source-list">4.2.3. Polecenie ip nat inside source list</h4>
 <pre><code>R2(config-if)# ip nat inside source list 1 pool NAT-POOL1</code></pre>
 <p>Powiązuje liste ACL z pulą.</p>
-<h3 id="polecenie-ip-nat-1">4.2.4. Polecenie ip nat</h3>
+<h4 id="polecenie-ip-nat-1">4.2.4. Polecenie ip nat</h4>
 <p>R2(config-if)# ip nat inside</p>
 <p>Określa interfejsy wewnętrzne, zewnętrzne w odniesieniu do NAT.</p>
-<h3 id="polecenie-show-ip-nat-translations-1">4.2.5. Polecenie show ip nat translations</h3>
+<h4 id="polecenie-show-ip-nat-translations-1">4.2.5. Polecenie show ip nat translations</h4>
 <pre><code>R2# show ip nat translations
 Pro Inside global      Inside local       Outside local      Outside global
 --- 209.165.200.228    192.168.10.10      ---                ---
@@ -897,17 +882,17 @@ tcp 209.165.200.229    192.168.11.10      ---                ---
 none, use_count: 0, entry-id: 12, lc_entries: 0
 R2#</code></pre>
 <p>Dodanie do polecenia opcji <strong>verbose</strong> powoduje wyświetlenie dodatkowych informacji o każdym wpisie w tablicy translacji.</p>
-<h3 id="polecenie-ip-nat-translation-timeout">4.2.6. Polecenie ip nat translation timeout</h3>
+<h4 id="polecenie-ip-nat-translation-timeout">4.2.6. Polecenie ip nat translation timeout</h4>
 <pre><code>#R2(config)# ip nat translation timeout timeout-seconds</code></pre>
 <p>Domyślnie wpisy translacji wygasają po 24 godzinach, za pomocą tego polecenia możemy ustawić ten czas na inny.</p>
-<h3 id="polecenie-clear-ip-nat-translation">4.2.7. Polecenie clear ip nat translation</h3>
+<h4 id="polecenie-clear-ip-nat-translation">4.2.7. Polecenie clear ip nat translation</h4>
 <pre><code>R2# clear ip nat translation *
 R2# show ip nat translation</code></pre>
 <p>Czyszczenie wpisów dynamicznych przed upływem limitu czasu.</p>
 <figure>
 <img src="img/6.4.2.7.png" alt="" /><figcaption>Opcje polecenia clear ip nat translation</figcaption>
 </figure>
-<h3 id="polecenie-show-ip-nat-statistics-1">4.2.8. Polecenie show ip nat statistics</h3>
+<h4 id="polecenie-show-ip-nat-statistics-1">4.2.8. Polecenie show ip nat statistics</h4>
 <pre><code>R2# show ip nat statistics 
 Total active translations: 4 (0 static, 4 dynamic; 0 extended)
 Peak translations: 4, occurred 00:31:43 ago
@@ -927,8 +912,8 @@ pool NAT-POOL1: netmask 255.255.255.224
 (output omitted)
 R2#</code></pre>
 <p>Powoduje wyświetlenie informacji o: <strong>całkowitej liczbie aktywnych translacji</strong>, <strong>parametrach konfiguracyjnych NAT</strong>, <strong>liczbie adresów w puli</strong> oraz <strong>liczbie przydzielonych adresów</strong>.</p>
-<h2 id="konfiguracja-pat">4.3. Konfiguracja PAT</h2>
-<h3 id="konfiguracja-pat-do-używania-pojedynczego-adresu-ipv4">4.3.1. Konfiguracja PAT do używania pojedynczego adresu IPv4</h3>
+<h3 id="konfiguracja-pat">4.3. Konfiguracja PAT</h3>
+<h4 id="konfiguracja-pat-do-używania-pojedynczego-adresu-ipv4">4.3.1. Konfiguracja PAT do używania pojedynczego adresu IPv4</h4>
 <pre><code>R2(config)# ip nat inside source list 1 interface serial 0/1/1 overload
 R2(config)# access-list 1 permit 192.168.0.0 0.0.255.255
 R2(config)# interface serial0/1/0
@@ -937,7 +922,7 @@ R2(config-if)# exit
 R2(config)# interface Serial0/1/1
 R2(config-if)# ip nat outside</code></pre>
 <p>Aby skonfigurować PAT wystarczy do polecenia ip nat inside source dodać <strong>słowo kluczowe overload</strong>. Reszta konfiguracji przebiega podobnie do statycznego lub dynamicznego NAT.</p>
-<h3 id="konfigurowanie-pat-do-korzystania-z-puli-adresów">4.3.2. Konfigurowanie PAT do korzystania z puli adresów</h3>
+<h4 id="konfigurowanie-pat-do-korzystania-z-puli-adresów">4.3.2. Konfigurowanie PAT do korzystania z puli adresów</h4>
 <pre><code>R2(config)# ip nat pool NAT-POOL2 209.165.200.226 209.165.200.240 netmask 255.255.255.224
 R2(config)# access-list 1 permit 192.168.0.0 0.0.255.255
 R2(config)# ip nat inside source list 1 pool NAT-POOL2 overload
@@ -950,11 +935,11 @@ R2(config-if)# ip nat outside
 R2(config-if)# end
 R2#</code></pre>
 <p>Aby skonfigurować PAT dla dynamicznej puli adresów NAT ponownie wystarczy dodać <strong>overload</strong> do polecenia ip nat inside source.</p>
-<h3 id="weryfikowanie-pat">4.3.3. Weryfikowanie PAT</h3>
-<h4 id="polecenie-show-ip-nat-translations-2">4.3.3.1. Polecenie show ip nat translations</h4>
+<h4 id="weryfikowanie-pat">4.3.3. Weryfikowanie PAT</h4>
+<h5 id="polecenie-show-ip-nat-translations-2">4.3.3.1. Polecenie show ip nat translations</h5>
 <p>R2# show ip nat translations Pro Inside global Inside local Outside local Outside global tcp 209.165.200.225:1444 192.168.10.10:1444 209.165.201.1:80 209.165.201.1:80 tcp 209.165.200.225:1445 192.168.11.10:1444 209.165.202.129:80 209.165.202.129:80 R2#</p>
 <p>Pokazuje translacje z różnych hostów do różnych serwerów WWW.</p>
-<h4 id="polecenie-show-ip-nat-statistics-2">4.3.3.2. Polecenie show ip nat statistics</h4>
+<h5 id="polecenie-show-ip-nat-statistics-2">4.3.3.2. Polecenie show ip nat statistics</h5>
 <pre><code>R2# show ip nat statistics 
 Total active translations: 4 (0 static, 2 dynamic; 2 extended)
 Peak translations: 2, occurred 00:31:43 ago
@@ -995,13 +980,18 @@ R2#</code></pre>
 <h4 id="publiczna-sieć-wan">1.2.1. Publiczna sieć WAN</h4>
 <p>Jest zazwyczaj dostarczana przez dostawcę usług internetowych lub dostawcę usług telekomunikacyjnych korzystającego z Internetu.</p>
 <h4 id="prywatna-sieć-wan">1.2.2. Prywatna sieć WAN</h4>
-<p>To połączenie dedykowane dla jednego klienta. Zapewnia to następujące elementy: - Gwarantowany poziom usług - Spójna szerokość pasma - Bezpieczeństwo</p>
+<p>To połączenie dedykowane dla jednego klienta. Zapewnia to następujące elementy:</p>
+<ul>
+<li>Gwarantowany poziom usług</li>
+<li>Spójna szerokość pasma</li>
+<li>Bezpieczeństwo</li>
+</ul>
 <h3 id="topologie-wan">1.3. Topologie WAN</h3>
 <h4 id="topologie-fizyczne-i-logiczne">1.3.1. Topologie fizyczne i logiczne</h4>
 <h5 id="topologie-fizyczne">1.3.1.1. Topologie fizyczne</h5>
 <p>Opisują fizyczną infrastrukturę sieciową wykorzystywaną przez dane podczas przesyłania ze źródła do miejsca docelowego. Fizyczna topologia WAN stosowana w sieci WAN jest złożona i w przeważającej części nieznana użytkownikom.</p>
 <h5 id="topologie-logiczne">1.3.1.2. Topologie logiczne</h5>
-<p>Topologie WAN są opisane przy użyciu topologii logicznej. opologie logiczne opisują wirtualne połączenie między źródłem a miejscem docelowym. Na przykład, połączenie wideokonferencyjne między użytkownikiem w Nowym Jorku i Japonii byłoby logicznym połączeniem punkt-punkt.</p>
+<p>Topologie WAN są opisane przy użyciu topologii logicznej. Topologie logiczne opisują wirtualne połączenie między źródłem a miejscem docelowym. Na przykład, połączenie wideokonferencyjne między użytkownikiem w Nowym Jorku i Japonii byłoby logicznym połączeniem punkt-punkt.</p>
 <h4 id="rodzaje-topologii-logicznych">1.3.2. Rodzaje topologii logicznych</h4>
 <h5 id="punkt-punkt">1.3.2.1. Punkt-punkt</h5>
 <p>Łącza typu punkt-punkt często obejmują dedykowane połączenia dzierżawione z korporacyjnego punktu granicznego do sieci dostawcy. Połączenie punkt-punkt obejmuje usługę transportową warstwy 2 za pośrednictwem sieci dostawcy usług. Pakiety wysyłane z jednej strony są dostarczane do drugiej strony i odwrotnie. Połączenie punkt-punkt jest przezroczyste dla sieci klienta. Wydaje się, że istnieje bezpośrednie fizyczne powiązanie między dwoma punktami końcowymi.</p>
@@ -1063,7 +1053,7 @@ R2#</code></pre>
 <h3 id="komunikacja-szeregowa">2.5. Komunikacja szeregowa</h3>
 <p>Przesyła bity sekwencyjnie na jednym kanale. Prawie cała komunikacja sieciowa odbywa się za jej pomocą.</p>
 <h3 id="komunikacja-z-komutacją-łączy">2.6. Komunikacja z komutacją łączy</h3>
-<p><strong>Sieć z komutacją łączy</strong> ustanawia dedykowany obwód (lub kanał) między punktami końćowymi, zanim użytkownicy będą mogli się komunikować.</p>
+<p><strong>Sieć z komutacją łączy</strong> ustanawia dedykowany obwód (lub kanał) między punktami końcowymi, zanim użytkownicy będą mogli się komunikować.</p>
 <p>Podczas transmisji w sieci z komutacją łączy cała komunikacja korzysta z tej samej ścieżki. Cała stała pojemność przydzielona do obwodu jest dostępna na czas połączenia, niezależnie od tego, czy są informacje do transmisji, czy nie. Może to prowadzić do nieefektywności w użyciu obwodu. Z tego powodu komutacja łączy zasadniczo nie nadaje się do przesyłania danych.</p>
 <p>Dwa najpopularniejsze typy technologii WAN z komutacją łączy to <strong>publiczna komutowana sieć telefoniczna (PSTN)</strong> i <strong>sieć cyfrowa z integracją usług (ISDN)</strong>.</p>
 <h3 id="komunikacja-z-przełączaniem-pakietów">2.7. Komunikacja z przełączaniem pakietów</h3>
@@ -1083,7 +1073,7 @@ R2#</code></pre>
 </figure>
 <h3 id="terminologia-wan-1">3.2. Terminologia WAN</h3>
 <h4 id="łącza-dzierżawione">3.2.1. Łącza dzierżawione</h4>
-<p>Łącza typu punkt-punkt dierżawione od usługowacy. Ten termin odnosi się do faktu, iż firma podnajmująca łącza płacie stały abonament za jego użytkowanie.</p>
+<p>Łącza typu punkt-punkt dzierżawione od usługodawcy. Ten termin odnosi się do faktu, iż firma podnajmująca łącza płaci stały abonament za jego użytkowanie.</p>
 <p>Inne nazwy łącz dzierżawionych to łącza szeregowe, łącza punkt-punkt, linie T1/E1, T3/E3.</p>
 <h5 id="systemy-definiowania-pojemności-cyfrowej-łącza-szeregowego-między-nośnikami-miedzianymi">3.2.1.1. Systemy definiowania pojemności cyfrowej łącza szeregowego między nośnikami miedzianymi:</h5>
 <ul>
@@ -1128,9 +1118,9 @@ R2#</code></pre>
 </ul>
 <h4 id="korzyści-ethernet-wan">4.2.1. Korzyści Ethernet WAN</h4>
 <ul>
-<li>Mniejsze wydatki i administracja - szybkie przełączanie w warstwie 2, łącząc różne formy ruchu takie jak, głos, video i dane w jednej infrastrukturze. Dzięki temu otrzymuje się większe pasmo i eliminuje kosztowny proces konwersji do innych technologii WAN. Technologia umożliwia przedsiębiorstwom niedrogie łączenie wielu lokalizacji w obszarze metropolitalnym, między sobą oraz z Internetem.</li>
-<li>Łatwa intergracja z istniejącymi sieciami - Ethernet WAN w łatwy sposób można przyłączyć do istniejących sieci Ethernet LAN, redukując tym samym koszty i czas.</li>
-<li>Zwiększona produktywność biznesowa - Ethernet WAN umożliwia firmom czerpanie korzyści, ze stosowania aplikacji IP , takich jak streaming wideo, technologia VoIP i komunikacja IP pomiędzy komputerami.</li>
+<li><strong>Mniejsze wydatki i administracja</strong> - szybkie przełączanie w warstwie 2, łącząc różne formy ruchu takie jak, głos, video i dane w jednej infrastrukturze. Dzięki temu otrzymuje się większe pasmo i eliminuje kosztowny proces konwersji do innych technologii WAN. Technologia umożliwia przedsiębiorstwom niedrogie łączenie wielu lokalizacji w obszarze metropolitalnym, między sobą oraz z Internetem.</li>
+<li><strong>Łatwa intergracja z istniejącymi sieciami</strong> - Ethernet WAN w łatwy sposób można przyłączyć do istniejących sieci Ethernet LAN, redukując tym samym koszty i czas.</li>
+<li><strong>Zwiększona produktywność biznesowa</strong> - Ethernet WAN umożliwia firmom czerpanie korzyści, ze stosowania aplikacji IP , takich jak streaming wideo, technologia VoIP i komunikacja IP pomiędzy komputerami.</li>
 </ul>
 <h3 id="mpls">4.3. MPLS</h3>
 <p><strong>Multiprotocol Label Switching (MPLS)</strong> to wysokowydajna technologia routingu WAN dla dostawcy usług umożliwiająca łączenie klientów bez względu na metodę dostępu lub typ obciążenia. MPLS obsługuje różne metody dostępu klienta (np. Ethernet, DSL, Cable, Frame Relay). MPLS może enkapsulować ruch wszystkich typy protokołów, w tym IPv4 i IPv6.</p>
@@ -1172,9 +1162,9 @@ R2#</code></pre>
 <h3 id="łącza-światłowodowe">5.5. Łącza światłowodowe</h3>
 <p><strong>Fiber do x (FTTX)</strong> - instalacja kabla światłowodowego do lokalizacji użytkownika. Obejmuje:</p>
 <ul>
-<li>Fiber to the Home (FTTH) - włókno dociera do granic miejsca zamieszkania.</li>
-<li>Fiber to the building (FTTB) - włókno dociera do granicy budynku, a ostateczne połączenie z indywidualną przestrzenią mieszkalną odbywa się za pomocą alternatywnych środów.</li>
-<li>Fiber to the Node/Neighborhood(FFTN) - okablowanie optyczne dociera do węzła optycznego, który konwertuje sygnały optyczne do formatu dopuszczalnego dla skrętki lub kabla koncentrycznego do pomieszczenia.</li>
+<li><strong>Fiber to the Home (FTTH)</strong> - włókno dociera do granic miejsca zamieszkania.</li>
+<li><strong>Fiber to the building (FTTB)</strong> - włókno dociera do granicy budynku, a ostateczne połączenie z indywidualną przestrzenią mieszkalną odbywa się za pomocą alternatywnych środów.</li>
+<li><strong>Fiber to the Node/Neighborhood(FFTN)</strong> - okablowanie optyczne dociera do węzła optycznego, który konwertuje sygnały optyczne do formatu dopuszczalnego dla skrętki lub kabla koncentrycznego do pomieszczenia.</li>
 </ul>
 <h3 id="bezprzewodowy-internet-szerokopasmowy">5.6. Bezprzewodowy internet szerokopasmowy</h3>
 <p>Rozwiązania umożliwiające szerokopasmową technologię bezprzewodową:</p>
@@ -1197,8 +1187,8 @@ R2#</code></pre>
 </ul>
 <h4 id="sposoby-realizowania-vpn">5.7.2. Sposoby realizowania VPN</h4>
 <ul>
-<li>Site-to-site VPN - VPN konfigurowane na routerach. Klienci nie są świadomi, że ich dane są szyfrowane.</li>
-<li>Dostęp zdalny - użytkownik jest świadomy i inicjuje połączenie dostępu zdalnego.</li>
+<li><strong>Site-to-site VPN</strong> - VPN konfigurowane na routerach. Klienci nie są świadomi, że ich dane są szyfrowane.</li>
+<li><strong>Dostęp zdalny</strong> - użytkownik jest świadomy i inicjuje połączenie dostępu zdalnego.</li>
 </ul>
 <h3 id="opcje-łączenia-do-dostawcy-usług">5.8. Opcje łączenia do dostawcy usług</h3>
 <h4 id="połączenie-pojedyncze-single-homed">5.8.1. Połączenie pojedyncze (single-homed)</h4>
@@ -1217,6 +1207,41 @@ R2#</code></pre>
 <figure>
 <img src="img/7.5.8.4.png" alt="" /><figcaption>Połączenie wielokrotne podwójne</figcaption>
 </figure>
+<h1 id="viii.-koncepcje-vpn-i-ipsec">VIII. Koncepcje VPN i IPSec</h1>
+<h2 id="technologia-vpn-1">1. Technologia VPN</h2>
+<h2 id="wirtualne-sieci-prywatne">1.1. Wirtualne sieci prywatne</h2>
+<p>VPN służy do tworzenia prywatnych połączeń sieciowych w celu zabezpieczenia ruchu sieciowego między lokacjami a użytkownikami.</p>
+<h2 id="korzyści-z-vpn">1.2. Korzyści z VPN</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Korzyść</th>
+<th>Opis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Oszczędności</td>
+<td>Wraz z pojawieniem się opłacalnych technologii o dużej przepustowości, organizacje mogły używać VPN, aby obniżyć koszty połączeń jednocześnie zwiększając przepustowość połączenia zdalnego.</td>
+</tr>
+<tr class="even">
+<td>Ochrona</td>
+<td>VPN zapewniają najwyższy poziom bezpieczeństwa, korzystając z zaawansowanych protokołów szyfrowania i uwierzytelniania, które chronią dane przed nieautoryzowanym dostępem.</td>
+</tr>
+<tr class="odd">
+<td>Skalowalność</td>
+<td>VPN umożliwiają organizacjom korzystanie z Internetu, co ułatwia dodawanie nowych użytkowników bez dodawania znaczącej infrastruktury.</td>
+</tr>
+<tr class="even">
+<td>Kompatybilność</td>
+<td>VPN można zaimplementować w wielu różnych opcjach łącza WAN w tym wszystkich popularnych technologiach szerokopasmowych. Pracownicy zdalni mogą korzystać z tych szybkich połączeń, aby uzyskać bezpieczny dostęp do ich sieci korporacyjnych.</td>
+</tr>
+</tbody>
+</table>
 <h1 id="ix.-koncepcje-qos">IX. Koncepcje QoS</h1>
 <h2 id="stałe-opóźnienie">1. Stałe opóźnienie</h2>
 <p>To określony czas, jaki trwa określony proces, na przykład czas potrzebnny na umieszczenie go na nośniku transmisji.</p>
@@ -1308,6 +1333,5 @@ R2#</code></pre>
 <figure>
 <img src="img/32.png" alt="" /><figcaption>Sekwencja QoS</figcaption>
 </figure>
-<h1 id="koncepcje-vpn-i-ipsec">8. Koncepcje VPN i IPSec</h1>
 </body>
 </html>

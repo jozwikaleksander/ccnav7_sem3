@@ -157,15 +157,21 @@ table caption {
 }
 tbody {
   margin-top: 0.5em;
-  border-top: 1px solid #1a1a1a;
-  border-bottom: 1px solid #1a1a1a;
+  border-top: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
 }
 th {
-  border-top: 1px solid #1a1a1a;
+  border-top: 1px solid #ffffff;
   padding: 0.25em 0.5em 0.25em 0.5em;
+  border: 1px solid #ffffff;
+  background-color: var(--blue-color);
 }
 td {
   padding: 0.125em 0.5em 0.25em 0.5em;
+  border: 1px solid #fff;
+}
+tr:nth-child(odd){
+  background-color: var(--foreground-color);
 }
 header {
   margin-bottom: 4em;
