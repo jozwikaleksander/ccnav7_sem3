@@ -238,12 +238,25 @@
 <li><a href="#technologia-vpn">5.7. Technologia VPN</a></li>
 <li><a href="#opcje-łączenia-do-dostawcy-usług">5.8. Opcje łączenia do dostawcy usług</a></li>
 </ul></li>
+<li><a href="#źródła-uzupełniające-3">6. Źródła uzupełniające</a></li>
 </ul></li>
 <li><a href="#viii.-koncepcje-vpn-i-ipsec">VIII. Koncepcje VPN i IPSec</a>
 <ul>
-<li><a href="#technologia-vpn-1">1. Technologia VPN</a></li>
+<li><a href="#technologia-vpn-1">1. Technologia VPN</a>
+<ul>
 <li><a href="#wirtualne-sieci-prywatne">1.1. Wirtualne sieci prywatne</a></li>
 <li><a href="#korzyści-z-vpn">1.2. Korzyści z VPN</a></li>
+<li><a href="#sieci-vpn-typu-site-to-site-i-zdalnego-dostepu">1.3. Sieci VPN typu site-to-site i zdalnego dostepu</a></li>
+<li><a href="#vpn-dla-przedsiębiorstw-i-dostawców-usług">1.4. VPN dla przedsiębiorstw i dostawców usług</a></li>
+<li><a href="#sieci-dostawców-usług">1.4.2. Sieci dostawców usług</a></li>
+</ul></li>
+<li><a href="#rodzaje-sieci-vpn">2. Rodzaje sieci VPN</a>
+<ul>
+<li><a href="#sieci-vpn-zdalnego-dostępu">2.1. Sieci VPN zdalnego dostępu</a></li>
+<li><a href="#ssl-vpn-a-ipsec">2.2. SSL VPN, a IPsec</a></li>
+<li><a href="#vpn-site-to-site-ipsec">2.3. VPN site-to-site IPSec</a></li>
+<li><a href="#gre-przez-ipsec">2.4. GRE przez IPsec</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#ix.-koncepcje-qos">IX. Koncepcje QoS</a>
 <ul>
@@ -1207,11 +1220,13 @@ R2#</code></pre>
 <figure>
 <img src="img/7.5.8.4.png" alt="" /><figcaption>Połączenie wielokrotne podwójne</figcaption>
 </figure>
+<h2 id="źródła-uzupełniające-3">6. Źródła uzupełniające</h2>
+<p><a href="https://www.youtube.com/watch?v=xPi4uZu4uF0">https://www.youtube.com/watch?v=xPi4uZu4uF0</a></p>
 <h1 id="viii.-koncepcje-vpn-i-ipsec">VIII. Koncepcje VPN i IPSec</h1>
 <h2 id="technologia-vpn-1">1. Technologia VPN</h2>
-<h2 id="wirtualne-sieci-prywatne">1.1. Wirtualne sieci prywatne</h2>
+<h3 id="wirtualne-sieci-prywatne">1.1. Wirtualne sieci prywatne</h3>
 <p>VPN służy do tworzenia prywatnych połączeń sieciowych w celu zabezpieczenia ruchu sieciowego między lokacjami a użytkownikami.</p>
-<h2 id="korzyści-z-vpn">1.2. Korzyści z VPN</h2>
+<h3 id="korzyści-z-vpn">1.2. Korzyści z VPN</h3>
 <table>
 <colgroup>
 <col style="width: 50%" />
@@ -1242,6 +1257,116 @@ R2#</code></pre>
 </tr>
 </tbody>
 </table>
+<h3 id="sieci-vpn-typu-site-to-site-i-zdalnego-dostepu">1.3. Sieci VPN typu site-to-site i zdalnego dostepu</h3>
+<h4 id="sieć-vpn-typu-site-to-site">1.3.1. Sieć VPN typu Site-to-Site</h4>
+<p>Sieć VPN typu lokacja-lokacja jest tworzona, gdy urządzenia kończące VPN, zwane także <strong>bramami VPN</strong>, są wstępnie skonfigurowane z informacjami potrzebnymi do ustanowienia bezpiecznego tunelu. Ruch VPN jest szyfrowany tylko między tymi urządzeniami. Hosty wewnętrzne <strong>nie wiedzą, że używana jest sieć VPN</strong>.</p>
+<figure>
+<img src="img/8.1.3.1.png" alt="" /><figcaption>VPN Site-to-Site</figcaption>
+</figure>
+<h4 id="sieć-vpn-zdalnego-dostępu">1.3.2. Sieć VPN zdalnego dostępu</h4>
+<p>Sieć VPN dostępu zdalnego jest tworzona dynamicznie w celu ustanowienia bezpiecznego połączenia między klientem a urządzeniem końcowym VPN.</p>
+<figure>
+<img src="img/8.1.3.2.png" alt="" /><figcaption>VPN zdalnego dostępu</figcaption>
+</figure>
+<h3 id="vpn-dla-przedsiębiorstw-i-dostawców-usług">1.4. VPN dla przedsiębiorstw i dostawców usług</h3>
+<p>W zależności od tego kto zarządza VPN rozwiązania możemy wdrażać jako:</p>
+<h4 id="vpn-dla-przedsiębiorstw">1.4.1. VPN dla przedsiębiorstw</h4>
+<p>Jest to powszechne rozwiązanie dla ruchu w przedsiębiorstwie.</p>
+<p>Typy wdrożeń VPN:</p>
+<table>
+<tbody>
+<tr class="odd">
+<td>VPN typu lokacja-lokacja</td>
+<td>IPsec VPN</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>GRE przez IPsec</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Cisco Dynamic Multipoint Virtual Private Network (DMVPN)</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Interfejs wirtualnego tunelu IPsec (VTI)</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Połączenie VPN IPsec oparte na kliencie</td>
+</tr>
+<tr class="even">
+<td>VPN dostępu zdalnego</td>
+<td>Połączenie VPN IPsec oparte na kliencie</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Bezklientowe połączenie SSL</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sieci-dostawców-usług">1.4.2. Sieci dostawców usług</h3>
+<p>Są tworzone i zarządzane przez sieć dostawcy. Używa <strong>Mutliprotocol Label Switching (MPLS)</strong> w warstwie 2 lub warstwie 3. <strong>MPLS</strong> to technologia routingu używana przez dostawcę do tworzenia wirtualnych ścieżek między lokacjami. To skutecznie oddziela ruch od innych klientów.</p>
+<figure>
+<img src="img/8.1.4.2.png" alt="" /><figcaption>Sieć dostawców usług</figcaption>
+</figure>
+<h2 id="rodzaje-sieci-vpn">2. Rodzaje sieci VPN</h2>
+<h3 id="sieci-vpn-zdalnego-dostępu">2.1. Sieci VPN zdalnego dostępu</h3>
+<ul>
+<li><strong>Połączenie VPN bez klienta</strong> - zabezpieczone za pomocą połączenia SSL przeglądarki internetowej. SSL jest używany do ochrony ruchu HTTP i protokołów e-mail.</li>
+<li><strong>Połączenie VPN oparte na kliencie</strong> - wymagane jest oprogramowanie klienckie VPN na urządzeniu użytkownika zdalnego.</li>
+</ul>
+<h3 id="ssl-vpn-a-ipsec">2.2. SSL VPN, a IPsec</h3>
+<p><strong>Porównanie IPsec i SSL</strong></p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Funkcja</th>
+<th>IPsec</th>
+<th>SSL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Obsługiwane aplikacje</td>
+<td>Rozległe - Wszystkie aplikacje oparte na protokole IP są obsługiwane.</td>
+<td>Orgraniczone - Tylko aplikacje internetowe i udostępnianie plików jest obsługiwane.</td>
+</tr>
+<tr class="even">
+<td>Siła uwierzytelnienia</td>
+<td>Silna - Używa uwierzytelniania dwukierunkowego za pomocą kluczy współdzielonych lub certyfikatów cyfrowych.</td>
+<td>Umiarkowana - Korzystanie z uwierzytelniania jednokierunkowego lub dwukierunkowego.</td>
+</tr>
+<tr class="odd">
+<td>Siła szyfrowania</td>
+<td>Silna - Używa kluczy o długości od 56 do 256 bitów.</td>
+<td>Od umiarkowanej do silnej - z kluczami o długości od 40 bitów do 256 bitów.</td>
+</tr>
+<tr class="even">
+<td>Złożoność połączenia</td>
+<td>Średnia - Ponieważ wymaga klienta VPN wstępnie zainstalowanego na hoście.</td>
+<td>Niska - Wymaga tylko przeglądarki internetowej na hoście.</td>
+</tr>
+<tr class="odd">
+<td>Opcja połączenia</td>
+<td>Ograniczona — Tylko określone urządzenia z określonymi konfiguracjami mogą się łączyć.</td>
+<td>Rozległe - Każde urządzenie z przeglądarką internetową może się połączyć.</td>
+</tr>
+</tbody>
+</table>
+<p>Warto pamiętać, że SSL i IPsec nie wykluczają się i można ich używac jednocześnie w zależności od potrzeb.</p>
+<h3 id="vpn-site-to-site-ipsec">2.3. VPN site-to-site IPSec</h3>
+<figure>
+<img src="img/8.1.3.1.png" alt="" /><figcaption>VPN Site-to-Site</figcaption>
+</figure>
+<p>Brama VPN enkapsuluje i szyfruje ruch wychodzący dla całego ruchu z określonej witryny. Następnie przesyła ruch przez tunel VPN przez Internet do bramy VPN w miejscu docelowym. Po odebraniu, odbierająca brama VPN usuwa nagłówki, odszyfrowuje zawartość i przekazuje pakiet do hosta docelowego w swojej sieci prywatnej.</p>
+<p>Sieci VPN typu lokacja-lokacja są zwykle tworzone i zabezpieczane przy użyciu zabezpieczeń <strong>IP (IPsec)</strong>.</p>
+<h3 id="gre-przez-ipsec">2.4. GRE przez IPsec</h3>
 <h1 id="ix.-koncepcje-qos">IX. Koncepcje QoS</h1>
 <h2 id="stałe-opóźnienie">1. Stałe opóźnienie</h2>
 <p>To określony czas, jaki trwa określony proces, na przykład czas potrzebnny na umieszczenie go na nośniku transmisji.</p>

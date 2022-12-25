@@ -1192,15 +1192,18 @@ Pozwala na przekazywanie ruchu w sposób zaszyfrowany pomiędzy komputerami w si
 
 ![Połączenie wielokrotne podwójne](img/7.5.8.4.png)
 
+## 6. Źródła uzupełniające
+[https://www.youtube.com/watch?v=xPi4uZu4uF0](https://www.youtube.com/watch?v=xPi4uZu4uF0)
+
 # VIII. Koncepcje VPN i IPSec
 
 ## 1. Technologia VPN
 
-## 1.1. Wirtualne sieci prywatne
+### 1.1. Wirtualne sieci prywatne
 
 VPN służy do tworzenia prywatnych połączeń sieciowych w celu zabezpieczenia ruchu sieciowego między lokacjami a użytkownikami.
 
-## 1.2. Korzyści z VPN
+### 1.2. Korzyści z VPN
 
 | Korzyść | Opis |
 |---|---|
@@ -1208,6 +1211,74 @@ VPN służy do tworzenia prywatnych połączeń sieciowych w celu zabezpieczenia
 | Ochrona | VPN zapewniają najwyższy poziom bezpieczeństwa, korzystając z zaawansowanych protokołów szyfrowania i uwierzytelniania, które chronią dane przed nieautoryzowanym dostępem. |
 | Skalowalność | VPN umożliwiają organizacjom korzystanie z Internetu, co ułatwia dodawanie nowych użytkowników bez dodawania znaczącej infrastruktury. |
 | Kompatybilność | VPN można zaimplementować w wielu różnych opcjach łącza WAN w tym wszystkich popularnych technologiach szerokopasmowych. Pracownicy zdalni mogą korzystać z tych szybkich połączeń, aby uzyskać bezpieczny dostęp do ich sieci korporacyjnych. |
+
+### 1.3. Sieci VPN typu site-to-site i zdalnego dostepu
+
+#### 1.3.1. Sieć VPN typu Site-to-Site
+Sieć VPN typu lokacja-lokacja jest tworzona, gdy urządzenia kończące VPN, zwane także **bramami VPN**, są wstępnie skonfigurowane z informacjami potrzebnymi do ustanowienia bezpiecznego tunelu. Ruch VPN jest szyfrowany tylko między tymi urządzeniami. Hosty wewnętrzne **nie wiedzą, że używana jest sieć VPN**.
+
+![VPN Site-to-Site](img/8.1.3.1.png)
+
+#### 1.3.2. Sieć VPN zdalnego dostępu
+Sieć VPN dostępu zdalnego jest tworzona dynamicznie w celu ustanowienia bezpiecznego połączenia między klientem a urządzeniem końcowym VPN.
+
+![VPN zdalnego dostępu](img/8.1.3.2.png)
+
+### 1.4. VPN dla przedsiębiorstw i dostawców usług
+W zależności od tego kto zarządza VPN rozwiązania możemy wdrażać jako:
+
+#### 1.4.1. VPN dla przedsiębiorstw
+Jest to powszechne rozwiązanie dla ruchu w przedsiębiorstwie.
+
+Typy wdrożeń VPN:
+
+|                                                                                     |
+|--------------------------|----------------------------------------------------------|
+| VPN typu lokacja-lokacja | IPsec VPN                                                |
+|                          | GRE przez IPsec                                          |
+|                          | Cisco Dynamic Multipoint Virtual Private Network (DMVPN) |
+|                          | Interfejs wirtualnego tunelu IPsec (VTI)                 |
+|                          | Połączenie VPN IPsec oparte na kliencie                  |
+| VPN dostępu zdalnego     | Połączenie VPN IPsec oparte na kliencie                  |
+|                          | Bezklientowe połączenie SSL                              |
+
+### 1.4.2. Sieci dostawców usług
+Są tworzone i zarządzane przez sieć dostawcy. Używa **Mutliprotocol Label Switching (MPLS)** w warstwie 2 lub warstwie 3.  **MPLS** to technologia routingu używana przez dostawcę do tworzenia wirtualnych ścieżek między lokacjami. To skutecznie oddziela ruch od innych klientów.
+
+![Sieć dostawców usług](img/8.1.4.2.png)
+
+## 2. Rodzaje sieci VPN
+
+### 2.1. Sieci VPN zdalnego dostępu
+
+- **Połączenie VPN bez klienta** - zabezpieczone za pomocą połączenia SSL przeglądarki internetowej. SSL jest używany do ochrony ruchu HTTP i protokołów e-mail.
+- **Połączenie VPN oparte na kliencie** - wymagane jest oprogramowanie klienckie VPN na urządzeniu użytkownika zdalnego.
+
+### 2.2. SSL VPN, a IPsec
+
+**Porównanie IPsec i SSL**
+
+| Funkcja | IPsec | SSL |
+|---|---|---|
+| Obsługiwane aplikacje | Rozległe - Wszystkie aplikacje oparte na protokole IP są obsługiwane. | Orgraniczone - Tylko aplikacje internetowe i udostępnianie plików jest obsługiwane. |
+| Siła uwierzytelnienia | Silna - Używa uwierzytelniania dwukierunkowego za pomocą kluczy współdzielonych lub certyfikatów cyfrowych. | Umiarkowana - Korzystanie z uwierzytelniania jednokierunkowego lub dwukierunkowego. |
+| Siła szyfrowania | Silna - Używa kluczy o długości od 56 do 256 bitów. | Od umiarkowanej do silnej - z kluczami o długości od 40 bitów do 256 bitów. |
+| Złożoność połączenia | Średnia - Ponieważ wymaga klienta VPN wstępnie zainstalowanego na hoście. | Niska - Wymaga tylko przeglądarki internetowej na hoście. |
+| Opcja połączenia | Ograniczona — Tylko określone urządzenia z określonymi konfiguracjami mogą się łączyć. | Rozległe - Każde urządzenie z przeglądarką internetową może się połączyć. |
+
+Warto pamiętać, że SSL i IPsec nie wykluczają się i można ich używac jednocześnie w zależności od potrzeb.
+
+### 2.3. VPN site-to-site IPSec
+
+![VPN Site-to-Site](img/8.1.3.1.png)
+
+Brama VPN enkapsuluje i szyfruje ruch wychodzący dla całego ruchu z określonej witryny. Następnie przesyła ruch przez tunel VPN przez Internet do bramy VPN w miejscu docelowym. Po odebraniu, odbierająca brama VPN usuwa nagłówki, odszyfrowuje zawartość i przekazuje pakiet do hosta docelowego w swojej sieci prywatnej.
+
+Sieci VPN typu lokacja-lokacja są zwykle tworzone i zabezpieczane przy użyciu zabezpieczeń **IP (IPsec)**.
+
+### 2.4. GRE przez IPsec
+
+
 
 # IX. Koncepcje QoS
 
