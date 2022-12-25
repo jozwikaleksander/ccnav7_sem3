@@ -1380,7 +1380,7 @@ Typy rozwiązań MPLS VPN obsługiwanych przez dostawców usług:
 
 ### 3.1. Technologie IPSec
 
-**IPsec** to standard IETF (RFC 2401-2412), który definiuje sposób zabezpieczenia VPN w sieciach IP. IPsec chroni i uwierzytelnia pakiety IP między źródłem a miejscem docelowym. IPsec może chronić ruch z warstw od 4 do 7.
+**IPsec** to standard IETF (RFC 2401-2412), który definiuje sposób zabezpieczenia VPN w sieciach IP. IPsec chroni i uwierzytelnia pakiety IP między źródłem a miejscem docelowym. **IPsec może chronić ruch z warstw od 4 do 7**.
 
 **IPSec zapewnia funkcje bezpieczeństwa tj.:**
 
