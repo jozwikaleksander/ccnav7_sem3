@@ -14,7 +14,7 @@
     ul.task-list{list-style: none;}
   </style>
   <link rel="stylesheet" href="css/style.css" />
-  <script src="scripts/scroll.js"></script>
+  <script src="scripts/menu.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
@@ -269,6 +269,7 @@
 <li><a href="#uwierzytelnianie">3.2.4. Uwierzytelnianie</a></li>
 <li><a href="#diffie-hellman">3.2.5. Diffie-Hellman</a></li>
 </ul></li>
+<li><a href="#źródła-uzupełniające-4">4. Źródła uzupełniające</a></li>
 </ul></li>
 <li><a href="#ix.-koncepcje-qos">IX. Koncepcje QoS</a>
 <ul>
@@ -762,10 +763,6 @@
 <h3 id="rozszerzona-numerowana-lista-acl-ipv4">4.1. Rozszerzona numerowana lista ACL IPv4</h3>
 <h4 id="składnia-polecenia">4.1.1. Składnia polecenia</h4>
 <pre><code>Router(config)# access-list access-list-number {deny | permit | remark text} protocol source source-wildcard [operator {port}] destination destination-wildcard [operator {port}] [established] [log]</code></pre>
-<h4 id="stosowanie">4.1.2. Stosowanie</h4>
-<figure>
-<img src="img/5.4.1.2.png" alt="" /><figcaption>Stosowanie numerowanej rozszerzonej listy ACL IPv4</figcaption>
-</figure>
 <h3 id="rozszerzona-acl-z-opcją-established-tcp">4.2. Rozszerzona ACL z opcją Established TCP</h3>
 <p>Słowo kluczowe establish umożliwia wychodzenie ruchowi z wewnętrznej sieci prywatnej i pozwala powracającemu ruchowi odpowiedzi na wejście do wewnętrznej sieci prywatnej.</p>
 <figure>
@@ -1575,22 +1572,30 @@ Bezklientowe połączenie SSL
 <li>AES</li>
 <li>SEAL</li>
 </ul>
+<p><a href="#poufność-danych">Więcej informacji znajdziesz tutaj</a></p>
 <h3 id="integralność">3.2.3. Integralność</h3>
 <ul>
 <li>MD5</li>
 <li>SHA</li>
 </ul>
+<p><a href="#integralność-danych">Więcej informacji znajdziesz tutaj</a></p>
 <h3 id="uwierzytelnianie">3.2.4. Uwierzytelnianie</h3>
 <ul>
 <li><strong>PSK (udostępniony tajny klucz)</strong> - wymaga ręcznego wprowadzenia klucza do każdego partnera, a zatem jest słabo skalowalny.</li>
 <li><strong>RSA (Rivest, Shamir, Adleman)</strong> - wykorzystuje certyfikaty cyfrowe do uwierzytelniania peerów.</li>
 </ul>
+<p><a href="#uwierzytelnianie-pochodzenia">Więcej informacji znajdziesz tutaj</a></p>
 <h3 id="diffie-hellman">3.2.5. Diffie-Hellman</h3>
 <p>Istnieją różne sposoby wymiany klucza DH. Wariacje te określane są jako grupy:</p>
 <ul>
 <li><strong>Grupy DH 1, 2 i 5</strong> nie powinny być już używane.</li>
 <li><strong>Grupy DH 14, 15 i 16</strong> używane do 2030 roku.</li>
 <li><strong>Grupy DH 19, 20, 21 i 24</strong> - Grupa 24 jest preferowana.</li>
+</ul>
+<p><a href="#diffie-hellman-dh">Więcej informacji znajdziesz tutaj</a></p>
+<h2 id="źródła-uzupełniające-4">4. Źródła uzupełniające</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=CWy3x3Wux6o">https://www.youtube.com/watch?v=CWy3x3Wux6o</a></li>
 </ul>
 <h1 id="ix.-koncepcje-qos">IX. Koncepcje QoS</h1>
 <h2 id="stałe-opóźnienie">1. Stałe opóźnienie</h2>

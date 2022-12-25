@@ -556,10 +556,6 @@ Słowo kluczowe **in jest najczęściej używaną opcją** filtrowania przychodz
 
     Router(config)# access-list access-list-number {deny | permit | remark text} protocol source source-wildcard [operator {port}] destination destination-wildcard [operator {port}] [established] [log]
 
-#### 4.1.2. Stosowanie
-
-![Stosowanie numerowanej rozszerzonej listy ACL IPv4](img/5.4.1.2.png)
-
 ### 4.2. Rozszerzona ACL z opcją Established TCP
 
 Słowo kluczowe establish umożliwia wychodzenie ruchowi z wewnętrznej sieci prywatnej i pozwala powracającemu ruchowi odpowiedzi na wejście do wewnętrznej sieci prywatnej.
@@ -1406,13 +1402,19 @@ Zapewnia poufność i uwierzytelnianie. Szyfruje pakiety IP i zapewnia uwierzyte
 - AES
 - SEAL
 
+[Więcej informacji znajdziesz tutaj](#poufność-danych)
+
 ### 3.2.3. Integralność
 - MD5
 - SHA
 
+[Więcej informacji znajdziesz tutaj](#integralność-danych)
+
 ### 3.2.4. Uwierzytelnianie
 - **PSK (udostępniony tajny klucz)** - wymaga ręcznego wprowadzenia klucza do każdego partnera, a zatem jest słabo skalowalny.
 - **RSA (Rivest, Shamir, Adleman)** - wykorzystuje certyfikaty cyfrowe do uwierzytelniania peerów.
+
+[Więcej informacji znajdziesz tutaj](#uwierzytelnianie-pochodzenia)
 
 ### 3.2.5. Diffie-Hellman
 Istnieją różne sposoby wymiany klucza DH. Wariacje te określane są jako grupy:
@@ -1420,6 +1422,12 @@ Istnieją różne sposoby wymiany klucza DH. Wariacje te określane są jako gru
 - **Grupy DH 1, 2 i 5** nie powinny być już używane.
 - **Grupy DH 14, 15 i 16** używane do 2030 roku.
 - **Grupy DH 19, 20, 21 i 24** - Grupa 24 jest preferowana.
+
+[Więcej informacji znajdziesz tutaj](#diffie-hellman-dh)
+
+## 4. Źródła uzupełniające
+
+- [https://www.youtube.com/watch?v=CWy3x3Wux6o](https://www.youtube.com/watch?v=CWy3x3Wux6o)
 
 # IX. Koncepcje QoS
 

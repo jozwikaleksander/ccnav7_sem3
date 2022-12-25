@@ -276,10 +276,53 @@ a:hover {
   border: var(--magenta-color) 2px solid;;
   background-color: var(--magenta-color);
   text-decoration: none;
-  color: var(--font-color);
+  color: var(--background-color);
   transition: var(--transition);
 }
 .scroll-button:hover {
   color: var(--magenta-color);
   background: none;
+}
+
+.toc-button {
+  border-radius: 20px;
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  right: 20px;
+  bottom: 100px;
+  z-index: 100;
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: var(--green-color) 2px solid;;
+  background-color: var(--green-color);
+  text-decoration: none;
+  color: var(--background-color);
+  transition: var(--transition);
+}
+.toc-button:hover {
+  color: var(--green-color);
+  background: none;
+}
+.toc-menu{
+  position: fixed;
+  top: 0;
+  left: 0;
+  max-width: 50%;
+  background-color: var(--background-color);
+  z-index: 100;
+  opacity:0.9;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  transition: var(--transition);
+  overflow-y: scroll;
+  padding-left:30px;
+}
+.disabled{
+  opacity: 0;
+  pointer-events: none;
 }
