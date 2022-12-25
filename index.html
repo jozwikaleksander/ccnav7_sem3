@@ -257,6 +257,18 @@
 <li><a href="#vpn-site-to-site-ipsec">2.3. VPN site-to-site IPSec</a></li>
 <li><a href="#gre-przez-ipsec">2.4. GRE przez IPsec</a></li>
 </ul></li>
+<li><a href="#dynamiczne-wielopunktowe-sieci-vpn">2.5. Dynamiczne wielopunktowe sieci VPN</a></li>
+<li><a href="#interfejs-wirtualnego-tunelu-ipsec">2.6. Interfejs wirtualnego tunelu IPsec</a></li>
+<li><a href="#dostawca-usług-mpls-vpn">2.7. Dostawca usług MPLS VPN</a></li>
+<li><a href="#ipsec">3. IPSec</a>
+<ul>
+<li><a href="#technologie-ipsec">3.1. Technologie IPSec</a></li>
+<li><a href="#wybory-dotyczące-ipsec">3.2. Wybory dotyczące IPSec</a></li>
+<li><a href="#poufność">3.2.2. Poufność</a></li>
+<li><a href="#integralność">3.2.3. Integralność</a></li>
+<li><a href="#uwierzytelnianie">3.2.4. Uwierzytelnianie</a></li>
+<li><a href="#diffie-hellman">3.2.5. Diffie-Hellman</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#ix.-koncepcje-qos">IX. Koncepcje QoS</a>
 <ul>
@@ -986,9 +998,40 @@ R2#</code></pre>
 <h1 id="vii.-koncepcje-sieci-wan">VII. Koncepcje sieci WAN</h1>
 <h2 id="cele-sieci-wan">1. Cele sieci WAN</h2>
 <h3 id="różnice-między-lan-i-wan">1.1 Różnice między LAN i WAN</h3>
-<figure>
-<img src="img/7.1.png" alt="" /><figcaption>Różnice między LAN i WAN</figcaption>
-</figure>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sieci LAN</th>
+<th>Sieci WAN</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Sieci LAN zapewniają usługi sieciowe na małym obszarze geograficznym (tj., sieć domowa, sieć biurowa, sieć budynku lub sieć kampusu).</td>
+<td>Sieci WAN świadczą usługi sieciowe na dużych obszarach geograficznych (tj. w i między miastami, krajami i kontynentami).</td>
+</tr>
+<tr class="even">
+<td>Sieci LAN są używane do łączenia komputerów lokalnych, urządzeń peryferyjnych i innych urządzeń.</td>
+<td>Sieci WAN służą do łączenia użytkowników zdalnych, sieci i lokalizacji.</td>
+</tr>
+<tr class="odd">
+<td>Sieć LAN jest własnością i zarządzana przez organizację lub użytkownika domowego.</td>
+<td>Sieci WAN są własnością i zarządzane przez dostawców usług internetowych, telefonicznych, kablowych i satelitarnych.</td>
+</tr>
+<tr class="even">
+<td>Poza kosztami infrastruktury sieciowej nie ma opłaty za korzystanie z sieci LAN.</td>
+<td>Usługi WAN oferowane są za dodatkową opłatą.</td>
+</tr>
+<tr class="odd">
+<td>Sieci LAN zapewniają dużą szerokość pasma dzięki przewodowej sieci Ethernet i Wi-Fi .</td>
+<td>Dostawcy sieci WAN oferują od niskich do dużych szerokości pasma na duże odległości za pomocą złożonych sieci fizycznych.</td>
+</tr>
+</tbody>
+</table>
 <h3 id="prywatne-i-publiczne-sieci-wan">1.2. Prywatne i publiczne sieci WAN</h3>
 <h4 id="publiczna-sieć-wan">1.2.1. Publiczna sieć WAN</h4>
 <p>Jest zazwyczaj dostarczana przez dostawcę usług internetowych lub dostawcę usług telekomunikacyjnych korzystającego z Internetu.</p>
@@ -1056,13 +1099,113 @@ R2#</code></pre>
 <img src="img/16.png" alt="" /><figcaption>Sieci WAN w modelu OSI</figcaption>
 </figure>
 <h3 id="terminologia-wan">2.3. Terminologia WAN</h3>
-<figure>
-<img src="img/17.png" alt="" /><figcaption>Terminologia WAN</figcaption>
-</figure>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Termin sieci WAN</th>
+<th>Opis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Urządzenie końcowe (Data Terminal Equipment - DTE)</td>
+<td>Jest to urządzenie, które łączy sieci LAN abonenta z urządzeniem komunikacyjnym WAN (tj. DCE). Hosty wewnętrzne wysyłają swój ruch do urządzenia DTE. DTE łączy się z pętlą lokalną przez DCE. Urządzenie DTE jest zwykle routerem, ale może być hostem lub serwerem.</td>
+</tr>
+<tr class="even">
+<td>Urządzenie komunikacyjne (Data Communications Equipment - DCE)</td>
+<td>Zwany również sprzętem kończącym obwód danych, jest to urządzenie wykorzystywane do komunikowania się z dostawcą. Urządzenie DCE zapewniają możliwość podłączenia abonenta do łącza komunikacyjnego w chmury WAN.</td>
+</tr>
+<tr class="odd">
+<td>Urządzenia końcowe użytkownika (Customer Premises Equipment - CPE)</td>
+<td>Są to urządzenia DTE i DCE (tj. router, modem, optyczny konwerter) znajduje się na krawędzi przedsiębiorstwa. Abonent jest właścicielem wyposażenia CPE lub dzierżawi je od dostawcy usług.</td>
+</tr>
+<tr class="even">
+<td>Punkt obecności (Point-of-Presence - POP)</td>
+<td>Jest to punkt, w którym abonent łączy się z usługą dostawcy usług.</td>
+</tr>
+<tr class="odd">
+<td>Punkt graniczny (punkt demarkacyjny)</td>
+<td>Jest to fizyczna lokalizacja w budynku lub kompleksu, który oficjalnie oddziela CPE od sprzętu dostawcy usług. Punktem rozgraniczenia jest zazwyczaj skrzynka przyłączeniowa okablowania, znajdująca się na terenie abonenta, który łączy okablowanie CPE do lokalnej pętli. Identyfikuje lokalizację, w której odpowiedzialność za działanie sieci zmienia się z abonenta na usługodawcę. Kiedy pojawiają się problemy, konieczne jest ustalenie, czy użytkownik lub dostawca usług jest odpowiedzialny za rozwiązywanie problemów lub naprawę.</td>
+</tr>
+<tr class="even">
+<td>Pętla lokalna (lub ostatnia mila)</td>
+<td>To jest rzeczywisty kabel miedziany lub światłowodowy, z którym łączy się CPE do CO usługodawcy.</td>
+</tr>
+<tr class="odd">
+<td>Biuro centralne (Central Office - CO)</td>
+<td>Jest to lokalny obiekt usługodawcy lub budynek, który łączy CPE z siecią dostawcy.</td>
+</tr>
+<tr class="even">
+<td>Sieć płatna</td>
+<td>Obejmuje to dostępowe, długodystansowe, w pełni cyfrowe, światłowodowe linie komunikacyjne, przełączniki, routery i inne urządzenia wewnątrz sieć dostawcy WAN.</td>
+</tr>
+<tr class="odd">
+<td>Sieć dostępowa</td>
+<td>(Nie pokazano) Sieci dostepowe łączą wiele węzłów dostępu do sieci dostawcy usług. Sieci dostępowe mogą rozciągać się na gminy, województwa i regiony. Sieci dostępowe są również połączone z dostawcami usług internetowych i do sieci szkieletowej.</td>
+</tr>
+<tr class="even">
+<td>Sieć szkieletowa</td>
+<td>(Nie pokazano) Są to duże sieci o dużej pojemności wykorzystywane do łączenia sieci dostawcy usług i tworzenia nadmiarowych sieci. Inni usługodawcy mogą łączyć się bezpośrednio z szkieletem lub przez innego usługodawcę. Dostawcy usług sieci szkieletowych są również nazywani dostawcami pierwszego poziomu.</td>
+</tr>
+</tbody>
+</table>
 <h3 id="urządzenia-sieci-wan">2.4. Urządzenia sieci WAN</h3>
-<figure>
-<img src="img/18.png" alt="" /><figcaption>Urządzenia sieci WAN</figcaption>
-</figure>
+<table>
+<thead>
+<tr>
+<th colspan="2">
+Urządzenia sieci WAN
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="5">
+VPN typu lokacja-lokacja
+</td>
+<td>
+IPsec VPN
+</td>
+</tr>
+<tr>
+<td>
+GRE przez IPsec
+</td>
+</tr>
+<tr>
+<td>
+Cisco Dynamic Multipoint Virtual Private Network (DMVPN)
+</td>
+</tr>
+<tr>
+<td>
+Interfejs wirtualnego tunelu IPsec (VTI)
+</td>
+</tr>
+<tr>
+<td>
+Połączenie VPN IPsec oparte na kliencie
+</td>
+</tr>
+<tr>
+<td rowspan="2">
+VPN dostępu zdalnego
+</td>
+<td>
+Połączenie VPN IPsec oparte na kliencie
+</td>
+</tr>
+<tr>
+<td>
+Bezklientowe połączenie SSL
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="komunikacja-szeregowa">2.5. Komunikacja szeregowa</h3>
 <p>Przesyła bity sekwencyjnie na jednym kanale. Prawie cała komunikacja sieciowa odbywa się za jej pomocą.</p>
 <h3 id="komunikacja-z-komutacją-łączy">2.6. Komunikacja z komutacją łączy</h3>
@@ -1274,34 +1417,54 @@ R2#</code></pre>
 <p>Jest to powszechne rozwiązanie dla ruchu w przedsiębiorstwie.</p>
 <p>Typy wdrożeń VPN:</p>
 <table>
+<thead>
+<tr>
+<th colspan="2">
+Typy wdrożeń VPN
+</th>
+</tr>
+</thead>
 <tbody>
-<tr class="odd">
-<td>VPN typu lokacja-lokacja</td>
-<td>IPsec VPN</td>
+<tr>
+<td rowspan="5">
+VPN typu lokacja-lokacja
+</td>
+<td>
+IPsec VPN
+</td>
 </tr>
-<tr class="even">
-<td></td>
-<td>GRE przez IPsec</td>
+<tr>
+<td>
+GRE przez IPsec
+</td>
 </tr>
-<tr class="odd">
-<td></td>
-<td>Cisco Dynamic Multipoint Virtual Private Network (DMVPN)</td>
+<tr>
+<td>
+Cisco Dynamic Multipoint Virtual Private Network (DMVPN)
+</td>
 </tr>
-<tr class="even">
-<td></td>
-<td>Interfejs wirtualnego tunelu IPsec (VTI)</td>
+<tr>
+<td>
+Interfejs wirtualnego tunelu IPsec (VTI)
+</td>
 </tr>
-<tr class="odd">
-<td></td>
-<td>Połączenie VPN IPsec oparte na kliencie</td>
+<tr>
+<td>
+Połączenie VPN IPsec oparte na kliencie
+</td>
 </tr>
-<tr class="even">
-<td>VPN dostępu zdalnego</td>
-<td>Połączenie VPN IPsec oparte na kliencie</td>
+<tr>
+<td rowspan="2">
+VPN dostępu zdalnego
+</td>
+<td>
+Połączenie VPN IPsec oparte na kliencie
+</td>
 </tr>
-<tr class="odd">
-<td></td>
-<td>Bezklientowe połączenie SSL</td>
+<tr>
+<td>
+Bezklientowe połączenie SSL
+</td>
 </tr>
 </tbody>
 </table>
@@ -1367,6 +1530,68 @@ R2#</code></pre>
 <p>Brama VPN enkapsuluje i szyfruje ruch wychodzący dla całego ruchu z określonej witryny. Następnie przesyła ruch przez tunel VPN przez Internet do bramy VPN w miejscu docelowym. Po odebraniu, odbierająca brama VPN usuwa nagłówki, odszyfrowuje zawartość i przekazuje pakiet do hosta docelowego w swojej sieci prywatnej.</p>
 <p>Sieci VPN typu lokacja-lokacja są zwykle tworzone i zabezpieczane przy użyciu zabezpieczeń <strong>IP (IPsec)</strong>.</p>
 <h3 id="gre-przez-ipsec">2.4. GRE przez IPsec</h3>
+<p><strong>Generic Routing Encapsulation (GRE)</strong> - niezabezpieczony protokół tunelowania VPN typu lokacja-lokacja.</p>
+<p><strong>Hermetyzacja GRE</strong> - to proces enkaspulaji ruchu protokołu routingu przy użyciu pakietu GRE, a następnie enkapsulacji pakietu GRE w pakiet IPsec, aby bezpieczecznie przesłać go docelowej bramy. Rozwiązuje to problem nie możności tworzenia bezpiecznych tuneli dla ruchu innego typu niż unicast w standardowej sieci VPN IPSec, co sprawia że protokołu routingu nie mogę wymieniać informacji o routingu.</p>
+<figure>
+<img src="img/8.2.4.png" alt="" /><figcaption>Hermetyzacja GRE</figcaption>
+</figure>
+<p><strong>Terminy do opsiu hermetyzacji GRE:</strong></p>
+<ul>
+<li><strong>Protokół pasażera</strong> - oryginalny pakiet, który ma być hermetyzowany przez GRE. Może to być pakiet IPv4 lub IPv6, aktualizacja routingu i nie tylko.</li>
+<li><strong>Protokół przewoźnika</strong> - GRE jest protokołem przewoźnika, który obudowuje oryginalny pakiet pasażerski.</li>
+<li><strong>Protokół transportowy</strong> - protokół, który faktycznie będzie używany do przekazywania pakietu. Może to być IPv4 lub IPv6.</li>
+</ul>
+<h2 id="dynamiczne-wielopunktowe-sieci-vpn">2.5. Dynamiczne wielopunktowe sieci VPN</h2>
+<p><strong>Dynamic Multipoint VPN (DMVPN)</strong> - oprogramowanie Cisco tworzoące wiele sici VPN w łatwy, dynamiczny i skalowalny sposób. DMVPN polega na IPSec.</p>
+<h2 id="interfejs-wirtualnego-tunelu-ipsec">2.6. Interfejs wirtualnego tunelu IPsec</h2>
+<p><strong>IPsec Virtual Tunnel Interface (VTI)</strong> upraszcza proces konfiguracji wymagany do obsługi wielu lokalizacji i zdalnego dostępu. Konfiguracje IPsec VTI są stosowane do interfejsu wirtualnego zamiast statycznego mapowania sesji IPsec na interfejs fizyczny. Obsługuje ruch unicast i multicast, więc konfigurowanie tuneli GRE nie jest konieczne.</p>
+<h2 id="dostawca-usług-mpls-vpn">2.7. Dostawca usług MPLS VPN</h2>
+<p>Typy rozwiązań MPLS VPN obsługiwanych przez dostawców usług:</p>
+<ul>
+<li><strong>MPLS VPN Warstwy 3</strong> - Dostawca usług uczestniczy w kierowaniu klientów przez ustanowienie komunikacji równorzędnej między routerami klienta i routerami dostawcy. Następnie trasy klientów odebrane przez router dostawcy są następnie ponownie dystrybuowane przez sieć MPLS do zdalnych lokalizacji klienta.</li>
+<li><strong>MPLS VPN Warstwy 2</strong> - Usługodawca nie jest zaangażowany w routingu klienta. Zamiast tego dostawca wdraża usługę wirtualnej prywatnej sieci LAN (VPLS), aby emulować wielodostępny segment sieci LAN Ethernet w sieci MPLS. W tym rozwiązaniu nie ma routingu. Routery klienta faktycznie należą do tej samej sieci wielodostępowej.</li>
+</ul>
+<h2 id="ipsec">3. IPSec</h2>
+<h3 id="technologie-ipsec">3.1. Technologie IPSec</h3>
+<p><strong>IPsec</strong> to standard IETF (RFC 2401-2412), który definiuje sposób zabezpieczenia VPN w sieciach IP. IPsec chroni i uwierzytelnia pakiety IP między źródłem a miejscem docelowym. IPsec może chronić ruch z warstw od 4 do 7.</p>
+<p><strong>IPSec zapewnia funkcje bezpieczeństwa tj.:</strong></p>
+<ul>
+<li><strong>Poufność</strong> - wykorzystuje algorytmy szyfrowania. (DES,3DES,AES,SEAL)</li>
+<li><strong>Integralność</strong> - wykorzystuje algorytmy mieszania. (MD5,SHA)</li>
+<li><strong>Uwierzytelnianie pochodzenia</strong> - używa protokołu Internet Key Exchange (IKE) do uwierzytelniania źródła i miejsca docelowego</li>
+<li><strong>Diffie-Hellman</strong> - bezpieczna wymiana kluczy zazwyczaj różne grupy algorytmu DH.</li>
+</ul>
+<h3 id="wybory-dotyczące-ipsec">3.2. Wybory dotyczące IPSec</h3>
+<h4 id="enkapsuacja-protokołu-ipsec">3.2.1. Enkapsuacja protokołu IPsec</h4>
+<p>IPSec enkapsuluje pakiety przy użyciu <strong>nagłówka uwierzytelniania (AH)</strong> lub protokołu <strong>Encapsulation Security Protocol (ESP)</strong>.</p>
+<h5 id="nagłówek-uwierzytelniania-ah">3.2.1.1. Nagłówek uwierzytelniania (AH)</h5>
+<p>Jest odpowiednie tylko wtedy, gdy <strong>poufność nie jest wymagana lub dozwolona</strong>. Zapewnia uwierzytelnianie i integralność danych, ale nie zapewnia poufności danych (szyfrowania). Cały tekst jest przesyłany w postaci niezaszyfrowanej.</p>
+<h5 id="encapsulation-security-protocol-esp">3.2.1.2. Encapsulation Security Protocol (ESP)</h5>
+<p>Zapewnia poufność i uwierzytelnianie. Szyfruje pakiety IP i zapewnia uwierzytelnianie wewnętrznego pakiet IP I nagłówka ESP. Szyfrowanie i uwierzytelnianie są opcjonalne, ale przynajmniej jedno musi być wybrane.</p>
+<h3 id="poufność">3.2.2. Poufność</h3>
+<ul>
+<li>DES</li>
+<li>3DES</li>
+<li>AES</li>
+<li>SEAL</li>
+</ul>
+<h3 id="integralność">3.2.3. Integralność</h3>
+<ul>
+<li>MD5</li>
+<li>SHA</li>
+</ul>
+<h3 id="uwierzytelnianie">3.2.4. Uwierzytelnianie</h3>
+<ul>
+<li><strong>PSK (udostępniony tajny klucz)</strong> - wymaga ręcznego wprowadzenia klucza do każdego partnera, a zatem jest słabo skalowalny.</li>
+<li><strong>RSA (Rivest, Shamir, Adleman)</strong> - wykorzystuje certyfikaty cyfrowe do uwierzytelniania peerów.</li>
+</ul>
+<h3 id="diffie-hellman">3.2.5. Diffie-Hellman</h3>
+<p>Istnieją różne sposoby wymiany klucza DH. Wariacje te określane są jako grupy:</p>
+<ul>
+<li><strong>Grupy DH 1, 2 i 5</strong> nie powinny być już używane.</li>
+<li><strong>Grupy DH 14, 15 i 16</strong> używane do 2030 roku.</li>
+<li><strong>Grupy DH 19, 20, 21 i 24</strong> - Grupa 24 jest preferowana.</li>
+</ul>
 <h1 id="ix.-koncepcje-qos">IX. Koncepcje QoS</h1>
 <h2 id="stałe-opóźnienie">1. Stałe opóźnienie</h2>
 <p>To określony czas, jaki trwa określony proces, na przykład czas potrzebnny na umieszczenie go na nośniku transmisji.</p>

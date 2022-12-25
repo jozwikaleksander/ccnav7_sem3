@@ -887,7 +887,13 @@ NAT dla IPv6 jest wykorzystywany w całkowicie odmiennym kontekście niż NAT dl
 
 ### 1.1 Różnice między LAN i WAN
 
-![Różnice między LAN i WAN](img/7.1.png)
+| Sieci LAN | Sieci WAN |
+|---|---|
+| Sieci LAN zapewniają usługi sieciowe na małym obszarze geograficznym (tj., sieć domowa, sieć biurowa, sieć budynku lub sieć kampusu). | Sieci WAN świadczą usługi sieciowe na dużych obszarach geograficznych (tj. w i między miastami, krajami i kontynentami). |
+| Sieci LAN są używane do łączenia komputerów lokalnych, urządzeń peryferyjnych i innych urządzeń. | Sieci WAN służą do łączenia użytkowników zdalnych, sieci i lokalizacji. |
+| Sieć LAN jest własnością i zarządzana przez organizację lub użytkownika domowego. | Sieci WAN są własnością i zarządzane przez dostawców usług internetowych, telefonicznych, kablowych i satelitarnych. |
+| Poza kosztami infrastruktury sieciowej nie ma opłaty za korzystanie z sieci LAN. | Usługi WAN oferowane są za dodatkową opłatą. |
+| Sieci LAN zapewniają dużą szerokość pasma dzięki przewodowej sieci Ethernet i Wi-Fi . | Dostawcy sieci WAN oferują od niskich do dużych szerokości pasma na duże odległości za pomocą złożonych sieci fizycznych. |
 
 ### 1.2. Prywatne i publiczne sieci WAN
 
@@ -970,11 +976,53 @@ Nowoczesne standardy sieci WAN są definiowane i zarządzane przez wiele uznanyc
 
 ### 2.3. Terminologia WAN
 
-![Terminologia WAN](img/17.png)
+| Termin sieci WAN | Opis |
+|---|---|
+| Urządzenie końcowe (Data Terminal Equipment - DTE) | Jest to urządzenie, które łączy sieci LAN abonenta z urządzeniem komunikacyjnym WAN (tj. DCE). Hosty wewnętrzne wysyłają swój ruch do urządzenia DTE. DTE łączy się z pętlą lokalną przez DCE. Urządzenie DTE jest zwykle routerem, ale może być hostem lub serwerem. |
+| Urządzenie komunikacyjne (Data Communications Equipment - DCE) | Zwany również sprzętem kończącym obwód danych, jest to urządzenie wykorzystywane do komunikowania się z dostawcą. Urządzenie DCE zapewniają możliwość podłączenia abonenta do łącza komunikacyjnego w chmury WAN. |
+| Urządzenia końcowe użytkownika (Customer Premises Equipment - CPE) | Są to urządzenia DTE i DCE (tj. router, modem, optyczny konwerter) znajduje się na krawędzi przedsiębiorstwa. Abonent jest właścicielem wyposażenia CPE lub dzierżawi je od dostawcy usług. |
+| Punkt obecności (Point-of-Presence - POP) | Jest to punkt, w którym abonent łączy się z usługą dostawcy usług. |
+| Punkt graniczny (punkt demarkacyjny) | Jest to fizyczna lokalizacja w budynku lub kompleksu, który oficjalnie oddziela CPE od sprzętu dostawcy usług. Punktem rozgraniczenia jest zazwyczaj skrzynka przyłączeniowa okablowania, znajdująca się na terenie abonenta, który łączy okablowanie CPE do lokalnej pętli. Identyfikuje lokalizację, w której odpowiedzialność za działanie sieci zmienia się z abonenta na usługodawcę. Kiedy pojawiają się problemy, konieczne jest ustalenie, czy użytkownik lub dostawca usług jest odpowiedzialny za rozwiązywanie problemów lub naprawę. |
+| Pętla lokalna (lub ostatnia mila) | To jest rzeczywisty kabel miedziany lub światłowodowy, z którym łączy się CPE do CO usługodawcy. |
+| Biuro centralne (Central Office - CO) | Jest to lokalny obiekt usługodawcy lub budynek, który łączy CPE z siecią dostawcy. |
+| Sieć płatna | Obejmuje to dostępowe, długodystansowe, w pełni cyfrowe, światłowodowe linie komunikacyjne, przełączniki, routery i inne urządzenia wewnątrz sieć dostawcy WAN. |
+| Sieć dostępowa | (Nie pokazano) Sieci dostepowe łączą wiele węzłów dostępu do sieci dostawcy usług. Sieci dostępowe mogą rozciągać się na gminy, województwa i regiony. Sieci dostępowe są również połączone z dostawcami usług internetowych i do sieci szkieletowej. |
+| Sieć szkieletowa | (Nie pokazano) Są to duże sieci o dużej pojemności wykorzystywane do łączenia sieci dostawcy usług i tworzenia nadmiarowych sieci. Inni usługodawcy mogą łączyć się bezpośrednio z szkieletem lub przez innego usługodawcę. Dostawcy usług sieci szkieletowych są również nazywani dostawcami pierwszego poziomu. |
 
 ### 2.4. Urządzenia sieci WAN
 
-![Urządzenia sieci WAN](img/18.png)
+<table>
+<thead>
+<tr>
+    <th colspan="2">Urządzenia sieci WAN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <td rowspan="5">VPN typu lokacja-lokacja</td>
+    <td>IPsec VPN</td>
+  </tr>
+  <tr>
+    <td>GRE przez IPsec</td>
+  </tr>
+  <tr>
+    <td>Cisco Dynamic Multipoint Virtual Private Network (DMVPN)</td>
+  </tr>
+  <tr>
+    <td>Interfejs wirtualnego tunelu IPsec (VTI)</td>
+  </tr>
+  <tr>
+    <td>Połączenie VPN IPsec oparte na kliencie</td>
+  </tr>
+  <tr>
+    <td rowspan="2">VPN dostępu zdalnego</td>
+    <td>Połączenie VPN IPsec oparte na kliencie</td>
+  </tr>
+  <tr>
+    <td>Bezklientowe połączenie SSL</td>
+  </tr>
+</tbody>
+</table>
 
 ### 2.5. Komunikacja szeregowa
 Przesyła bity sekwencyjnie na jednym kanale. Prawie cała komunikacja sieciowa odbywa się za jej pomocą.
@@ -1232,15 +1280,38 @@ Jest to powszechne rozwiązanie dla ruchu w przedsiębiorstwie.
 
 Typy wdrożeń VPN:
 
-|                                                                                     |
-|--------------------------|----------------------------------------------------------|
-| VPN typu lokacja-lokacja | IPsec VPN                                                |
-|                          | GRE przez IPsec                                          |
-|                          | Cisco Dynamic Multipoint Virtual Private Network (DMVPN) |
-|                          | Interfejs wirtualnego tunelu IPsec (VTI)                 |
-|                          | Połączenie VPN IPsec oparte na kliencie                  |
-| VPN dostępu zdalnego     | Połączenie VPN IPsec oparte na kliencie                  |
-|                          | Bezklientowe połączenie SSL                              |
+<table>
+<thead>
+  <tr>
+    <th colspan="2">Typy wdrożeń VPN</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td rowspan="5">VPN typu lokacja-lokacja</td>
+    <td>IPsec VPN</td>
+  </tr>
+  <tr>
+    <td>GRE przez IPsec</td>
+  </tr>
+  <tr>
+    <td>Cisco Dynamic Multipoint Virtual Private Network (DMVPN)</td>
+  </tr>
+  <tr>
+    <td>Interfejs wirtualnego tunelu IPsec (VTI)</td>
+  </tr>
+  <tr>
+    <td>Połączenie VPN IPsec oparte na kliencie</td>
+  </tr>
+  <tr>
+    <td rowspan="2">VPN dostępu zdalnego</td>
+    <td>Połączenie VPN IPsec oparte na kliencie</td>
+  </tr>
+  <tr>
+    <td>Bezklientowe połączenie SSL</td>
+  </tr>
+</tbody>
+</table>
 
 ### 1.4.2. Sieci dostawców usług
 Są tworzone i zarządzane przez sieć dostawcy. Używa **Mutliprotocol Label Switching (MPLS)** w warstwie 2 lub warstwie 3.  **MPLS** to technologia routingu używana przez dostawcę do tworzenia wirtualnych ścieżek między lokacjami. To skutecznie oddziela ruch od innych klientów.
@@ -1278,7 +1349,77 @@ Sieci VPN typu lokacja-lokacja są zwykle tworzone i zabezpieczane przy użyciu 
 
 ### 2.4. GRE przez IPsec
 
+**Generic Routing Encapsulation (GRE)** - niezabezpieczony protokół tunelowania VPN typu lokacja-lokacja.
 
+**Hermetyzacja GRE** - to proces enkaspulaji ruchu protokołu routingu przy użyciu pakietu GRE, a następnie enkapsulacji pakietu GRE w pakiet IPsec, aby bezpieczecznie przesłać go docelowej bramy. Rozwiązuje to problem nie możności tworzenia bezpiecznych tuneli dla ruchu innego typu niż unicast w standardowej sieci VPN IPSec, co sprawia że protokołu routingu nie mogę wymieniać informacji o routingu.
+
+![Hermetyzacja GRE](img/8.2.4.png)
+
+**Terminy do opsiu hermetyzacji GRE:**
+
+- **Protokół pasażera** - oryginalny pakiet, który ma być hermetyzowany przez GRE. Może to być pakiet IPv4 lub IPv6, aktualizacja routingu i nie tylko.
+- **Protokół przewoźnika** - GRE jest protokołem przewoźnika, który obudowuje oryginalny pakiet pasażerski.
+- **Protokół transportowy** - protokół, który faktycznie będzie używany do przekazywania pakietu. Może to być IPv4 lub IPv6.
+
+## 2.5. Dynamiczne wielopunktowe sieci VPN
+
+**Dynamic Multipoint VPN (DMVPN)** - oprogramowanie Cisco tworzoące wiele sici VPN w łatwy, dynamiczny i skalowalny sposób. DMVPN polega na IPSec.
+
+## 2.6. Interfejs wirtualnego tunelu IPsec
+
+**IPsec Virtual Tunnel Interface (VTI)** upraszcza proces konfiguracji wymagany do obsługi wielu lokalizacji i zdalnego dostępu. Konfiguracje IPsec VTI są stosowane do interfejsu wirtualnego zamiast statycznego mapowania sesji IPsec na interfejs fizyczny. Obsługuje ruch unicast i multicast, więc konfigurowanie tuneli GRE nie jest konieczne.
+
+## 2.7. Dostawca usług MPLS VPN
+
+Typy rozwiązań MPLS VPN obsługiwanych przez dostawców usług:
+
+- **MPLS VPN Warstwy 3** - Dostawca usług uczestniczy w kierowaniu klientów przez ustanowienie komunikacji równorzędnej między routerami klienta i routerami dostawcy. Następnie trasy klientów odebrane przez router dostawcy są następnie ponownie dystrybuowane przez sieć MPLS do zdalnych lokalizacji klienta.
+- **MPLS VPN Warstwy 2** - Usługodawca nie jest zaangażowany w routingu klienta. Zamiast tego dostawca wdraża usługę wirtualnej prywatnej sieci LAN (VPLS), aby emulować wielodostępny segment sieci LAN Ethernet w sieci MPLS. W tym rozwiązaniu nie ma routingu. Routery klienta faktycznie należą do tej samej sieci wielodostępowej.
+
+## 3. IPSec
+
+### 3.1. Technologie IPSec
+
+**IPsec** to standard IETF (RFC 2401-2412), który definiuje sposób zabezpieczenia VPN w sieciach IP. IPsec chroni i uwierzytelnia pakiety IP między źródłem a miejscem docelowym. IPsec może chronić ruch z warstw od 4 do 7.
+
+**IPSec zapewnia funkcje bezpieczeństwa tj.:**
+
+- **Poufność** - wykorzystuje algorytmy szyfrowania. (DES,3DES,AES,SEAL)
+- **Integralność** - wykorzystuje algorytmy mieszania. (MD5,SHA)
+- **Uwierzytelnianie pochodzenia** - używa protokołu Internet Key Exchange (IKE) do uwierzytelniania źródła i miejsca docelowego
+- **Diffie-Hellman** - bezpieczna wymiana kluczy zazwyczaj różne grupy algorytmu DH.
+
+### 3.2. Wybory dotyczące IPSec
+
+#### 3.2.1. Enkapsuacja protokołu IPsec
+IPSec enkapsuluje pakiety przy użyciu **nagłówka uwierzytelniania (AH)** lub protokołu **Encapsulation Security Protocol (ESP)**.
+
+##### 3.2.1.1. Nagłówek uwierzytelniania (AH)
+Jest odpowiednie tylko wtedy, gdy **poufność nie jest wymagana lub dozwolona**. Zapewnia uwierzytelnianie i integralność danych, ale nie zapewnia poufności danych (szyfrowania). Cały tekst jest przesyłany w postaci niezaszyfrowanej.
+
+##### 3.2.1.2. Encapsulation Security Protocol (ESP)
+Zapewnia poufność i uwierzytelnianie. Szyfruje pakiety IP i zapewnia uwierzytelnianie wewnętrznego pakiet IP I nagłówka ESP. Szyfrowanie i uwierzytelnianie są opcjonalne, ale przynajmniej jedno musi być wybrane.
+
+### 3.2.2. Poufność
+- DES
+- 3DES
+- AES
+- SEAL
+
+### 3.2.3. Integralność
+- MD5
+- SHA
+
+### 3.2.4. Uwierzytelnianie
+- **PSK (udostępniony tajny klucz)** - wymaga ręcznego wprowadzenia klucza do każdego partnera, a zatem jest słabo skalowalny.
+- **RSA (Rivest, Shamir, Adleman)** - wykorzystuje certyfikaty cyfrowe do uwierzytelniania peerów.
+
+### 3.2.5. Diffie-Hellman
+Istnieją różne sposoby wymiany klucza DH. Wariacje te określane są jako grupy:
+
+- **Grupy DH 1, 2 i 5** nie powinny być już używane.
+- **Grupy DH 14, 15 i 16** używane do 2030 roku.
+- **Grupy DH 19, 20, 21 i 24** - Grupa 24 jest preferowana.
 
 # IX. Koncepcje QoS
 
