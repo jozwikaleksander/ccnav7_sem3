@@ -1,6 +1,6 @@
 # 📝 CCNA
 
-My notes from CCNAv7 sem3.
+My notes from CCNAv7 sem3 (written in 🇵🇱).
 
 ## 📜 Table of contents
 
