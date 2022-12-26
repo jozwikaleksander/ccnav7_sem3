@@ -2,7 +2,8 @@ $("document").ready(() => {
   const toc = $('#TOC')[0];
   const tocMenu = toc.cloneNode(true);
   tocMenu.classList.add("toc-menu");
-  tocMenu.classList.remove("toc");
+  tocMenu.removeAttribute("id");
+  tocMenu.removeAttribute("role");
   tocMenu.classList.add("disabled");
   document.body.appendChild(tocMenu);
 
@@ -29,7 +30,7 @@ $("document").ready(() => {
   menu.appendChild(tocBtn);
 
   $(window).scroll(function () {
-    if ($(window).scrollTop() > 300) {
+    if ($(window).scrollTop() > 3000) {
       $(".scroll-button").removeClass("disabled");
     } else {
       $(".scroll-button").addClass("disabled");

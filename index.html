@@ -1097,6 +1097,9 @@ R2#</code></pre>
 <img src="img/16.png" alt="" /><figcaption>Sieci WAN w modelu OSI</figcaption>
 </figure>
 <h3 id="terminologia-wan">2.3. Terminologia WAN</h3>
+<figure>
+<img src="img/7.2.3.png" alt="" /><figcaption>Terminologia WAN</figcaption>
+</figure>
 <table>
 <colgroup>
 <col style="width: 50%" />
@@ -1152,55 +1155,44 @@ R2#</code></pre>
 </tbody>
 </table>
 <h3 id="urządzenia-sieci-wan">2.4. Urządzenia sieci WAN</h3>
+<figure>
+<img src="img/7.2.4.png" alt="" /><figcaption>Urządzenia sieci WAN</figcaption>
+</figure>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
-<th colspan="2">
-Urządzenia sieci WAN
-</th>
+<tr class="header">
+<th>Urządzenie sieci WAN</th>
+<th>Opis</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td rowspan="5">
-VPN typu lokacja-lokacja
-</td>
-<td>
-IPsec VPN
-</td>
+<tr class="odd">
+<td>Modem analogowy</td>
+<td>Znany również jako modem dial-up. Przestarzałe urządzenie, które przekształcało (tj. modulowało) sygnały cyfrowe produkowane przez komputer na analogowe częstotliwości głosowe. Używa linii telefonicznych do przesyłania danych.</td>
 </tr>
-<tr>
-<td>
-GRE przez IPsec
-</td>
+<tr class="even">
+<td>Modem DSL i Modem kablowy</td>
+<td>Te szybkie modemy cyfrowe, znane pod wspólną nazwą modemy szerokopasmowe łączą się z routerem DTE za pomocą sieci Ethernet. Modemy DSL łączą się z siecią WAN za pomocą linii telefonicznych. Modemy kablowe łączą się z siecią WAN za pomocą linii koncentrycznych. Oba działają w podobny sposób jak modem analogowy, ale używają wyższych częstotliwości i prędkości transmisji.</td>
 </tr>
-<tr>
-<td>
-Cisco Dynamic Multipoint Virtual Private Network (DMVPN)
-</td>
+<tr class="odd">
+<td>CSU/DSU</td>
+<td>Cyfrowe łącza dzierżawione potrzebują urządzeń CSU i DSU. Łączy urządzenie cyfrowe z linią cyfrową. Urządzenie CSU/DSU może być zarówno modemem jak i specjalnym interfejsem montowanym w routerze. CSU zapewnia zakończenie sygnału cyfrowego i zapewnia integralność połączenia poprzez korektę błędów i monitorowanie linii. DSU zaś, konwertuje sygnały pochodzące z sieci operatorskiej na ramki zrozumiałe dla urządzeń sieci LAN i odwrotnie.</td>
 </tr>
-<tr>
-<td>
-Interfejs wirtualnego tunelu IPsec (VTI)
-</td>
+<tr class="even">
+<td>Konwerter optyczny</td>
+<td>Znany również jako konwerter światłowodowy. Urządzenia te łączą światłowody do mediów miedzianych i konwertują sygnały optyczne do impulsów elektronicznych.</td>
 </tr>
-<tr>
-<td>
-Połączenie VPN IPsec oparte na kliencie
-</td>
+<tr class="odd">
+<td>Router bezprzewodowy lub punkt dostępu</td>
+<td>Urządzenia służą do bezprzewodowego łączenia się z dostawcą WAN. Routery mogą również korzystać z bezprzewodowej łączności komórkowej.</td>
 </tr>
-<tr>
-<td rowspan="2">
-VPN dostępu zdalnego
-</td>
-<td>
-Połączenie VPN IPsec oparte na kliencie
-</td>
-</tr>
-<tr>
-<td>
-Bezklientowe połączenie SSL
-</td>
+<tr class="even">
+<td>Urządzenia szkieletowe sieci WAN</td>
+<td>Sieć WAN składa się z wielu szybkich routerów i przełączników warstwy 3. Router lub przełącznik wielowarstwowy musi być w stanie obsługiwać wiele interfejsów telekomunikacyjnych o najwyższej prędkości stosowane w szkielecie sieci WAN. Musi także być w stanie przekazywać pakiety IP z pełną prędkością na wszystkich tych interfejsach. Router lub przełącznik wielowarstwowy również musi obsługiwać protokoły routingu używane w szkielecie.</td>
 </tr>
 </tbody>
 </table>

@@ -972,6 +972,8 @@ Nowoczesne standardy sieci WAN są definiowane i zarządzane przez wiele uznanyc
 
 ### 2.3. Terminologia WAN
 
+![Terminologia WAN](img/7.2.3.png)
+
 | Termin sieci WAN | Opis |
 |---|---|
 | Urządzenie końcowe (Data Terminal Equipment - DTE) | Jest to urządzenie, które łączy sieci LAN abonenta z urządzeniem komunikacyjnym WAN (tj. DCE). Hosty wewnętrzne wysyłają swój ruch do urządzenia DTE. DTE łączy się z pętlą lokalną przez DCE. Urządzenie DTE jest zwykle routerem, ale może być hostem lub serwerem. |
@@ -987,38 +989,16 @@ Nowoczesne standardy sieci WAN są definiowane i zarządzane przez wiele uznanyc
 
 ### 2.4. Urządzenia sieci WAN
 
-<table>
-<thead>
-<tr>
-    <th colspan="2">Urządzenia sieci WAN</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-    <td rowspan="5">VPN typu lokacja-lokacja</td>
-    <td>IPsec VPN</td>
-  </tr>
-  <tr>
-    <td>GRE przez IPsec</td>
-  </tr>
-  <tr>
-    <td>Cisco Dynamic Multipoint Virtual Private Network (DMVPN)</td>
-  </tr>
-  <tr>
-    <td>Interfejs wirtualnego tunelu IPsec (VTI)</td>
-  </tr>
-  <tr>
-    <td>Połączenie VPN IPsec oparte na kliencie</td>
-  </tr>
-  <tr>
-    <td rowspan="2">VPN dostępu zdalnego</td>
-    <td>Połączenie VPN IPsec oparte na kliencie</td>
-  </tr>
-  <tr>
-    <td>Bezklientowe połączenie SSL</td>
-  </tr>
-</tbody>
-</table>
+![Urządzenia sieci WAN](img/7.2.4.png)
+
+| Urządzenie sieci WAN 	| Opis 	|
+|---	|---	|
+| Modem analogowy 	| Znany również jako modem dial-up. Przestarzałe urządzenie, które przekształcało (tj. modulowało) sygnały cyfrowe produkowane przez komputer na analogowe częstotliwości głosowe. Używa linii telefonicznych do przesyłania danych. 	|
+| Modem DSL i Modem kablowy 	| Te szybkie modemy cyfrowe, znane pod wspólną nazwą modemy szerokopasmowe łączą się z routerem DTE za pomocą sieci Ethernet. Modemy DSL łączą się z siecią WAN za pomocą linii telefonicznych. Modemy kablowe łączą się z siecią WAN za pomocą linii koncentrycznych. Oba działają w podobny sposób jak modem analogowy, ale używają wyższych częstotliwości i prędkości transmisji. 	|
+| CSU/DSU 	| Cyfrowe łącza dzierżawione potrzebują urządzeń CSU i DSU. Łączy urządzenie cyfrowe z linią cyfrową. Urządzenie CSU/DSU może być zarówno modemem jak i specjalnym interfejsem montowanym w routerze. CSU zapewnia zakończenie sygnału cyfrowego i zapewnia integralność połączenia poprzez korektę błędów i monitorowanie linii. DSU zaś, konwertuje sygnały pochodzące z sieci operatorskiej na ramki zrozumiałe dla urządzeń sieci LAN i odwrotnie. 	|
+| Konwerter optyczny 	| Znany również jako konwerter światłowodowy. Urządzenia te łączą światłowody do mediów miedzianych i konwertują sygnały optyczne do impulsów elektronicznych. 	|
+| Router bezprzewodowy lub punkt dostępu 	| Urządzenia służą do bezprzewodowego łączenia się z dostawcą WAN. Routery mogą również korzystać z bezprzewodowej łączności komórkowej. 	|
+| Urządzenia szkieletowe sieci WAN 	| Sieć WAN składa się z wielu szybkich routerów i przełączników warstwy 3. Router lub przełącznik wielowarstwowy musi być w stanie obsługiwać wiele interfejsów telekomunikacyjnych o najwyższej prędkości stosowane w szkielecie sieci WAN. Musi także być w stanie przekazywać pakiety IP z pełną prędkością na wszystkich tych interfejsach. Router lub przełącznik wielowarstwowy również musi obsługiwać protokoły routingu używane w szkielecie. 	|
 
 ### 2.5. Komunikacja szeregowa
 Przesyła bity sekwencyjnie na jednym kanale. Prawie cała komunikacja sieciowa odbywa się za jej pomocą.

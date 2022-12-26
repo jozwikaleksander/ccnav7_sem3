@@ -37,6 +37,15 @@ body {
   text-rendering: optimizeLegibility;
   font-kerning: normal;
 }
+
+/* UTILITIES */
+.disabled{
+  opacity: 0 !important;
+  pointer-events: none;
+}
+/* ------ */
+
+/* SCROLLBAR */
 ::-webkit-scrollbar-thumb {
   background: var(--scrollbar-thumb);
   height: 30px;
@@ -49,6 +58,8 @@ body {
 ::-webkit-scrollbar-track-piece {
   background: var(--scrollbar-track);
 }
+/* ------------------------- */
+
 @media (max-width: 600px) {
   body {
     font-size: 0.9em;
@@ -56,6 +67,16 @@ body {
   }
   h1 {
     font-size: 1.8em;
+  }
+}
+@media (max-width:900px){
+  .toc-menu{
+    max-width: 100% !important;
+  }
+}
+@media (max-width:1200px) and (min-width: 900px){
+  .toc-menu{
+    max-width: 80% !important;
   }
 }
 @media print {
@@ -322,7 +343,35 @@ a:hover {
   overflow-y: scroll;
   padding-left:30px;
 }
-.disabled{
-  opacity: 0;
-  pointer-events: none;
+
+.toc-menu li {
+  list-style: none;
+}
+.toc-menu ul {
+  padding-left: 1.3em;
+}
+.toc-menu > ul {
+  padding-left: 0;
+}
+.toc-menu > ul > li > a,
+.toc-menu > ul > li > a:visited {
+  color: var(--green-color);
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+.toc-menu > ul > li > a:hover {
+  color: var(--yellow-color);
+  text-decoration: none;
+}
+.toc-menu a:not(:hover) {
+  text-decoration: none;
+}
+.toc-menu a {
+  color: #bdd;
+  text-decoration: none;
+}
+.toc-menu a:hover,
+.toc-menu a:visited {
+  color: var(--green-color);
+  text-decoration: none;
 }
