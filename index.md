@@ -1421,7 +1421,14 @@ Zajmuje nieokreślony czas i ma wpływ na takie czynniki, jak ilość ruchu któ
 
 ## 3. Źródła opoźnienia
 
-![Źródła opóźnienia](img/19.png)
+| Opóźnienie | Opis |
+|---|---|
+| Opóźnienie kodu | Stała ilość czasu potrzebnego do skompresowania danych u źródła przed przesyłaniem do pierwszego urządzenia sieciowego, zwykle przełącznika. |
+| Opóźnienie pakietowania | Stała ilość czasu potrzebna do enkapsulacji pakietu. |
+| Opóźnienie kolejkowania | Zmienna ilość czasu, w którym ramka lub pakiet czeka na przesyłanie na łaczu. |
+| Opóźnienie serializacji | Stała ilość czasu potrzebnego do przesłania ramki przez okablowanie. |
+| Opóźnienie propagacji | Zmienna ilość czasu potrzebna na przejście ramki między nadawcą a odbiorcą. |
+| Opóźnienie eliminacji jittera | Stała ilość czasu potrzebna na zbuforowanie przepływu pakietów, a następnie wysłanie ich w równych odstępach czasu. |
 
 ## 4. Jitter
 
@@ -1433,7 +1440,7 @@ Bez żadnych mechanizmów QoS pakiety są przetwarzane w kolejności, w jakiej z
 
 ## 6. Bufor opóźnienia
 
-Mechanizm kompensujący napotkany przez router jitter. Musi on burforować pakiety, a następnie odtwarzać je w stały strumieniu. Pakiety cyfrowe są późnień konwertowane na analogowy strumień audio.
+Mechanizm kompensujący napotkany przez router **jitter**. Musi on burforować pakiety, a następnie odtwarzać je w stały strumieniu. Pakiety cyfrowe są późnień konwertowane na analogowy strumień audio.
 
 ![Bufor opóźnienia odtwarzania kompensuje jitter](img/20.png)
 
@@ -1441,19 +1448,96 @@ W przypadku małym strat (jak pakiet) **cyfrowy procesor sygnałowy (DSP)** inte
 
 ## 7. Charakterystyka ruchu głosowego
 
-![Charakterystyka ruchu głosowego](img/21.png)
+<table>
+<thead>
+  <tr>
+    <th>Charakterystyka ruchu głosowego</th>
+    <th>Wymagania jednokierunkowe</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>
+      <ul>
+        <li>Płynny</li>
+        <li>Łagodny</li>
+        <li>Wrażliwy na przerwania</li>
+        <li>Wrażliwy na opóźnienia</li>
+        <li>Priorytet UDP</li>
+      </ul>
+    </td>
+    <td>
+      <ul>
+        <li>Opóźnienie ≤ 150 ms</li>
+        <li>Jitter ≤ 30 ms</li>
+        <li>Strata ≤ 1% przepustowości (30 - 128 Kb/s)</li>
+      </ul>
+    </td>
+  </tr>
+</tbody>
+</table>
 
 ## 8. Charakterystyka ruchu wideo
 
-![Charakterystyka ruchu wideo](img/22.png)
+<table>
+<thead>
+  <tr>
+    <th>Charakterystyka ruchu wideo</th>
+    <th>Wymagania jednokierunkowe</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>
+      <ul>
+        <li>Gwałtowny</li>
+        <li>Zachłanny</li>
+        <li>Wrażliwy na przerwania</li>
+        <li>Wrażliwy na opóźnienia</li>
+        <li>Priorytet UDP</li>
+      </ul>
+    </td>
+    <td>
+      <ul>
+        <li>Opóźnienie ≤ 200 - 400 ms</li>
+        <li>Jitter ≤ 30 - 50 ms</li>
+        <li>Strata ≤ 0,1 - 1%</li>
+        <li>Przepustowość 384 Kb/s -> 20 Mb/s</li>
+      </ul>
+    </td>
+  </tr>
+</tbody>
+</table>
 
 ## 9. Charakterystyka ruchu danych
 
-![Charakterystyka ruchu danych](img/23.png)
+<table>
+<thead>
+  <tr>
+    <th>Charakterystyka ruchu danych</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>
+      <ul>
+        <li>Płynny / Gwałtowny</li>
+        <li>Łagodny / Zachłanny</li>
+        <li>Wrażliwy na przerwania</li>
+        <li>Wrażliwy na opóźnienia</li>
+        <li>Retransmisje TCP</li>
+      </ul>
+    </td>
+  </tr>
+</tbody>
+</table>
 
 ## 10. Czynniki, które należy wziąć pod uwagę w przypadku opóźnienia danych
 
-![Czynniki, które należy wziąć pod uwagę w przypadku opóźnienia danych](img/24.png)
+| Parametr | Krytyczne | Nie krytyczne |
+|---|---|---|
+| Interaktywne | Ustala priorytety dla najmniejszego opóźnienia w całym ruchu danych i stara się uzyskać 1 do 2 sekund czasu reakcji. | Aplikacje mogłyby skorzystać na mniejszym opóźnieniu. |
+| Nie interaktywne | Opóźnienie może się znacznie różnić, o ile zapewniona jest niezbędna minimalna przepustowość. | Pobiera pozostałą przepustowość po spełnieniu wszystkich potrzeb związanych z obsługą głosu, wideo i innych d |
 
 ## 11. Algorytmy QoS
 
@@ -1464,7 +1548,7 @@ W przypadku małym strat (jak pakiet) **cyfrowy procesor sygnałowy (DSP)** inte
 - Uczciwe kolejkowanie oCzęśće na klasach (Class-Based Weighted Fair Queuing - CBWFQ)
 - Kolejkowanie o niskim opóźnieniu (Low Latency Queuing - LLQ)
 
-## 12. First In First Out
+## 12. First In First Out (FIFO)
 
 Znana również jako **„kto pierwszy, ten lepszy”**, bufory i pakiety przesyłek dalej w kolejności ich przybycia.
 
@@ -1485,6 +1569,9 @@ WFQ klasyfikuje ruch na różne przepływy w oparciu o adresowanie nagłówków 
 ## 14. Uczciwe kolejkowanie oparte na klasach (Class-Based Weighted Fair Queuing - CBWFQ)
 
 **Class-Based Weighted Fair Queuing (CBWFQ)** rozszerza standardową funkcjonalność WFQ, aby zapewnić obsługę klas ruchu zdefiniowanych przez użytkownika. Za pomocą CBWFQ definiujesz klasy ruchu na podstawie kryteriów dopasowania, w tym protokołów, list kontroli dostępu (ACL) i interfejsów wejściowych.
+
+## 15. Tail drop (porzucenie ogona)
+Algorytm zarządzania kolejką polegającym na tym, że router odrzuca każdy pakiet docierający na koniec kolejki kiedy całkowicie wykorzystał swoje zasoby przechowywania pakietów. Tail drop to domyślna odpowiedź kolejkowania na przeciążenie, traktuje jednakowo cały ruch i nie rozróżnia klas usług. 
 
 ## 15. Kolejkowanie o niskim opóźnieniu (Low Latency Queuing - LLQ)
 **Funkcja kolejki o niskim opóźnieniu (LLQ)** zapewnia ścisłe kolejkowanie priorytetowe (PQ) do CBWFQ. Ścisłe PQ umożliwia wysyłanie pakietów wrażliwych na opóźnienia, takich jak głos przed pakietami w innych kolejkach. LLQ zapewnia ścisłą kolejkę priorytetową dla CBWFQ, zmniejszając drgania w rozmowach głosowych.
@@ -1507,9 +1594,9 @@ Model best-effort jest podobny w koncepcji do wysyłania listu za pomocą zwykł
 
 ## 18. IntServ
 
-IntServ zapewnia kompleksową QoS, której wymagają aplikacje czasu rzeczywistego. IntServ jawnie zarządza zasobami sieciowymi, aby zapewnić QoS dla poszczególnych przepływów lub strumieni, czasami nazywanych mikroprzepływami. Wykorzystuje mechanizmy rezerwacji zasobów i kontroli dostępu jako elementy składowe do ustanowienia i utrzymania jakości usług. Jest to podobne do koncepcji znanej jako „twarde QoS”. Twarde QoS gwarantuje charakterystykę ruchu, taką jak przepustowość, opóźnienia i współczynniki utraty pakietów, od początku do końca. Twarde QoS zapewnia zarówno przewidywalne, jak i gwarantowane poziomy usług dla aplikacji o znaczeniu krytycznym.
+IntServ zapewnia kompleksową QoS, której wymagają aplikacje czasu rzeczywistego. IntServ jawnie zarządza zasobami sieciowymi, aby zapewnić QoS dla poszczególnych przepływów lub strumieni, czasami nazywanych **mikroprzepływami**. Wykorzystuje mechanizmy rezerwacji zasobów i kontroli dostępu jako elementy składowe do ustanowienia i utrzymania jakości usług. Jest to podobne do koncepcji znanej jako „twarde QoS”. Twarde QoS gwarantuje charakterystykę ruchu, taką jak przepustowość, opóźnienia i współczynniki utraty pakietów, od początku do końca. Twarde QoS zapewnia zarówno przewidywalne, jak i gwarantowane poziomy usług dla aplikacji o znaczeniu krytycznym.
 
-W modelu IntServ aplikacja przed wysłaniem danych żąda określonego rodzaju usługi z sieci. Aplikacja informuje sieć o swoim profilu ruchu i żąda określonego rodzaju usługi, która może obejmować wymagania dotyczące przepustowości i opóźnień. IntServ używa protokołu Resource Reservation Protocol (RSVP) do sygnalizowania zapotrzebowania na QoS ruchu aplikacji wzdłuż urządzeń na ścieżce od końca do końca w sieci. Jeśli urządzenia sieciowe na ścieżce mogą zarezerwować niezbędną przepustowość, pierwotna aplikacja może rozpocząć transmisję. Jeśli żądana rezerwacja nie powiedzie się na ścieżce, aplikacja źródłowa nie wysyła żadnych danych.
+W modelu IntServ aplikacja przed wysłaniem danych żąda określonego rodzaju usługi z sieci. Aplikacja informuje sieć o swoim profilu ruchu i żąda określonego rodzaju usługi, która może obejmować wymagania dotyczące przepustowości i opóźnień. IntServ używa protokołu **Resource Reservation Protocol** (RSVP) do sygnalizowania zapotrzebowania na QoS ruchu aplikacji wzdłuż urządzeń na ścieżce od końca do końca w sieci. Jeśli urządzenia sieciowe na ścieżce mogą zarezerwować niezbędną przepustowość, pierwotna aplikacja może rozpocząć transmisję. Jeśli żądana rezerwacja nie powiedzie się na ścieżce, aplikacja źródłowa nie wysyła żadnych danych.
 
 ## 19. DiffServ
 **Model usług zróżnicowanych (DiffServ)** QoS określa prosty i skalowalny mechanizm klasyfikowania i zarządzania ruchem sieciowym.
@@ -1522,7 +1609,7 @@ Gdy host przekazuje ruch do routera, router klasyfikuje przepływy w agregatach 
 
 ![Wady i zalety DiffServ](img/30.png)
 
-## 20. Narzędzia do wdrażania QoS
+## 20. Kategorie narzędzi do wdrażania QoS
 
 ![Narzędzia do wdrażania QoS](img/31.png)
 
