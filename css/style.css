@@ -12,6 +12,7 @@
   --yellow-color: #ebcb8b;
   --orange-color: #d08770;
   --blue-color: #5e81ac;
+  --cyan-color: #8FBCBB;
   --lightblue-color: #88c0d0;
   --figcaption-color: #d8dee9;
   --font-family: "Fira Code", monospace;
@@ -20,6 +21,12 @@
   --scrollbar-thumb-hover: var(--lightblue-color);
   --transition: all 0.3s ease-in-out;
   --shadow: 8px 8px 24px 0px rgba(0, 0, 0, 0.2);
+
+  --header-1-color: var(--green-color);
+  --header-2-color: var(--blue-color);
+  --header-3-color: var(--lightblue-color);
+  --header-4-color: var(--yellow-color);
+  --header-5-color: var(--cyan-color);
   /* ------------------------- */
 
   line-height: 1.5;
@@ -254,12 +261,25 @@ h4,
 h5,
 h6 {
   margin-top: 1.4em;
+}
+h1{
   color: var(--green-color);
+}
+h2{
+  color: var(--blue-color);
+}
+h3{
+  color: var(--lightblue-color);
+}
+h4{
+  color: var(--yellow-color);
+}
+h5{
+  color: var(--cyan-color);
 }
 h5,
 h6 {
   font-size: 1em;
-  font-style: italic;
 }
 h6 {
   font-weight: normal;

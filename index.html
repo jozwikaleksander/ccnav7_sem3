@@ -170,7 +170,7 @@
 <ul>
 <li><a href="#charakterystyka-nat">1. Charakterystyka NAT</a>
 <ul>
-<li><a href="#prywatne-adresy-internetowe-definiowane-w-dokumencie-rfc-1918">1.1. Prywatne adresy internetowe definiowane w dokumencie RFC 1918</a></li>
+<li><a href="#prywatne-adresy-ip-w-dokumencie-rfc-1918">1.1. Prywatne adresy IP w dokumencie RFC 1918</a></li>
 <li><a href="#czym-jest-nat">1.2. Czym jest NAT?</a></li>
 <li><a href="#terminologia-nat">1.3. Terminologia NAT</a></li>
 </ul></li>
@@ -249,7 +249,6 @@
 <li><a href="#korzyści-z-vpn">1.2. Korzyści z VPN</a></li>
 <li><a href="#sieci-vpn-typu-site-to-site-i-zdalnego-dostepu">1.3. Sieci VPN typu site-to-site i zdalnego dostepu</a></li>
 <li><a href="#vpn-dla-przedsiębiorstw-i-dostawców-usług">1.4. VPN dla przedsiębiorstw i dostawców usług</a></li>
-<li><a href="#sieci-dostawców-usług">1.4.2. Sieci dostawców usług</a></li>
 </ul></li>
 <li><a href="#rodzaje-sieci-vpn">2. Rodzaje sieci VPN</a>
 <ul>
@@ -265,10 +264,6 @@
 <ul>
 <li><a href="#technologie-ipsec">3.1. Technologie IPSec</a></li>
 <li><a href="#wybory-dotyczące-ipsec">3.2. Wybory dotyczące IPSec</a></li>
-<li><a href="#poufność">3.2.2. Poufność</a></li>
-<li><a href="#integralność">3.2.3. Integralność</a></li>
-<li><a href="#uwierzytelnianie">3.2.4. Uwierzytelnianie</a></li>
-<li><a href="#diffie-hellman">3.2.5. Diffie-Hellman</a></li>
 </ul></li>
 <li><a href="#źródła-uzupełniające-4">4. Źródła uzupełniające</a></li>
 </ul></li>
@@ -278,7 +273,7 @@
 <li><a href="#zmienne-opóźnienie">2. Zmienne opóźnienie</a></li>
 <li><a href="#źródła-opoźnienia">3. Źródła opoźnienia</a></li>
 <li><a href="#jitter">4. Jitter</a></li>
-<li><a href="#utracone-pakiety">5. Utracone pakiety</a></li>
+<li><a href="#utracone-pakiety---przeciążenie">5. Utracone pakiety - Przeciążenie</a></li>
 <li><a href="#bufor-opóźnienia">6. Bufor opóźnienia</a></li>
 <li><a href="#charakterystyka-ruchu-głosowego">7. Charakterystyka ruchu głosowego</a></li>
 <li><a href="#charakterystyka-ruchu-wideo">8. Charakterystyka ruchu wideo</a></li>
@@ -292,10 +287,9 @@
 <li><a href="#kolejkowanie-o-niskim-opóźnieniu-low-latency-queuing---llq">15. Kolejkowanie o niskim opóźnieniu (Low Latency Queuing - LLQ)</a></li>
 <li><a href="#modele-do-wdrażania-qos">16. Modele do wdrażania QoS</a></li>
 <li><a href="#best-effort">17. Best Effort</a></li>
-<li><a href="#intserv">18. IntServ</a></li>
-<li><a href="#diffserv">19. DiffServ</a></li>
-<li><a href="#kategorie-narzędzi-do-wdrażania-qos">20. Kategorie narzędzi do wdrażania QoS</a></li>
-<li><a href="#sekwencja-qos">21. Sekwencja QoS</a></li>
+<li><a href="#kategorie-narzędzi-do-wdrażania-qos">18. Kategorie narzędzi do wdrażania QoS</a></li>
+<li><a href="#sekwencja-qos">19. Sekwencja QoS</a></li>
+<li><a href="#klasyfikacja-i-oznaczenie">20. Klasyfikacja i oznaczenie</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -359,7 +353,7 @@
 <li><strong>Zwiększone ryzyko bezpieczeństwa</strong></li>
 </ul>
 <h2 id="drother">4. DROTHER</h2>
-<p>Routery, które nie są ani DR ani BDR.</p>
+<p>Routery, które nie są ani <strong>DR</strong> ani <strong>BDR</strong>.</p>
 <h2 id="potrzebne-komendy">5. Potrzebne komendy</h2>
 <ul>
 <li><strong>router ospf process-id</strong> - włączenie OSPFv2.</li>
@@ -393,15 +387,15 @@
 <img src="img/6.png" alt="" /><figcaption>Koszt OSPF przy referencyjnej szerokości pasma dostosowanej do obsługi łączy 10 Gigabit Ethernet</figcaption>
 </figure>
 <h2 id="interwały-pakietów-hello">7. Interwały pakietów Hello</h2>
-<p>Pakiety OSPFv2 Hello są wysyłane co 10 sekund.</p>
+<p>Pakiety OSPFv2 Hello są wysyłane <strong>co 10 sekund</strong>.</p>
 <p><strong>Interwał Dead</strong> to okres, przez jaki router będzie czekał na odbiór pakietu Hello, zanim zadeklaruje, że sąsiad jest wyłączony. (W Cisco domyślnie jest to 4-krotność interwału Hello, czyli 10 sek).</p>
 <h2 id="propagowanie-domyślnej-trasy-statycznej-w-opsfv2">8. Propagowanie domyślnej trasy statycznej w OPSFv2</h2>
 <p><strong>Router brzegowy (router bramy)</strong> - to router podłączony do Internetu, który powinien propagować domyślną trasę do innych routerów w lokalnej sieci.</p>
 <p><strong>Router brzegowy systemu autonomicznego (Autonomous System Boundary Router, ASBR)</strong> - router, który znajduję się pomiędzy domeną routingu OSPF a siecią bez OSPF.</p>
 <h2 id="źródła-uzupełniające">9. Źródła uzupełniające</h2>
 <ul>
-<li>https://www.youtube.com/watch?v=kfvJ8QVJscc</li>
-<li>https://www.youtube.com/watch?v=PIMnj2oqYIo</li>
+<li><a href="https://www.youtube.com/watch?v=kfvJ8QVJscc">https://www.youtube.com/watch?v=kfvJ8QVJscc</a></li>
+<li><a href="https://www.youtube.com/watch?v=PIMnj2oqYIo">https://www.youtube.com/watch?v=PIMnj2oqYIo</a></li>
 </ul>
 <h1 id="iii.-koncepcje-bezpieczeństwa-sieci">III. Koncepcje bezpieczeństwa sieci</h1>
 <figure>
@@ -571,7 +565,8 @@
 <h2 id="zapory">24. Zapory</h2>
 <p><strong>Zapora</strong> jest systemem lub grupą systemów, która wymusza politykę kontroli dostępu między sieciami.</p>
 <h2 id="ips">25. IPS</h2>
-<p><strong>IDS</strong> - Intrusion Detection System <strong>IPS</strong> - Intrusion Prevension System</p>
+<p><strong>IDS</strong> - Intrusion Detection System</p>
+<p><strong>IPS</strong> - Intrusion Prevension System</p>
 <p>Wykrywają one wzorce ruchu sieciowego za pomocą <strong>sygnatur</strong>. <strong>Sygnatura</strong> to zestaw reguł używanych do wykrywania złośliwej aktywności.</p>
 <h2 id="urządzenia-bezpieczeństwa-treści">26. Urządzenia bezpieczeństwa treści</h2>
 <p><strong>Cisco Email Security Appliance (ESA)</strong> przeznaczone do monitorowania Simple Mail Transfer Protocol (SMTP).</p>
@@ -706,13 +701,20 @@
 <img src="img/4.3.2.png" alt="" /><figcaption>Najlepsze praktyki ACL</figcaption>
 </figure>
 <h3 id="kolejność-instrukcji-acl">3.3. Kolejność instrukcji ACL</h3>
-<p>Najbardziej szczegółowe instrukcje ACL należy wprowadzić jako pierwsze ze względu na odgórny, sekwencyjny charakter list ACL.</p>
+<p>Najbardziej szczegółowe instrukcje ACL należy wprowadzić jako pierwsze.</p>
 <h2 id="numerowane-i-nazwane-acl">4. Numerowane i nazwane ACL</h2>
 <h3 id="numerowane-acl">4.1. Numerowane ACL</h3>
-<p>Listy ACL o numerach od 1 do 99 lub od 1300 do 1999 to standardowe listy ACL, podczas gdy listy ACL o numerach od 100 do 199 lub od 2000 do 2699 to rozszerzone listy ACL.</p>
+<p>Listy ACL o numerach od 1 do 99 lub od 1300 do 1999 to <strong>standardowe listy ACL</strong>, podczas gdy listy ACL o numerach od 100 do 199 lub od 2000 do 2699 to <strong>rozszerzone listy ACL</strong>.</p>
 <h3 id="nazwane-acl">4.2. Nazwane ACL</h3>
 <p>Nazwane ACL są preferowaną metodą użycia podczas konfigurowania ACL.</p>
-<p><strong>Poniżej przedstawiono podsumowanie zasad, które należy przestrzegać dla nazwanych ACL:</strong> - Przypisz nazwę w celu identyfikowania listy ACL. - Nazwy mogą zawierać znaki alfanumeryczne. - Nazwy nie mogą zawierać spacji ani znaków interpunkcyjnych. - Sugeruje się, aby nazwę pisać WIELKIMI LITERAMI. - Wewnątrz listy ACL wpisy mogą być dodawane lub usuwane.</p>
+<p><strong>Poniżej przedstawiono podsumowanie zasad, które należy przestrzegać dla nazwanych ACL:</strong></p>
+<ul>
+<li>Przypisz nazwę w celu identyfikowania listy ACL.</li>
+<li>Nazwy mogą zawierać znaki alfanumeryczne.</li>
+<li>Nazwy nie mogą zawierać spacji ani znaków interpunkcyjnych.</li>
+<li>Sugeruje się, aby nazwę pisać WIELKIMI LITERAMI.</li>
+<li>Wewnątrz listy ACL wpisy mogą być dodawane lub usuwane.</li>
+</ul>
 <h2 id="umieszczanie-listy-acl">5. Umieszczanie listy ACL</h2>
 <p><strong>Rozszerzone listy ACL</strong> powinny znajdować się jak najbliżej źródła ruchu, który ma być filtrowany.</p>
 <p><strong>Standardowe ACL</strong> powinny znajdować się jak najbliżej miejsca docelowego.</p>
@@ -779,10 +781,11 @@
 </figure>
 <h1 id="vi.-nat-dla-ipv4">VI. NAT dla IPv4</h1>
 <h2 id="charakterystyka-nat">1. Charakterystyka NAT</h2>
-<h3 id="prywatne-adresy-internetowe-definiowane-w-dokumencie-rfc-1918">1.1. Prywatne adresy internetowe definiowane w dokumencie RFC 1918</h3>
+<h3 id="prywatne-adresy-ip-w-dokumencie-rfc-1918">1.1. Prywatne adresy IP w dokumencie RFC 1918</h3>
 <figure>
 <img src="img/6.1.1.png" alt="" /><figcaption>Zakres adresów wewnętrznych z RFC 1918</figcaption>
 </figure>
+<p><a href="https://pl.wikipedia.org/wiki/Adres_prywatny">Więcej informacji na ten temat znajdziesz tutaj</a></p>
 <h3 id="czym-jest-nat">1.2. Czym jest NAT?</h3>
 <p>Głównym zastosowaniem <strong>NAT</strong> jest oszczędzanie publicznych adresów IPv4 poprzez <strong>transalcję adresów prywatnych na publiczne</strong>. Dodatkowo <strong>NAT</strong> zwiększa prywatność i bezpieczeństwo sieci, ponieważ ukrywa wewnętrzne adresy IPv4 przez siecami zewnętrznymi.</p>
 <h4 id="pula-nat">1.2.1. Pula NAT</h4>
@@ -961,7 +964,11 @@ R2#</code></pre>
 <p>Aby skonfigurować PAT dla dynamicznej puli adresów NAT ponownie wystarczy dodać <strong>overload</strong> do polecenia ip nat inside source.</p>
 <h4 id="weryfikowanie-pat">4.3.3. Weryfikowanie PAT</h4>
 <h5 id="polecenie-show-ip-nat-translations-2">4.3.3.1. Polecenie show ip nat translations</h5>
-<p>R2# show ip nat translations Pro Inside global Inside local Outside local Outside global tcp 209.165.200.225:1444 192.168.10.10:1444 209.165.201.1:80 209.165.201.1:80 tcp 209.165.200.225:1445 192.168.11.10:1444 209.165.202.129:80 209.165.202.129:80 R2#</p>
+<pre><code>R2# show ip nat translations
+Pro Inside global          Inside local         Outside local      Outside global
+tcp 209.165.200.225:1444  192.168.10.10:1444  209.165.201.1:80   209.165.201.1:80
+tcp 209.165.200.225:1445  192.168.11.10:1444  209.165.202.129:80 209.165.202.129:80
+R2#</code></pre>
 <p>Pokazuje translacje z różnych hostów do różnych serwerów WWW.</p>
 <h5 id="polecenie-show-ip-nat-statistics-2">4.3.3.2. Polecenie show ip nat statistics</h5>
 <pre><code>R2# show ip nat statistics 
@@ -1459,7 +1466,7 @@ Bezklientowe połączenie SSL
 </tr>
 </tbody>
 </table>
-<h3 id="sieci-dostawców-usług">1.4.2. Sieci dostawców usług</h3>
+<h4 id="sieci-dostawców-usług">1.4.2. Sieci dostawców usług</h4>
 <p>Są tworzone i zarządzane przez sieć dostawcy. Używa <strong>Mutliprotocol Label Switching (MPLS)</strong> w warstwie 2 lub warstwie 3. <strong>MPLS</strong> to technologia routingu używana przez dostawcę do tworzenia wirtualnych ścieżek między lokacjami. To skutecznie oddziela ruch od innych klientów.</p>
 <figure>
 <img src="img/8.1.4.2.png" alt="" /><figcaption>Sieć dostawców usług</figcaption>
@@ -1559,7 +1566,7 @@ Bezklientowe połączenie SSL
 <p>Jest odpowiednie tylko wtedy, gdy <strong>poufność nie jest wymagana lub dozwolona</strong>. Zapewnia uwierzytelnianie i integralność danych, ale nie zapewnia poufności danych (szyfrowania). Cały tekst jest przesyłany w postaci niezaszyfrowanej.</p>
 <h5 id="encapsulation-security-protocol-esp">3.2.1.2. Encapsulation Security Protocol (ESP)</h5>
 <p>Zapewnia poufność i uwierzytelnianie. Szyfruje pakiety IP i zapewnia uwierzytelnianie wewnętrznego pakiet IP I nagłówka ESP. Szyfrowanie i uwierzytelnianie są opcjonalne, ale przynajmniej jedno musi być wybrane.</p>
-<h3 id="poufność">3.2.2. Poufność</h3>
+<h4 id="poufność">3.2.2. Poufność</h4>
 <ul>
 <li>DES</li>
 <li>3DES</li>
@@ -1567,19 +1574,19 @@ Bezklientowe połączenie SSL
 <li>SEAL</li>
 </ul>
 <p><a href="#poufność-danych">Więcej informacji znajdziesz tutaj</a></p>
-<h3 id="integralność">3.2.3. Integralność</h3>
+<h4 id="integralność">3.2.3. Integralność</h4>
 <ul>
 <li>MD5</li>
 <li>SHA</li>
 </ul>
 <p><a href="#integralność-danych">Więcej informacji znajdziesz tutaj</a></p>
-<h3 id="uwierzytelnianie">3.2.4. Uwierzytelnianie</h3>
+<h4 id="uwierzytelnianie">3.2.4. Uwierzytelnianie</h4>
 <ul>
 <li><strong>PSK (udostępniony tajny klucz)</strong> - wymaga ręcznego wprowadzenia klucza do każdego partnera, a zatem jest słabo skalowalny.</li>
 <li><strong>RSA (Rivest, Shamir, Adleman)</strong> - wykorzystuje certyfikaty cyfrowe do uwierzytelniania peerów.</li>
 </ul>
 <p><a href="#uwierzytelnianie-pochodzenia">Więcej informacji znajdziesz tutaj</a></p>
-<h3 id="diffie-hellman">3.2.5. Diffie-Hellman</h3>
+<h4 id="diffie-hellman">3.2.5. Diffie-Hellman</h4>
 <p>Istnieją różne sposoby wymiany klucza DH. Wariacje te określane są jako grupy:</p>
 <ul>
 <li><strong>Grupy DH 1, 2 i 5</strong> nie powinny być już używane.</li>
@@ -1637,7 +1644,7 @@ Bezklientowe połączenie SSL
 </table>
 <h2 id="jitter">4. Jitter</h2>
 <p>Zmienność wartości opóźnienia odebranych pakietów. Z powodu przeciążenia sieci, niewłaściwego kolejkowania lub błędów konfiguracji, opóźnienie między poszczególnymi pakietami może się zmieniać, a nie pozostawać stałe.</p>
-<h2 id="utracone-pakiety">5. Utracone pakiety</h2>
+<h2 id="utracone-pakiety---przeciążenie">5. Utracone pakiety - Przeciążenie</h2>
 <p>Bez żadnych mechanizmów QoS pakiety są przetwarzane w kolejności, w jakiej zostały odebrane. W przypadku przeciążenia urządzenia sieciowe mogę odrzucać pakiety. Oznacza to, że pakiety wideo czy głosowe będą odrzucane z taką samą częstotliwością jak inne (np. e-mail, http).</p>
 <h2 id="bufor-opóźnienia">6. Bufor opóźnienia</h2>
 <p>Mechanizm kompensujący napotkany przez router <strong>jitter</strong>. Musi on burforować pakiety, a następnie odtwarzać je w stały strumieniu. Pakiety cyfrowe są późnień konwertowane na analogowy strumień audio.</p>
@@ -1802,7 +1809,7 @@ Retransmisje TCP
 <tr class="even">
 <td>Nie interaktywne</td>
 <td>Opóźnienie może się znacznie różnić, o ile zapewniona jest niezbędna minimalna przepustowość.</td>
-<td>Pobiera pozostałą przepustowość po spełnieniu wszystkich potrzeb związanych z obsługą głosu, wideo i innych d</td>
+<td>Pobiera pozostałą przepustowość po spełnieniu wszystkich potrzeb związanych z obsługą głosu, wideo i innych danych</td>
 </tr>
 </tbody>
 </table>
@@ -1840,29 +1847,20 @@ Retransmisje TCP
 </figure>
 <h2 id="best-effort">17. Best Effort</h2>
 <p>Podstawowym założeniem Internetu jest dostarczanie pakietów z największą starannością i nie daje żadnych gwarancji. Podejście to jest nadal dominujące w Internecie i pozostaje właściwe dla większości celów.</p>
-<p>Model best-effort jest podobny w koncepcji do wysyłania listu za pomocą zwykłej poczty. Twój list jest traktowany dokładnie tak samo jak każdy inny list. W modelu „najlepszych wysiłków” list może nigdy nie nadejść, a jeśli nie masz osobnych ustaleń dotyczących powiadamiania z odbiorcą listu, możesz nigdy nie wiedzieć, że list nie dotarł.</p>
 <p><strong>Korzyści i wady modelu best-effort</strong></p>
 <figure>
 <img src="img/27.png" alt="" /><figcaption>Korzyści i wady modelu best-effort</figcaption>
 </figure>
-<h2 id="intserv">18. IntServ</h2>
-<p>IntServ zapewnia kompleksową QoS, której wymagają aplikacje czasu rzeczywistego. IntServ jawnie zarządza zasobami sieciowymi, aby zapewnić QoS dla poszczególnych przepływów lub strumieni, czasami nazywanych <strong>mikroprzepływami</strong>. Wykorzystuje mechanizmy rezerwacji zasobów i kontroli dostępu jako elementy składowe do ustanowienia i utrzymania jakości usług. Jest to podobne do koncepcji znanej jako „twarde QoS”. Twarde QoS gwarantuje charakterystykę ruchu, taką jak przepustowość, opóźnienia i współczynniki utraty pakietów, od początku do końca. Twarde QoS zapewnia zarówno przewidywalne, jak i gwarantowane poziomy usług dla aplikacji o znaczeniu krytycznym.</p>
-<p>W modelu IntServ aplikacja przed wysłaniem danych żąda określonego rodzaju usługi z sieci. Aplikacja informuje sieć o swoim profilu ruchu i żąda określonego rodzaju usługi, która może obejmować wymagania dotyczące przepustowości i opóźnień. IntServ używa protokołu <strong>Resource Reservation Protocol</strong> (RSVP) do sygnalizowania zapotrzebowania na QoS ruchu aplikacji wzdłuż urządzeń na ścieżce od końca do końca w sieci. Jeśli urządzenia sieciowe na ścieżce mogą zarezerwować niezbędną przepustowość, pierwotna aplikacja może rozpocząć transmisję. Jeśli żądana rezerwacja nie powiedzie się na ścieżce, aplikacja źródłowa nie wysyła żadnych danych.</p>
-<h2 id="diffserv">19. DiffServ</h2>
-<p><strong>Model usług zróżnicowanych (DiffServ)</strong> QoS określa prosty i skalowalny mechanizm klasyfikowania i zarządzania ruchem sieciowym.</p>
-<p>DiffServ może zapewnić „prawie gwarantowaną” jakość usług, a jednocześnie jest opłacalne i skalowalne.</p>
-<p>Model DiffServ jest podobny w koncepcji do wysyłania paczki za pomocą usługi dostawy. Wysyłając paczkę żądasz (i płacisz) za odpowiedni poziom usług. W całej sieci pakietów poziom usług, za który zapłaciłeś, jest rozpoznawany, a pakiet otrzymuje preferencyjną lub normalną usługę, w zależności od tego, o co prosiłeś.</p>
-<p>Gdy host przekazuje ruch do routera, router klasyfikuje przepływy w agregatach (klasach) i zapewnia odpowiednią politykę QoS dla klas. DiffServ wymusza i stosuje mechanizmy jakości usług na zasadzie przeskok po przeskoku, jednolicie nadając globalne znaczenie każdej klasie ruchu, aby zapewnić zarówno elastyczność, jak i skalowalność. Na przykład DiffServ można skonfigurować tak, aby grupował wszystkie przepływy TCP jako jedną klasę i przydzielał przepustowość dla tej klasy, a nie dla poszczególnych przepływów, jak zrobiłby to IntServ. Oprócz klasyfikowania ruchu DiffServ minimalizuje wymagania dotyczące sygnalizacji i utrzymania stanu na każdym węźle sieci.</p>
-<figure>
-<img src="img/30.png" alt="" /><figcaption>Wady i zalety DiffServ</figcaption>
-</figure>
-<h2 id="kategorie-narzędzi-do-wdrażania-qos">20. Kategorie narzędzi do wdrażania QoS</h2>
+<h2 id="kategorie-narzędzi-do-wdrażania-qos">18. Kategorie narzędzi do wdrażania QoS</h2>
 <figure>
 <img src="img/31.png" alt="" /><figcaption>Narzędzia do wdrażania QoS</figcaption>
 </figure>
-<h2 id="sekwencja-qos">21. Sekwencja QoS</h2>
+<h2 id="sekwencja-qos">19. Sekwencja QoS</h2>
 <figure>
 <img src="img/32.png" alt="" /><figcaption>Sekwencja QoS</figcaption>
 </figure>
+<h2 id="klasyfikacja-i-oznaczenie">20. Klasyfikacja i oznaczenie</h2>
+<p><strong>Klasyfikacja</strong> - określa klasę ruchu, do której należą pakiety lub ramki.</p>
+<p><strong>Oznakowanie</strong> - dodawanie wartości do nagłówka pakietów. Urządzenia odbierające pakiet sprawdzają to pole, aby zweryfikować, czy jest zgodne ze zdefiniowaną polityką. Oznaczanie powinny odbywać się jak nabliżej źródła. Ustanawia to granicę zaufania.</p>
 </body>
 </html>

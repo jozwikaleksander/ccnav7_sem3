@@ -66,7 +66,7 @@ Wysyłanie niepotrzebnych komunikatów może wpływać na działanie sieci na tr
 - **Zwiększone ryzyko bezpieczeństwa**
 
 ## 4. DROTHER
-Routery, które nie są ani DR ani BDR.
+Routery, które nie są ani **DR** ani **BDR**.
 
 ## 5. Potrzebne komendy
 - **router ospf process-id** - włączenie OSPFv2.
@@ -102,7 +102,7 @@ Wartość kosztu OSPF musi być **liczbą całkowitą**.
 ![Koszt OSPF przy referencyjnej szerokości pasma dostosowanej do obsługi łączy 10 Gigabit Ethernet](img/6.png)
 
 ## 7. Interwały pakietów Hello
-Pakiety OSPFv2 Hello są wysyłane co 10 sekund.
+Pakiety OSPFv2 Hello są wysyłane **co 10 sekund**.
 
 **Interwał Dead** to okres, przez jaki router będzie czekał na odbiór pakietu Hello, zanim zadeklaruje, że sąsiad jest wyłączony. (W Cisco domyślnie jest to 4-krotność interwału Hello, czyli 10 sek).
 
@@ -113,8 +113,8 @@ Pakiety OSPFv2 Hello są wysyłane co 10 sekund.
 **Router brzegowy systemu autonomicznego (Autonomous System Boundary Router, ASBR)** - router, który znajduję się pomiędzy domeną routingu OSPF a siecią bez OSPF.
 
 ## 9. Źródła uzupełniające
-- https://www.youtube.com/watch?v=kfvJ8QVJscc
-- https://www.youtube.com/watch?v=PIMnj2oqYIo
+- [https://www.youtube.com/watch?v=kfvJ8QVJscc](https://www.youtube.com/watch?v=kfvJ8QVJscc)
+- [https://www.youtube.com/watch?v=PIMnj2oqYIo](https://www.youtube.com/watch?v=PIMnj2oqYIo)
 
 
 # III. Koncepcje bezpieczeństwa sieci
@@ -307,6 +307,7 @@ Haker umieszcza ruch inny niż DNS w ruchu DNS. Metoda ta często omija rozwiąz
 ## 25. IPS
 
 **IDS** - Intrusion Detection System
+
 **IPS** - Intrusion Prevension System
 
 Wykrywają one wzorce ruchu sieciowego za pomocą **sygnatur**. **Sygnatura** to zestaw reguł używanych do wykrywania złośliwej aktywności.
@@ -463,17 +464,18 @@ Konkretny interfejs routera może mieć:
 
 ### 3.3. Kolejność instrukcji ACL
 
-Najbardziej szczegółowe instrukcje ACL należy wprowadzić jako pierwsze ze względu na odgórny, sekwencyjny charakter list ACL.
+Najbardziej szczegółowe instrukcje ACL należy wprowadzić jako pierwsze.
 
 ## 4. Numerowane i nazwane ACL
 
 ### 4.1. Numerowane ACL
-Listy ACL o numerach od 1 do 99 lub od 1300 do 1999 to standardowe listy ACL, podczas gdy listy ACL o numerach od 100 do 199 lub od 2000 do 2699 to rozszerzone listy ACL.
+Listy ACL o numerach od 1 do 99 lub od 1300 do 1999 to **standardowe listy ACL**, podczas gdy listy ACL o numerach od 100 do 199 lub od 2000 do 2699 to **rozszerzone listy ACL**.
 
 ### 4.2. Nazwane ACL
 Nazwane ACL są preferowaną metodą użycia podczas konfigurowania ACL.
 
 **Poniżej przedstawiono podsumowanie zasad, które należy przestrzegać dla nazwanych ACL:**
+
 - Przypisz nazwę w celu identyfikowania listy ACL.
 - Nazwy mogą zawierać znaki alfanumeryczne.
 - Nazwy nie mogą zawierać spacji ani znaków interpunkcyjnych.
@@ -576,9 +578,11 @@ Słowo kluczowe establish umożliwia wychodzenie ruchowi z wewnętrznej sieci pr
 
 ## 1. Charakterystyka NAT
 
-### 1.1. Prywatne adresy internetowe definiowane w dokumencie RFC 1918
+### 1.1. Prywatne adresy IP w dokumencie RFC 1918
 
 ![Zakres adresów wewnętrznych z RFC 1918](img/6.1.1.png)
+
+[Więcej informacji na ten temat znajdziesz tutaj](https://pl.wikipedia.org/wiki/Adres_prywatny)
 
 ### 1.2. Czym jest NAT?
 
@@ -829,11 +833,11 @@ Aby skonfigurować PAT dla dynamicznej puli adresów NAT ponownie wystarczy doda
 
 ##### 4.3.3.1. Polecenie show ip nat translations
 
-R2# show ip nat translations
-Pro Inside global          Inside local         Outside local      Outside global
-tcp 209.165.200.225:1444  192.168.10.10:1444  209.165.201.1:80   209.165.201.1:80
-tcp 209.165.200.225:1445  192.168.11.10:1444  209.165.202.129:80 209.165.202.129:80
-R2#
+    R2# show ip nat translations
+    Pro Inside global          Inside local         Outside local      Outside global
+    tcp 209.165.200.225:1444  192.168.10.10:1444  209.165.201.1:80   209.165.201.1:80
+    tcp 209.165.200.225:1445  192.168.11.10:1444  209.165.202.129:80 209.165.202.129:80
+    R2#
 
 Pokazuje translacje z różnych hostów do różnych serwerów WWW.
 
@@ -1289,7 +1293,7 @@ Typy wdrożeń VPN:
 </tbody>
 </table>
 
-### 1.4.2. Sieci dostawców usług
+#### 1.4.2. Sieci dostawców usług
 Są tworzone i zarządzane przez sieć dostawcy. Używa **Mutliprotocol Label Switching (MPLS)** w warstwie 2 lub warstwie 3.  **MPLS** to technologia routingu używana przez dostawcę do tworzenia wirtualnych ścieżek między lokacjami. To skutecznie oddziela ruch od innych klientów.
 
 ![Sieć dostawców usług](img/8.1.4.2.png)
@@ -1376,7 +1380,7 @@ Jest odpowiednie tylko wtedy, gdy **poufność nie jest wymagana lub dozwolona**
 ##### 3.2.1.2. Encapsulation Security Protocol (ESP)
 Zapewnia poufność i uwierzytelnianie. Szyfruje pakiety IP i zapewnia uwierzytelnianie wewnętrznego pakiet IP I nagłówka ESP. Szyfrowanie i uwierzytelnianie są opcjonalne, ale przynajmniej jedno musi być wybrane.
 
-### 3.2.2. Poufność
+#### 3.2.2. Poufność
 - DES
 - 3DES
 - AES
@@ -1384,19 +1388,19 @@ Zapewnia poufność i uwierzytelnianie. Szyfruje pakiety IP i zapewnia uwierzyte
 
 [Więcej informacji znajdziesz tutaj](#poufność-danych)
 
-### 3.2.3. Integralność
+#### 3.2.3. Integralność
 - MD5
 - SHA
 
 [Więcej informacji znajdziesz tutaj](#integralność-danych)
 
-### 3.2.4. Uwierzytelnianie
+#### 3.2.4. Uwierzytelnianie
 - **PSK (udostępniony tajny klucz)** - wymaga ręcznego wprowadzenia klucza do każdego partnera, a zatem jest słabo skalowalny.
 - **RSA (Rivest, Shamir, Adleman)** - wykorzystuje certyfikaty cyfrowe do uwierzytelniania peerów.
 
 [Więcej informacji znajdziesz tutaj](#uwierzytelnianie-pochodzenia)
 
-### 3.2.5. Diffie-Hellman
+#### 3.2.5. Diffie-Hellman
 Istnieją różne sposoby wymiany klucza DH. Wariacje te określane są jako grupy:
 
 - **Grupy DH 1, 2 i 5** nie powinny być już używane.
@@ -1434,7 +1438,7 @@ Zajmuje nieokreślony czas i ma wpływ na takie czynniki, jak ilość ruchu któ
 
 Zmienność wartości opóźnienia odebranych pakietów. Z powodu przeciążenia sieci, niewłaściwego kolejkowania lub błędów konfiguracji, opóźnienie między poszczególnymi pakietami może się zmieniać, a nie pozostawać stałe.
 
-## 5. Utracone pakiety
+## 5. Utracone pakiety - Przeciążenie
 
 Bez żadnych mechanizmów QoS pakiety są przetwarzane w kolejności, w jakiej zostały odebrane. W przypadku przeciążenia urządzenia sieciowe mogę odrzucać pakiety. Oznacza to, że pakiety wideo czy głosowe będą odrzucane z taką samą częstotliwością jak inne (np. e-mail, http).
 
@@ -1537,7 +1541,7 @@ W przypadku małym strat (jak pakiet) **cyfrowy procesor sygnałowy (DSP)** inte
 | Parametr | Krytyczne | Nie krytyczne |
 |---|---|---|
 | Interaktywne | Ustala priorytety dla najmniejszego opóźnienia w całym ruchu danych i stara się uzyskać 1 do 2 sekund czasu reakcji. | Aplikacje mogłyby skorzystać na mniejszym opóźnieniu. |
-| Nie interaktywne | Opóźnienie może się znacznie różnić, o ile zapewniona jest niezbędna minimalna przepustowość. | Pobiera pozostałą przepustowość po spełnieniu wszystkich potrzeb związanych z obsługą głosu, wideo i innych d |
+| Nie interaktywne | Opóźnienie może się znacznie różnić, o ile zapewniona jest niezbędna minimalna przepustowość. | Pobiera pozostałą przepustowość po spełnieniu wszystkich potrzeb związanych z obsługą głosu, wideo i innych danych |
 
 ## 11. Algorytmy QoS
 
@@ -1586,33 +1590,20 @@ Algorytm zarządzania kolejką polegającym na tym, że router odrzuca każdy pa
 
 Podstawowym założeniem Internetu jest dostarczanie pakietów z największą starannością i nie daje żadnych gwarancji. Podejście to jest nadal dominujące w Internecie i pozostaje właściwe dla większości celów.
 
-Model best-effort jest podobny w koncepcji do wysyłania listu za pomocą zwykłej poczty. Twój list jest traktowany dokładnie tak samo jak każdy inny list. W modelu „najlepszych wysiłków” list może nigdy nie nadejść, a jeśli nie masz osobnych ustaleń dotyczących powiadamiania z odbiorcą listu, możesz nigdy nie wiedzieć, że list nie dotarł.
-
 **Korzyści i wady modelu best-effort**
 
 ![Korzyści i wady modelu best-effort](img/27.png)
 
-## 18. IntServ
-
-IntServ zapewnia kompleksową QoS, której wymagają aplikacje czasu rzeczywistego. IntServ jawnie zarządza zasobami sieciowymi, aby zapewnić QoS dla poszczególnych przepływów lub strumieni, czasami nazywanych **mikroprzepływami**. Wykorzystuje mechanizmy rezerwacji zasobów i kontroli dostępu jako elementy składowe do ustanowienia i utrzymania jakości usług. Jest to podobne do koncepcji znanej jako „twarde QoS”. Twarde QoS gwarantuje charakterystykę ruchu, taką jak przepustowość, opóźnienia i współczynniki utraty pakietów, od początku do końca. Twarde QoS zapewnia zarówno przewidywalne, jak i gwarantowane poziomy usług dla aplikacji o znaczeniu krytycznym.
-
-W modelu IntServ aplikacja przed wysłaniem danych żąda określonego rodzaju usługi z sieci. Aplikacja informuje sieć o swoim profilu ruchu i żąda określonego rodzaju usługi, która może obejmować wymagania dotyczące przepustowości i opóźnień. IntServ używa protokołu **Resource Reservation Protocol** (RSVP) do sygnalizowania zapotrzebowania na QoS ruchu aplikacji wzdłuż urządzeń na ścieżce od końca do końca w sieci. Jeśli urządzenia sieciowe na ścieżce mogą zarezerwować niezbędną przepustowość, pierwotna aplikacja może rozpocząć transmisję. Jeśli żądana rezerwacja nie powiedzie się na ścieżce, aplikacja źródłowa nie wysyła żadnych danych.
-
-## 19. DiffServ
-**Model usług zróżnicowanych (DiffServ)** QoS określa prosty i skalowalny mechanizm klasyfikowania i zarządzania ruchem sieciowym.
-
-DiffServ może zapewnić „prawie gwarantowaną” jakość usług, a jednocześnie jest opłacalne i skalowalne.
-
-Model DiffServ jest podobny w koncepcji do wysyłania paczki za pomocą usługi dostawy. Wysyłając paczkę żądasz (i płacisz) za odpowiedni poziom usług. W całej sieci pakietów poziom usług, za który zapłaciłeś, jest rozpoznawany, a pakiet otrzymuje preferencyjną lub normalną usługę, w zależności od tego, o co prosiłeś.
-
-Gdy host przekazuje ruch do routera, router klasyfikuje przepływy w agregatach (klasach) i zapewnia odpowiednią politykę QoS dla klas. DiffServ wymusza i stosuje mechanizmy jakości usług na zasadzie przeskok po przeskoku, jednolicie nadając globalne znaczenie każdej klasie ruchu, aby zapewnić zarówno elastyczność, jak i skalowalność. Na przykład DiffServ można skonfigurować tak, aby grupował wszystkie przepływy TCP jako jedną klasę i przydzielał przepustowość dla tej klasy, a nie dla poszczególnych przepływów, jak zrobiłby to IntServ. Oprócz klasyfikowania ruchu DiffServ minimalizuje wymagania dotyczące sygnalizacji i utrzymania stanu na każdym węźle sieci.
-
-![Wady i zalety DiffServ](img/30.png)
-
-## 20. Kategorie narzędzi do wdrażania QoS
+## 18. Kategorie narzędzi do wdrażania QoS
 
 ![Narzędzia do wdrażania QoS](img/31.png)
 
-## 21. Sekwencja QoS
+## 19. Sekwencja QoS
 
 ![Sekwencja QoS](img/32.png)
+
+## 20. Klasyfikacja i oznaczenie
+
+**Klasyfikacja** - określa klasę ruchu, do której należą pakiety lub ramki.
+
+**Oznakowanie** - dodawanie wartości do nagłówka pakietów. Urządzenia odbierające pakiet sprawdzają to pole, aby zweryfikować, czy jest zgodne ze zdefiniowaną polityką. Oznaczanie powinny odbywać się jak nabliżej źródła. Ustanawia to granicę zaufania.
