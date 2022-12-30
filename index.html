@@ -291,6 +291,51 @@
 <li><a href="#sekwencja-qos">19. Sekwencja QoS</a></li>
 <li><a href="#klasyfikacja-i-oznaczenie">20. Klasyfikacja i oznaczenie</a></li>
 </ul></li>
+<li><a href="#x.-zarządzanie-siecią">X. Zarządzanie siecią</a>
+<ul>
+<li><a href="#wykrywanie-urzadzeń-za-pomocą-protokołu-cdp">1. Wykrywanie urzadzeń za pomocą protokołu CDP</a>
+<ul>
+<li><a href="#wprowadzenie-do-cdp">1.1. Wprowadzenie do CDP</a></li>
+<li><a href="#konfiguracja-i-weryfikacja-cdp">1.2. Konfiguracja i weryfikacja CDP</a></li>
+</ul></li>
+<li><a href="#lldp">2. LLDP</a>
+<ul>
+<li><a href="#wprowadzenie-do-lldp">2.1. Wprowadzenie do LLDP</a></li>
+<li><a href="#konfigurowanie-i-weryfikacja-lldp">2.2. Konfigurowanie i weryfikacja LLDP</a></li>
+</ul></li>
+<li><a href="#ntp">3. NTP</a>
+<ul>
+<li><a href="#wprowadzenie-do-ntp">3.1. Wprowadzenie do NTP</a></li>
+<li><a href="#operacja-ntp">3.2. Operacja NTP</a></li>
+<li><a href="#konfiguracja-i-weryfikacja-ntp">3.3. Konfiguracja i weryfikacja NTP</a></li>
+</ul></li>
+<li><a href="#snmp">4. SNMP</a>
+<ul>
+<li><a href="#wprowadzenie-do-snmp">4.1. Wprowadzenie do SNMP</a></li>
+<li><a href="#działanie-snmp">4.2. Działanie SNMP</a></li>
+<li><a href="#pułapki-agentów-snmp">4.3. Pułapki agentów SNMP</a></li>
+<li><a href="#wersje-protokołu-snmp">4.4. Wersje protokołu SNMP</a></li>
+<li><a href="#ciągi-społeczności">4.5. Ciągi społeczności</a></li>
+<li><a href="#id-obiektu-mib">4.6. ID obiektu MIB</a></li>
+</ul></li>
+<li><a href="#syslog">5. Syslog</a>
+<ul>
+<li><a href="#wprowadzenie-do-syslog">5.1. Wprowadzenie do syslog</a></li>
+<li><a href="#działanie-usługi-syslog">5.2. Działanie usługi syslog</a></li>
+<li><a href="#format-komunikatu-syslog">5.3. Format komunikatu syslog</a></li>
+<li><a href="#obiekty-syslog">5.4. Obiekty syslog</a></li>
+<li><a href="#konfiguracja-znacznika-czasu-syslog">5.5. Konfiguracja znacznika czasu syslog</a></li>
+</ul></li>
+<li><a href="#konserwacja-plików-routera-i-przełącznika">6. Konserwacja plików routera i przełącznika</a>
+<ul>
+<li><a href="#polecenia-zarządzania-systemem-plików-w-ciscoios">6.1. Polecenia zarządzania systemem plików w CiscoIOS</a></li>
+</ul></li>
+<li><a href="#zarządzanie-obrazami-ios">7. Zarządzanie obrazami IOS</a>
+<ul>
+<li><a href="#kopiowanie-obrazu-ios-na-serwer-tftp">7.1. Kopiowanie obrazu IOS na serwer TFTP</a></li>
+<li><a href="#polecenie-rozruchu-systemu">7.2. Polecenie rozruchu systemu</a></li>
+</ul></li>
+</ul></li>
 </ul>
 </nav>
 <h1 id="i.-protokół-ospf">I. Protokół OSPF</h1>
@@ -1842,9 +1887,68 @@ Retransmisje TCP
 <img src="img/25.png" alt="" /><figcaption>Przykład LLQ</figcaption>
 </figure>
 <h2 id="modele-do-wdrażania-qos">16. Modele do wdrażania QoS</h2>
-<figure>
-<img src="img/26.png" alt="" /><figcaption>Modele do wdrażania QoS</figcaption>
-</figure>
+<table>
+<thead>
+<tr>
+<th>
+Model
+</th>
+<th>
+Opis
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Model najlepszych wysiłków (<strong>best-effort</strong>)
+</td>
+<td>
+<ul>
+<li>
+To nie jest tak naprawdę implementacja, ponieważ QoS nie jest jawnie skonfigurowana.
+</li>
+<li>
+Użyj tego, gdy jakość usług nie jest wymagana.
+</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+Usługi zintegrowane (<strong>IntServ</strong>)
+</td>
+<td>
+<ul>
+<li>
+IntServ zapewnia bardzo wysoką jakość usług do pakietów IP z gwarantowaną dostawą.
+</li>
+<li>
+Definiuje proces sygnalizacji dla aplikacji w celu zasygnalizowania sieci, że wymagają specjalnego QoS przez pewien okres i że przepustowość powinna być zarezerwowana.
+</li>
+<li>
+IntServ może poważnie ograniczyć skalowalność sieci.
+</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+Usługi zróżnicowane (<strong>DiffServ</strong>)
+</td>
+<td>
+<ul>
+<li>
+DiffServ zapewnia wysoką skalowalność i elastyczność we wdrażaniu QoS.
+</li>
+<li>
+Urządzenia sieciowe rozpoznają klasy ruchu i zapewniają różne poziomy jakości usług do różnych klas ruchu.
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 <h2 id="best-effort">17. Best Effort</h2>
 <p>Podstawowym założeniem Internetu jest dostarczanie pakietów z największą starannością i nie daje żadnych gwarancji. Podejście to jest nadal dominujące w Internecie i pozostaje właściwe dla większości celów.</p>
 <p><strong>Korzyści i wady modelu best-effort</strong></p>
@@ -1852,9 +1956,44 @@ Retransmisje TCP
 <img src="img/27.png" alt="" /><figcaption>Korzyści i wady modelu best-effort</figcaption>
 </figure>
 <h2 id="kategorie-narzędzi-do-wdrażania-qos">18. Kategorie narzędzi do wdrażania QoS</h2>
-<figure>
-<img src="img/31.png" alt="" /><figcaption>Narzędzia do wdrażania QoS</figcaption>
-</figure>
+<table>
+<thead>
+<tr>
+<th>
+Narzędzia QoS
+</th>
+<th>
+Opis
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Narzędzia do klasyfikacji i znakowania
+</td>
+<td>
+Sesje lub przepływy są analizowane w celu określenia, która klasa ruchu jest do nich przydatna.<br>Po określeniu klasy ruchu pakiety są oznaczone.
+</td>
+</tr>
+<tr>
+<td>
+Narzędzia do unikania zatorów
+</td>
+<td>
+Na klasy ruchu przydzielane są porcje zasobów sieciowych, zgodnie z zaleceniami przez badanie QoS.<br>Zasady QoS określają również, w jaki sposób część ruchu może być selektywna upuszczona, opóźniona lub ponownie oznaczona, aby uniknąć zatorów.<br><strong>Głównym narzędziem do unikania przeciążenia jest WRED</strong> i służy do regulacji ruchu danych TCP w sposób efektywny pod względem przepustowości, zanim wystąpią spadki ogona spowodowane przepełnieniem kolejki.
+</td>
+</tr>
+<tr>
+<td>
+Narzędzia do zarządzania zatorami
+</td>
+<td>
+Gdy ruch przekracza dostępne zasoby sieciowe, jest umieszczany w kolejce w oczekiwaniu na dostępność zasobów.<br>Wspólne narzędzia zarządzania ograniczeniami oparte na systemie Cisco IOS obejmują <strong>CBWFQ</strong> i <strong>algorytmy LLQ</strong>.
+</td>
+</tr>
+</tbody>
+</table>
 <h2 id="sekwencja-qos">19. Sekwencja QoS</h2>
 <figure>
 <img src="img/32.png" alt="" /><figcaption>Sekwencja QoS</figcaption>
@@ -1862,5 +2001,402 @@ Retransmisje TCP
 <h2 id="klasyfikacja-i-oznaczenie">20. Klasyfikacja i oznaczenie</h2>
 <p><strong>Klasyfikacja</strong> - określa klasę ruchu, do której należą pakiety lub ramki.</p>
 <p><strong>Oznakowanie</strong> - dodawanie wartości do nagłówka pakietów. Urządzenia odbierające pakiet sprawdzają to pole, aby zweryfikować, czy jest zgodne ze zdefiniowaną polityką. Oznaczanie powinny odbywać się jak nabliżej źródła. Ustanawia to granicę zaufania.</p>
+<h1 id="x.-zarządzanie-siecią">X. Zarządzanie siecią</h1>
+<h2 id="wykrywanie-urzadzeń-za-pomocą-protokołu-cdp">1. Wykrywanie urzadzeń za pomocą protokołu CDP</h2>
+<h3 id="wprowadzenie-do-cdp">1.1. Wprowadzenie do CDP</h3>
+<p>CDP to zastrzeżony protokół warstwy 2 firmy Cisco, który zbiera informacje o urządzeniach Cisco na tych samych łączach danych.</p>
+<p>Urządzenie wysyła okresowe ogłoszenia CDP do podłączonych urządzeń, jak pokazano na rysunku.</p>
+<figure>
+<img src="img/10.1.1.png" alt="" /><figcaption>CDP</figcaption>
+</figure>
+<h3 id="konfiguracja-i-weryfikacja-cdp">1.2. Konfiguracja i weryfikacja CDP</h3>
+<h4 id="polecenie-show-cdp">1.2.1. Polecenie show cdp</h4>
+<pre><code>Router# show cdp
+Global CDP information:
+      Sending CDP packets every 60 seconds
+      Sending a holdtime value of 180 seconds
+      Sending CDPv2 advertisements is enabled</code></pre>
+<p>Wyświetla informacje na temat CDP.</p>
+<h4 id="polecenie-cdp-run">1.2.2. Polecenie cdp run</h4>
+<pre><code>Router(config)# cdp run</code></pre>
+<p>Włącza CDP dla wszystkich obsługiwanych interfejsów urządzenia. Jest to polecenie <strong>trybu konfiguracji globalnej</strong>. Po dodaniu słowa no możemy wyłączyć CDP - <strong>no cdp run</strong>.</p>
+<h4 id="polecenie-cdp-enable">1.2.3. Polecenie cdp enable</h4>
+<pre><code>Switch(config)# interface gigabitethernet 0/0/1
+Switch(config-if)# cdp enable</code></pre>
+<p>Włącza CDP na konkretnym interfejsie.</p>
+<h4 id="polecenie-show-cdp-neighbors">1.2.4. Polecenie show cdp neighbors</h4>
+<pre><code>Router# show cdp neighbors
+Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone,
+                  D - Remote, C - CVTA, M - Two-port Mac Relay
+
+Device ID        Local Intrfce     Holdtme    Capability  Platform  Port ID
+
+Total cdp entries displayed : 0</code></pre>
+<p>Wyświetla stan CDP i listę sąsiadów.</p>
+<h4 id="polecenie-show-cdp-interface">1.2.5. Polecenie show cdp interface</h4>
+<pre><code>Router# show cdp interface
+GigabitEthernet0/0/0 is administratively down, line protocol is down
+  Encapsulation ARPA
+  Sending CDP packets every 60 seconds
+  Holdtime is 180 seconds
+GigabitEthernet0/0/1 is up, line protocol is up
+  Encapsulation ARPA
+  Sending CDP packets every 60 seconds
+  Holdtime is 180 seconds
+GigabitEthernet0/0/2 is down, line protocol is down
+  Encapsulation ARPA
+  Sending CDP packets every 60 seconds
+  Holdtime is 180 seconds
+Serial0/1/0 is administratively down, line protocol is down
+  Encapsulation HDLC
+  Sending CDP packets every 60 seconds
+  Holdtime is 180 seconds
+Serial0/1/1 is administratively down, line protocol is down
+  Encapsulation HDLC
+  Sending CDP packets every 60 seconds
+  Holdtime is 180 seconds
+GigabitEthernet0 is down, line protocol is down
+  Encapsulation ARPA
+  Sending CDP packets every 60 seconds
+  Holdtime is 180 seconds
+cdp enabled interfaces : 6
+interfaces up          : 1
+interfaces down        : 5</code></pre>
+<p>Wyświetal interfejsy z włączonym CDP.</p>
+<h2 id="lldp">2. LLDP</h2>
+<h3 id="wprowadzenie-do-lldp">2.1. Wprowadzenie do LLDP</h3>
+<p>Link Layer Discovery Protocol (LLDP) robi to samo co CDP, ale nie jest specyficzny dla urządzeń Cisco.</p>
+<h3 id="konfigurowanie-i-weryfikacja-lldp">2.2. Konfigurowanie i weryfikacja LLDP</h3>
+<h4 id="polecenie-lldp-run">2.2.1. Polecenie lldp run</h4>
+<pre><code>Switch(config)# lldp run</code></pre>
+<p>Włącza LLDP globalnie na urzadzeniu.</p>
+<h4 id="polecenie-lldp-transmit">2.2.2. Polecenie lldp transmit</h4>
+<pre><code>Switch(config)# interface gigabitethernet 0/1
+Switch(config-if)# lldp transmit</code></pre>
+<p>Włącza przesyłanie pakietów LLDP na interfejsie.</p>
+<h4 id="polecenie-lldp-receive">2.2.3. Polecenie lldp receive</h4>
+<pre><code>Switch(config)# interface gigabitethernet 0/1
+Switch(config-if)# lldp receive</code></pre>
+<p>Włącza odbieranie pakietów LLDP na interfejsie.</p>
+<h4 id="polecenie-show-lldp">2.2.4. Polecenie show lldp</h4>
+<pre><code>Switch# show lldp
+Global LLDP Information:
+    Status: ACTIVE
+    LLDP advertisements are sent every 30 seconds
+    LLDP hold time advertised is 120 seconds
+    LLDP interface reinitialisation delay is 2 seconds</code></pre>
+<p>Pozwala na sprawdzenie czy LLDP został właczony.</p>
+<h4 id="polecenie-show-lldp-neighbors">2.2.5. Polecenie show lldp neighbors</h4>
+<pre><code>S1# show lldp neighbors detail
+------------------------------------------------
+Chassis id: 848a.8d44.49b0
+Port id: Gi0/0/1
+Port Description: GigabitEthernet0/0/1
+System Name: R1
+  
+System Description:
+Cisco IOS Software [Fuji], ISR Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 16.9.4, RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 22-Aug-19 18:09 by mcpre
+  
+Time remaining: 111 seconds
+System Capabilities: B,R
+Enabled Capabilities: R
+Management Addresses - not advertised
+Auto Negotiation - not supported
+Physical media capabilities - not advertised
+Media Attachment Unit type - not advertised
+Vlan ID: - not advertised
+  
+------------------------------------------------
+Chassis id: 0025.83e6.4b00
+Port id: Fa0/1
+Port Description: FastEthernet0/1
+System Name: S2
+  
+System Description:
+Cisco IOS Software, C2960 Software (C2960-LANBASEK9-M), Version 15.0(2)SE4, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2013 by Cisco Systems, Inc.
+Compiled Wed 26-Jun-13 02:49 by prod_rel_team
+  
+Time remaining: 107 seconds
+System Capabilities: B
+Enabled Capabilities: B
+Management Addresses - not advertised
+Auto Negotiation - supported, enabled
+Physical media capabilities:
+    100base-TX(FD)
+    100base-TX(HD)
+    10base-T(FD)
+    10base-T(HD)
+Media Attachment Unit type: 16
+Vlan ID: 1
+  
+Total entries displayed: 2</code></pre>
+<p>Wyświetla wykrytych sąsiadów.</p>
+<h2 id="ntp">3. NTP</h2>
+<h3 id="wprowadzenie-do-ntp">3.1. Wprowadzenie do NTP</h3>
+<p><strong>Protokół czasu sieciowego (NTP)</strong> - umożliwia routerom w sieci synchronizację ustawień czasu z serwerem NTP. NTP korzysta z portu UDP 123 i jest udokumentowany w dokumencie RFC 1305.</p>
+<h3 id="operacja-ntp">3.2. Operacja NTP</h3>
+<p>Sieci NTP używają hierarchicznego systemu źródeł czasu. Każdy poziom nazywa się warstwą (tzw. <strong>stratum</strong>). Poziom warstwy definiuje się jako liczbę przeskoków z autorytatywnego źródła.</p>
+<figure>
+<img src="img/10.3.2.png" alt="" /><figcaption>Operacja NTP</figcaption>
+</figure>
+<p><strong>Autorytatywne źródła czasu</strong>, nazywane również <strong>urządzeniami warstwy 0</strong>, są urządzeniami do pomiaru czasu o wysokiej precyzji, które są uważane zaza dokładne i wiążą się z niewielkim lub żadnym opóźnieniem.</p>
+<h3 id="konfiguracja-i-weryfikacja-ntp">3.3. Konfiguracja i weryfikacja NTP</h3>
+<h4 id="polecenie-show-clock-detail">3.3.1. Polecenie show clock detail</h4>
+<pre><code>R1# show clock detail 
+20:55:10.207 UTC Fri Nov 15 2019
+Time source is user configuration</code></pre>
+<p>Wyświetla bieżący czas na urządzeniu.</p>
+<h4 id="polecenie-ntp-server">3.3.2. Polecenie ntp server</h4>
+<pre><code>R1(config)# ntp server 209.165.200.225 
+R1(config)# end 
+R1# show clock detail 
+21:01:34.563 UTC Fri Nov 15 2019
+Time source is NTP</code></pre>
+<p>Jest to polecenie trybu konfiguracji globalnej. Konfiguruje ono urządzenie o konkretnym adresie IP (np. 209.165.200.225) jako serwer NTP.</p>
+<h4 id="polecenie-show-ntp-associations">3.3.3. Polecenie show ntp associations</h4>
+<pre><code>R1# show ntp associations   
+  address         ref clock       st   when   poll reach  delay  offset   disp
+*~209.165.200.225 .GPS.           1     61     64   377  0.481   7.480  4.261
+* sys.peer, # selected, + candidate, - outlyer, x falseticker, ~ configured</code></pre>
+<p>Wyświetla informacje z którym urządzeniem jest zsynchronizowany zegar.</p>
+<h4 id="polecenie-show-ntp-status">3.3.4. Polecenie show ntp status</h4>
+<pre><code>S1# show ntp status
+Clock is synchronized, stratum 3, reference is 192.168.1.1
+nominal freq is 119.2092 Hz, actual freq is 119.2088 Hz, precision is 2**17
+reference time is DA08904B.3269C655 (13:31:55.196 PST Tue Nov 15 2019)
+clock offset is 18.7764 msec, root delay is 102.42 msec
+root dispersion is 38.03 msec, peer dispersion is 3.74 msec
+loopfilter state is &#39;CTRL&#39; (Normal Controlled Loop), drift is 0.000003925 s/s
+system poll interval is 128, last update was 178 sec ago.</code></pre>
+<p>Wyświetla informacje na temat NTP na urządzeniu.</p>
+<h2 id="snmp">4. SNMP</h2>
+<h3 id="wprowadzenie-do-snmp">4.1. Wprowadzenie do SNMP</h3>
+<p><strong>SNMP - Simple Network Management Protocol</strong> - umożlwia administratorom zarządzanie węzłami (tj. serwery, PC, router, switch’e itp.). Umożliwia również monitorowanie wydajności sieci, rozwiązywanie problemów i planowanie rozwoju sieci.</p>
+<p>SNMP jest protokołem warstwy aplikacji (warstwy 7).</p>
+<h4 id="elementy-składowe-systemu-snmp">4.1.1. Elementy składowe systemu SNMP</h4>
+<ul>
+<li><strong>Menedżer SNMP</strong> - jest częścią systemu zarzadzania siecią (NMS), na którym uruchamia się oprogramowanie do zarządzania SNMP. Wysyła zaptania na porcie UPD 161.</li>
+<li><strong>Agenci SNMP</strong> (węzeł zarządzany) - znajduje się na urządzeniu klienckim SNMP. Wysyłają pułapki SNMP na porcie UDP 162. Ich zadaniem jest zbieranie i przechowywanie informacji o urządzeniach oraz podejmowanych przez nie decyzjach.</li>
+<li><strong>Baza danych zarządzania (MIB - Management Information Base)</strong> - znajduje sie na urządzeniu klienckim SNMP i przechowuje dane o urządzeniu oraz statystki operacyjne.</li>
+</ul>
+<h3 id="działanie-snmp">4.2. Działanie SNMP</h3>
+<h4 id="typy-żądań">4.2.1. Typy żądań</h4>
+<ul>
+<li><strong>get</strong> - używane gdy system NMS wysyła do urządzenie zapytanie o przesyłanie danych.</li>
+<li><strong>set</strong> - wykorzystywane przez system NMS do zmiany parametrów konfiguracyjnych urządzenia, na których działa agent. Może również inicjować dziania (restart urządzenia itp.).</li>
+</ul>
+<p>Akcje <strong>get</strong> i <strong>set</strong> są wykorzystywane do wykonywania określonych operacji:</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sposób działania</th>
+<th>Opis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>get-request</td>
+<td>Pobiera wartość z określonej zmiennej.</td>
+</tr>
+<tr class="even">
+<td>get-next-request</td>
+<td>Pobiera wartość ze zmiennej w tabeli; zarządca SNMP nie musi znać dokładnej nazwy zmiennej. Wykonywane jest sekwencyjne wyszukiwanie w celu znalezienia potrzebnej zmiennej z tabeli.</td>
+</tr>
+<tr class="odd">
+<td>get-bulk-request</td>
+<td>Pobiera duży blok danych, takich jak wiele wierszy w tabeli, które w innym wypadku wymagały by transmisji wielu małych bloków danych. (Działa tylko z wersją SNMPv2 lub późniejszą)</td>
+</tr>
+<tr class="even">
+<td>get-response</td>
+<td>Odpowiada na get-request, get-next-request, oraz set-request wysłany przez NMS.</td>
+</tr>
+<tr class="odd">
+<td>set-request</td>
+<td>Przechowuje wartość w określonej zmiennej.</td>
+</tr>
+</tbody>
+</table>
+<p>Agent SNMP może odpowiadać na żądania menedżera SNMP w sposób następujący:</p>
+<ul>
+<li>Pobierz zmienną MIB - agent pobiera wartość żądanej zmiennej MIB i przekazuje tę wartość do menedżera sieci.</li>
+<li>Ustaw zmienną MIB - zmieniea wartość zmiennej MIB i wysyła nowe, zaktualizowane ustawienia urządzenia.</li>
+</ul>
+<h3 id="pułapki-agentów-snmp">4.3. Pułapki agentów SNMP</h3>
+<p><strong>Pułapki (traps)</strong> - komunikaty alarmowe generowane bez żądania, informujące menadżera SNMP o stanie sieci i ewentualnych zdarzeniach.</p>
+<h3 id="wersje-protokołu-snmp">4.4. Wersje protokołu SNMP</h3>
+<h4 id="snmpv1">4.4.1. SNMPv1</h4>
+<p>Jest to prosty protokół zarządzania siecią zdefiniowany w RFC 1157. Jest to starsze rozwiązanie i nie jest często spotykane w sieciach. Wykorzystuje ciągi społeczności do uwierzytelniania.</p>
+<h4 id="snmpv2c">4.4.2. SNMPv2c</h4>
+<p>Jest zdefiniowany w RFC 1901 do 1908. Wykorzystuje <a href="#45-ciągi-społeczności">ciągi społeczności</a> do uwierzytelniania.</p>
+<h4 id="snmpv3">4.4.3. SNMPv3</h4>
+<p>Pierwotnie zdefiniowany w RFC 2273 do 2275. Zapewnia uwierzytelnianie i szyfrowanie pakietów w sieci oraz obejmuję następujące <a href="#27-elementy-bezpiecznej-komunikacji">funkcje bezpieczeństwa</a>: uwierzytelnianie pochodzenia , integralność, poufność.</p>
+<h3 id="ciągi-społeczności">4.5. Ciągi społeczności</h3>
+<p>Są to hasła zapisane jawnym tekstem, które uwierzytelniają dostęp do obiektów MIB.</p>
+<h4 id="typy-ciągów-społeczności">4.5.1. Typy ciągów społeczności</h4>
+<ul>
+<li>Tylko do odczytu (ro)</li>
+<li>Odczyt i zapis (rw)</li>
+</ul>
+<h3 id="id-obiektu-mib">4.6. ID obiektu MIB</h3>
+<p>Baza MIB identyfikuje każdą zmienną za pomocą unikalnego identfykatora obiektu (OID). Baza MIB organizuje obiekty OID w sposób hierarchiczny, zazwyczaj w postaci drzewa, bazując na standardach RFC.</p>
+<h2 id="syslog">5. Syslog</h2>
+<h3 id="wprowadzenie-do-syslog">5.1. Wprowadzenie do syslog</h3>
+<p>Protokół Syslog jest najpopularniejszą metodą uzyskiwania dostępu do komunikatów systemowych. Używa portu UDP 514 do wysyłania powiadomień o zdarzeniach przez sieci IP do modułów zbierających komunikaty o zdarzeniach.</p>
+<p>Usługa rejestrowania syslog zapewnia trzy podstawowe funkcje, jak następuje:</p>
+<ul>
+<li>zbieranie rejestrowanych informacji na potrzeby monitoringu i rozwiązywania problemów</li>
+<li>wybór rodzaju informacji rejestrowanych, które mają zostać przechwycone</li>
+<li>definiowanie odbiorców przechwytywanych informacji syslog</li>
+</ul>
+<h3 id="działanie-usługi-syslog">5.2. Działanie usługi syslog</h3>
+<p>Na urządzeniach Cisco syslog rozpoczyna się od wysłania komunikatów systemowych i danych wyjściowych <strong>debug</strong> od lokalnego procesu rejestrowania, który jest wewnętrzny dla urządzenia. O tym w jaki sposób proces logowania zarządza tymi komunikatami i wynikami, decyduje konfiguracja urządzenia. Dane mogą być wysyłane do np.: - Bufora rejestrowania (pamięć RAM routera lub przełącznika) - Konsoli - Terminala - Serwera syslog</p>
+<h3 id="format-komunikatu-syslog">5.3. Format komunikatu syslog</h3>
+<p>Każdy komunikat syslog posiada obiekt, którego dotyczy oraz poziom ważności. Im mniejszy numer poziomu ważności, tym większe znaczenie krytyczne ma dany komunikat alarmowy.</p>
+<h4 id="pełna-lista-poziomów-syslog">5.3.1. Pełna lista poziomów syslog</h4>
+<table>
+<thead>
+<tr class="header">
+<th>Nazwa ważności</th>
+<th>Poziom ważności</th>
+<th>Wyjaśnienie</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Nagła sytuacja</td>
+<td>Poziom 0</td>
+<td>System nie nadaje się do użytku</td>
+</tr>
+<tr class="even">
+<td>Alarm</td>
+<td>Poziom 1</td>
+<td>Potrzebne natychmiastowe działanie</td>
+</tr>
+<tr class="odd">
+<td>Krytyczne</td>
+<td>Poziom 2</td>
+<td>Stan krytyczny</td>
+</tr>
+<tr class="even">
+<td>Błąd</td>
+<td>Poziom 3</td>
+<td>Stan błędu</td>
+</tr>
+<tr class="odd">
+<td>Ostrzeżenie</td>
+<td>Poziom 4</td>
+<td>Stan ostrzegawczy</td>
+</tr>
+<tr class="even">
+<td>Powiadomienie</td>
+<td>Poziom 5</td>
+<td>Stan normalny, ale istotny</td>
+</tr>
+<tr class="odd">
+<td>Informacyjny</td>
+<td>Poziom 6</td>
+<td>Komunikat informacyjny</td>
+</tr>
+<tr class="even">
+<td>Debugowanie</td>
+<td>Poziom 7</td>
+<td>Komunikat debug</td>
+</tr>
+</tbody>
+</table>
+<h3 id="obiekty-syslog">5.4. Obiekty syslog</h3>
+<p>Oprócz poziomu ważności <a href="#53-format-komunikatu-syslog">komunikaty syslog</a> posiadają również obiekt, którego dotyczą. <strong>Obiekt syslog</strong> to identyfikator usługi, pozwalający zidentyfikować i skateryzować dane na temat stanu systemu na potrzeby raportowania błędów i zdarzeń.</p>
+<p>Typowe obiekty syslog na urządzeniach z Cisco IOS: - IP - protokół OPSF - system operacyjny (SYS) - zabezpieczenia na poziomie IP (IPSec) - interfejs IP (IF)</p>
+<h3 id="konfiguracja-znacznika-czasu-syslog">5.5. Konfiguracja znacznika czasu syslog</h3>
+<pre><code>R1# configure terminal
+R1(config)# interface g0/0/0
+R1(config-if)# shutdown
+%LINK-5-CHANGED: Interface GigabitEthernet0/0/0, changed state to administratively down
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/0, changed state to down</code></pre>
+<p>Domyślnie wiadomość wiadomości dziennika nie są oznaczone <strong>znacznikiem czasu</strong>. Aby to zmienić używamy polecenia <strong>service timestamps log datetime</strong>.</p>
+<h2 id="konserwacja-plików-routera-i-przełącznika">6. Konserwacja plików routera i przełącznika</h2>
+<h3 id="polecenia-zarządzania-systemem-plików-w-ciscoios">6.1. Polecenia zarządzania systemem plików w CiscoIOS</h3>
+<h4 id="polecenie-show-files-systems">6.1.1. Polecenie show files systems</h4>
+<pre><code>Router# show file systems
+File Systems:
+      Size(b)       Free(b)      Type  Flags  Prefixes
+            -             -    opaque     rw   system:
+            -             -    opaque     rw   tmpsys:
+*   7194652672    6294822912      disk     rw   bootflash: flash:#
+    256589824     256573440      disk     rw   usb0:
+    1804468224    1723789312      disk     ro   webui:
+            -             -    opaque     rw   null:
+            -             -    opaque     ro   tar:
+            -             -   network     rw   tftp:
+            -             -    opaque     wo   syslog:
+      33554432      33539983     nvram     rw   nvram:
+            -             -   network     rw   rcp:
+            -             -   network     rw   ftp:
+            -             -   network     rw   http:
+            -             -   network     rw   scp:
+            -             -   network     rw   sftp:
+            -             -   network     rw   https:
+            -             -    opaque     ro   cns:
+Router#</code></pre>
+<p>Wyświetla listę wszystkich dostępnych systemów plików.</p>
+<h4 id="polecenie-dir">6.1.2. Polecenie dir</h4>
+<pre><code>Router# dir
+Directory of bootflash:/
+  11  drwx            16384   Aug 2 2019 04:15:13 +00:00  lost+found
+370945  drwx             4096   Oct 3 2019 15:12:10 +00:00  .installer
+338689  drwx             4096   Aug 2 2019 04:15:55 +00:00  .ssh
+217729  drwx             4096   Aug 2 2019 04:17:59 +00:00  core
+379009  drwx             4096  Sep 26 2019 15:54:10 +00:00  .prst_sync
+80641  drwx             4096   Aug 2 2019 04:16:09 +00:00  .rollback_timer
+161281  drwx             4096   Aug 2 2019 04:16:11 +00:00  gs_script
+112897  drwx           102400   Oct 3 2019 15:23:07 +00:00  tracelogs
+362881  drwx             4096  Aug 23 2019 17:19:54 +00:00  .dbpersist
+298369  drwx             4096   Aug 2 2019 04:16:41 +00:00  virtual-instance
+  12  -rw-               30   Oct 3 2019 15:14:11 +00:00  throughput_monitor_params
+8065  drwx             4096   Aug 2 2019 04:17:55 +00:00  onep
+  13  -rw-               34   Oct 3 2019 15:19:30 +00:00  pnp-tech-time
+249985  drwx             4096  Aug 20 2019 17:40:11 +00:00  Archives
+  14  -rw-            65037   Oct 3 2019 15:19:42 +00:00  pnp-tech-discovery-summary
+  17  -rw-          5032908  Sep 19 2019 14:16:23 +00:00  isr4200_4300_rommon_1612_1r_SPA.pkg
+  18  -rw-        517153193  Sep 21 2019 04:24:04 +00:00  isr4200-universalk9_ias.16.09.04.SPA.bin
+7194652672 bytes total (6294822912 bytes free)
+Router#</code></pre>
+<p>Wyświetla zawartość katalogu.</p>
+<h4 id="polecenie-cd">6.1.3. Polecenie cd</h4>
+<p>Zmienia aktualny katalog</p>
+<h4 id="polecenie-pwd">6.1.4. Polecenie pwd</h4>
+<p>Wyświetla obecną ścieżkę.</p>
+<h2 id="zarządzanie-obrazami-ios">7. Zarządzanie obrazami IOS</h2>
+<h3 id="kopiowanie-obrazu-ios-na-serwer-tftp">7.1. Kopiowanie obrazu IOS na serwer TFTP</h3>
+<pre><code>R1# copy flash: tftp: 
+Source filename []? isr4200-universalk9_ias.16.09.04.SPA.bin
+Address or name of remote host []? 172.16.1.100
+Destination filename [isr4200-universalk9_ias.16.09.04.SPA.bin]? 
+Writing isr4200-universalk9_ias.16.09.04.SPA.bin...
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+(output omitted)
+517153193 bytes copied in 863.468 secs (269058 bytes/sec)</code></pre>
+<h3 id="polecenie-rozruchu-systemu">7.2. Polecenie rozruchu systemu</h3>
+<pre><code>R1# configure terminal
+R1(config)# boot system flash0:isr4200-universalk9_ias.16.09.04.SPA.bin
+R1(config)# exit
+R1#
+R1# copy running-config startup-config
+R1#
+R1# reload
+Proceed with reload? [confirm] 
+
+*Mar  1 12:46:23.808: %SYS-5-RELOAD: Reload requested by console. Reload Reason: Reload Command.</code></pre>
+<p>Aby załadować nowy obraz podczas uruchamiania należy użyć polecenia konfiguracji globalnej <strong>boot system</strong>.</p>
 </body>
 </html>
