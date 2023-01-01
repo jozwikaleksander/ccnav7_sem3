@@ -291,17 +291,33 @@
 </ul></li>
 <li><a href="#xi.-projektowanie-sieci">XI. Projektowanie sieci</a><ul>
 <li><a href="#sieci-hierarchiczne">1. Sieci hierarchiczne</a><ul>
-<li><a href="#funkcje-warstwy-dostępu-dystrubucji-i-szkieletwej">1.1. Funkcje warstwy dostępu, dystrubucji i szkieletwej</a></li>
+<li><a href="#funkcje-warstwy-dostępu-dystrubucji-i-szkieletowej">1.1. Funkcje warstwy dostępu, dystrubucji i szkieletowej</a></li>
 <li><a href="#nieograniczone-sieci-przełączane">1.2. Nieograniczone sieci przełączane</a></li>
 <li><a href="#hierarchia-w-nieograniczonych-sieciach-przełączanych">1.3. Hierarchia w nieograniczonych sieciach przełączanych</a></li>
 </ul></li>
 <li><a href="#sieci-skalowalne">2. Sieci skalowalne</a><ul>
-<li><a href="#zalecenie-zawarte-w-strategii-projektowania-sieci-któa-koncentruje-się-na-skalowalności">2.1. Zalecenie zawarte w strategii projektowania sieci, któa koncentruje się na skalowalności:</a></li>
+<li><a href="#zalecenie-zawarte-w-strategii-projektowania-sieci-która-koncentruje-się-na-skalowalności">2.1. Zalecenie zawarte w strategii projektowania sieci, która koncentruje się na skalowalności:</a></li>
 <li><a href="#cechy-przy-wdrożeniu-skalowalnej-sieci">2.2. Cechy przy wdrożeniu skalowalnej sieci</a></li>
 </ul></li>
 <li><a href="#komponenty-sprzętowe-przełącznika">3. Komponenty sprzętowe przełącznika</a></li>
 <li><a href="#komponenty-sprzętowe-routingu">4. Komponenty sprzętowe routingu</a><ul>
 <li><a href="#routery-cisco">4.1. Routery Cisco</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#xii.-rozwiązywanie-problemów-z-sieciami">XII. Rozwiązywanie problemów z sieciami</a><ul>
+<li><a href="#dokumentacja-sieci">1. Dokumentacja sieci</a><ul>
+<li><a href="#przegląd-dokumentacji">1.1. Przegląd dokumentacji</a></li>
+<li><a href="#schematy-topologii-sieci">1.2. Schematy topologii sieci</a></li>
+<li><a href="#dokumentacja-urządzeń-sieciowych">1.3. Dokumentacja urządzeń sieciowych</a></li>
+<li><a href="#wyznaczanie-stanu-odniesienia-sieci">1.4. Wyznaczanie stanu odniesienia sieci</a></li>
+<li><a href="#pomiar-danych">1.5. Pomiar danych</a></li>
+</ul></li>
+<li><a href="#rozwiązywanie-problemów-z-sieciami">2. Rozwiązywanie problemów z sieciami</a><ul>
+<li><a href="#siedmiostopniowy-proces-rozwiązywania-problemów">2.1. Siedmiostopniowy proces rozwiązywania problemów</a></li>
+<li><a href="#przepytywanie-użytkowników-końcowych">2.2. Przepytywanie użytkowników końcowych</a></li>
+<li><a href="#zbieranie-informacji">2.3. Zbieranie informacji</a></li>
+<li><a href="#rozwiązywanie-problemów-za-pomocą-modeli-warstwowych">2.4. Rozwiązywanie problemów za pomocą modeli warstwowych</a></li>
+<li><a href="#strukturalne-metody-rozwiązywania-problemów">2.5. Strukturalne metody rozwiązywania problemów</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -2225,7 +2241,7 @@ address ref clock st when poll reach delay offset disp <em>~209.165.200.225 .GPS
 <p>Aby załadować nowy obraz podczas uruchamiania należy użyć polecenia konfiguracji globalnej <strong>boot system</strong>.</p>
 <h1 id="xi.-projektowanie-sieci">XI. Projektowanie sieci</h1>
 <h2 id="sieci-hierarchiczne">1. Sieci hierarchiczne</h2>
-<h3 id="funkcje-warstwy-dostępu-dystrubucji-i-szkieletwej">1.1. Funkcje warstwy dostępu, dystrubucji i szkieletwej</h3>
+<h3 id="funkcje-warstwy-dostępu-dystrubucji-i-szkieletowej">1.1. Funkcje warstwy dostępu, dystrubucji i szkieletowej</h3>
 <figure>
 <img src="img/11.1.1.png" alt="Przykładow sieci trójwarstwowych" /><figcaption>Przykładow sieci trójwarstwowych</figcaption>
 </figure>
@@ -2246,7 +2262,7 @@ address ref clock st when poll reach delay offset disp <em>~209.165.200.225 .GPS
 <li><strong>Elastyczność</strong> - konstrukcja umożliwia inteligentne dzielenie obciążenie ruchem przy użyciu wszystkich zasobów sieciowych.</li>
 </ul>
 <h2 id="sieci-skalowalne">2. Sieci skalowalne</h2>
-<h3 id="zalecenie-zawarte-w-strategii-projektowania-sieci-któa-koncentruje-się-na-skalowalności">2.1. Zalecenie zawarte w strategii projektowania sieci, któa koncentruje się na skalowalności:</h3>
+<h3 id="zalecenie-zawarte-w-strategii-projektowania-sieci-która-koncentruje-się-na-skalowalności">2.1. Zalecenie zawarte w strategii projektowania sieci, która koncentruje się na skalowalności:</h3>
 <ul>
 <li>Hierarchiczność sieci</li>
 <li>Wybieranie routerów lub przełączników wielowarstwoych, aby ograniczyć rozgłaszanie i odflitrować inny niepożądany ruch z sieci.</li>
@@ -2309,5 +2325,215 @@ address ref clock st when poll reach delay offset disp <em>~209.165.200.225 .GPS
 <li><strong>routery dostawców usług sieciowych</strong> - zapewnia dostęp do internetu nowej generacji na wszystkich urządzeniach i we wszystkich lokalizacjach</li>
 <li><strong>przemysłowe</strong> - zapewnia funkcje klasy korporacyjnej w trudnych warunkach</li>
 </ul>
+<h1 id="xii.-rozwiązywanie-problemów-z-sieciami">XII. Rozwiązywanie problemów z sieciami</h1>
+<h2 id="dokumentacja-sieci">1. Dokumentacja sieci</h2>
+<h3 id="przegląd-dokumentacji">1.1. Przegląd dokumentacji</h3>
+<p>Dokumentacja sieciowa obejmuje następujące elmementy:</p>
+<ul>
+<li>Diagramy fizycznej i logicznej topologii sieci</li>
+<li>Dokumentacja urządzenia sieciowego rejestrująca wszystkie istotne informacje o urządzeniu</li>
+<li>Dokumentacja bazowa wydajności sieci</li>
+</ul>
+<h3 id="schematy-topologii-sieci">1.2. Schematy topologii sieci</h3>
+<h4 id="topologia-fizyczna">1.2.1. Topologia fizyczna</h4>
+<p>Przedstawia fizyczny układ urządzeń podłączonych do sieci. Aby rozwiązać problem z warstwą fizyczną musisz wiedzieć jak urządzenia są fizycznie połączone.</p>
+<p><strong>Informacje zapisane w topologii fizycznej zazwyczaj obejmują:</strong></p>
+<ul>
+<li>Nazwę urządzenia</li>
+<li>Lokalizację urządzenia (adres, nr pokoju, lokalizacja szafy)</li>
+<li>Interfejs i używane porty</li>
+<li>Typ okablowania</li>
+</ul>
+<figure>
+<img src="img/12.1.2.1.png" alt="Przykładowy diagram topologii fizycznej" /><figcaption>Przykładowy diagram topologii fizycznej</figcaption>
+</figure>
+<h4 id="topologia-logiczna-ipv4">1.2.2. Topologia logiczna IPv4</h4>
+<p>Ilustruje w jaki sposób urządzenia są logicznie połączone z siecią.</p>
+<p><strong>Informacje zapisane w logicznej topologii sieci mogą obejmować:</strong></p>
+<ul>
+<li>Identyfikatory urządzeń</li>
+<li>Adresy IP i długości prefiksów</li>
+<li>Identyfikatory interfejsu</li>
+<li>Protokoły routingu / trasy statyczne</li>
+<li>Informacje warstwy 2 (tj. sieci VLAN, połączenia trunk, EtherChannel)</li>
+</ul>
+<figure>
+<img src="img/12.1.2.2.png" alt="Przykładowy diagram topologii logicznej" /><figcaption>Przykładowy diagram topologii logicznej</figcaption>
+</figure>
+<h4 id="topologia-logiczna-ipv6">1.2.3. Topologia logiczna IPv6</h4>
+<p>Adresy IPv6 mogą być w tej samej logicznej topologii IPv4.</p>
+<figure>
+<img src="img/12.1.2.3.png" alt="Przykładowy diagram topologii logicznej IPv6" /><figcaption>Przykładowy diagram topologii logicznej IPv6</figcaption>
+</figure>
+<h3 id="dokumentacja-urządzeń-sieciowych">1.3. Dokumentacja urządzeń sieciowych</h3>
+<p>Dokumentacja urządzeń sieciowych powinna zawierać dokładne i aktualne zapisy sprzętu sieciowego i oprogramowania. Dokumentacja powinna zawierać wszystkie istotne informacje o urządzeniach sieciowych.</p>
+<figure>
+<img src="img/12.1.3.png" alt="Przykłądowa dokumentacja routera" /><figcaption>Przykłądowa dokumentacja routera</figcaption>
+</figure>
+<h3 id="wyznaczanie-stanu-odniesienia-sieci">1.4. Wyznaczanie stanu odniesienia sieci</h3>
+<p><strong>Stan odniesienia</strong> służy do ustalenia normalnej wydajności sieci lub systemu w celu określenia “osobowości” sieci w normalnych warunkach.</p>
+<p>Stan odniesienia sieci powinien odpowiadać na następujące pytania:</p>
+<ul>
+<li>Jak sieć funkcjonuje podczas normalnego lub typowego dnia?</li>
+<li>Gdzie może wystąpić najwięcej błędów?</li>
+<li>Która część sieci jest najintensywniej wykorzystywana?</li>
+<li>Która część sieci jest najmniej wykorzystywana?</li>
+<li>Jakie urządzenia należy monitorować i jakie progi alarmowe należy ustawić?</li>
+<li>Czy sieć może spełniać określone zasady?</li>
+</ul>
+<h4 id="krok-1---określ-jakie-typy-danych-należy-gromadzić">1.4.1. Krok 1 - Określ, jakie typy danych należy gromadzić</h4>
+<p>Wybierz klika zmiennych, które reprezentują wybrane zasady. Zacznij od mniejszej ilości i dokłaadaj w trakcie. Jedne z dobrych zmiennych to wykorzystanie interfejsu, procesora.</p>
+<h4 id="krok-2---zidentyfikuj-interesujące-urządzenia-i-porty">1.4.2. Krok 2 - Zidentyfikuj interesujące urządzenia i porty</h4>
+<p>Interesujące urządzenia i porty obejmują:</p>
+<ul>
+<li>Porty urządzeń sieciowych, które są połączone z innymi urządzeniami w sieci</li>
+<li>Serwery</li>
+<li>Kluczowych użytkowników</li>
+<li>Wszystko co zostanie uznane za istotne dla działania sieci</li>
+</ul>
+<p>Do tego zadania przydatna może być topologia logiczna.</p>
+<h4 id="krok-3---określ-podstawowy-czas-stanu">1.4.3. Krok 3 - Określ podstawowy czas stanu</h4>
+<p>Przedział czasu, w których przechwytujemy dane do analizy powinien wynosić co namniej 7 dni.</p>
+<h3 id="pomiar-danych">1.5. Pomiar danych</h3>
+<p>Często warto konieczne jest zbieranie informacji bezpośrednio od routerów i przełączników. Oczywiste polecenia to <strong>ping</strong>, <strong>traceroute</strong> i <strong>telnet</strong> oraz polecenia <strong>show</strong> w Cisco IOS.</p>
+<p><strong>Lista poleceń w Cisco IOS używanych do gromadzenia danych:</strong></p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Polecenie</th>
+<th>Opis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>show version</td>
+<td>Wyświetla czas pracy, informacje o wersji oprogramowania urządzenia i sprzętu.</td>
+</tr>
+<tr class="even">
+<td>show ip interface [brief] show ipv6 interface [brief]</td>
+<td>Wyświetla wszystkie opcje konfiguracyjne ustawione w interfejsie. Użyj słowa kluczowego brief, aby wyświetlić tylko stan up/down stan interfejsów IP i adres IP każdego interfejsu.</td>
+</tr>
+<tr class="odd">
+<td>show interfaces</td>
+<td>Wyświetla szczegółowe dane wyjściowe dla każdego interfejsu. Aby wyświetlić szczegółowe dane wyjściowe tylko dla jednego interfejsu, należy uwzględnić typ i numer interfejsu w poleceniu (np. Gigabit Ethernet 0/0/0).</td>
+</tr>
+<tr class="even">
+<td>show ip route show ipv6 route</td>
+<td>Wyświetla listę zawartości tabeli routingu bezpośrednio połączoną sieci i wyuczone sieci zdalne. Dołącz static, eigrp lub ospf , aby wyświetlić tylko te trasy.</td>
+</tr>
+<tr class="odd">
+<td>show cdp neighbors detail</td>
+<td>Wyświetla szczegółowe informacje o bezpośrednio podłączonym urządzeniu sąsiadującym Cisco.</td>
+</tr>
+<tr class="even">
+<td>show arp show ipv6 neighbors</td>
+<td>Wyświetla zawartość tabeli ARP (IPv4) i tabeli sąsiadów (IPv6).</td>
+</tr>
+<tr class="odd">
+<td>show running-config</td>
+<td>Wyświetla aktualną konfigurację.</td>
+</tr>
+<tr class="even">
+<td>show vlan</td>
+<td>Wyświetla stan sieci VLAN na przełączniku.</td>
+</tr>
+<tr class="odd">
+<td>show port</td>
+<td>Wyświetla stan portów na przełączniku.</td>
+</tr>
+<tr class="even">
+<td>show tech-support</td>
+<td>To polecenie jest przydatne do zbierania dużej ilości informacji o urządzeniu w celu rozwiązywania problemów. Wykonuje wiele poleceń show, które mogą być dostarczone do przedstawicieli wsparcia technicznego przy zgłaszaniu problemu</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rozwiązywanie-problemów-z-sieciami">2. Rozwiązywanie problemów z sieciami</h2>
+<h3 id="siedmiostopniowy-proces-rozwiązywania-problemów">2.1. Siedmiostopniowy proces rozwiązywania problemów</h3>
+<figure>
+<img src="img/12.2.2.1.png" alt="Diagram przedstawiający proces rozwiązywania problemów" /><figcaption>Diagram przedstawiający proces rozwiązywania problemów</figcaption>
+</figure>
+<p><strong>Opis kroków procesu:</strong></p>
+<ul>
+<li><strong>Zdefiniuj problem</strong> - sprawdź czy problem występuje, zdefiniuj na czym polega problem. Zbierz symptomy, zadawaj pytania i badaj problemy, aby zlokalizować problem na mniejszy zakres możliwości.</li>
+<li><strong>Zbierz informacje</strong> - zidentyfikuj cele, które mają być badane, uzyskaj do nich dostęp.</li>
+<li><strong>Analizuj informacje</strong> - zidentyfikuj przyczyny.</li>
+<li><strong>Wyeliminuj możliwe przyczyny</strong> - step by step zidentyfkuj najbardziej prawdopodobną przyczynę.</li>
+<li><strong>Zaproponuj hipotezę</strong> - sformułuj rozwiązanie.</li>
+<li><strong>Przetestuj hipotezę</strong> - oceń wpływ i pilność problemu. Utwórz plan wycofania (jak szybko cofnąć rozwiązanie). Zaimplementuj rozwiązanie i sprawdź, czy rozwiązało problem.</li>
+<li><strong>Rozwiąż problem</strong> - po rozwiązaniu poinformuj użytkowników i wszystkie osoby zaangażowane w prcoes rozwiązywania problemów, że problem został rozwiązany. Sporządź odpowiendnią dokumentację zawierającą przyczyny oraz wprowadzone poprawki.</li>
+</ul>
+<h3 id="przepytywanie-użytkowników-końcowych">2.2. Przepytywanie użytkowników końcowych</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Wskazówki</th>
+<th>Przykładowe pytania otwarte dla użytkowników końcowych</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Zadaj istotne pytania.</td>
+<td>Co nie działa? W czym dokładnie jest problem? Co próbujesz osiągnąć?</td>
+</tr>
+<tr class="even">
+<td>Ustalanie zakresu problemu.</td>
+<td>Na kogo ten problem wpływa? Czy to tylko ty czy inni? Na jakim urządzeniu to się dzieje?</td>
+</tr>
+<tr class="odd">
+<td>Określ, kiedy wystąpił problem/występuje.</td>
+<td>Kiedy dokładnie problem wystąpił? Kiedy problem był zaobserwowany pierwszy raz? Czy były wyświetlane jakieś komunikaty o błędzie?</td>
+</tr>
+<tr class="even">
+<td>Ustal, czy problem jest stały lub przerywany.</td>
+<td>Czy mógłbyś odtworzyć problem? Możesz wysłać mi zrzut ekranu lub wideo problemu?</td>
+</tr>
+<tr class="odd">
+<td>Ustal, czy coś się zmieniło.</td>
+<td>Co się zmieniło od ostatniego razu gdy urządzenie pracowało poprawnie?</td>
+</tr>
+<tr class="even">
+<td>Użyj pytań, aby wyeliminować lub odkryć możliwe problemy.</td>
+<td>Co działa? Co nie działa?</td>
+</tr>
+<tr class="odd">
+<td>show running-config</td>
+<td>Wyświetla aktualną konfigurację.</td>
+</tr>
+<tr class="even">
+<td>show vlan</td>
+<td>Wyświetla stan sieci VLAN na przełączniku.</td>
+</tr>
+<tr class="odd">
+<td>show port</td>
+<td>Wyświetla stan portów na przełączniku.</td>
+</tr>
+<tr class="even">
+<td>show tech-support</td>
+<td>To polecenie jest przydatne do zbierania dużej ilości informacji o urządzeniu w celu rozwiązywania problemów. Wykonuje wiele poleceń show, które mogą być dostarczone do przedstawicieli wsparcia technicznego przy zgłaszaniu problemu</td>
+</tr>
+</tbody>
+</table>
+<h3 id="zbieranie-informacji">2.3. Zbieranie informacji</h3>
+<p>Użyj poleceń CiscoIOS i innych narzędzi tj. przechywytywanie pakietów i dzienniki urządzeń.</p>
+<h3 id="rozwiązywanie-problemów-za-pomocą-modeli-warstwowych">2.4. Rozwiązywanie problemów za pomocą modeli warstwowych</h3>
+<p>Modele OSI i TCP / IP można zastosować do izolowania problemów z siecią podczas rozwiązywania problemów.</p>
+<figure>
+<img src="img/12.2.4.png" alt="Niektóre typowe urządzenia i warstwy OSI" /><figcaption>Niektóre typowe urządzenia i warstwy OSI</figcaption>
+</figure>
+<p>Zauważ, że routery oraz przełączniki wielowarstwowe przydzielone zostały do warstwy 4 - transportowej. Mimo, że zazwyczaj urządzenia te podejmują decyzje w warstwie 3, można na nich używać list kontroli dostępu ACL, które podejmują decyzje bazując na informacjach z warstwy 4.</p>
+<h3 id="strukturalne-metody-rozwiązywania-problemów">2.5. Strukturalne metody rozwiązywania problemów</h3>
+<h4 id="od-dołu">2.5.1. Od dołu</h4>
+<p>Od warstwy fizycznej do warstwy aplikacji modelu OSI. Jest dobry podejściem kiedy problem prawdopodobnie znajduje się w warstwie fizycznej.</p>
+<h4 id="od-góry">2.5.2. Od góry</h4>
+<p>Od warstwy aplikacji do warstwy fizycznej modelu OSI. Podejścia tego używamy w przypadku prostszych problemów lub kiedy problem prawdopodobnie leży po stronie oprogramowania.</p>
+<h4 id="dziel-i-rządź">2.5.3. Dziel i rządź</h4>
 </body>
 </html>

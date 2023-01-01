@@ -2162,7 +2162,7 @@ Budowa nieograniczonych sieci przełącznych jest oparta na następujących zasa
 
 ## 1. Dokumentacja sieci
 
-## 1.1. Przegląd dokumentacji
+### 1.1. Przegląd dokumentacji
 
 Dokumentacja sieciowa obejmuje następujące elmementy:
 
@@ -2170,13 +2170,13 @@ Dokumentacja sieciowa obejmuje następujące elmementy:
 - Dokumentacja urządzenia sieciowego rejestrująca wszystkie istotne informacje o urządzeniu
 - Dokumentacja bazowa wydajności sieci
 
-## 1.2. Schematy topologii sieci
+### 1.2. Schematy topologii sieci
 
-### 1.2.1. Topologia fizyczna
+#### 1.2.1. Topologia fizyczna
 
 Przedstawia fizyczny układ urządzeń podłączonych do sieci. Aby rozwiązać problem z warstwą fizyczną musisz wiedzieć jak urządzenia są fizycznie połączone.
 
-Informacje zapisane w topologii fizycznej zazwyczaj obejmują:
+**Informacje zapisane w topologii fizycznej zazwyczaj obejmują:**
 
 - Nazwę urządzenia
 - Lokalizację urządzenia (adres, nr pokoju, lokalizacja szafy)
@@ -2184,3 +2184,137 @@ Informacje zapisane w topologii fizycznej zazwyczaj obejmują:
 - Typ okablowania
 
 ![Przykładowy diagram topologii fizycznej](img/12.1.2.1.png)
+
+#### 1.2.2. Topologia logiczna IPv4
+
+Ilustruje w jaki sposób urządzenia są logicznie połączone z siecią.
+
+**Informacje zapisane w logicznej topologii sieci mogą obejmować:**
+
+- Identyfikatory urządzeń
+- Adresy IP i długości prefiksów
+- Identyfikatory interfejsu
+- Protokoły routingu / trasy statyczne
+- Informacje warstwy 2 (tj. sieci VLAN, połączenia trunk, EtherChannel)
+
+![Przykładowy diagram topologii logicznej](img/12.1.2.2.png)
+
+#### 1.2.3. Topologia logiczna IPv6
+
+Adresy IPv6 mogą być w tej samej logicznej topologii IPv4.
+
+![Przykładowy diagram topologii logicznej IPv6](img/12.1.2.3.png)
+
+### 1.3. Dokumentacja urządzeń sieciowych
+
+Dokumentacja urządzeń sieciowych powinna zawierać dokładne i aktualne zapisy sprzętu sieciowego i oprogramowania. Dokumentacja powinna zawierać wszystkie istotne informacje o urządzeniach sieciowych.
+
+![Przykłądowa dokumentacja routera](img/12.1.3.png)
+
+### 1.4. Wyznaczanie stanu odniesienia sieci
+
+**Stan odniesienia** służy do ustalenia normalnej wydajności sieci lub systemu w celu określenia "osobowości" sieci w normalnych warunkach.
+
+Stan odniesienia sieci powinien odpowiadać na następujące pytania:
+
+- Jak sieć funkcjonuje podczas normalnego lub typowego dnia?
+- Gdzie może wystąpić najwięcej błędów?
+- Która część sieci jest najintensywniej wykorzystywana?
+- Która część sieci jest najmniej wykorzystywana?
+- Jakie urządzenia należy monitorować i jakie progi alarmowe należy ustawić?
+- Czy sieć może spełniać określone zasady?
+
+#### 1.4.1. Krok 1 - Określ, jakie typy danych należy gromadzić
+
+Wybierz klika zmiennych, które reprezentują wybrane zasady. Zacznij od mniejszej ilości i dokłaadaj w trakcie. Jedne z dobrych zmiennych to wykorzystanie interfejsu, procesora.
+
+#### 1.4.2. Krok 2 - Zidentyfikuj interesujące urządzenia i porty
+
+
+Interesujące urządzenia i porty obejmują:
+
+- Porty urządzeń sieciowych, które są połączone z innymi urządzeniami w sieci
+- Serwery
+- Kluczowych użytkowników
+- Wszystko co zostanie uznane za istotne dla działania sieci
+
+Do tego zadania przydatna może być topologia logiczna.
+
+#### 1.4.3. Krok 3 - Określ podstawowy czas stanu
+
+Przedział czasu, w których przechwytujemy dane do analizy powinien wynosić co namniej 7 dni.
+
+### 1.5. Pomiar danych
+
+Często warto konieczne jest zbieranie informacji bezpośrednio od routerów i przełączników. Oczywiste polecenia to **ping**, **traceroute** i **telnet** oraz polecenia **show** w Cisco IOS.
+
+**Lista poleceń w Cisco IOS używanych do gromadzenia danych:**
+
+| Polecenie | Opis |
+|---|---|
+| show version  | Wyświetla czas pracy, informacje o wersji oprogramowania urządzenia i sprzętu. |
+| show ip interface [brief]  show ipv6 interface [brief]  | Wyświetla wszystkie opcje konfiguracyjne ustawione w interfejsie. Użyj słowa kluczowego brief, aby wyświetlić tylko stan up/down stan interfejsów IP i adres IP każdego interfejsu. |
+| show interfaces   | Wyświetla szczegółowe dane wyjściowe dla każdego interfejsu. Aby wyświetlić szczegółowe dane wyjściowe tylko dla jednego interfejsu, należy uwzględnić typ i numer interfejsu w poleceniu (np. Gigabit Ethernet 0/0/0). |
+| show ip route show ipv6 route   | Wyświetla listę zawartości tabeli routingu bezpośrednio połączoną sieci i wyuczone sieci zdalne. Dołącz static, eigrp lub ospf , aby wyświetlić tylko te trasy. |
+| show cdp neighbors detail  | Wyświetla szczegółowe informacje o bezpośrednio podłączonym urządzeniu sąsiadującym Cisco. |
+| show arp show ipv6 neighbors  | Wyświetla zawartość tabeli ARP (IPv4) i tabeli sąsiadów (IPv6). |
+| show running-config  | Wyświetla aktualną konfigurację. |
+| show vlan  | Wyświetla stan sieci VLAN na przełączniku. |
+| show port  | Wyświetla stan portów na przełączniku. |
+| show tech-support  | To polecenie jest przydatne do zbierania dużej ilości informacji o urządzeniu w celu rozwiązywania problemów. Wykonuje wiele poleceń show, które mogą być dostarczone do przedstawicieli wsparcia technicznego przy zgłaszaniu problemu |
+
+## 2. Rozwiązywanie problemów z sieciami
+
+### 2.1. Siedmiostopniowy proces rozwiązywania problemów
+
+![Diagram przedstawiający proces rozwiązywania problemów](img/12.2.2.1.png)
+
+**Opis kroków procesu:**
+
+- **Zdefiniuj problem** - sprawdź czy problem występuje, zdefiniuj na czym polega problem. Zbierz symptomy, zadawaj pytania i badaj problemy, aby zlokalizować problem na mniejszy zakres możliwości.
+- **Zbierz informacje** - zidentyfikuj cele, które mają być badane, uzyskaj do nich dostęp.
+- **Analizuj informacje** - zidentyfikuj przyczyny.
+- **Wyeliminuj możliwe przyczyny** - step by step zidentyfkuj najbardziej prawdopodobną przyczynę.
+- **Zaproponuj hipotezę** - sformułuj rozwiązanie.
+- **Przetestuj hipotezę** - oceń wpływ i pilność problemu. Utwórz plan wycofania (jak szybko cofnąć rozwiązanie). Zaimplementuj rozwiązanie i sprawdź, czy rozwiązało problem.
+- **Rozwiąż problem** - po rozwiązaniu poinformuj użytkowników i wszystkie osoby zaangażowane w prcoes rozwiązywania problemów, że problem został rozwiązany. Sporządź odpowiendnią dokumentację zawierającą przyczyny oraz wprowadzone poprawki.
+
+### 2.2. Przepytywanie użytkowników końcowych
+
+| Wskazówki | Przykładowe pytania otwarte dla użytkowników końcowych |
+|---|---|
+| Zadaj istotne pytania. | Co nie działa? W czym dokładnie jest problem? Co próbujesz osiągnąć? |
+| Ustalanie zakresu problemu. | Na kogo ten problem wpływa? Czy to tylko ty czy inni? Na jakim urządzeniu to się dzieje? |
+| Określ, kiedy wystąpił problem/występuje. | Kiedy dokładnie problem wystąpił? Kiedy problem był zaobserwowany pierwszy raz? Czy były wyświetlane jakieś komunikaty o błędzie? |
+| Ustal, czy problem jest stały lub przerywany. | Czy mógłbyś odtworzyć problem? Możesz wysłać mi zrzut ekranu lub wideo problemu? |
+| Ustal, czy coś się zmieniło. | Co się zmieniło od ostatniego razu gdy urządzenie pracowało poprawnie? |
+| Użyj pytań, aby wyeliminować lub odkryć możliwe problemy. | Co działa? Co nie działa? |
+| show running-config  | Wyświetla aktualną konfigurację. |
+| show vlan  | Wyświetla stan sieci VLAN na przełączniku. |
+| show port  | Wyświetla stan portów na przełączniku. |
+| show tech-support  | To polecenie jest przydatne do zbierania dużej ilości informacji o urządzeniu w celu rozwiązywania problemów. Wykonuje wiele poleceń show, które mogą być dostarczone do przedstawicieli wsparcia technicznego przy zgłaszaniu problemu |
+
+### 2.3. Zbieranie informacji
+
+Użyj poleceń CiscoIOS i innych narzędzi tj. przechywytywanie pakietów i dzienniki urządzeń.
+
+### 2.4. Rozwiązywanie problemów za pomocą modeli warstwowych
+
+Modele OSI i TCP / IP można zastosować do izolowania problemów z siecią podczas rozwiązywania problemów.
+
+![Niektóre typowe urządzenia i warstwy OSI](img/12.2.4.png)
+
+Zauważ, że routery oraz przełączniki wielowarstwowe przydzielone zostały do warstwy 4 - transportowej. Mimo, że zazwyczaj urządzenia te podejmują decyzje w warstwie 3, można na nich używać list kontroli dostępu ACL, które podejmują decyzje bazując na informacjach z warstwy 4.
+
+### 2.5. Strukturalne metody rozwiązywania problemów
+
+#### 2.5.1. Od dołu
+
+Od warstwy fizycznej do warstwy aplikacji modelu OSI. Jest dobry podejściem kiedy problem prawdopodobnie znajduje się w warstwie fizycznej.
+
+#### 2.5.2. Od góry
+
+Od warstwy aplikacji do warstwy fizycznej modelu OSI. Podejścia tego używamy w przypadku prostszych problemów lub kiedy problem prawdopodobnie leży po stronie oprogramowania.
+
+#### 2.5.3. Dziel i rządź
+
