@@ -2068,26 +2068,119 @@ Wyświetla obecną ścieżkę.
 
 ### 7.1. Kopiowanie obrazu IOS na serwer TFTP
 
-    R1# copy flash: tftp: 
-    Source filename []? isr4200-universalk9_ias.16.09.04.SPA.bin
-    Address or name of remote host []? 172.16.1.100
-    Destination filename [isr4200-universalk9_ias.16.09.04.SPA.bin]? 
-    Writing isr4200-universalk9_ias.16.09.04.SPA.bin...
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
-    (output omitted)
-    517153193 bytes copied in 863.468 secs (269058 bytes/sec)
+        R1# copy flash: tftp: 
+        Source filename []? isr4200-universalk9_ias.16.09.04.SPA.bin
+        Address or name of remote host []? 172.16.1.100
+        Destination filename [isr4200-universalk9_ias.16.09.04.SPA.bin]? 
+        Writing isr4200-universalk9_ias.16.09.04.SPA.bin...
+        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+        (output omitted)
+        517153193 bytes copied in 863.468 secs (269058 bytes/sec)
 
 ### 7.2. Polecenie rozruchu systemu
 
-    R1# configure terminal
-    R1(config)# boot system flash0:isr4200-universalk9_ias.16.09.04.SPA.bin
-    R1(config)# exit
-    R1#
-    R1# copy running-config startup-config
-    R1#
-    R1# reload
-    Proceed with reload? [confirm] 
+        R1# configure terminal
+        R1(config)# boot system flash0:isr4200-universalk9_ias.16.09.04.SPA.bin
+        R1(config)# exit
+        R1#
+        R1# copy running-config startup-config
+        R1#
+        R1# reload
+        Proceed with reload? [confirm] 
 
-    *Mar  1 12:46:23.808: %SYS-5-RELOAD: Reload requested by console. Reload Reason: Reload Command.
+        *Mar  1 12:46:23.808: %SYS-5-RELOAD: Reload requested by console. Reload Reason: Reload Command.
 
 Aby załadować nowy obraz podczas uruchamiania należy użyć polecenia konfiguracji globalnej **boot system**.
+
+# XI. Projektowanie sieci
+
+## 1. Sieci hierarchiczne
+
+### 1.1. Funkcje warstwy dostępu, dystrubucji i szkieletowej
+
+![Przykładow sieci trójwarstwowych](img/11.1.1.png)
+
+#### 1.1.1. Warstwa dostępu
+
+Reprezentuje brzeg sieci, w którym ruch wychodzi lub wchodzi do sieci. Przełączniki warstwy dostepu zapewniają użytkownikowi dostęp do sieci, łącza się z przełącznikami warstwy dystrybucji.
+
+#### 1.1.2. Warstwa dystrubcji
+Łączy warstwę dostępu i warstwę rdzeniową. Integruje się ze szkieletem i użytkownikami, zapewniając inteligentne przełączanie, routing i bezpieczeństwo.
+
+#### 1.1.3. Warstwa szkieletowa
+Warstwa ta stanowi szkiele sieci. Służy jako agregatora dla wszystkich urządzeń warstwy dystrybucji i łączy kampus z resztą sieci. Zapewnia izolację błędów i szybką łączność w sieci szkieletowej.
+
+### 1.2. Nieograniczone sieci przełączane
+
+**Cisco Borderless Network** to architektura sieciowa, która zapewnia organizacjom obsługę sieci bez granic, zapewnia strukturę do ujednolicenia dostępu przewodowego i bezprzewodowego.
+
+### 1.3. Hierarchia w nieograniczonych sieciach przełączanych
+
+Budowa nieograniczonych sieci przełącznych jest oparta na następujących zasadach:
+
+- **Hierarchiczność**- projekt uławia zrozumienia roli każdego urządzenia na każdej warstwie, upraszcza wdrażanie, obsługę i zarządzanie oraz redukuje domeny błędów na każdej warstwie.
+- **Modułowość** - konstrukcja umomożliwia bezproblemową rozbudowe sieci i włączenie zintegrowanych usług na żądanie.
+- **Odporność** - projekt spełnia oczekiwania użytkowników w zakresie utrzymania sieci zawsze włączonej.
+- **Elastyczność** - konstrukcja umożliwia inteligentne dzielenie obciążenie ruchem przy użyciu wszystkich zasobów sieciowych.
+
+## 2. Sieci skalowalne
+
+### 2.1. Zalecenie zawarte w strategii projektowania sieci, która koncentruje się na skalowalności:
+
+- Hierarchiczność sieci
+- Wybieranie routerów lub przełączników wielowarstwoych, aby ograniczyć rozgłaszanie i odflitrować inny niepożądany ruch z sieci.
+- Korzystanie z rozszerzalnego modułowego sprzętu lub urządzeń w klastrze, które można łatwo zaktualizować w celu zwiększenia możliwości.
+
+### 2.2. Cechy przy wdrożeniu skalowalnej sieci
+
+- Łącza nadmiarowe
+- Wiele łączy
+- Rozszerzalny modułowy sprzęt
+
+## 3. Komponenty sprzętowe przełącznika
+
+| Kwestia | Opis |
+|---|---|
+| Koszt | Koszt przełącznika zależy od liczby i prędkości interfejsów, obsługiwanych funkcji i możliwości rozbudowy. |
+| Gęstość portów | Przełączniki sieciowe muszą obsłużyć odpowiednią liczbę urządzeń w sieci. |
+| Zasilanie | Jest teraz powszechne w przypadku punktów dostępu, telefonów IP i kompaktowych przełączników Power over Ethernet (PoE). Oprócz rozważań PoE, niektóre przełączniki montowane w obudowie obsługują nadmiarowe zasilacze. |
+| Niezawodność | Przełącznik powinien zapewniać ciągły dostęp do sieci. |
+| Szybkość portów | Szybkość połączenia sieciowego ma podstawowe znaczenie dla użytkowników końcowych. |
+| Bufory ramek | Zdolność przełącznika do przechowywania ramek jest ważna w sieci gdzie mogą występować zatłoczone porty do serwerów lub innych obszarów sieci. |
+| Skalowalność | Liczba użytkowników w sieci zazwyczaj rośnie w czasie; w związku z tym przełącznik powinien zapewnić możliwość wzrostu. |
+
+## 4. Komponenty sprzętowe routingu
+
+### 4.1. Routery Cisco
+
+- **routery dla oddziałów** - zapewnia prostą konfigurację i zarządzanie siecią LAN i WAN
+- **routery brzegowe** - zapewniają dużą wydajność i wysoki poziom bezpieczeństwa w centrach danych, kampusach i sieciach oddziałów. Wykorzystywane, aby umożliwić klientom dostęp do zawartości wszędzie i w każdej chwili, niezależnie od tego, czy są oni w domu czy w pracy.
+- **routery dostawców usług sieciowych** - zapewnia dostęp do internetu nowej generacji na wszystkich urządzeniach i we wszystkich lokalizacjach
+- **przemysłowe** - zapewnia funkcje klasy korporacyjnej w trudnych warunkach
+
+# XII. Rozwiązywanie problemów z sieciami
+
+## 1. Dokumentacja sieci
+
+## 1.1. Przegląd dokumentacji
+
+Dokumentacja sieciowa obejmuje następujące elmementy:
+
+- Diagramy fizycznej i logicznej topologii sieci
+- Dokumentacja urządzenia sieciowego rejestrująca wszystkie istotne informacje o urządzeniu
+- Dokumentacja bazowa wydajności sieci
+
+## 1.2. Schematy topologii sieci
+
+### 1.2.1. Topologia fizyczna
+
+Przedstawia fizyczny układ urządzeń podłączonych do sieci. Aby rozwiązać problem z warstwą fizyczną musisz wiedzieć jak urządzenia są fizycznie połączone.
+
+Informacje zapisane w topologii fizycznej zazwyczaj obejmują:
+
+- Nazwę urządzenia
+- Lokalizację urządzenia (adres, nr pokoju, lokalizacja szafy)
+- Interfejs i używane porty
+- Typ okablowania
+
+![Przykładowy diagram topologii fizycznej](img/12.1.2.1.png)
