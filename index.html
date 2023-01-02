@@ -5,11 +5,13 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>🌐 CCNAv7 sem3</title>
-  <style type="text/css">
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
   </style>
   <link rel="stylesheet" href="css/style.css" />
   <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
@@ -20,9 +22,10 @@
 <header id="title-block-header">
 <h1 class="title">🌐 CCNAv7 sem3</h1>
 </header>
-<nav id="TOC">
+<nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#i.-protokół-ospf">I. Protokół OSPF</a><ul>
+<li><a href="#i.-protokół-ospf">I. Protokół OSPF</a>
+<ul>
 <li><a href="#ospf">1. OSPF</a></li>
 <li><a href="#proces-routingu-stanu-łącza">2. Proces routingu stanu łącza</a></li>
 <li><a href="#zalety-wieloobszarowego-ospf">3. Zalety wieloobszarowego OSPF</a></li>
@@ -30,7 +33,8 @@
 <li><a href="#rodzaje-pakietów-ospf">5. Rodzaje pakietów OSPF</a></li>
 <li><a href="#stany-protokołu-ospf">6. Stany protokołu OSPF</a></li>
 </ul></li>
-<li><a href="#ii.-konfiguracja-jednoobszarowego-ospfv2">II. Konfiguracja jednoobszarowego OSPFv2</a><ul>
+<li><a href="#ii.-konfiguracja-jednoobszarowego-ospfv2">II. Konfiguracja jednoobszarowego OSPFv2</a>
+<ul>
 <li><a href="#identyfikator-routera">1. Identyfikator routera</a></li>
 <li><a href="#maska-blankietowa-wildcard-mask">2. Maska blankietowa (wildcard mask)</a></li>
 <li><a href="#interfejsy-pasywne">3. Interfejsy pasywne</a></li>
@@ -41,18 +45,21 @@
 <li><a href="#propagowanie-domyślnej-trasy-statycznej-w-opsfv2">8. Propagowanie domyślnej trasy statycznej w OPSFv2</a></li>
 <li><a href="#źródła-uzupełniające">9. Źródła uzupełniające</a></li>
 </ul></li>
-<li><a href="#iii.-koncepcje-bezpieczeństwa-sieci">III. Koncepcje bezpieczeństwa sieci</a><ul>
+<li><a href="#iii.-koncepcje-bezpieczeństwa-sieci">III. Koncepcje bezpieczeństwa sieci</a>
+<ul>
 <li><a href="#wektory-ataków-sieciowych">1. Wektory ataków sieciowych</a></li>
 <li><a href="#typy-hakerów">2. Typy hakerów</a></li>
 <li><a href="#terminy-dotyczące-hackingu">3. Terminy dotyczące hackingu</a></li>
 <li><a href="#narzędzia-do-testowania-penetracji">4. Narzędzia do testowania penetracji</a></li>
 <li><a href="#typy-ataków">5. Typy ataków</a></li>
-<li><a href="#rodzaje-złośliwego-oprogramowania">6. Rodzaje złośliwego oprogramowania</a><ul>
+<li><a href="#rodzaje-złośliwego-oprogramowania">6. Rodzaje złośliwego oprogramowania</a>
+<ul>
 <li><a href="#wirus">6.1. Wirus</a></li>
 <li><a href="#koń-trojański">6.2. Koń trojański</a></li>
 </ul></li>
 <li><a href="#rekonesans">7. Rekonesans</a></li>
-<li><a href="#ataki-dostępu">8. Ataki dostępu</a><ul>
+<li><a href="#ataki-dostępu">8. Ataki dostępu</a>
+<ul>
 <li><a href="#ataki-na-hasło">8.1. Ataki na hasło</a></li>
 <li><a href="#ataki-fałszowania">8.2. Ataki fałszowania</a></li>
 <li><a href="#wykorzystanie-zaufania">8.3. Wykorzystanie zaufania</a></li>
@@ -61,7 +68,8 @@
 <li><a href="#przepełnienie-bufora">8.6. Przepełnienie bufora</a></li>
 </ul></li>
 <li><a href="#ataki-socjotechniczne">9. Ataki socjotechniczne</a></li>
-<li><a href="#ataki-dos-i-ddos">10. Ataki DoS i DDoS</a><ul>
+<li><a href="#ataki-dos-i-ddos">10. Ataki DoS i DDoS</a>
+<ul>
 <li><a href="#główne-typy-ataków-dos">10.1. Główne typy ataków DoS</a></li>
 </ul></li>
 <li><a href="#ataki-ip">11. Ataki IP</a></li>
@@ -71,11 +79,13 @@
 <li><a href="#usługi-tcp">15. Usługi TCP</a></li>
 <li><a href="#ataki-na-tcp">16. Ataki na TCP</a></li>
 <li><a href="#ataki-na-udp">17. Ataki na UDP</a></li>
-<li><a href="#zatruwanie-arp">18. Zatruwanie ARP</a><ul>
+<li><a href="#zatruwanie-arp">18. Zatruwanie ARP</a>
+<ul>
 <li><a href="#rodzaje-zatrucia-arp">18.1. Rodzaje zatrucia ARP</a></li>
 </ul></li>
 <li><a href="#ataki-na-dns">19. Ataki na DNS</a></li>
-<li><a href="#tunelowanie-dns">20. Tunelowanie DNS</a><ul>
+<li><a href="#tunelowanie-dns">20. Tunelowanie DNS</a>
+<ul>
 <li><a href="#proces-tunelowania-dns">20.1. Proces tunelowania DNS</a></li>
 </ul></li>
 <li><a href="#ataki-na-dhcp">21. Ataki na DHCP</a></li>
@@ -85,80 +95,98 @@
 <li><a href="#ips">25. IPS</a></li>
 <li><a href="#urządzenia-bezpieczeństwa-treści">26. Urządzenia bezpieczeństwa treści</a></li>
 <li><a href="#elementy-bezpiecznej-komunikacji">27. Elementy bezpiecznej komunikacji:</a></li>
-<li><a href="#integralność-danych">28. Integralność danych</a><ul>
+<li><a href="#integralność-danych">28. Integralność danych</a>
+<ul>
 <li><a href="#trzy-znane-funkcje-skrótu">28.1. Trzy znane funkcje skrótu</a></li>
 </ul></li>
 <li><a href="#uwierzytelnianie-pochodzenia">29. Uwierzytelnianie pochodzenia</a></li>
-<li><a href="#poufność-danych">30. Poufność danych</a><ul>
+<li><a href="#poufność-danych">30. Poufność danych</a>
+<ul>
 <li><a href="#szyfrowanie-symetryczne">30.1. Szyfrowanie symetryczne</a></li>
 <li><a href="#szyfrowanie-asymetryczne">30.2. Szyfrowanie asymetryczne</a></li>
 </ul></li>
 <li><a href="#diffie-hellman-dh">31. Diffie-Hellman (DH)</a></li>
 </ul></li>
-<li><a href="#iv.-koncepcje-acl">IV. Koncepcje ACL</a><ul>
-<li><a href="#lista-acl">1. Lista ACL</a><ul>
+<li><a href="#iv.-koncepcje-acl">IV. Koncepcje ACL</a>
+<ul>
+<li><a href="#lista-acl">1. Lista ACL</a>
+<ul>
 <li><a href="#filtrowanie-ramek">1.1 Filtrowanie ramek</a></li>
 <li><a href="#zadanie-acl">1.2. Zadanie ACL</a></li>
 <li><a href="#filtrowanie-pakietów-w-modelu-isoosi">1.3. Filtrowanie pakietów w modelu ISO/OSI</a></li>
 <li><a href="#wejściowa-i-wyjściowa-lista-acl">1.4. Wejściowa i wyjściowa lista ACL</a></li>
 <li><a href="#sposób-działania-standardowej-listy-acl">1.5. Sposób działania standardowej listy ACL</a></li>
 </ul></li>
-<li><a href="#maski-blankietowe">2. Maski blankietowe</a><ul>
+<li><a href="#maski-blankietowe">2. Maski blankietowe</a>
+<ul>
 <li><a href="#reguły-dopasowania-masek-blankietowych">2.1. Reguły dopasowania masek blankietowych</a></li>
 <li><a href="#typy-masek-blankietowych">2.2. Typy masek blankietowych</a></li>
 <li><a href="#obliczanie-maski-blankietowej">2.3. Obliczanie maski blankietowej</a></li>
 <li><a href="#słowa-kluczowe-w-maskach-blankietowych">2.4. Słowa kluczowe w maskach blankietowych</a></li>
 </ul></li>
-<li><a href="#wytyczne-tworzenia-acl">3. Wytyczne tworzenia ACL</a><ul>
+<li><a href="#wytyczne-tworzenia-acl">3. Wytyczne tworzenia ACL</a>
+<ul>
 <li><a href="#ograniczona-liczba-acl-na-interfejs">3.1. Ograniczona liczba ACL na interfejs</a></li>
 <li><a href="#najlepsze-praktyki">3.2. Najlepsze praktyki</a></li>
 <li><a href="#kolejność-instrukcji-acl">3.3. Kolejność instrukcji ACL</a></li>
 </ul></li>
-<li><a href="#numerowane-i-nazwane-acl">4. Numerowane i nazwane ACL</a><ul>
+<li><a href="#numerowane-i-nazwane-acl">4. Numerowane i nazwane ACL</a>
+<ul>
 <li><a href="#numerowane-acl">4.1. Numerowane ACL</a></li>
 <li><a href="#nazwane-acl">4.2. Nazwane ACL</a></li>
 </ul></li>
-<li><a href="#umieszczanie-listy-acl">5. Umieszczanie listy ACL</a><ul>
+<li><a href="#umieszczanie-listy-acl">5. Umieszczanie listy ACL</a>
+<ul>
 <li><a href="#czynniki-wpływające-na-umieszczenie-acl">5.1. Czynniki wpływające na umieszczenie ACL</a></li>
 </ul></li>
 <li><a href="#źródła-uzupełniające-1">6. Źródła uzupełniające</a></li>
 </ul></li>
-<li><a href="#v.-konfiguracja-acl">V. Konfiguracja ACL</a><ul>
-<li><a href="#konfiguracja-standardowych-list-acl-ipv4">1. Konfiguracja standardowych list ACL IPv4</a><ul>
+<li><a href="#v.-konfiguracja-acl">V. Konfiguracja ACL</a>
+<ul>
+<li><a href="#konfiguracja-standardowych-list-acl-ipv4">1. Konfiguracja standardowych list ACL IPv4</a>
+<ul>
 <li><a href="#standardowa-numerowana-acl">1.1. Standardowa numerowana ACL</a></li>
 <li><a href="#standardowa-nazywana-acl">1.2. Standardowa nazywana ACL</a></li>
 <li><a href="#stosowanie-standardowych-list-acl-ipv4">1.3. Stosowanie standardowych list ACL IPv4</a></li>
 </ul></li>
-<li><a href="#modyfikowanie-list-acl-ipv4">2. Modyfikowanie list ACL IPv4</a><ul>
+<li><a href="#modyfikowanie-list-acl-ipv4">2. Modyfikowanie list ACL IPv4</a>
+<ul>
 <li><a href="#dwie-metody-modyfikacji-acl">2.1. Dwie metody modyfikacji ACL</a></li>
 <li><a href="#statystyki-acl">2.2. Statystyki ACL</a></li>
 </ul></li>
-<li><a href="#zabezpieczanie-portów-vty-przy-pomocy-standardowej-acl-ipv4">3. Zabezpieczanie portów VTY przy pomocy standardowej ACL IPv4</a><ul>
+<li><a href="#zabezpieczanie-portów-vty-przy-pomocy-standardowej-acl-ipv4">3. Zabezpieczanie portów VTY przy pomocy standardowej ACL IPv4</a>
+<ul>
 <li><a href="#polecenie-access-class">3.1. Polecenie access-class</a></li>
 <li><a href="#przykład-zabezpieczania-dostępu-vty">3.2. Przykład zabezpieczania dostępu VTY</a></li>
 </ul></li>
-<li><a href="#konfiguracja-rozszerzonych-list-acl-ipv4">4. Konfiguracja rozszerzonych list ACL IPv4</a><ul>
+<li><a href="#konfiguracja-rozszerzonych-list-acl-ipv4">4. Konfiguracja rozszerzonych list ACL IPv4</a>
+<ul>
 <li><a href="#rozszerzona-numerowana-lista-acl-ipv4">4.1. Rozszerzona numerowana lista ACL IPv4</a></li>
 <li><a href="#rozszerzona-acl-z-opcją-established-tcp">4.2. Rozszerzona ACL z opcją Established TCP</a></li>
 <li><a href="#rozszerzona-nazywana-lista-acl-ipv4">4.3. Rozszerzona nazywana lista ACL IPv4</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#vi.-nat-dla-ipv4">VI. NAT dla IPv4</a><ul>
-<li><a href="#charakterystyka-nat">1. Charakterystyka NAT</a><ul>
+<li><a href="#vi.-nat-dla-ipv4">VI. NAT dla IPv4</a>
+<ul>
+<li><a href="#charakterystyka-nat">1. Charakterystyka NAT</a>
+<ul>
 <li><a href="#prywatne-adresy-ip-w-dokumencie-rfc-1918">1.1. Prywatne adresy IP w dokumencie RFC 1918</a></li>
 <li><a href="#czym-jest-nat">1.2. Czym jest NAT?</a></li>
 <li><a href="#terminologia-nat">1.3. Terminologia NAT</a></li>
 </ul></li>
-<li><a href="#typy-nat">2. Typy NAT</a><ul>
+<li><a href="#typy-nat">2. Typy NAT</a>
+<ul>
 <li><a href="#statyczny-nat">2.1. Statyczny NAT</a></li>
 <li><a href="#dynamiczny-nat">2.2. Dynamiczny NAT</a></li>
 <li><a href="#translacja-pat">2.3. Translacja PAT</a></li>
 </ul></li>
-<li><a href="#zalety-i-wady-nat">3. Zalety i wady NAT</a><ul>
+<li><a href="#zalety-i-wady-nat">3. Zalety i wady NAT</a>
+<ul>
 <li><a href="#zalety-nat">3.1. Zalety NAT</a></li>
 <li><a href="#wady-nat">3.2. Wady NAT</a></li>
 </ul></li>
-<li><a href="#konfiguracja-nat">4. Konfiguracja NAT</a><ul>
+<li><a href="#konfiguracja-nat">4. Konfiguracja NAT</a>
+<ul>
 <li><a href="#konfiguracja-statycznego-nat">4.1. Konfiguracja statycznego NAT</a></li>
 <li><a href="#konfiguracja-dynamicznego-nat">4.2. Konfiguracja dynamicznego NAT</a></li>
 <li><a href="#konfiguracja-pat">4.3. Konfiguracja PAT</a></li>
@@ -166,15 +194,18 @@
 <li><a href="#nat-dla-ipv6">5. NAT dla IPv6</a></li>
 <li><a href="#źródła-uzupełniające-2">6. Źródła uzupełniające</a></li>
 </ul></li>
-<li><a href="#vii.-koncepcje-sieci-wan">VII. Koncepcje sieci WAN</a><ul>
-<li><a href="#cele-sieci-wan">1. Cele sieci WAN</a><ul>
+<li><a href="#vii.-koncepcje-sieci-wan">VII. Koncepcje sieci WAN</a>
+<ul>
+<li><a href="#cele-sieci-wan">1. Cele sieci WAN</a>
+<ul>
 <li><a href="#różnice-między-lan-i-wan">1.1 Różnice między LAN i WAN</a></li>
 <li><a href="#prywatne-i-publiczne-sieci-wan">1.2. Prywatne i publiczne sieci WAN</a></li>
 <li><a href="#topologie-wan">1.3. Topologie WAN</a></li>
 <li><a href="#łącza-operatorów">1.4. Łącza operatorów</a></li>
 <li><a href="#ewolucja-sieci">1.5 Ewolucja sieci</a></li>
 </ul></li>
-<li><a href="#operacje-wan">2. Operacje WAN</a><ul>
+<li><a href="#operacje-wan">2. Operacje WAN</a>
+<ul>
 <li><a href="#standardy-sieci-wan">2.1. Standardy sieci WAN</a></li>
 <li><a href="#sieci-wan-w-modelu-osi">2.2. Sieci WAN w modelu OSI</a></li>
 <li><a href="#terminologia-wan">2.3. Terminologia WAN</a></li>
@@ -184,18 +215,21 @@
 <li><a href="#komunikacja-z-przełączaniem-pakietów">2.7. Komunikacja z przełączaniem pakietów</a></li>
 <li><a href="#sdh-sonet-i-dwdm">2.8. SDH, SONET i DWDM</a></li>
 </ul></li>
-<li><a href="#tradycyjna-łączność-wan">3. Tradycyjna łączność WAN</a><ul>
+<li><a href="#tradycyjna-łączność-wan">3. Tradycyjna łączność WAN</a>
+<ul>
 <li><a href="#tradycyjne-opcje-łączności-wan">3.1. Tradycyjne opcje łączności WAN</a></li>
 <li><a href="#terminologia-wan-1">3.2. Terminologia WAN</a></li>
 <li><a href="#opcje-z-komutacją-łączy">3.3. Opcje z komutacją łączy</a></li>
 <li><a href="#opcje-z-przełączaniem-pakietów">3.4. Opcje z przełączaniem pakietów</a></li>
 </ul></li>
-<li><a href="#nowoczesne-technologie-wan">4. Nowoczesne technologie WAN</a><ul>
+<li><a href="#nowoczesne-technologie-wan">4. Nowoczesne technologie WAN</a>
+<ul>
 <li><a href="#nowoczesne-opcje-łączności-wan">4.1. Nowoczesne opcje łączności WAN</a></li>
 <li><a href="#ethernet-wan">4.2. Ethernet WAN</a></li>
 <li><a href="#mpls">4.3. MPLS</a></li>
 </ul></li>
-<li><a href="#łączność-internetowa">5. Łączność internetowa</a><ul>
+<li><a href="#łączność-internetowa">5. Łączność internetowa</a>
+<ul>
 <li><a href="#technologia-dsl">5.1. Technologia DSL</a></li>
 <li><a href="#połączenia-dsl">5.2. Połączenia DSL</a></li>
 <li><a href="#dsl-i-ppp">5.3. DSL i PPP</a></li>
@@ -207,14 +241,17 @@
 </ul></li>
 <li><a href="#źródła-uzupełniające-3">6. Źródła uzupełniające</a></li>
 </ul></li>
-<li><a href="#viii.-koncepcje-vpn-i-ipsec">VIII. Koncepcje VPN i IPSec</a><ul>
-<li><a href="#technologia-vpn-1">1. Technologia VPN</a><ul>
+<li><a href="#viii.-koncepcje-vpn-i-ipsec">VIII. Koncepcje VPN i IPSec</a>
+<ul>
+<li><a href="#technologia-vpn-1">1. Technologia VPN</a>
+<ul>
 <li><a href="#wirtualne-sieci-prywatne">1.1. Wirtualne sieci prywatne</a></li>
 <li><a href="#korzyści-z-vpn">1.2. Korzyści z VPN</a></li>
 <li><a href="#sieci-vpn-typu-site-to-site-i-zdalnego-dostepu">1.3. Sieci VPN typu site-to-site i zdalnego dostepu</a></li>
 <li><a href="#vpn-dla-przedsiębiorstw-i-dostawców-usług">1.4. VPN dla przedsiębiorstw i dostawców usług</a></li>
 </ul></li>
-<li><a href="#rodzaje-sieci-vpn">2. Rodzaje sieci VPN</a><ul>
+<li><a href="#rodzaje-sieci-vpn">2. Rodzaje sieci VPN</a>
+<ul>
 <li><a href="#sieci-vpn-zdalnego-dostępu">2.1. Sieci VPN zdalnego dostępu</a></li>
 <li><a href="#ssl-vpn-a-ipsec">2.2. SSL VPN, a IPsec</a></li>
 <li><a href="#vpn-site-to-site-ipsec">2.3. VPN site-to-site IPSec</a></li>
@@ -223,13 +260,15 @@
 <li><a href="#interfejs-wirtualnego-tunelu-ipsec">2.6. Interfejs wirtualnego tunelu IPsec</a></li>
 <li><a href="#dostawca-usług-mpls-vpn">2.7. Dostawca usług MPLS VPN</a></li>
 </ul></li>
-<li><a href="#ipsec">3. IPSec</a><ul>
+<li><a href="#ipsec">3. IPSec</a>
+<ul>
 <li><a href="#technologie-ipsec">3.1. Technologie IPSec</a></li>
 <li><a href="#wybory-dotyczące-ipsec">3.2. Wybory dotyczące IPSec</a></li>
 </ul></li>
 <li><a href="#źródła-uzupełniające-4">4. Źródła uzupełniające</a></li>
 </ul></li>
-<li><a href="#ix.-koncepcje-qos">IX. Koncepcje QoS</a><ul>
+<li><a href="#ix.-koncepcje-qos">IX. Koncepcje QoS</a>
+<ul>
 <li><a href="#stałe-opóźnienie">1. Stałe opóźnienie</a></li>
 <li><a href="#zmienne-opóźnienie">2. Zmienne opóźnienie</a></li>
 <li><a href="#źródła-opoźnienia">3. Źródła opoźnienia</a></li>
@@ -252,21 +291,26 @@
 <li><a href="#sekwencja-qos">19. Sekwencja QoS</a></li>
 <li><a href="#klasyfikacja-i-oznaczenie">20. Klasyfikacja i oznaczenie</a></li>
 </ul></li>
-<li><a href="#x.-zarządzanie-siecią">X. Zarządzanie siecią</a><ul>
-<li><a href="#wykrywanie-urzadzeń-za-pomocą-protokołu-cdp">1. Wykrywanie urzadzeń za pomocą protokołu CDP</a><ul>
+<li><a href="#x.-zarządzanie-siecią">X. Zarządzanie siecią</a>
+<ul>
+<li><a href="#wykrywanie-urzadzeń-za-pomocą-protokołu-cdp">1. Wykrywanie urzadzeń za pomocą protokołu CDP</a>
+<ul>
 <li><a href="#wprowadzenie-do-cdp">1.1. Wprowadzenie do CDP</a></li>
 <li><a href="#konfiguracja-i-weryfikacja-cdp">1.2. Konfiguracja i weryfikacja CDP</a></li>
 </ul></li>
-<li><a href="#lldp">2. LLDP</a><ul>
+<li><a href="#lldp">2. LLDP</a>
+<ul>
 <li><a href="#wprowadzenie-do-lldp">2.1. Wprowadzenie do LLDP</a></li>
 <li><a href="#konfigurowanie-i-weryfikacja-lldp">2.2. Konfigurowanie i weryfikacja LLDP</a></li>
 </ul></li>
-<li><a href="#ntp">3. NTP</a><ul>
+<li><a href="#ntp">3. NTP</a>
+<ul>
 <li><a href="#wprowadzenie-do-ntp">3.1. Wprowadzenie do NTP</a></li>
 <li><a href="#operacja-ntp">3.2. Operacja NTP</a></li>
 <li><a href="#konfiguracja-i-weryfikacja-ntp">3.3. Konfiguracja i weryfikacja NTP</a></li>
 </ul></li>
-<li><a href="#snmp">4. SNMP</a><ul>
+<li><a href="#snmp">4. SNMP</a>
+<ul>
 <li><a href="#wprowadzenie-do-snmp">4.1. Wprowadzenie do SNMP</a></li>
 <li><a href="#działanie-snmp">4.2. Działanie SNMP</a></li>
 <li><a href="#pułapki-agentów-snmp">4.3. Pułapki agentów SNMP</a></li>
@@ -274,50 +318,72 @@
 <li><a href="#ciągi-społeczności">4.5. Ciągi społeczności</a></li>
 <li><a href="#id-obiektu-mib">4.6. ID obiektu MIB</a></li>
 </ul></li>
-<li><a href="#syslog">5. Syslog</a><ul>
+<li><a href="#syslog">5. Syslog</a>
+<ul>
 <li><a href="#wprowadzenie-do-syslog">5.1. Wprowadzenie do syslog</a></li>
 <li><a href="#działanie-usługi-syslog">5.2. Działanie usługi syslog</a></li>
 <li><a href="#format-komunikatu-syslog">5.3. Format komunikatu syslog</a></li>
 <li><a href="#obiekty-syslog">5.4. Obiekty syslog</a></li>
 <li><a href="#konfiguracja-znacznika-czasu-syslog">5.5. Konfiguracja znacznika czasu syslog</a></li>
 </ul></li>
-<li><a href="#konserwacja-plików-routera-i-przełącznika">6. Konserwacja plików routera i przełącznika</a><ul>
+<li><a href="#konserwacja-plików-routera-i-przełącznika">6. Konserwacja plików routera i przełącznika</a>
+<ul>
 <li><a href="#polecenia-zarządzania-systemem-plików-w-ciscoios">6.1. Polecenia zarządzania systemem plików w CiscoIOS</a></li>
 </ul></li>
-<li><a href="#zarządzanie-obrazami-ios">7. Zarządzanie obrazami IOS</a><ul>
+<li><a href="#zarządzanie-obrazami-ios">7. Zarządzanie obrazami IOS</a>
+<ul>
 <li><a href="#kopiowanie-obrazu-ios-na-serwer-tftp">7.1. Kopiowanie obrazu IOS na serwer TFTP</a></li>
 <li><a href="#polecenie-rozruchu-systemu">7.2. Polecenie rozruchu systemu</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#xi.-projektowanie-sieci">XI. Projektowanie sieci</a><ul>
-<li><a href="#sieci-hierarchiczne">1. Sieci hierarchiczne</a><ul>
+<li><a href="#xi.-projektowanie-sieci">XI. Projektowanie sieci</a>
+<ul>
+<li><a href="#sieci-hierarchiczne">1. Sieci hierarchiczne</a>
+<ul>
 <li><a href="#funkcje-warstwy-dostępu-dystrubucji-i-szkieletowej">1.1. Funkcje warstwy dostępu, dystrubucji i szkieletowej</a></li>
 <li><a href="#nieograniczone-sieci-przełączane">1.2. Nieograniczone sieci przełączane</a></li>
 <li><a href="#hierarchia-w-nieograniczonych-sieciach-przełączanych">1.3. Hierarchia w nieograniczonych sieciach przełączanych</a></li>
 </ul></li>
-<li><a href="#sieci-skalowalne">2. Sieci skalowalne</a><ul>
+<li><a href="#sieci-skalowalne">2. Sieci skalowalne</a>
+<ul>
 <li><a href="#zalecenie-zawarte-w-strategii-projektowania-sieci-która-koncentruje-się-na-skalowalności">2.1. Zalecenie zawarte w strategii projektowania sieci, która koncentruje się na skalowalności:</a></li>
 <li><a href="#cechy-przy-wdrożeniu-skalowalnej-sieci">2.2. Cechy przy wdrożeniu skalowalnej sieci</a></li>
 </ul></li>
 <li><a href="#komponenty-sprzętowe-przełącznika">3. Komponenty sprzętowe przełącznika</a></li>
-<li><a href="#komponenty-sprzętowe-routingu">4. Komponenty sprzętowe routingu</a><ul>
+<li><a href="#komponenty-sprzętowe-routingu">4. Komponenty sprzętowe routingu</a>
+<ul>
 <li><a href="#routery-cisco">4.1. Routery Cisco</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#xii.-rozwiązywanie-problemów-z-sieciami">XII. Rozwiązywanie problemów z sieciami</a><ul>
-<li><a href="#dokumentacja-sieci">1. Dokumentacja sieci</a><ul>
+<li><a href="#xii.-rozwiązywanie-problemów-z-sieciami">XII. Rozwiązywanie problemów z sieciami</a>
+<ul>
+<li><a href="#dokumentacja-sieci">1. Dokumentacja sieci</a>
+<ul>
 <li><a href="#przegląd-dokumentacji">1.1. Przegląd dokumentacji</a></li>
 <li><a href="#schematy-topologii-sieci">1.2. Schematy topologii sieci</a></li>
 <li><a href="#dokumentacja-urządzeń-sieciowych">1.3. Dokumentacja urządzeń sieciowych</a></li>
 <li><a href="#wyznaczanie-stanu-odniesienia-sieci">1.4. Wyznaczanie stanu odniesienia sieci</a></li>
 <li><a href="#pomiar-danych">1.5. Pomiar danych</a></li>
 </ul></li>
-<li><a href="#rozwiązywanie-problemów-z-sieciami">2. Rozwiązywanie problemów z sieciami</a><ul>
+<li><a href="#rozwiązywanie-problemów-z-sieciami">2. Rozwiązywanie problemów z sieciami</a>
+<ul>
 <li><a href="#siedmiostopniowy-proces-rozwiązywania-problemów">2.1. Siedmiostopniowy proces rozwiązywania problemów</a></li>
 <li><a href="#przepytywanie-użytkowników-końcowych">2.2. Przepytywanie użytkowników końcowych</a></li>
 <li><a href="#zbieranie-informacji">2.3. Zbieranie informacji</a></li>
 <li><a href="#rozwiązywanie-problemów-za-pomocą-modeli-warstwowych">2.4. Rozwiązywanie problemów za pomocą modeli warstwowych</a></li>
 <li><a href="#strukturalne-metody-rozwiązywania-problemów">2.5. Strukturalne metody rozwiązywania problemów</a></li>
+</ul></li>
+<li><a href="#narzędzia-rozwiązywania-problemów">3. Narzędzia rozwiązywania problemów</a>
+<ul>
+<li><a href="#programowe-narzędzie-do-rozwiązywania-problemów">3.1. Programowe narzędzie do rozwiązywania problemów</a></li>
+<li><a href="#analizator-protokołu">3.2. Analizator protokołu</a></li>
+<li><a href="#sprzętowe-narzędzia-do-rozwiązywania-problemów">3.3. Sprzętowe narzędzia do rozwiązywania problemów</a></li>
+<li><a href="#serwer-syslog-jako-narzędzie-do-rozwiązywania-problemów">3.4. Serwer Syslog jako narzędzie do rozwiązywania problemów</a></li>
+</ul></li>
+<li><a href="#objawy-i-przyczyny-problemów-z-siecią">4. Objawy i przyczyny problemów z siecią</a>
+<ul>
+<li><a href="#warstwa-fizyczna">4.1. Warstwa fizyczna</a></li>
+<li><a href="#warstwa-łącza-danych">4.2. Warstwa łącza danych</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -348,18 +414,18 @@
 <li>Zmniejszona częstotliwość obliczeń SPF</li>
 </ul>
 <figure>
-<img src="img/1.png" alt="Zmiany stanu łącza dotyczą tylko bieżącego obszaru" /><figcaption>Zmiany stanu łącza dotyczą tylko bieżącego obszaru</figcaption>
+<img src="img/1.png" alt="" /><figcaption>Zmiany stanu łącza dotyczą tylko bieżącego obszaru</figcaption>
 </figure>
 <h2 id="osfpv3">4. OSFPv3</h2>
 <p>To odpowiednik OSPFv2 służacy do <strong>wymiany prefiksów IPv6</strong>.</p>
 <h2 id="rodzaje-pakietów-ospf">5. Rodzaje pakietów OSPF</h2>
 <figure>
-<img src="img/2.png" alt="Rodzaje pakietów OSPF" /><figcaption>Rodzaje pakietów OSPF</figcaption>
+<img src="img/2.png" alt="" /><figcaption>Rodzaje pakietów OSPF</figcaption>
 </figure>
 <p><strong>DR</strong> - Designed Router; <strong>BDR</strong> - Backup Designed Router</p>
 <h2 id="stany-protokołu-ospf">6. Stany protokołu OSPF</h2>
 <figure>
-<img src="img/3.png" alt="Stany protokołu OSPF" /><figcaption>Stany protokołu OSPF</figcaption>
+<img src="img/3.png" alt="" /><figcaption>Stany protokołu OSPF</figcaption>
 </figure>
 <h1 id="ii.-konfiguracja-jednoobszarowego-ospfv2">II. Konfiguracja jednoobszarowego OSPFv2</h1>
 <h2 id="identyfikator-routera">1. Identyfikator routera</h2>
@@ -369,7 +435,7 @@
 <li><strong>Uczestniczenie w wyborze routera desygnowanego (DR)</strong> - router z najwyższym id jest DR, drugi najwyższy BDR.</li>
 </ul>
 <figure>
-<img src="img/4.png" alt="Proces przypisywania identyfikatora" /><figcaption>Proces przypisywania identyfikatora</figcaption>
+<img src="img/4.png" alt="" /><figcaption>Proces przypisywania identyfikatora</figcaption>
 </figure>
 <h2 id="maska-blankietowa-wildcard-mask">2. Maska blankietowa (wildcard mask)</h2>
 <p>To odwrotność maski podsieci. (255.255.255.0 = 0.0.0.255).</p>
@@ -410,10 +476,10 @@
 <p><strong>Koszt = referencyjna szerokość pasma / szerokość pasma interfejsu</strong></p>
 <p>Wartość kosztu OSPF musi być <strong>liczbą całkowitą</strong>.</p>
 <figure>
-<img src="img/5.png" alt="Domyślne koszty OSPF na urządzeniach Cisco" /><figcaption>Domyślne koszty OSPF na urządzeniach Cisco</figcaption>
+<img src="img/5.png" alt="" /><figcaption>Domyślne koszty OSPF na urządzeniach Cisco</figcaption>
 </figure>
 <figure>
-<img src="img/6.png" alt="Koszt OSPF przy referencyjnej szerokości pasma dostosowanej do obsługi łączy 10 Gigabit Ethernet" /><figcaption>Koszt OSPF przy referencyjnej szerokości pasma dostosowanej do obsługi łączy 10 Gigabit Ethernet</figcaption>
+<img src="img/6.png" alt="" /><figcaption>Koszt OSPF przy referencyjnej szerokości pasma dostosowanej do obsługi łączy 10 Gigabit Ethernet</figcaption>
 </figure>
 <h2 id="interwały-pakietów-hello">7. Interwały pakietów Hello</h2>
 <p>Pakiety OSPFv2 Hello są wysyłane <strong>co 10 sekund</strong>.</p>
@@ -428,41 +494,41 @@
 </ul>
 <h1 id="iii.-koncepcje-bezpieczeństwa-sieci">III. Koncepcje bezpieczeństwa sieci</h1>
 <figure>
-<img src="img/7.png" alt="Pojęcia bezpieczeństwa" /><figcaption>Pojęcia bezpieczeństwa</figcaption>
+<img src="img/7.png" alt="" /><figcaption>Pojęcia bezpieczeństwa</figcaption>
 </figure>
 <h2 id="wektory-ataków-sieciowych">1. Wektory ataków sieciowych</h2>
 <p><strong>Wekor ataku</strong> - to ścieżka, dzięki której podmiot zagrożenia może uzyskać dostęp do serwera, hosta lub sieci. Wektory mogą pochodzić ze zewnątrz lub wewnąrz.</p>
 <h2 id="typy-hakerów">2. Typy hakerów</h2>
 <figure>
-<img src="img/8.png" alt="Typy hakerów" /><figcaption>Typy hakerów</figcaption>
+<img src="img/8.png" alt="" /><figcaption>Typy hakerów</figcaption>
 </figure>
 <h2 id="terminy-dotyczące-hackingu">3. Terminy dotyczące hackingu</h2>
 <figure>
-<img src="img/9.png" alt="Terminu dotyczące hackingu" /><figcaption>Terminu dotyczące hackingu</figcaption>
+<img src="img/9.png" alt="" /><figcaption>Terminu dotyczące hackingu</figcaption>
 </figure>
 <h2 id="narzędzia-do-testowania-penetracji">4. Narzędzia do testowania penetracji</h2>
 <figure>
-<img src="img/10.png" alt="Narzędzia do testowania penetracji" /><figcaption>Narzędzia do testowania penetracji</figcaption>
+<img src="img/10.png" alt="" /><figcaption>Narzędzia do testowania penetracji</figcaption>
 </figure>
 <h2 id="typy-ataków">5. Typy ataków</h2>
 <figure>
-<img src="img/11.png" alt="Typy ataków" /><figcaption>Typy ataków</figcaption>
+<img src="img/11.png" alt="" /><figcaption>Typy ataków</figcaption>
 </figure>
 <h2 id="rodzaje-złośliwego-oprogramowania">6. Rodzaje złośliwego oprogramowania</h2>
 <h3 id="wirus">6.1. Wirus</h3>
 <p>Rozprzestrzeniania się i infekuje inne komputery po wykonaniu przez użytkownika określonego działania.</p>
 <figure>
-<img src="img/33.png" alt="Rodzaje wirusów" /><figcaption>Rodzaje wirusów</figcaption>
+<img src="img/33.png" alt="" /><figcaption>Rodzaje wirusów</figcaption>
 </figure>
 <h3 id="koń-trojański">6.2. Koń trojański</h3>
 <p>Program, który wygląda na przydatny, ale zawiera złośliwy kod.</p>
 <figure>
-<img src="img/34.png" alt="Rodzaje koni trojańskich" /><figcaption>Rodzaje koni trojańskich</figcaption>
+<img src="img/34.png" alt="" /><figcaption>Rodzaje koni trojańskich</figcaption>
 </figure>
 <h2 id="rekonesans">7. Rekonesans</h2>
 <p>To zbieranie informacji. Podmioty zagrożenia wykorzystują ataki rozpoznawcze do nieautoryzowanego wykrywania i mapowania systemów, usług lub podatności. Ataki rozpoznawcze poprzedzają ataki dostępu lub ataki DoS.</p>
 <figure>
-<img src="img/35.png" alt="Techniki rekonesansu" /><figcaption>Techniki rekonesansu</figcaption>
+<img src="img/35.png" alt="" /><figcaption>Techniki rekonesansu</figcaption>
 </figure>
 <h2 id="ataki-dostępu">8. Ataki dostępu</h2>
 <p>Celem tego typu ataku jest uzyskanie dostępu do dkont internetowych, poufnych baz danych i innych poufnych informacji.</p>
@@ -473,7 +539,7 @@
 <h3 id="wykorzystanie-zaufania">8.3. Wykorzystanie zaufania</h3>
 <p>Polega na korzystaniu z nieautoryzowanych uprawnień w celu uzyskania dostępu do systemu, co może zagrozić celowi.</p>
 <figure>
-<img src="img/3.8.3.png" alt="Wykorzystanie zaufania" /><figcaption>Wykorzystanie zaufania</figcaption>
+<img src="img/3.8.3.png" alt="" /><figcaption>Wykorzystanie zaufania</figcaption>
 </figure>
 <h3 id="przekierowanie-portów">8.4. Przekierowanie portów</h3>
 <p>Podmiot zagrożenia używa zagrożonego systemu jako bazy ataków na inne cele. <img src="img/4.8.4.png" alt="Przekierowanie portów" /></p>
@@ -484,7 +550,7 @@
 <h2 id="ataki-socjotechniczne">9. Ataki socjotechniczne</h2>
 <p><strong>Socjotechnika</strong> jest atakiem polegającym na próbie nakłonienia ludzi do wykonania określonych działań lub ujawnienia poufnych informacji.</p>
 <figure>
-<img src="img/36.png" alt="Rodzaje ataków socjotechnicznych" /><figcaption>Rodzaje ataków socjotechnicznych</figcaption>
+<img src="img/36.png" alt="" /><figcaption>Rodzaje ataków socjotechnicznych</figcaption>
 </figure>
 <h2 id="ataki-dos-i-ddos">10. Ataki DoS i DDoS</h2>
 <p><strong>Atak odmowy usług (Denial of Service)</strong> powoduje przerwanie świadczenia usług sieciowych.</p>
@@ -496,17 +562,17 @@
 <p><strong>Rozproszony atak DoS (Distributed DoS, DDoS)</strong> - podobny do DoS, lecz pochodzi z wielu skoordynowanych ze sobą urządzeń.</p>
 <h2 id="ataki-ip">11. Ataki IP</h2>
 <figure>
-<img src="img/37.png" alt="Techniki ataku na IP" /><figcaption>Techniki ataku na IP</figcaption>
+<img src="img/37.png" alt="" /><figcaption>Techniki ataku na IP</figcaption>
 </figure>
 <h2 id="ataki-na-icmp">12. Ataki na ICMP</h2>
 <p>Aktorzy zagrożeń wykorzystują ICMP do ataków rozpoznawczych i skanowania oraz ataków DoS.</p>
 <figure>
-<img src="img/38.png" alt="Typowe komunikaty ICMP używane przez hakerów" /><figcaption>Typowe komunikaty ICMP używane przez hakerów</figcaption>
+<img src="img/38.png" alt="" /><figcaption>Typowe komunikaty ICMP używane przez hakerów</figcaption>
 </figure>
 <h2 id="ataki-wzmacniania-i-obijania">13. Ataki wzmacniania i obijania</h2>
 <p>Technika ta nazywana jest <strong>atakiem smurfowym</strong> i jest wykorzystywana do przytłaczania docelowego hosta.</p>
 <figure>
-<img src="img/39.png" alt="Atak smurfowy" /><figcaption>Atak smurfowy</figcaption>
+<img src="img/39.png" alt="" /><figcaption>Atak smurfowy</figcaption>
 </figure>
 <h2 id="ataki-fałszowania-1">14. Ataki fałszowania</h2>
 <p>Podmiot zagrożenie tworzy pakiety z fałszywymi źródłowymi informacjami adresowymi IP, aby ukryć tożsamość nadawcy lub pozować innego uprawnionego użytkownika.</p>
@@ -522,7 +588,7 @@
 <li><strong>Komunikacja stanowa</strong> - występuje między podczas uzgadniania trójetapowego TCP (three-way handshake), które otwiera połączenie TCP.</li>
 </ul>
 <figure>
-<img src="img/40.png" alt="Three-way handshake" /><figcaption>Three-way handshake</figcaption>
+<img src="img/40.png" alt="" /><figcaption>Three-way handshake</figcaption>
 </figure>
 <h2 id="ataki-na-tcp">16. Ataki na TCP</h2>
 <ul>
@@ -530,7 +596,7 @@
 <li><p><strong>Atak TCP RESET</strong>- służy do przerwania komunikacji TCP między dwoma hostami.</p></li>
 </ul>
 <figure>
-<img src="img/42.png" alt="Zakończenie połączenia TCP" /><figcaption>Zakończenie połączenia TCP</figcaption>
+<img src="img/42.png" alt="" /><figcaption>Zakończenie połączenia TCP</figcaption>
 </figure>
 <ul>
 <li><strong>Przejęcie sesji TCP</strong> - aktor zagrożenia przejmuje uwierzytelnionego hosta, gdy komunikuje się z celem. Haker fałszuje adres IP jednego hosta, przewiduje następny numer sekwencji i wysyła ACK do drugiego hosta. Jeżeli atak się powiedzie, podmiot zagrożenia może wysyłać, ale nie odbierać dane z urządzenia docelowego.</li>
@@ -566,7 +632,7 @@
 <p>Haker umieszcza ruch inny niż DNS w ruchu DNS. Metoda ta często omija rozwiązania zabezpieczające, gdy podmiot zagrożenia chce komunikować się z botami wewnątrz chronionej sieci lub wyeksportować dane z organizacji.</p>
 <h3 id="proces-tunelowania-dns">20.1. Proces tunelowania DNS</h3>
 <figure>
-<img src="img/43.png" alt="Tunelowanie DNS" /><figcaption>Tunelowanie DNS</figcaption>
+<img src="img/43.png" alt="" /><figcaption>Tunelowanie DNS</figcaption>
 </figure>
 <h2 id="ataki-na-dhcp">21. Ataki na DHCP</h2>
 <ul>
@@ -620,11 +686,11 @@
 <h2 id="poufność-danych">30. Poufność danych</h2>
 <p>Do zapewnienia poufności danych używane są dwie klasy szyfrowania: <strong>symetryczne</strong> i <strong>asymetryczne</strong>.</p>
 <figure>
-<img src="img/44.png" alt="Porównanie klas szyfrowania" /><figcaption>Porównanie klas szyfrowania</figcaption>
+<img src="img/44.png" alt="" /><figcaption>Porównanie klas szyfrowania</figcaption>
 </figure>
 <h3 id="szyfrowanie-symetryczne">30.1. Szyfrowanie symetryczne</h3>
 <figure>
-<img src="img/45.png" alt="Znane symetryczne algorytmy szyfrowania" /><figcaption>Znane symetryczne algorytmy szyfrowania</figcaption>
+<img src="img/45.png" alt="" /><figcaption>Znane symetryczne algorytmy szyfrowania</figcaption>
 </figure>
 <p><strong>Szyfr strumieniowy</strong> szyfruje jeden bajt lub jeden bit na raz.</p>
 <h3 id="szyfrowanie-asymetryczne">30.2. Szyfrowanie asymetryczne</h3>
@@ -637,7 +703,7 @@
 <li><strong>Pretty Good Privacy (PGP)</strong></li>
 </ul>
 <figure>
-<img src="img/46.png" alt="Znane asymetryczne algorytmy szyfrowania" /><figcaption>Znane asymetryczne algorytmy szyfrowania</figcaption>
+<img src="img/46.png" alt="" /><figcaption>Znane asymetryczne algorytmy szyfrowania</figcaption>
 </figure>
 <h2 id="diffie-hellman-dh">31. Diffie-Hellman (DH)</h2>
 <p>Asymetryczny algorytm matemyczny, w którym dwa PC generują <strong>identyczny klucz tajny bez komunikowania się ze sobą</strong>.</p>
@@ -668,7 +734,7 @@
 <li><strong>Rozszerzone ACL</strong> - ACL filtruje w warstwie 3 przy użyciu źródłowego i/lub docelowego IP. Mogą również filtrować w warstwie 4 przy użyciu portów TCP, UDP i opcjonalnych informacji o typie protokołu.</li>
 </ul>
 <figure>
-<img src="img/1.3.1.png" alt="ACL w modelu OSI" /><figcaption>ACL w modelu OSI</figcaption>
+<img src="img/1.3.1.png" alt="" /><figcaption>ACL w modelu OSI</figcaption>
 </figure>
 <h3 id="wejściowa-i-wyjściowa-lista-acl">1.4. Wejściowa i wyjściowa lista ACL</h3>
 <ul>
@@ -699,16 +765,16 @@
 </ul>
 <h3 id="obliczanie-maski-blankietowej">2.3. Obliczanie maski blankietowej</h3>
 <figure>
-<img src="img/4.2.3.1.png" alt="Przykład 1" /><figcaption>Przykład 1</figcaption>
+<img src="img/4.2.3.1.png" alt="" /><figcaption>Przykład 1</figcaption>
 </figure>
 <figure>
-<img src="img/4.2.3.2.png" alt="Przykład 2" /><figcaption>Przykład 2</figcaption>
+<img src="img/4.2.3.2.png" alt="" /><figcaption>Przykład 2</figcaption>
 </figure>
 <figure>
-<img src="img/4.2.3.3.png" alt="Przykład 3" /><figcaption>Przykład 3</figcaption>
+<img src="img/4.2.3.3.png" alt="" /><figcaption>Przykład 3</figcaption>
 </figure>
 <figure>
-<img src="img/4.2.3.3.png" alt="Przykład 4" /><figcaption>Przykład 4</figcaption>
+<img src="img/4.2.3.3.png" alt="" /><figcaption>Przykład 4</figcaption>
 </figure>
 <h3 id="słowa-kluczowe-w-maskach-blankietowych">2.4. Słowa kluczowe w maskach blankietowych</h3>
 <p>Aby uprościć korzystanie z masek blankietowych Cisco IOS udostępnia dwa słowa kluczowe:</p>
@@ -727,7 +793,7 @@
 </ul>
 <h3 id="najlepsze-praktyki">3.2. Najlepsze praktyki</h3>
 <figure>
-<img src="img/4.3.2.png" alt="Najlepsze praktyki ACL" /><figcaption>Najlepsze praktyki ACL</figcaption>
+<img src="img/4.3.2.png" alt="" /><figcaption>Najlepsze praktyki ACL</figcaption>
 </figure>
 <h3 id="kolejność-instrukcji-acl">3.3. Kolejność instrukcji ACL</h3>
 <p>Najbardziej szczegółowe instrukcje ACL należy wprowadzić jako pierwsze.</p>
@@ -749,7 +815,7 @@
 <p><strong>Standardowe ACL</strong> powinny znajdować się jak najbliżej miejsca docelowego.</p>
 <h3 id="czynniki-wpływające-na-umieszczenie-acl">5.1. Czynniki wpływające na umieszczenie ACL</h3>
 <figure>
-<img src="img/4.5.1.png" alt="Czynniki wpływające na umieszczenie ACL" /><figcaption>Czynniki wpływające na umieszczenie ACL</figcaption>
+<img src="img/4.5.1.png" alt="" /><figcaption>Czynniki wpływające na umieszczenie ACL</figcaption>
 </figure>
 <h2 id="źródła-uzupełniające-1">6. Źródła uzupełniające</h2>
 <ul>
@@ -760,7 +826,7 @@
 <h3 id="standardowa-numerowana-acl">1.1. Standardowa numerowana ACL</h3>
 <pre><code>Router(config)# access-list access-list-number {deny | permit | remark text} source [source-wildcard] [log]</code></pre>
 <figure>
-<img src="img/5.1.1.png" alt="Wyjaśnienie składni standardowej listy ACL" /><figcaption>Wyjaśnienie składni standardowej listy ACL</figcaption>
+<img src="img/5.1.1.png" alt="" /><figcaption>Wyjaśnienie składni standardowej listy ACL</figcaption>
 </figure>
 <h3 id="standardowa-nazywana-acl">1.2. Standardowa nazywana ACL</h3>
 <pre><code>Router(config)# ip access-list standard access-list-name</code></pre>
@@ -771,15 +837,15 @@
 <h3 id="dwie-metody-modyfikacji-acl">2.1. Dwie metody modyfikacji ACL</h3>
 <h4 id="metoda-edytora-tekstu">2.1.1. Metoda edytora tekstu</h4>
 <figure>
-<img src="img/5.2.1.1.png" alt="Metoda edytora tekstu" /><figcaption>Metoda edytora tekstu</figcaption>
+<img src="img/5.2.1.1.png" alt="" /><figcaption>Metoda edytora tekstu</figcaption>
 </figure>
 <h4 id="metoda-numerów-sekwencyjnych">2.1.2. Metoda numerów sekwencyjnych</h4>
 <figure>
-<img src="img/5.2.1.2.png" alt="Metoda numerów sekwencyjnych" /><figcaption>Metoda numerów sekwencyjnych</figcaption>
+<img src="img/5.2.1.2.png" alt="" /><figcaption>Metoda numerów sekwencyjnych</figcaption>
 </figure>
 <h3 id="statystyki-acl">2.2. Statystyki ACL</h3>
 <figure>
-<img src="img/5.2.2.png" alt="Statystyki ACL" /><figcaption>Statystyki ACL</figcaption>
+<img src="img/5.2.2.png" alt="" /><figcaption>Statystyki ACL</figcaption>
 </figure>
 <p>Polecenie <strong>show access-lists</strong> wyświetla liczbędopasowań dla poszczególnych wpisów.</p>
 <p>Polecenie <strong>clear access-list counters</strong> czyści statystyki ACL.</p>
@@ -790,7 +856,7 @@
 <p>Słowo kluczowe <strong>in jest najczęściej używaną opcją</strong> filtrowania przychodzącego ruchu vty. Parametr <strong>out</strong> filtruje wychodzący ruch vty i <strong>jest rzadko stosowany</strong>.</p>
 <h3 id="przykład-zabezpieczania-dostępu-vty">3.2. Przykład zabezpieczania dostępu VTY</h3>
 <figure>
-<img src="img/5.3.2.png" alt="Przykład zabezpieczania dostępu VTY" /><figcaption>Przykład zabezpieczania dostępu VTY</figcaption>
+<img src="img/5.3.2.png" alt="" /><figcaption>Przykład zabezpieczania dostępu VTY</figcaption>
 </figure>
 <h2 id="konfiguracja-rozszerzonych-list-acl-ipv4">4. Konfiguracja rozszerzonych list ACL IPv4</h2>
 <h3 id="rozszerzona-numerowana-lista-acl-ipv4">4.1. Rozszerzona numerowana lista ACL IPv4</h3>
@@ -799,20 +865,20 @@
 <h3 id="rozszerzona-acl-z-opcją-established-tcp">4.2. Rozszerzona ACL z opcją Established TCP</h3>
 <p>Słowo kluczowe establish umożliwia wychodzenie ruchowi z wewnętrznej sieci prywatnej i pozwala powracającemu ruchowi odpowiedzi na wejście do wewnętrznej sieci prywatnej.</p>
 <figure>
-<img src="img/5.4.2.png" alt="Stosowanie słowa kluczowego established" /><figcaption>Stosowanie słowa kluczowego established</figcaption>
+<img src="img/5.4.2.png" alt="" /><figcaption>Stosowanie słowa kluczowego established</figcaption>
 </figure>
 <h3 id="rozszerzona-nazywana-lista-acl-ipv4">4.3. Rozszerzona nazywana lista ACL IPv4</h3>
 <h4 id="składnia-polecenia-1">4.3.1. Składnia polecenia</h4>
 <pre><code>Router(config)# ip access-list extended access-list-name </code></pre>
 <h4 id="przykład-nazywanej-rozszerzonej-listy-acl-ipv4">4.3.2. Przykład nazywanej rozszerzonej listy ACL IPv4</h4>
 <figure>
-<img src="img/5.4.3.2.png" alt="Stosowanie słowa kluczowego established" /><figcaption>Stosowanie słowa kluczowego established</figcaption>
+<img src="img/5.4.3.2.png" alt="" /><figcaption>Stosowanie słowa kluczowego established</figcaption>
 </figure>
 <h1 id="vi.-nat-dla-ipv4">VI. NAT dla IPv4</h1>
 <h2 id="charakterystyka-nat">1. Charakterystyka NAT</h2>
 <h3 id="prywatne-adresy-ip-w-dokumencie-rfc-1918">1.1. Prywatne adresy IP w dokumencie RFC 1918</h3>
 <figure>
-<img src="img/6.1.1.png" alt="Zakres adresów wewnętrznych z RFC 1918" /><figcaption>Zakres adresów wewnętrznych z RFC 1918</figcaption>
+<img src="img/6.1.1.png" alt="" /><figcaption>Zakres adresów wewnętrznych z RFC 1918</figcaption>
 </figure>
 <p><a href="https://pl.wikipedia.org/wiki/Adres_prywatny">Więcej informacji na ten temat znajdziesz tutaj</a></p>
 <h3 id="czym-jest-nat">1.2. Czym jest NAT?</h3>
@@ -822,7 +888,7 @@
 <h4 id="sieć-szczątkowa">1.2.2. Sieć szczątkowa</h4>
 <p>Sieć lub sieci z pojedynczym połączeniem z siecią sąsiedzką, jedną drogą do i jedną drogą z sieci. I to właśnie w tych sieciach najczęściej działa router NAT.</p>
 <figure>
-<img src="img/6.1.2.2.png" alt="Sieć szczątkowa" /><figcaption>Sieć szczątkowa</figcaption>
+<img src="img/6.1.2.2.png" alt="" /><figcaption>Sieć szczątkowa</figcaption>
 </figure>
 <h3 id="terminologia-nat">1.3. Terminologia NAT</h3>
 <h4 id="sieć-wewnętrzna-i-zewnętrzna">1.3.1 Sieć wewnętrzna i zewnętrzna</h4>
@@ -842,7 +908,7 @@
 <li><strong>Adres zewnętrzny lokalny</strong> - adres docelowy widziany z perspektywy wnętrza sieci. Zazwyczaj jest taki sam jak adres zewnętrzny globalny.</li>
 </ul>
 <figure>
-<img src="img/6.1.3.2.1.png" alt="Rodzaje adresów" /><figcaption>Rodzaje adresów</figcaption>
+<img src="img/6.1.3.2.1.png" alt="" /><figcaption>Rodzaje adresów</figcaption>
 </figure>
 <h2 id="typy-nat">2. Typy NAT</h2>
 <h3 id="statyczny-nat">2.1. Statyczny NAT</h3>
@@ -855,13 +921,13 @@
 <h4 id="następny-dostepny-port">2.3.1. Następny dostepny port</h4>
 <p>Jeżeli numer porty wybrany przez hosta jest już skojarzony z innymi aktywnymi sesjami to PAT przypisuje <strong>pierwszy dostępny numer portu</strong> zaczynając od początku <strong>odpowiedniej grupy portów 0-511, 512-1 023 lub 1024-65 535</strong>. Kiedy zabraknie dostępnych portów, ale jest dostępny więcej niż jeden adres zewnętrzny w puli, mechanizm PAT przechodzi do następnego adresu IP.</p>
 <figure>
-<img src="img/6.2.3.4.png" alt="Następny dostepny port" /><figcaption>Następny dostepny port</figcaption>
+<img src="img/6.2.3.4.png" alt="" /><figcaption>Następny dostepny port</figcaption>
 </figure>
 <h4 id="pakiety-bez-segmentu-warstwy-4">2.3.2. Pakiety bez segmentu warstwy 4</h4>
 <p>W przypadku pakietu, który nie zawiera numeru portu warstwy 4. tj. jak (ICMPv4) PAT obsługuje je w inny sposób dla każdego protokołu. W komunikatach ICMP wystepuje np. Query ID (identyfikator zapytania), który powiązuje zapytanie z odpowiedzią na nie.</p>
 <h4 id="porównanie-nat-i-pat">2.4. Porównanie NAT i PAT</h4>
 <figure>
-<img src="img/6.2.4.png" alt="Porównanie PAT i NAT" /><figcaption>Porównanie PAT i NAT</figcaption>
+<img src="img/6.2.4.png" alt="" /><figcaption>Porównanie PAT i NAT</figcaption>
 </figure>
 <h2 id="zalety-i-wady-nat">3. Zalety i wady NAT</h2>
 <h3 id="zalety-nat">3.1. Zalety NAT</h3>
@@ -946,7 +1012,7 @@ R2#</code></pre>
 R2# show ip nat translation</code></pre>
 <p>Czyszczenie wpisów dynamicznych przed upływem limitu czasu.</p>
 <figure>
-<img src="img/6.4.2.7.png" alt="Opcje polecenia clear ip nat translation" /><figcaption>Opcje polecenia clear ip nat translation</figcaption>
+<img src="img/6.4.2.7.png" alt="" /><figcaption>Opcje polecenia clear ip nat translation</figcaption>
 </figure>
 <h4 id="polecenie-show-ip-nat-statistics-1">4.2.8. Polecenie show ip nat statistics</h4>
 <pre><code>R2# show ip nat statistics 
@@ -1087,27 +1153,27 @@ R2#</code></pre>
 <h5 id="punkt-punkt">1.3.2.1. Punkt-punkt</h5>
 <p>Łącza typu punkt-punkt często obejmują dedykowane połączenia dzierżawione z korporacyjnego punktu granicznego do sieci dostawcy. Połączenie punkt-punkt obejmuje usługę transportową warstwy 2 za pośrednictwem sieci dostawcy usług. Pakiety wysyłane z jednej strony są dostarczane do drugiej strony i odwrotnie. Połączenie punkt-punkt jest przezroczyste dla sieci klienta. Wydaje się, że istnieje bezpośrednie fizyczne powiązanie między dwoma punktami końcowymi.</p>
 <figure>
-<img src="img/7.3.2.1.png" alt="Punkt-punkt" /><figcaption>Punkt-punkt</figcaption>
+<img src="img/7.3.2.1.png" alt="" /><figcaption>Punkt-punkt</figcaption>
 </figure>
 <h5 id="hub-and-spoke">1.3.2.2. Hub-and-spoke</h5>
 <p>Umożliwia współużytkowanie pojedynczego interfejsu na routerze centralnym (hub) przez wszystkie routery obwodowe (spoke).</p>
 <figure>
-<img src="img/12.png" alt="Hub-and-spoke" /><figcaption>Hub-and-spoke</figcaption>
+<img src="img/12.png" alt="" /><figcaption>Hub-and-spoke</figcaption>
 </figure>
 <h5 id="dual-homed">1.3.2.3. Dual-homed</h5>
 <p>Zapewnia redundancję. Router centralny jest podwojony w lokalizacji a te nadmiarowo podłączone do routerów obwodowych w chmurze WAN.</p>
 <figure>
-<img src="img/13.png" alt="Dual-homed" /><figcaption>Dual-homed</figcaption>
+<img src="img/13.png" alt="" /><figcaption>Dual-homed</figcaption>
 </figure>
 <h5 id="pełnej-siatki">1.3.2.4. Pełnej siatki</h5>
 <p>Wykorzystuje wiele obwodów wirtualnych do łączenia wszystkich lokalizacji.</p>
 <figure>
-<img src="img/14.png" alt="Topologia pełnej siatki" /><figcaption>Topologia pełnej siatki</figcaption>
+<img src="img/14.png" alt="" /><figcaption>Topologia pełnej siatki</figcaption>
 </figure>
 <h5 id="częściowej-siatki">1.3.2.5. Częściowej siatki</h5>
 <p>Łączy wiele, ale nie wszystkie lokalizacje.</p>
 <figure>
-<img src="img/15.png" alt="Topologia częściowej siatki" /><figcaption>Topologia częściowej siatki</figcaption>
+<img src="img/15.png" alt="" /><figcaption>Topologia częściowej siatki</figcaption>
 </figure>
 <h3 id="łącza-operatorów">1.4. Łącza operatorów</h3>
 <h4 id="sla">1.4.1. SLA</h4>
@@ -1117,7 +1183,7 @@ R2#</code></pre>
 <h4 id="połączenie-wan-z-dwoma-operatorami">1.4.3. Połączenie WAN z dwoma operatorami</h4>
 <p>Połączenie z dwoma operatorami zapewnia nadmiarowość i zwiększa dostępność sieci, jak pokazano na rysunku. Organizacja negocjuje oddzielne umowy SLA z dwoma różnymi dostawcami usług. Organizacja powinna zapewnić, że dwaj dostawcy korzystają z innego operatora. Chociaż droższe w implementacji, drugie połączenie może być używane do nadmiarowości jako łącze zapasowe. Może być również stosowany do poprawy wydajności sieci i równoważenia obciążenia ruchu internetowego.</p>
 <figure>
-<img src="img/7.2.3.png" alt="Połączenie WAN z dwoma operatorami" /><figcaption>Połączenie WAN z dwoma operatorami</figcaption>
+<img src="img/7.2.3.png" alt="" /><figcaption>Połączenie WAN z dwoma operatorami</figcaption>
 </figure>
 <h3 id="ewolucja-sieci">1.5 Ewolucja sieci</h3>
 <p>Mała sieć &gt; Sieć kampusowa &gt; Sieć z oddziałami &gt; Sieć rozproszona</p>
@@ -1131,11 +1197,11 @@ R2#</code></pre>
 </ul>
 <h3 id="sieci-wan-w-modelu-osi">2.2. Sieci WAN w modelu OSI</h3>
 <figure>
-<img src="img/16.png" alt="Sieci WAN w modelu OSI" /><figcaption>Sieci WAN w modelu OSI</figcaption>
+<img src="img/16.png" alt="" /><figcaption>Sieci WAN w modelu OSI</figcaption>
 </figure>
 <h3 id="terminologia-wan">2.3. Terminologia WAN</h3>
 <figure>
-<img src="img/7.2.3.png" alt="Terminologia WAN" /><figcaption>Terminologia WAN</figcaption>
+<img src="img/7.2.3.png" alt="" /><figcaption>Terminologia WAN</figcaption>
 </figure>
 <table>
 <colgroup>
@@ -1193,7 +1259,7 @@ R2#</code></pre>
 </table>
 <h3 id="urządzenia-sieci-wan">2.4. Urządzenia sieci WAN</h3>
 <figure>
-<img src="img/7.2.4.png" alt="Urządzenia sieci WAN" /><figcaption>Urządzenia sieci WAN</figcaption>
+<img src="img/7.2.4.png" alt="" /><figcaption>Urządzenia sieci WAN</figcaption>
 </figure>
 <table>
 <colgroup>
@@ -1252,7 +1318,7 @@ R2#</code></pre>
 <h2 id="tradycyjna-łączność-wan">3. Tradycyjna łączność WAN</h2>
 <h3 id="tradycyjne-opcje-łączności-wan">3.1. Tradycyjne opcje łączności WAN</h3>
 <figure>
-<img src="img/7.3.1.png" alt="Tradycyjne opcje łączności WAN" /><figcaption>Tradycyjne opcje łączności WAN</figcaption>
+<img src="img/7.3.1.png" alt="" /><figcaption>Tradycyjne opcje łączności WAN</figcaption>
 </figure>
 <h3 id="terminologia-wan-1">3.2. Terminologia WAN</h3>
 <h4 id="łącza-dzierżawione">3.2.1. Łącza dzierżawione</h4>
@@ -1265,7 +1331,7 @@ R2#</code></pre>
 </ul>
 <h5 id="zalety-i-wady-linii-dzierżawionych.">3.2.1.2. Zalety i wady linii dzierżawionych.</h5>
 <figure>
-<img src="img/7.3.2.1.2.png" alt="Zalety i wady linii dzierżawionych" /><figcaption>Zalety i wady linii dzierżawionych</figcaption>
+<img src="img/7.3.2.1.2.png" alt="" /><figcaption>Zalety i wady linii dzierżawionych</figcaption>
 </figure>
 <h3 id="opcje-z-komutacją-łączy">3.3. Opcje z komutacją łączy</h3>
 <p>Połączenia z komutacją łączy są dostarczane przez <strong>operatorów publicznych sieci telefonicznych (PSTN)</strong>. Pętla lokalna łącząca CPE do CO to <strong>media miedziane</strong>. Istnieją dwie tradycyjne opcje komutacji łącza.</p>
@@ -1284,7 +1350,7 @@ R2#</code></pre>
 <h2 id="nowoczesne-technologie-wan">4. Nowoczesne technologie WAN</h2>
 <h3 id="nowoczesne-opcje-łączności-wan">4.1. Nowoczesne opcje łączności WAN</h3>
 <figure>
-<img src="img/7.4.png" alt="Nowoczesne opcje łączności WAN" /><figcaption>Nowoczesne opcje łączności WAN</figcaption>
+<img src="img/7.4.png" alt="" /><figcaption>Nowoczesne opcje łączności WAN</figcaption>
 </figure>
 <h4 id="dedykowane-szerokopasmowe">4.1.1. Dedykowane szerokopasmowe</h4>
 <p><strong>Ciemne włókno</strong> kabel światłowodowy, który nie jest w użyciu, a zatem “nieoświetlony”.</p>
@@ -1308,7 +1374,7 @@ R2#</code></pre>
 <h3 id="mpls">4.3. MPLS</h3>
 <p><strong>Multiprotocol Label Switching (MPLS)</strong> to wysokowydajna technologia routingu WAN dla dostawcy usług umożliwiająca łączenie klientów bez względu na metodę dostępu lub typ obciążenia. MPLS obsługuje różne metody dostępu klienta (np. Ethernet, DSL, Cable, Frame Relay). MPLS może enkapsulować ruch wszystkich typy protokołów, w tym IPv4 i IPv6.</p>
 <figure>
-<img src="img/7.4.3.png" alt="Topologia prostej sieci z obsługą MPLS" /><figcaption>Topologia prostej sieci z obsługą MPLS</figcaption>
+<img src="img/7.4.3.png" alt="" /><figcaption>Topologia prostej sieci z obsługą MPLS</figcaption>
 </figure>
 <p><strong>Router MPLS</strong> może być <strong>routerem krawędzi klienta (CE)</strong>, <strong>routerem krawędzi dostawcy (PE)</strong> lub <strong>routerem wewnętrznym dostawcy (P)</strong>. Zauważ, że MPLS obsługuje różne połączenia dostępu klienta.</p>
 <p><strong>Routery MPLS</strong> są <strong>routerami z przełączaniem etykiet (LSR)</strong>. Oznacza to, że dołączają etykiety do pakietów, które są następnie używane przez inne routery MPLS do przesyłania ruchu. Gdy ruch opuszcza CE, router MPLS PE dodaje krótką etykietę o stałej długości pomiędzy nagłówkiem ramki a nagłówkiem pakietu. Routery MPLS P używają etykiety, aby określić następny przeskok pakietu. Etykieta jest usuwana przez router PE, gdy pakiet opuszcza sieć MPLS.</p>
@@ -1318,7 +1384,7 @@ R2#</code></pre>
 <h3 id="połączenia-dsl">5.2. Połączenia DSL</h3>
 <p>Połączenie jest ustanawiane między modemem DSL a multiplekserem dostępu DSL (DSLAM).</p>
 <figure>
-<img src="img/7.5.2.png" alt="Połęczenie DSL" /><figcaption>Połęczenie DSL</figcaption>
+<img src="img/7.5.2.png" alt="" /><figcaption>Połęczenie DSL</figcaption>
 </figure>
 <p><strong>Modem DSL</strong> konwertuje sygnały Ethernet z urządzenia telepracownika na sygnał DSL, który jest przesyłany do <strong>multipleksera dostępu DSL (DSLAM)</strong> w lokalizacji dostawcy.</p>
 <p><strong>DSLAM</strong> jest urządzeniem, znajdującym się w <strong>Biurze Centralnym (CO)</strong> dostawcy, a jego zadaniem jest połączenie wielu abonentów DSL. <strong>DSLAM</strong> jest zazwyczaj częścią routera, odpowiadającego za agregację.</p>
@@ -1340,7 +1406,7 @@ R2#</code></pre>
 <p><strong>DOCSIS (Data over Cable Service Interface Specification)</strong> to międzynarodowy standard dodawania danych o dużej przepustowości do istniejącego systemu kablowego.</p>
 <p>Operatorzy kablowi wdrażają <strong>hybrydowe sieci światłowodowe (HFC)</strong>, aby umożliwić szybką transmisję danych do modemów kablowych. System ten używa kabli koncentrycznych, przenoszących sygnał radiowy w całej sieci. HFC wykorzystuje kabel światłowodowy i koncentryczny w różnych częściach sieci.</p>
 <figure>
-<img src="img/7.5.4.png" alt="Hybrydowe sieci światłowodowe" /><figcaption>Hybrydowe sieci światłowodowe</figcaption>
+<img src="img/7.5.4.png" alt="" /><figcaption>Hybrydowe sieci światłowodowe</figcaption>
 </figure>
 <h3 id="łącza-światłowodowe">5.5. Łącza światłowodowe</h3>
 <p><strong>Fiber do x (FTTX)</strong> - instalacja kabla światłowodowego do lokalizacji użytkownika. Obejmuje:</p>
@@ -1376,19 +1442,19 @@ R2#</code></pre>
 <h3 id="opcje-łączenia-do-dostawcy-usług">5.8. Opcje łączenia do dostawcy usług</h3>
 <h4 id="połączenie-pojedyncze-single-homed">5.8.1. Połączenie pojedyncze (single-homed)</h4>
 <figure>
-<img src="img/7.5.8.1.png" alt="Połączenie pojedyncze" /><figcaption>Połączenie pojedyncze</figcaption>
+<img src="img/7.5.8.1.png" alt="" /><figcaption>Połączenie pojedyncze</figcaption>
 </figure>
 <h4 id="połączenie-podwójne-dual-homed">5.8.2. Połączenie podwójne (dual-homed)</h4>
 <figure>
-<img src="img/7.5.8.2.png" alt="Połączenie podwójne" /><figcaption>Połączenie podwójne</figcaption>
+<img src="img/7.5.8.2.png" alt="" /><figcaption>Połączenie podwójne</figcaption>
 </figure>
 <h4 id="połączenie-wielokrotne-multihomed">5.8.3. Połączenie wielokrotne (multihomed)</h4>
 <figure>
-<img src="img/7.5.8.3.png" alt="Połączenie wielokrotne" /><figcaption>Połączenie wielokrotne</figcaption>
+<img src="img/7.5.8.3.png" alt="" /><figcaption>Połączenie wielokrotne</figcaption>
 </figure>
 <h4 id="połączenie-wielokrotne-podwójne-dual-mulithomed">5.8.4. Połączenie wielokrotne podwójne (dual-mulithomed)</h4>
 <figure>
-<img src="img/7.5.8.4.png" alt="Połączenie wielokrotne podwójne" /><figcaption>Połączenie wielokrotne podwójne</figcaption>
+<img src="img/7.5.8.4.png" alt="" /><figcaption>Połączenie wielokrotne podwójne</figcaption>
 </figure>
 <h2 id="źródła-uzupełniające-3">6. Źródła uzupełniające</h2>
 <p><a href="https://www.youtube.com/watch?v=xPi4uZu4uF0">https://www.youtube.com/watch?v=xPi4uZu4uF0</a></p>
@@ -1431,12 +1497,12 @@ R2#</code></pre>
 <h4 id="sieć-vpn-typu-site-to-site">1.3.1. Sieć VPN typu Site-to-Site</h4>
 <p>Sieć VPN typu lokacja-lokacja jest tworzona, gdy urządzenia kończące VPN, zwane także <strong>bramami VPN</strong>, są wstępnie skonfigurowane z informacjami potrzebnymi do ustanowienia bezpiecznego tunelu. Ruch VPN jest szyfrowany tylko między tymi urządzeniami. Hosty wewnętrzne <strong>nie wiedzą, że używana jest sieć VPN</strong>.</p>
 <figure>
-<img src="img/8.1.3.1.png" alt="VPN Site-to-Site" /><figcaption>VPN Site-to-Site</figcaption>
+<img src="img/8.1.3.1.png" alt="" /><figcaption>VPN Site-to-Site</figcaption>
 </figure>
 <h4 id="sieć-vpn-zdalnego-dostępu">1.3.2. Sieć VPN zdalnego dostępu</h4>
 <p>Sieć VPN dostępu zdalnego jest tworzona dynamicznie w celu ustanowienia bezpiecznego połączenia między klientem a urządzeniem końcowym VPN.</p>
 <figure>
-<img src="img/8.1.3.2.png" alt="VPN zdalnego dostępu" /><figcaption>VPN zdalnego dostępu</figcaption>
+<img src="img/8.1.3.2.png" alt="" /><figcaption>VPN zdalnego dostępu</figcaption>
 </figure>
 <h3 id="vpn-dla-przedsiębiorstw-i-dostawców-usług">1.4. VPN dla przedsiębiorstw i dostawców usług</h3>
 <p>W zależności od tego kto zarządza VPN rozwiązania możemy wdrażać jako:</p>
@@ -1498,7 +1564,7 @@ Bezklientowe połączenie SSL
 <h4 id="sieci-dostawców-usług">1.4.2. Sieci dostawców usług</h4>
 <p>Są tworzone i zarządzane przez sieć dostawcy. Używa <strong>Mutliprotocol Label Switching (MPLS)</strong> w warstwie 2 lub warstwie 3. <strong>MPLS</strong> to technologia routingu używana przez dostawcę do tworzenia wirtualnych ścieżek między lokacjami. To skutecznie oddziela ruch od innych klientów.</p>
 <figure>
-<img src="img/8.1.4.2.png" alt="Sieć dostawców usług" /><figcaption>Sieć dostawców usług</figcaption>
+<img src="img/8.1.4.2.png" alt="" /><figcaption>Sieć dostawców usług</figcaption>
 </figure>
 <h2 id="rodzaje-sieci-vpn">2. Rodzaje sieci VPN</h2>
 <h3 id="sieci-vpn-zdalnego-dostępu">2.1. Sieci VPN zdalnego dostępu</h3>
@@ -1552,7 +1618,7 @@ Bezklientowe połączenie SSL
 <p>Warto pamiętać, że SSL i IPsec nie wykluczają się i można ich używac jednocześnie w zależności od potrzeb.</p>
 <h3 id="vpn-site-to-site-ipsec">2.3. VPN site-to-site IPSec</h3>
 <figure>
-<img src="img/8.1.3.1.png" alt="VPN Site-to-Site" /><figcaption>VPN Site-to-Site</figcaption>
+<img src="img/8.1.3.1.png" alt="" /><figcaption>VPN Site-to-Site</figcaption>
 </figure>
 <p>Brama VPN enkapsuluje i szyfruje ruch wychodzący dla całego ruchu z określonej witryny. Następnie przesyła ruch przez tunel VPN przez Internet do bramy VPN w miejscu docelowym. Po odebraniu, odbierająca brama VPN usuwa nagłówki, odszyfrowuje zawartość i przekazuje pakiet do hosta docelowego w swojej sieci prywatnej.</p>
 <p>Sieci VPN typu lokacja-lokacja są zwykle tworzone i zabezpieczane przy użyciu zabezpieczeń <strong>IP (IPsec)</strong>.</p>
@@ -1560,7 +1626,7 @@ Bezklientowe połączenie SSL
 <p><strong>Generic Routing Encapsulation (GRE)</strong> - niezabezpieczony protokół tunelowania VPN typu lokacja-lokacja.</p>
 <p><strong>Hermetyzacja GRE</strong> - to proces enkaspulaji ruchu protokołu routingu przy użyciu pakietu GRE, a następnie enkapsulacji pakietu GRE w pakiet IPsec, aby bezpieczecznie przesłać go docelowej bramy. Rozwiązuje to problem nie możności tworzenia bezpiecznych tuneli dla ruchu innego typu niż unicast w standardowej sieci VPN IPSec, co sprawia że protokołu routingu nie mogę wymieniać informacji o routingu.</p>
 <figure>
-<img src="img/8.2.4.png" alt="Hermetyzacja GRE" /><figcaption>Hermetyzacja GRE</figcaption>
+<img src="img/8.2.4.png" alt="" /><figcaption>Hermetyzacja GRE</figcaption>
 </figure>
 <p><strong>Terminy do opsiu hermetyzacji GRE:</strong></p>
 <ul>
@@ -1629,7 +1695,7 @@ Bezklientowe połączenie SSL
 </ul>
 <h1 id="ix.-koncepcje-qos">IX. Koncepcje QoS</h1>
 <h2 id="stałe-opóźnienie">1. Stałe opóźnienie</h2>
-<p>To określony czas, jaki trwa określony proces, na przykład czas potrzebnny na umieszczenie go na nośniku transmisji.</p>
+<p>To określony czas, jaki trwa określony proces, na przykład czas potrzebny na umieszczenie go na nośniku transmisji.</p>
 <h2 id="zmienne-opóźnienie">2. Zmienne opóźnienie</h2>
 <p>Zajmuje nieokreślony czas i ma wpływ na takie czynniki, jak ilość ruchu która jest przetwarzana.</p>
 <h2 id="źródła-opoźnienia">3. Źródła opoźnienia</h2>
@@ -1678,7 +1744,7 @@ Bezklientowe połączenie SSL
 <h2 id="bufor-opóźnienia">6. Bufor opóźnienia</h2>
 <p>Mechanizm kompensujący napotkany przez router <strong>jitter</strong>. Musi on burforować pakiety, a następnie odtwarzać je w stały strumieniu. Pakiety cyfrowe są późnień konwertowane na analogowy strumień audio.</p>
 <figure>
-<img src="img/20.png" alt="Bufor opóźnienia odtwarzania kompensuje jitter" /><figcaption>Bufor opóźnienia odtwarzania kompensuje jitter</figcaption>
+<img src="img/20.png" alt="" /><figcaption>Bufor opóźnienia odtwarzania kompensuje jitter</figcaption>
 </figure>
 <p>W przypadku małym strat (jak pakiet) <strong>cyfrowy procesor sygnałowy (DSP)</strong> interpoluje dźwięk i sprawia że problem nie jest słyszalny.</p>
 <h2 id="charakterystyka-ruchu-głosowego">7. Charakterystyka ruchu głosowego</h2>
@@ -1847,7 +1913,7 @@ Retransmisje TCP
 <ul>
 <li>Pierwszy wejście, pierwsze wyjście (First-in, first-out - FIFO)</li>
 <li>Ważone uczciwe kolejkowanie (Weighted Fair Queuing - WFQ)</li>
-<li>Uczciwe kolejkowanie oCzęśće na klasach (Class-Based Weighted Fair Queuing - CBWFQ)</li>
+<li>Uczciwe kolejkowanie oparte na klasach (Class-Based Weighted Fair Queuing - CBWFQ)</li>
 <li>Kolejkowanie o niskim opóźnieniu (Low Latency Queuing - LLQ)</li>
 </ul>
 <h2 id="first-in-first-out-fifo">12. First In First Out (FIFO)</h2>
@@ -1868,7 +1934,7 @@ Retransmisje TCP
 <h2 id="kolejkowanie-o-niskim-opóźnieniu-low-latency-queuing---llq">15. Kolejkowanie o niskim opóźnieniu (Low Latency Queuing - LLQ)</h2>
 <p><strong>Funkcja kolejki o niskim opóźnieniu (LLQ)</strong> zapewnia ścisłe kolejkowanie priorytetowe (PQ) do CBWFQ. Ścisłe PQ umożliwia wysyłanie pakietów wrażliwych na opóźnienia, takich jak głos przed pakietami w innych kolejkach. LLQ zapewnia ścisłą kolejkę priorytetową dla CBWFQ, zmniejszając drgania w rozmowach głosowych.</p>
 <figure>
-<img src="img/25.png" alt="Przykład LLQ" /><figcaption>Przykład LLQ</figcaption>
+<img src="img/25.png" alt="" /><figcaption>Przykład LLQ</figcaption>
 </figure>
 <h2 id="modele-do-wdrażania-qos">16. Modele do wdrażania QoS</h2>
 <table>
@@ -1937,7 +2003,7 @@ Urządzenia sieciowe rozpoznają klasy ruchu i zapewniają różne poziomy jako�
 <p>Podstawowym założeniem Internetu jest dostarczanie pakietów z największą starannością i nie daje żadnych gwarancji. Podejście to jest nadal dominujące w Internecie i pozostaje właściwe dla większości celów.</p>
 <p><strong>Korzyści i wady modelu best-effort</strong></p>
 <figure>
-<img src="img/27.png" alt="Korzyści i wady modelu best-effort" /><figcaption>Korzyści i wady modelu best-effort</figcaption>
+<img src="img/27.png" alt="" /><figcaption>Korzyści i wady modelu best-effort</figcaption>
 </figure>
 <h2 id="kategorie-narzędzi-do-wdrażania-qos">18. Kategorie narzędzi do wdrażania QoS</h2>
 <table>
@@ -1980,7 +2046,7 @@ Gdy ruch przekracza dostępne zasoby sieciowe, jest umieszczany w kolejce w ocze
 </table>
 <h2 id="sekwencja-qos">19. Sekwencja QoS</h2>
 <figure>
-<img src="img/32.png" alt="Sekwencja QoS" /><figcaption>Sekwencja QoS</figcaption>
+<img src="img/32.png" alt="" /><figcaption>Sekwencja QoS</figcaption>
 </figure>
 <h2 id="klasyfikacja-i-oznaczenie">20. Klasyfikacja i oznaczenie</h2>
 <p><strong>Klasyfikacja</strong> - określa klasę ruchu, do której należą pakiety lub ramki.</p>
@@ -1991,51 +2057,135 @@ Gdy ruch przekracza dostępne zasoby sieciowe, jest umieszczany w kolejce w ocze
 <p>CDP to zastrzeżony protokół warstwy 2 firmy Cisco, który zbiera informacje o urządzeniach Cisco na tych samych łączach danych.</p>
 <p>Urządzenie wysyła okresowe ogłoszenia CDP do podłączonych urządzeń, jak pokazano na rysunku.</p>
 <figure>
-<img src="img/10.1.1.png" alt="CDP" /><figcaption>CDP</figcaption>
+<img src="img/10.1.1.png" alt="" /><figcaption>CDP</figcaption>
 </figure>
 <h3 id="konfiguracja-i-weryfikacja-cdp">1.2. Konfiguracja i weryfikacja CDP</h3>
 <h4 id="polecenie-show-cdp">1.2.1. Polecenie show cdp</h4>
-<p>Router# show cdp Global CDP information: Sending CDP packets every 60 seconds Sending a holdtime value of 180 seconds Sending CDPv2 advertisements is enabled</p>
+<pre><code>Router# show cdp
+Global CDP information:
+      Sending CDP packets every 60 seconds
+      Sending a holdtime value of 180 seconds
+      Sending CDPv2 advertisements is enabled</code></pre>
 <p>Wyświetla informacje na temat CDP.</p>
 <h4 id="polecenie-cdp-run">1.2.2. Polecenie cdp run</h4>
-<p>Router(config)# cdp run</p>
+<pre><code>Router(config)# cdp run</code></pre>
 <p>Włącza CDP dla wszystkich obsługiwanych interfejsów urządzenia. Jest to polecenie <strong>trybu konfiguracji globalnej</strong>. Po dodaniu słowa no możemy wyłączyć CDP - <strong>no cdp run</strong>.</p>
 <h4 id="polecenie-cdp-enable">1.2.3. Polecenie cdp enable</h4>
-<p>Switch(config)# interface gigabitethernet 0/0/1 Switch(config-if)# cdp enable</p>
+<pre><code>Switch(config)# interface gigabitethernet 0/0/1
+Switch(config-if)# cdp enable</code></pre>
 <p>Włącza CDP na konkretnym interfejsie.</p>
 <h4 id="polecenie-show-cdp-neighbors">1.2.4. Polecenie show cdp neighbors</h4>
-<p>Router# show cdp neighbors Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone, D - Remote, C - CVTA, M - Two-port Mac Relay</p>
-<p>Device ID Local Intrfce Holdtme Capability Platform Port ID</p>
-<p>Total cdp entries displayed : 0</p>
+<pre><code>Router# show cdp neighbors
+Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone,
+                  D - Remote, C - CVTA, M - Two-port Mac Relay
+
+Device ID        Local Intrfce     Holdtme    Capability  Platform  Port ID
+
+Total cdp entries displayed : 0</code></pre>
 <p>Wyświetla stan CDP i listę sąsiadów.</p>
 <h4 id="polecenie-show-cdp-interface">1.2.5. Polecenie show cdp interface</h4>
-<p>Router# show cdp interface GigabitEthernet0/0/0 is administratively down, line protocol is down Encapsulation ARPA Sending CDP packets every 60 seconds Holdtime is 180 seconds GigabitEthernet0/0/1 is up, line protocol is up Encapsulation ARPA Sending CDP packets every 60 seconds Holdtime is 180 seconds GigabitEthernet0/0/2 is down, line protocol is down Encapsulation ARPA Sending CDP packets every 60 seconds Holdtime is 180 seconds Serial0/1/0 is administratively down, line protocol is down Encapsulation HDLC Sending CDP packets every 60 seconds Holdtime is 180 seconds Serial0/1/1 is administratively down, line protocol is down Encapsulation HDLC Sending CDP packets every 60 seconds Holdtime is 180 seconds GigabitEthernet0 is down, line protocol is down Encapsulation ARPA Sending CDP packets every 60 seconds Holdtime is 180 seconds cdp enabled interfaces : 6 interfaces up : 1 interfaces down : 5</p>
+<pre><code>Router# show cdp interface
+GigabitEthernet0/0/0 is administratively down, line protocol is down
+  Encapsulation ARPA
+  Sending CDP packets every 60 seconds
+  Holdtime is 180 seconds
+GigabitEthernet0/0/1 is up, line protocol is up
+  Encapsulation ARPA
+  Sending CDP packets every 60 seconds
+  Holdtime is 180 seconds
+GigabitEthernet0/0/2 is down, line protocol is down
+  Encapsulation ARPA
+  Sending CDP packets every 60 seconds
+  Holdtime is 180 seconds
+Serial0/1/0 is administratively down, line protocol is down
+  Encapsulation HDLC
+  Sending CDP packets every 60 seconds
+  Holdtime is 180 seconds
+Serial0/1/1 is administratively down, line protocol is down
+  Encapsulation HDLC
+  Sending CDP packets every 60 seconds
+  Holdtime is 180 seconds
+GigabitEthernet0 is down, line protocol is down
+  Encapsulation ARPA
+  Sending CDP packets every 60 seconds
+  Holdtime is 180 seconds
+cdp enabled interfaces : 6
+interfaces up          : 1
+interfaces down        : 5</code></pre>
 <p>Wyświetal interfejsy z włączonym CDP.</p>
 <h2 id="lldp">2. LLDP</h2>
 <h3 id="wprowadzenie-do-lldp">2.1. Wprowadzenie do LLDP</h3>
 <p>Link Layer Discovery Protocol (LLDP) robi to samo co CDP, ale nie jest specyficzny dla urządzeń Cisco.</p>
 <h3 id="konfigurowanie-i-weryfikacja-lldp">2.2. Konfigurowanie i weryfikacja LLDP</h3>
 <h4 id="polecenie-lldp-run">2.2.1. Polecenie lldp run</h4>
-<p>Switch(config)# lldp run</p>
+<pre><code>Switch(config)# lldp run</code></pre>
 <p>Włącza LLDP globalnie na urzadzeniu.</p>
 <h4 id="polecenie-lldp-transmit">2.2.2. Polecenie lldp transmit</h4>
-<p>Switch(config)# interface gigabitethernet 0/1 Switch(config-if)# lldp transmit</p>
+<pre><code>Switch(config)# interface gigabitethernet 0/1
+Switch(config-if)# lldp transmit</code></pre>
 <p>Włącza przesyłanie pakietów LLDP na interfejsie.</p>
 <h4 id="polecenie-lldp-receive">2.2.3. Polecenie lldp receive</h4>
-<p>Switch(config)# interface gigabitethernet 0/1 Switch(config-if)# lldp receive</p>
+<pre><code>Switch(config)# interface gigabitethernet 0/1
+Switch(config-if)# lldp receive</code></pre>
 <p>Włącza odbieranie pakietów LLDP na interfejsie.</p>
 <h4 id="polecenie-show-lldp">2.2.4. Polecenie show lldp</h4>
-<p>Switch# show lldp Global LLDP Information: Status: ACTIVE LLDP advertisements are sent every 30 seconds LLDP hold time advertised is 120 seconds LLDP interface reinitialisation delay is 2 seconds</p>
+<pre><code>Switch# show lldp
+Global LLDP Information:
+    Status: ACTIVE
+    LLDP advertisements are sent every 30 seconds
+    LLDP hold time advertised is 120 seconds
+    LLDP interface reinitialisation delay is 2 seconds</code></pre>
 <p>Pozwala na sprawdzenie czy LLDP został właczony.</p>
 <h4 id="polecenie-show-lldp-neighbors">2.2.5. Polecenie show lldp neighbors</h4>
-<p>S1# show lldp neighbors detail ———————————————— Chassis id: 848a.8d44.49b0 Port id: Gi0/0/1 Port Description: GigabitEthernet0/0/1 System Name: R1</p>
-<p>System Description: Cisco IOS Software [Fuji], ISR Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 16.9.4, RELEASE SOFTWARE (fc2) Technical Support: http://www.cisco.com/techsupport Copyright (c) 1986-2019 by Cisco Systems, Inc. Compiled Thu 22-Aug-19 18:09 by mcpre</p>
-<p>Time remaining: 111 seconds System Capabilities: B,R Enabled Capabilities: R Management Addresses - not advertised Auto Negotiation - not supported Physical media capabilities - not advertised Media Attachment Unit type - not advertised Vlan ID: - not advertised</p>
-<hr />
-<p>Chassis id: 0025.83e6.4b00 Port id: Fa0/1 Port Description: FastEthernet0/1 System Name: S2</p>
-<p>System Description: Cisco IOS Software, C2960 Software (C2960-LANBASEK9-M), Version 15.0(2)SE4, RELEASE SOFTWARE (fc1) Technical Support: http://www.cisco.com/techsupport Copyright (c) 1986-2013 by Cisco Systems, Inc. Compiled Wed 26-Jun-13 02:49 by prod_rel_team</p>
-<p>Time remaining: 107 seconds System Capabilities: B Enabled Capabilities: B Management Addresses - not advertised Auto Negotiation - supported, enabled Physical media capabilities: 100base-TX(FD) 100base-TX(HD) 10base-T(FD) 10base-T(HD) Media Attachment Unit type: 16 Vlan ID: 1</p>
-<p>Total entries displayed: 2</p>
+<pre><code>S1# show lldp neighbors detail
+------------------------------------------------
+Chassis id: 848a.8d44.49b0
+Port id: Gi0/0/1
+Port Description: GigabitEthernet0/0/1
+System Name: R1
+  
+System Description:
+Cisco IOS Software [Fuji], ISR Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 16.9.4, RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2019 by Cisco Systems, Inc.
+Compiled Thu 22-Aug-19 18:09 by mcpre
+  
+Time remaining: 111 seconds
+System Capabilities: B,R
+Enabled Capabilities: R
+Management Addresses - not advertised
+Auto Negotiation - not supported
+Physical media capabilities - not advertised
+Media Attachment Unit type - not advertised
+Vlan ID: - not advertised
+  
+------------------------------------------------
+Chassis id: 0025.83e6.4b00
+Port id: Fa0/1
+Port Description: FastEthernet0/1
+System Name: S2
+  
+System Description:
+Cisco IOS Software, C2960 Software (C2960-LANBASEK9-M), Version 15.0(2)SE4, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2013 by Cisco Systems, Inc.
+Compiled Wed 26-Jun-13 02:49 by prod_rel_team
+  
+Time remaining: 107 seconds
+System Capabilities: B
+Enabled Capabilities: B
+Management Addresses - not advertised
+Auto Negotiation - supported, enabled
+Physical media capabilities:
+    100base-TX(FD)
+    100base-TX(HD)
+    10base-T(FD)
+    10base-T(HD)
+Media Attachment Unit type: 16
+Vlan ID: 1
+  
+Total entries displayed: 2</code></pre>
 <p>Wyświetla wykrytych sąsiadów.</p>
 <h2 id="ntp">3. NTP</h2>
 <h3 id="wprowadzenie-do-ntp">3.1. Wprowadzenie do NTP</h3>
@@ -2043,22 +2193,37 @@ Gdy ruch przekracza dostępne zasoby sieciowe, jest umieszczany w kolejce w ocze
 <h3 id="operacja-ntp">3.2. Operacja NTP</h3>
 <p>Sieci NTP używają hierarchicznego systemu źródeł czasu. Każdy poziom nazywa się warstwą (tzw. <strong>stratum</strong>). Poziom warstwy definiuje się jako liczbę przeskoków z autorytatywnego źródła.</p>
 <figure>
-<img src="img/10.3.2.png" alt="Operacja NTP" /><figcaption>Operacja NTP</figcaption>
+<img src="img/10.3.2.png" alt="" /><figcaption>Operacja NTP</figcaption>
 </figure>
 <p><strong>Autorytatywne źródła czasu</strong>, nazywane również <strong>urządzeniami warstwy 0</strong>, są urządzeniami do pomiaru czasu o wysokiej precyzji, które są uważane zaza dokładne i wiążą się z niewielkim lub żadnym opóźnieniem.</p>
 <h3 id="konfiguracja-i-weryfikacja-ntp">3.3. Konfiguracja i weryfikacja NTP</h3>
 <h4 id="polecenie-show-clock-detail">3.3.1. Polecenie show clock detail</h4>
-<p>R1# show clock detail 20:55:10.207 UTC Fri Nov 15 2019 Time source is user configuration</p>
+<pre><code>R1# show clock detail 
+20:55:10.207 UTC Fri Nov 15 2019
+Time source is user configuration</code></pre>
 <p>Wyświetla bieżący czas na urządzeniu.</p>
 <h4 id="polecenie-ntp-server">3.3.2. Polecenie ntp server</h4>
-<p>R1(config)# ntp server 209.165.200.225 R1(config)# end R1# show clock detail 21:01:34.563 UTC Fri Nov 15 2019 Time source is NTP</p>
+<pre><code>R1(config)# ntp server 209.165.200.225 
+R1(config)# end 
+R1# show clock detail 
+21:01:34.563 UTC Fri Nov 15 2019
+Time source is NTP</code></pre>
 <p>Jest to polecenie trybu konfiguracji globalnej. Konfiguruje ono urządzenie o konkretnym adresie IP (np. 209.165.200.225) jako serwer NTP.</p>
 <h4 id="polecenie-show-ntp-associations">3.3.3. Polecenie show ntp associations</h4>
-<p>R1# show ntp associations<br />
-address ref clock st when poll reach delay offset disp <em>~209.165.200.225 .GPS. 1 61 64 377 0.481 7.480 4.261 </em> sys.peer, # selected, + candidate, - outlyer, x falseticker, ~ configured</p>
+<pre><code>R1# show ntp associations   
+  address         ref clock       st   when   poll reach  delay  offset   disp
+*~209.165.200.225 .GPS.           1     61     64   377  0.481   7.480  4.261
+* sys.peer, # selected, + candidate, - outlyer, x falseticker, ~ configured</code></pre>
 <p>Wyświetla informacje z którym urządzeniem jest zsynchronizowany zegar.</p>
 <h4 id="polecenie-show-ntp-status">3.3.4. Polecenie show ntp status</h4>
-<p>S1# show ntp status Clock is synchronized, stratum 3, reference is 192.168.1.1 nominal freq is 119.2092 Hz, actual freq is 119.2088 Hz, precision is 2**17 reference time is DA08904B.3269C655 (13:31:55.196 PST Tue Nov 15 2019) clock offset is 18.7764 msec, root delay is 102.42 msec root dispersion is 38.03 msec, peer dispersion is 3.74 msec loopfilter state is ‘CTRL’ (Normal Controlled Loop), drift is 0.000003925 s/s system poll interval is 128, last update was 178 sec ago.</p>
+<pre><code>S1# show ntp status
+Clock is synchronized, stratum 3, reference is 192.168.1.1
+nominal freq is 119.2092 Hz, actual freq is 119.2088 Hz, precision is 2**17
+reference time is DA08904B.3269C655 (13:31:55.196 PST Tue Nov 15 2019)
+clock offset is 18.7764 msec, root delay is 102.42 msec
+root dispersion is 38.03 msec, peer dispersion is 3.74 msec
+loopfilter state is &#39;CTRL&#39; (Normal Controlled Loop), drift is 0.000003925 s/s
+system poll interval is 128, last update was 178 sec ago.</code></pre>
 <p>Wyświetla informacje na temat NTP na urządzeniu.</p>
 <h2 id="snmp">4. SNMP</h2>
 <h3 id="wprowadzenie-do-snmp">4.1. Wprowadzenie do SNMP</h3>
@@ -2203,15 +2368,59 @@ address ref clock st when poll reach delay offset disp <em>~209.165.200.225 .GPS
 <p>Oprócz poziomu ważności <a href="#53-format-komunikatu-syslog">komunikaty syslog</a> posiadają również obiekt, którego dotyczą. <strong>Obiekt syslog</strong> to identyfikator usługi, pozwalający zidentyfikować i skateryzować dane na temat stanu systemu na potrzeby raportowania błędów i zdarzeń.</p>
 <p>Typowe obiekty syslog na urządzeniach z Cisco IOS: - IP - protokół OPSF - system operacyjny (SYS) - zabezpieczenia na poziomie IP (IPSec) - interfejs IP (IF)</p>
 <h3 id="konfiguracja-znacznika-czasu-syslog">5.5. Konfiguracja znacznika czasu syslog</h3>
-<p>R1# configure terminal R1(config)# interface g0/0/0 R1(config-if)# shutdown %LINK-5-CHANGED: Interface GigabitEthernet0/0/0, changed state to administratively down %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/0, changed state to down</p>
+<pre><code>R1# configure terminal
+R1(config)# interface g0/0/0
+R1(config-if)# shutdown
+%LINK-5-CHANGED: Interface GigabitEthernet0/0/0, changed state to administratively down
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/0, changed state to down</code></pre>
 <p>Domyślnie wiadomość wiadomości dziennika nie są oznaczone <strong>znacznikiem czasu</strong>. Aby to zmienić używamy polecenia <strong>service timestamps log datetime</strong>.</p>
 <h2 id="konserwacja-plików-routera-i-przełącznika">6. Konserwacja plików routera i przełącznika</h2>
 <h3 id="polecenia-zarządzania-systemem-plików-w-ciscoios">6.1. Polecenia zarządzania systemem plików w CiscoIOS</h3>
 <h4 id="polecenie-show-files-systems">6.1.1. Polecenie show files systems</h4>
-<p>Router# show file systems File Systems: Size(b) Free(b) Type Flags Prefixes - - opaque rw system: - - opaque rw tmpsys: * 7194652672 6294822912 disk rw bootflash: flash:# 256589824 256573440 disk rw usb0: 1804468224 1723789312 disk ro webui: - - opaque rw null: - - opaque ro tar: - - network rw tftp: - - opaque wo syslog: 33554432 33539983 nvram rw nvram: - - network rw rcp: - - network rw ftp: - - network rw http: - - network rw scp: - - network rw sftp: - - network rw https: - - opaque ro cns: Router#</p>
+<pre><code>Router# show file systems
+File Systems:
+      Size(b)       Free(b)      Type  Flags  Prefixes
+            -             -    opaque     rw   system:
+            -             -    opaque     rw   tmpsys:
+*   7194652672    6294822912      disk     rw   bootflash: flash:#
+    256589824     256573440      disk     rw   usb0:
+    1804468224    1723789312      disk     ro   webui:
+            -             -    opaque     rw   null:
+            -             -    opaque     ro   tar:
+            -             -   network     rw   tftp:
+            -             -    opaque     wo   syslog:
+      33554432      33539983     nvram     rw   nvram:
+            -             -   network     rw   rcp:
+            -             -   network     rw   ftp:
+            -             -   network     rw   http:
+            -             -   network     rw   scp:
+            -             -   network     rw   sftp:
+            -             -   network     rw   https:
+            -             -    opaque     ro   cns:
+Router#</code></pre>
 <p>Wyświetla listę wszystkich dostępnych systemów plików.</p>
 <h4 id="polecenie-dir">6.1.2. Polecenie dir</h4>
-<p>Router# dir Directory of bootflash:/ 11 drwx 16384 Aug 2 2019 04:15:13 +00:00 lost+found 370945 drwx 4096 Oct 3 2019 15:12:10 +00:00 .installer 338689 drwx 4096 Aug 2 2019 04:15:55 +00:00 .ssh 217729 drwx 4096 Aug 2 2019 04:17:59 +00:00 core 379009 drwx 4096 Sep 26 2019 15:54:10 +00:00 .prst_sync 80641 drwx 4096 Aug 2 2019 04:16:09 +00:00 .rollback_timer 161281 drwx 4096 Aug 2 2019 04:16:11 +00:00 gs_script 112897 drwx 102400 Oct 3 2019 15:23:07 +00:00 tracelogs 362881 drwx 4096 Aug 23 2019 17:19:54 +00:00 .dbpersist 298369 drwx 4096 Aug 2 2019 04:16:41 +00:00 virtual-instance 12 -rw- 30 Oct 3 2019 15:14:11 +00:00 throughput_monitor_params 8065 drwx 4096 Aug 2 2019 04:17:55 +00:00 onep 13 -rw- 34 Oct 3 2019 15:19:30 +00:00 pnp-tech-time 249985 drwx 4096 Aug 20 2019 17:40:11 +00:00 Archives 14 -rw- 65037 Oct 3 2019 15:19:42 +00:00 pnp-tech-discovery-summary 17 -rw- 5032908 Sep 19 2019 14:16:23 +00:00 isr4200_4300_rommon_1612_1r_SPA.pkg 18 -rw- 517153193 Sep 21 2019 04:24:04 +00:00 isr4200-universalk9_ias.16.09.04.SPA.bin 7194652672 bytes total (6294822912 bytes free) Router#</p>
+<pre><code>Router# dir
+Directory of bootflash:/
+  11  drwx            16384   Aug 2 2019 04:15:13 +00:00  lost+found
+370945  drwx             4096   Oct 3 2019 15:12:10 +00:00  .installer
+338689  drwx             4096   Aug 2 2019 04:15:55 +00:00  .ssh
+217729  drwx             4096   Aug 2 2019 04:17:59 +00:00  core
+379009  drwx             4096  Sep 26 2019 15:54:10 +00:00  .prst_sync
+80641  drwx             4096   Aug 2 2019 04:16:09 +00:00  .rollback_timer
+161281  drwx             4096   Aug 2 2019 04:16:11 +00:00  gs_script
+112897  drwx           102400   Oct 3 2019 15:23:07 +00:00  tracelogs
+362881  drwx             4096  Aug 23 2019 17:19:54 +00:00  .dbpersist
+298369  drwx             4096   Aug 2 2019 04:16:41 +00:00  virtual-instance
+  12  -rw-               30   Oct 3 2019 15:14:11 +00:00  throughput_monitor_params
+8065  drwx             4096   Aug 2 2019 04:17:55 +00:00  onep
+  13  -rw-               34   Oct 3 2019 15:19:30 +00:00  pnp-tech-time
+249985  drwx             4096  Aug 20 2019 17:40:11 +00:00  Archives
+  14  -rw-            65037   Oct 3 2019 15:19:42 +00:00  pnp-tech-discovery-summary
+  17  -rw-          5032908  Sep 19 2019 14:16:23 +00:00  isr4200_4300_rommon_1612_1r_SPA.pkg
+  18  -rw-        517153193  Sep 21 2019 04:24:04 +00:00  isr4200-universalk9_ias.16.09.04.SPA.bin
+7194652672 bytes total (6294822912 bytes free)
+Router#</code></pre>
 <p>Wyświetla zawartość katalogu.</p>
 <h4 id="polecenie-cd">6.1.3. Polecenie cd</h4>
 <p>Zmienia aktualny katalog</p>
@@ -2219,7 +2428,7 @@ address ref clock st when poll reach delay offset disp <em>~209.165.200.225 .GPS
 <p>Wyświetla obecną ścieżkę.</p>
 <h2 id="zarządzanie-obrazami-ios">7. Zarządzanie obrazami IOS</h2>
 <h3 id="kopiowanie-obrazu-ios-na-serwer-tftp">7.1. Kopiowanie obrazu IOS na serwer TFTP</h3>
-<pre><code>R1# copy flash: tftp: 
+<pre><code>    R1# copy flash: tftp: 
     Source filename []? isr4200-universalk9_ias.16.09.04.SPA.bin
     Address or name of remote host []? 172.16.1.100
     Destination filename [isr4200-universalk9_ias.16.09.04.SPA.bin]? 
@@ -2228,7 +2437,7 @@ address ref clock st when poll reach delay offset disp <em>~209.165.200.225 .GPS
     (output omitted)
     517153193 bytes copied in 863.468 secs (269058 bytes/sec)</code></pre>
 <h3 id="polecenie-rozruchu-systemu">7.2. Polecenie rozruchu systemu</h3>
-<pre><code>R1# configure terminal
+<pre><code>    R1# configure terminal
     R1(config)# boot system flash0:isr4200-universalk9_ias.16.09.04.SPA.bin
     R1(config)# exit
     R1#
@@ -2243,7 +2452,7 @@ address ref clock st when poll reach delay offset disp <em>~209.165.200.225 .GPS
 <h2 id="sieci-hierarchiczne">1. Sieci hierarchiczne</h2>
 <h3 id="funkcje-warstwy-dostępu-dystrubucji-i-szkieletowej">1.1. Funkcje warstwy dostępu, dystrubucji i szkieletowej</h3>
 <figure>
-<img src="img/11.1.1.png" alt="Przykładow sieci trójwarstwowych" /><figcaption>Przykładow sieci trójwarstwowych</figcaption>
+<img src="img/11.1.1.png" alt="" /><figcaption>Przykładow sieci trójwarstwowych</figcaption>
 </figure>
 <h4 id="warstwa-dostępu">1.1.1. Warstwa dostępu</h4>
 <p>Reprezentuje brzeg sieci, w którym ruch wychodzi lub wchodzi do sieci. Przełączniki warstwy dostepu zapewniają użytkownikowi dostęp do sieci, łącza się z przełącznikami warstwy dystrybucji.</p>
@@ -2345,7 +2554,7 @@ address ref clock st when poll reach delay offset disp <em>~209.165.200.225 .GPS
 <li>Typ okablowania</li>
 </ul>
 <figure>
-<img src="img/12.1.2.1.png" alt="Przykładowy diagram topologii fizycznej" /><figcaption>Przykładowy diagram topologii fizycznej</figcaption>
+<img src="img/12.1.2.1.png" alt="" /><figcaption>Przykładowy diagram topologii fizycznej</figcaption>
 </figure>
 <h4 id="topologia-logiczna-ipv4">1.2.2. Topologia logiczna IPv4</h4>
 <p>Ilustruje w jaki sposób urządzenia są logicznie połączone z siecią.</p>
@@ -2358,17 +2567,17 @@ address ref clock st when poll reach delay offset disp <em>~209.165.200.225 .GPS
 <li>Informacje warstwy 2 (tj. sieci VLAN, połączenia trunk, EtherChannel)</li>
 </ul>
 <figure>
-<img src="img/12.1.2.2.png" alt="Przykładowy diagram topologii logicznej" /><figcaption>Przykładowy diagram topologii logicznej</figcaption>
+<img src="img/12.1.2.2.png" alt="" /><figcaption>Przykładowy diagram topologii logicznej</figcaption>
 </figure>
 <h4 id="topologia-logiczna-ipv6">1.2.3. Topologia logiczna IPv6</h4>
 <p>Adresy IPv6 mogą być w tej samej logicznej topologii IPv4.</p>
 <figure>
-<img src="img/12.1.2.3.png" alt="Przykładowy diagram topologii logicznej IPv6" /><figcaption>Przykładowy diagram topologii logicznej IPv6</figcaption>
+<img src="img/12.1.2.3.png" alt="" /><figcaption>Przykładowy diagram topologii logicznej IPv6</figcaption>
 </figure>
 <h3 id="dokumentacja-urządzeń-sieciowych">1.3. Dokumentacja urządzeń sieciowych</h3>
 <p>Dokumentacja urządzeń sieciowych powinna zawierać dokładne i aktualne zapisy sprzętu sieciowego i oprogramowania. Dokumentacja powinna zawierać wszystkie istotne informacje o urządzeniach sieciowych.</p>
 <figure>
-<img src="img/12.1.3.png" alt="Przykłądowa dokumentacja routera" /><figcaption>Przykłądowa dokumentacja routera</figcaption>
+<img src="img/12.1.3.png" alt="" /><figcaption>Przykłądowa dokumentacja routera</figcaption>
 </figure>
 <h3 id="wyznaczanie-stanu-odniesienia-sieci">1.4. Wyznaczanie stanu odniesienia sieci</h3>
 <p><strong>Stan odniesienia</strong> służy do ustalenia normalnej wydajności sieci lub systemu w celu określenia “osobowości” sieci w normalnych warunkach.</p>
@@ -2454,7 +2663,7 @@ address ref clock st when poll reach delay offset disp <em>~209.165.200.225 .GPS
 <h2 id="rozwiązywanie-problemów-z-sieciami">2. Rozwiązywanie problemów z sieciami</h2>
 <h3 id="siedmiostopniowy-proces-rozwiązywania-problemów">2.1. Siedmiostopniowy proces rozwiązywania problemów</h3>
 <figure>
-<img src="img/12.2.2.1.png" alt="Diagram przedstawiający proces rozwiązywania problemów" /><figcaption>Diagram przedstawiający proces rozwiązywania problemów</figcaption>
+<img src="img/12.2.2.1.png" alt="" /><figcaption>Diagram przedstawiający proces rozwiązywania problemów</figcaption>
 </figure>
 <p><strong>Opis kroków procesu:</strong></p>
 <ul>
@@ -2526,7 +2735,7 @@ address ref clock st when poll reach delay offset disp <em>~209.165.200.225 .GPS
 <h3 id="rozwiązywanie-problemów-za-pomocą-modeli-warstwowych">2.4. Rozwiązywanie problemów za pomocą modeli warstwowych</h3>
 <p>Modele OSI i TCP / IP można zastosować do izolowania problemów z siecią podczas rozwiązywania problemów.</p>
 <figure>
-<img src="img/12.2.4.png" alt="Niektóre typowe urządzenia i warstwy OSI" /><figcaption>Niektóre typowe urządzenia i warstwy OSI</figcaption>
+<img src="img/12.2.4.png" alt="" /><figcaption>Niektóre typowe urządzenia i warstwy OSI</figcaption>
 </figure>
 <p>Zauważ, że routery oraz przełączniki wielowarstwowe przydzielone zostały do warstwy 4 - transportowej. Mimo, że zazwyczaj urządzenia te podejmują decyzje w warstwie 3, można na nich używać list kontroli dostępu ACL, które podejmują decyzje bazując na informacjach z warstwy 4.</p>
 <h3 id="strukturalne-metody-rozwiązywania-problemów">2.5. Strukturalne metody rozwiązywania problemów</h3>
@@ -2535,5 +2744,255 @@ address ref clock st when poll reach delay offset disp <em>~209.165.200.225 .GPS
 <h4 id="od-góry">2.5.2. Od góry</h4>
 <p>Od warstwy aplikacji do warstwy fizycznej modelu OSI. Podejścia tego używamy w przypadku prostszych problemów lub kiedy problem prawdopodobnie leży po stronie oprogramowania.</p>
 <h4 id="dziel-i-rządź">2.5.3. Dziel i rządź</h4>
+<p>Administrator wybiera najpierw jedną z warstw pośrednich i przeprowadza testy w obu kierunkach poczynając od tej warstwy. Wybór warstwy opieramy na informacji zebranych od użytkowników. Gdy wybrana warstwa działa prawidłowo można założyć, że wszystkie warstwy pod również funkcjonują.</p>
+<h4 id="podążanie-ścieżką">2.5.4. Podążanie ścieżką</h4>
+<p>Jest to jedna z najbardziej podstawowych technik rozwiązywania problemów. Technik odkrywa ścieżkę ruchu od źródła do miejsca docelowego.</p>
+<h4 id="podmiana">2.5.5. Podmiana</h4>
+<p>Zamiana problematycznych urządzeń na działające. Jeśli problem został rozwiązany, oznacza to, że problem dotyczy usuniętego urządzenia. W przeciwnym razie przyczyna może leżeć gdzieś indziej.</p>
+<h4 id="porównanie-wykrywaj-różnice">2.5.6. Porównanie (wykrywaj różnice)</h4>
+<p>Technik próbuje rozwiązać problem poprzez zmianę elementów nieoperacyjnych tak, aby były zgodne z działającymi. Porównujesz konfiguracje, wersje oprogramowania, sprzęt lub inne właściwości urządzeń, łącza lub procesy między sytuacjami działającymi i niedziałającymi i dostrzegasz znaczące różnice między nimi. Wadą tej metody jest to, że może ona prowadzić do działającego rozwiązania bez wyraźnego ujawnienia pierwotnej przyczyny problemu.</p>
+<h4 id="zgadywanie-na-podstawie-doświadczenia-strzelanie-z-biodra">2.5.7. Zgadywanie na podstawie doświadczenia (strzelanie z biodra)</h4>
+<p>Wykorzystuje oparte na wiedzy przypuszczenia na postawie objawów problemu.</p>
+<h2 id="narzędzia-rozwiązywania-problemów">3. Narzędzia rozwiązywania problemów</h2>
+<h3 id="programowe-narzędzie-do-rozwiązywania-problemów">3.1. Programowe narzędzie do rozwiązywania problemów</h3>
+<ul>
+<li><strong>Narzędzia systemu zarządzania siecią (NMS)</strong> - zawiera oprogramowanie do monitorowania na poziomie urządzena, konfiguracji oraz zarządzania usterkami.</li>
+<li><strong>Baza wiedzy</strong> - utworzone przez dostawców urządzeń sieciowych.</li>
+<li><strong>Narzędzia do tworzenia stanu odniesienia</strong> - służa do automatyzowania dokumentacji sieciowej oraz procesu stanu odniesienia.</li>
+</ul>
+<h3 id="analizator-protokołu">3.2. Analizator protokołu</h3>
+<p>Bada zawartość pakietu podczas przepływu przez sieć. Przykładem takiego programu jest <strong>Wireshark</strong>.</p>
+<h3 id="sprzętowe-narzędzia-do-rozwiązywania-problemów">3.3. Sprzętowe narzędzia do rozwiązywania problemów</h3>
+<ul>
+<li><strong>Cyfrowy multimetr</strong> - przyrządy testowe używane do bezpośredniego pomiaru wartości elektrycznych napięcia, prądu i rezystancji.</li>
+<li><strong>Testery kabli</strong> - wyspecjalizowane ręczne urządzenia zaprojektowane do testowania rożnego typu okablowania do wymiany daynych.</li>
+<li><strong>Analizatory okablowania</strong> - wielofunkcyjne urządzenia podręczne, które służą do testowania i certyfikowania kabli miedzianych i światłowodowych pod kątem różnych usług i standardów.</li>
+<li><strong>Przenośne analizatory sieci</strong> - są używane do rozwiązywania problemów z sieciami przełączanymi i sieciami VLAN. Podłączając analizator do segmentu sieci, technik może obserwować wykorzystanie portu, do którego urządzenie jest podłączone, wykrywać konfiguracje VLAN, identyfikować głównych rozmówców w sieci i przeglądać szczegóły interfejsu. Urządzenie może przesyłać dane do komputera PC.</li>
+<li><strong>Cisco Prime NAM</strong> - oferta obejmująca sprzęt i oprogramowanie do analizy wydajności w środowiskach przełączania i routingu.</li>
+</ul>
+<h3 id="serwer-syslog-jako-narzędzie-do-rozwiązywania-problemów">3.4. Serwer Syslog jako narzędzie do rozwiązywania problemów</h3>
+<p>Syslog pozwala na wysyłanie tekstowych komunikatów do syslog server.</p>
+<p><strong>Urządzenia Cisco mogę rejestrować m.in. dane dotyczące:</strong></p>
+<ul>
+<li>zmian w konfiguracji</li>
+<li>naruszeń list ACL</li>
+<li>stanu interfejsów</li>
+</ul>
+<p><strong>Komunikaty zdarzeń mogę być wysyłane na urządzenia tj.:</strong></p>
+<ul>
+<li>konsola</li>
+<li>linie terminala</li>
+<li>rejestrowanie buforowane</li>
+<li>pułapki SNMP</li>
+<li>Syslog</li>
+</ul>
+<p><strong>Komunikaty dziennika Cisco IOS dziela się na jeden z ośmiu poziomów:</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>Poziom</th>
+<th>Słowa kluczowe</th>
+<th>Opis</th>
+<th>Definicja</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>Awarie</td>
+<td>System jest bezużyteczny</td>
+<td>LOG_EMERG</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>Alarmy</td>
+<td>Potrzebne jest natychmiastowe działanie</td>
+<td>LOG_ALERT</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>Krytyczne</td>
+<td>Wystąpił stan krytyczny</td>
+<td>LOG_CRIT</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>Błędy</td>
+<td>Wystąpił stan błędu</td>
+<td>LOG_ERR</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>Ostrzeżenia</td>
+<td>Wystąpił stan ostrzegawczy</td>
+<td>LOG_WARNING</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>Powiadomienia</td>
+<td>Stan normalny (ale znaczący)</td>
+<td>LOG_NOTICE</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>Informacje</td>
+<td>Tylko komunikaty informacyjne</td>
+<td>LOG_INFO</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>Debugowanie</td>
+<td>Komunikaty debugera</td>
+<td>LOG_DEBUG</td>
+</tr>
+</tbody>
+</table>
+<h2 id="objawy-i-przyczyny-problemów-z-siecią">4. Objawy i przyczyny problemów z siecią</h2>
+<h3 id="warstwa-fizyczna">4.1. Warstwa fizyczna</h3>
+<h4 id="objawy">4.1.1. Objawy</h4>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Objaw</th>
+<th>Opis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Wydajność poniżej poziomu odniesienia</td>
+<td>Do porównania wymagane są poprzednie poziomy odniesienia. Najczęstsze przyczyny powolnej lub słabej wydajności to przeciążone lub niedostatecznie zasilane serwery, nieodpowiedni przełącznik lub router konfiguracje, przeciążenie ruchu na łączu o niskiej przepustowości, oraz chroniczna utrata klatek.</td>
+</tr>
+<tr class="even">
+<td>Utrata łączności</td>
+<td>Utrata łączności może być spowodowana niepowodzeniem lub odłączonym kablem. Można zweryfikować za pomocą prostego testu ping. Okresowa utrata łączności może wskazywać na luźne lub utlenione połączenie.</td>
+</tr>
+<tr class="odd">
+<td>Zatory lub przeciążenia w sieci</td>
+<td>Jeśli router, interfejs lub kabel nie powiedzie się, protokoły routingu mogą przekierować ruch na inne trasy, które nie są przeznaczone do przewozu dodatkowej pojemności. Może to spowodować zatory lub wąskie gardła w niektórych częściach sieci.</td>
+</tr>
+<tr class="even">
+<td>Wysokie wykorzystanie procesora</td>
+<td>Wysokie wskaźniki wykorzystania procesora są objawem, że urządzenie, takie jak router, przełącznik lub serwer, działa na lub przekracza jego konstrukcyjne limity. Jeśli nie zostanie szybko rozwiązany, przeciążenie procesora może spowodować wyłączenie urządzenia lub zawieszenie.</td>
+</tr>
+<tr class="odd">
+<td>Komunikat o błędzie konsoli</td>
+<td>Komunikaty o błędach zgłaszane na konsoli urządzenia mogą wskazywać na problem z warstwą fizyczną. Komunikaty konsoli powinny być rejestrowane na centralnym serwerze syslog.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="przyczyny">4.1.2. Przyczyny</h4>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Przyczyna problemu</th>
+<th>Opis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Problemy z zasilaniem</td>
+<td>To jest najbardziej podstawowa przyczyna awarii sieci. Sprawdź działanie wentylatorów i upewnij się, że otwory wlotowe i wylotowe są czyste. Jeśli inne pobliskie jednostki również wyłączyły się, podejrzewaj awarię głównego źródła zasilania.</td>
+</tr>
+<tr class="even">
+<td>Usterki sprzętowe</td>
+<td>Uszkodzone karty interfejsu sieciowego (NIC) mogą być przyczyną sieci błędy transmisji wynikające z późnych kolizji, krótkich klatek, oraz <strong>jabber</strong>. <strong>Jabber</strong> jest często definiowany jako stan, w którym urządzenie sieciowe nieustannie przesyła do sieci losowe, pozbawione znaczenia dane. Inne prawdopodobne przyczyny <strong>jabber</strong> to wadliwy lub uszkodzony sterownik karty sieciowej pliki, złe okablowanie lub problemy z uziemieniem.</td>
+</tr>
+<tr class="odd">
+<td>Błędy okablowania</td>
+<td>Wiele problemów można rozwiązać, po prostu ponownie podłączając posiadane kable zostaną częściowo odłączone. Podczas kontroli fizycznej szukaj uszkodzonych kabli, niewłaściwe typy kabli i słabo zaciśnięte złącza RJ-45. Podejrzane kable należy przetestować lub wymienić na znany działający kabel.</td>
+</tr>
+<tr class="even">
+<td>Tłumienie</td>
+<td>Tłumienie może być spowodowane, jeśli długość kabla przekracza limit projektowy dla mediów lub gdy istnieje słabe połączenie wynikające z luźnego kabla lub brudnych lub utlenionych kontaktów. Jeśli tłumienie jest poważne, urządzenie odbiorcze nie zawsze pomyślnie odróżnijeden bit w strumieniu danych od drugiego bitu.</td>
+</tr>
+<tr class="odd">
+<td>Hałas</td>
+<td><strong>Lokalne zakłócenia elektromagnetyczne (EMI)</strong> są powszechnie znane jako <strong>szum</strong>. Hałas może być generowany przez wiele źródeł, takich jak stacje radiowe FM, radio policyjne, ochrona budynku i awionika dla zautomatyzowanego lądowania, przesłuch (szum wywoływany przez inne kable na tej samej ścieżce lub przyległych kabli), w pobliżu kabli elektrycznych, urządzeń z dużymi silnikami elektrycznymi, lub cokolwiek, co zawiera nadajnik bardziej potężny niż telefon komórkowy.</td>
+</tr>
+<tr class="even">
+<td>Błędy konfiguracji interfejsu</td>
+<td>Wiele rzeczy może być błędnie skonfigurowanych na interfejsie, aby spowodować jego przejście w dół, takie jak nieprawidłowa częstotliwość zegara, nieprawidłowe źródło zegara, oraz interfejs nie jest włączony. Czynniki te sprawiają, że łączność z podłączonymi segmentami sieci zostaje utracona.</td>
+</tr>
+<tr class="odd">
+<td>Przekroczenie limitów projektowych</td>
+<td>Komponent może działać sub-optymalnie na warstwie fizycznej ponieważ jest używany poza specyfikacjami lub skonfigurowaną wydajnością. Podczas rozwiązywania tego typu problemów staje się oczywiste, że zasoby dla urządzenia działają na poziomie lub w pobliżu maksimum wydajności i tworzy się wzrost liczby błędów interfejsu.</td>
+</tr>
+<tr class="even">
+<td>Przeciążenie CPU</td>
+<td>Objawy obejmują procesy o wysokich procentach wykorzystania procesora, spadki kolejki wejściowej, niska wydajność, limity czasu SNMP, brak zdalnego dostępu lub usługi takie jak DHCP, Telnet i ping są powolne lub nie powodzą się . Na przełączniku mogą wystąpić następujące: rekonwergencja spanning-tree. Linki EtherChannel odbijają się, migają UDLD, awarie IP SLA. W przypadku routerów może nie być żadnych aktualizacji routingu, problemy z trasami lub problemy z HSRP . Jedną z przyczyn przeciążenia procesora w routerze lub przełączniku jest wysoki ruch sieciowy. Jeśli jeden lub więcej interfejsów jest regularnie przeciążony ruchem ruchowym, rozważyć przeprojektowanie przepływu ruchu w sieci lub modernizację sprzętu.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="warstwa-łącza-danych">4.2. Warstwa łącza danych</h3>
+<h4 id="objawy-1">4.2.1. Objawy</h4>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Objaw</th>
+<th>Opis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Nieprawidłowe funkcjonowanie lub brak łączności w warstwie sieci lub wyższej</td>
+<td>Niektóre problemy warstwy 2 mogą zatrzymać wymianę klatek przez link, podczas gdy inne powodują pogorszenie wydajności sieci.</td>
+</tr>
+<tr class="even">
+<td>Wydajność sieci poniżej poziomów odniesienia</td>
+<td>Istnieją dwa różne typy nieoptymalnych operacji w warstwie 2 mogące wystąpić w sieci. Po pierwsze, ramki podążają nieoptymalną ścieżką do miejsca docelowego, ale jednak docierają, powodując, że sieć doświadcza nieoczekiwanej wysokiej przepustowości na połączeniach. Po drugie, niektóre ramki są upuszczane jako identyfikowane przez licznik błędów statystyki i komunikaty o błędach konsoli, które pojawiają się na przełączniku lub routerze. Rozszerzony lub ciągły ping może pomóc ujawnić, czy ramki są porzucone.</td>
+</tr>
+<tr class="odd">
+<td>Nadmierne rozgłoszenia</td>
+<td>Systemy operacyjne intensywnie używają emisji i multiemisji do odkrycia usług sieciowych i innych hostów. Ogólnie rzecz biorąc, nadmierne audycje są wynikiem słabo zaprogramowanych lub skonfigurowanych aplikacji, duża transmisja domeny rozgłoszeniowej warstwy 2 lub problem z siecią (np. pętle STP lub problemy z trasami).</td>
+</tr>
+<tr class="even">
+<td>Komunikaty konsoli</td>
+<td>Router rozpoznaje, że wystąpił problem warstwy 2 i wysyła komunikaty ostrzegawcze do konsoli. Zazwyczaj router robi to, gdy wykryje problem z interpretacjną przychodzących ramek (problemy z enkapsulowaniem lub nagłowkami) lub kiedy oczekiwane są wiadomości keepalive, ale żadne nie przybywają. Najczęstszym komunikatem konsoli wskazującym na problem w warstwie 2 jest komunikat o awarii protokołu linii</td>
+</tr>
+</tbody>
+</table>
+<h4 id="przyczyny-1">4.2.2. Przyczyny</h4>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Przyczyna problemu</th>
+<th>Opis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Błędy enkapsulacji</td>
+<td>Bity umieszczone w polu przez nadawcę nie jest tym, co odbiorca spodziewa się zobaczyć. Warunek ten występuje, gdy enkapsulacja na jednym końcu sieci WAN jest konfigurowana inaczej niż enkapsulacja używana na drugim końcu.</td>
+</tr>
+<tr class="even">
+<td>Błędy mapowania adresu</td>
+<td>W środowisku dynamicznym mapowanie informacji warstwy 2 i warstwy 3 może się nie powieść, ponieważ urządzenia mogły być specjalnie skonfigurowane do nieodpowiadania na żądania ARP, warstwy 2 lub warstwy 3 informacje, które są buforowane, mogły zostać fizycznie zmienione lub nieprawidłowe odpowiedzi ARP są odbierane z powodu niepoprawnej konfiguracji lub ataków na zabezpieczenia.</td>
+</tr>
+<tr class="odd">
+<td>Błędy ramek</td>
+<td>Błąd ramki występuje, gdy ramka nie kończy się na granicy 8-bitowego bajtu. W takim przypadku odbiornik może mieć problemy z określeniem, gdzie kończy się jedna ramka, a inna ramka zaczyna. Zbyt wiele nieprawidłowych ramek może uniemożliwić prawidłową wymianę wiadomości typu keepalive. Błędy w ramkowaniu mogą być spowodowane szumami linii szeregowej, nieprawidłowo zaprojektowanym kablem.</td>
+</tr>
+<tr class="even">
+<td>Błędy i pętle STP</td>
+<td>Trzepoczenie portu (oscyluje między stanem w górę i w dół ), powoduje powtarzające się zmiany topologiczne i zalewanie, lub powolną konwergencję STP lub ponowna konwergencję. Może to być spowodowane niedopasowaniem między rzeczywistymi a udokumentowanymi topologiami, błedem konfiguracji, takim jak niespójna konfiguracja STP, przeciążony przełącznik CPU podczas konwergencji lub defekt oprogramowania.</td>
+</tr>
+</tbody>
+</table>
 </body>
 </html>

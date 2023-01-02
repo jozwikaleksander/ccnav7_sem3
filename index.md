@@ -1417,7 +1417,7 @@ Istnieją różne sposoby wymiany klucza DH. Wariacje te określane są jako gru
 
 ## 1. Stałe opóźnienie
 
-To określony czas, jaki trwa określony proces, na przykład czas potrzebnny na umieszczenie go na nośniku transmisji.
+To określony czas, jaki trwa określony proces, na przykład czas potrzebny na umieszczenie go na nośniku transmisji.
 
 ## 2. Zmienne opóźnienie
 
@@ -1549,7 +1549,7 @@ W przypadku małym strat (jak pakiet) **cyfrowy procesor sygnałowy (DSP)** inte
 
 - Pierwszy wejście, pierwsze wyjście (First-in, first-out - FIFO)
 - Ważone uczciwe kolejkowanie (Weighted Fair Queuing - WFQ)
-- Uczciwe kolejkowanie oCzęśće na klasach (Class-Based Weighted Fair Queuing - CBWFQ)
+- Uczciwe kolejkowanie oparte na klasach (Class-Based Weighted Fair Queuing - CBWFQ)
 - Kolejkowanie o niskim opóźnieniu (Low Latency Queuing - LLQ)
 
 ## 12. First In First Out (FIFO)
@@ -2318,3 +2318,159 @@ Od warstwy aplikacji do warstwy fizycznej modelu OSI. Podejścia tego używamy w
 
 #### 2.5.3. Dziel i rządź
 
+Administrator wybiera najpierw jedną z warstw pośrednich i przeprowadza testy w obu kierunkach poczynając od tej warstwy. Wybór warstwy opieramy na informacji zebranych od użytkowników. Gdy wybrana warstwa działa prawidłowo można założyć, że wszystkie warstwy pod również funkcjonują.
+
+#### 2.5.4. Podążanie ścieżką
+
+Jest to jedna z najbardziej podstawowych technik rozwiązywania problemów. Technik odkrywa ścieżkę ruchu od źródła do miejsca docelowego.
+
+#### 2.5.5. Podmiana
+
+Zamiana problematycznych urządzeń na działające. Jeśli problem został rozwiązany, oznacza to, że problem dotyczy usuniętego urządzenia. W przeciwnym razie przyczyna może leżeć gdzieś indziej.
+
+#### 2.5.6. Porównanie (wykrywaj różnice)
+
+Technik próbuje rozwiązać problem poprzez zmianę elementów nieoperacyjnych tak, aby były zgodne z działającymi. Porównujesz konfiguracje, wersje oprogramowania, sprzęt lub inne właściwości urządzeń, łącza lub procesy między sytuacjami działającymi i niedziałającymi i dostrzegasz znaczące różnice między nimi. Wadą tej metody jest to, że może ona prowadzić do działającego rozwiązania bez wyraźnego ujawnienia pierwotnej przyczyny problemu.
+
+#### 2.5.7. Zgadywanie na podstawie doświadczenia (strzelanie z biodra)
+
+Wykorzystuje oparte na wiedzy przypuszczenia na postawie objawów problemu.
+
+## 3. Narzędzia rozwiązywania problemów
+
+### 3.1. Programowe narzędzie do rozwiązywania problemów
+
+- **Narzędzia systemu zarządzania siecią (NMS)** - zawiera oprogramowanie do monitorowania na poziomie urządzena, konfiguracji oraz zarządzania usterkami.
+- **Baza wiedzy** - utworzone przez dostawców urządzeń sieciowych.
+- **Narzędzia do tworzenia stanu odniesienia** - służa do automatyzowania dokumentacji sieciowej oraz procesu stanu odniesienia.
+
+### 3.2. Analizator protokołu
+
+Bada zawartość pakietu podczas przepływu przez sieć. Przykładem takiego programu jest **Wireshark**.
+
+### 3.3. Sprzętowe narzędzia do rozwiązywania problemów
+
+- **Cyfrowy multimetr** - przyrządy testowe używane do bezpośredniego pomiaru wartości elektrycznych napięcia, prądu i rezystancji.
+- **Testery kabli** - wyspecjalizowane ręczne urządzenia zaprojektowane do testowania rożnego typu okablowania do wymiany daynych.
+- **Analizatory okablowania** - wielofunkcyjne urządzenia podręczne, które służą do testowania i certyfikowania kabli miedzianych i światłowodowych pod kątem różnych usług i standardów.
+- **Przenośne analizatory sieci** - są używane do rozwiązywania problemów z sieciami przełączanymi i sieciami VLAN. Podłączając analizator do segmentu sieci, technik może obserwować wykorzystanie portu, do którego urządzenie jest podłączone, wykrywać konfiguracje VLAN, identyfikować głównych rozmówców w sieci i przeglądać szczegóły interfejsu. Urządzenie może przesyłać dane do komputera PC.
+- **Cisco Prime NAM** - oferta obejmująca sprzęt i oprogramowanie do analizy wydajności w środowiskach przełączania i routingu. 
+
+### 3.4. Serwer Syslog jako narzędzie do rozwiązywania problemów
+
+Syslog pozwala na wysyłanie tekstowych komunikatów do syslog server.
+
+**Urządzenia Cisco mogę rejestrować m.in. dane dotyczące:**
+
+- zmian w konfiguracji
+- naruszeń list ACL
+- stanu interfejsów
+
+**Komunikaty zdarzeń mogę być wysyłane na urządzenia tj.:**
+
+- konsola
+- linie terminala
+- rejestrowanie buforowane
+- pułapki SNMP
+- Syslog
+
+**Komunikaty dziennika Cisco IOS dziela się na jeden z ośmiu poziomów:**
+
+| Poziom | Słowa kluczowe | Opis | Definicja |
+|---|---|---|---|
+| 0 | Awarie | System jest bezużyteczny | LOG_EMERG |
+| 1 | Alarmy | Potrzebne jest natychmiastowe działanie | LOG_ALERT |
+| 2 | Krytyczne | Wystąpił stan krytyczny | LOG_CRIT |
+| 3 | Błędy | Wystąpił stan błędu | LOG_ERR |
+| 4 | Ostrzeżenia | Wystąpił stan ostrzegawczy | LOG_WARNING |
+| 5 | Powiadomienia | Stan normalny (ale znaczący) | LOG_NOTICE |
+| 6 | Informacje | Tylko komunikaty informacyjne | LOG_INFO |
+| 7 | Debugowanie | Komunikaty debugera | LOG_DEBUG |
+
+## 4. Objawy i przyczyny problemów z siecią
+
+### 4.1. Warstwa fizyczna
+
+#### 4.1.1. Objawy
+
+| Objaw | Opis |
+|---|---|
+| Wydajność poniżej poziomu odniesienia | Do porównania wymagane są poprzednie poziomy odniesienia. Najczęstsze przyczyny powolnej lub słabej wydajności to przeciążone lub niedostatecznie zasilane serwery, nieodpowiedni przełącznik lub router konfiguracje, przeciążenie ruchu na łączu o niskiej przepustowości, oraz chroniczna utrata klatek. |
+| Utrata łączności | Utrata łączności może być spowodowana niepowodzeniem lub odłączonym kablem. Można zweryfikować za pomocą prostego testu ping. Okresowa utrata łączności może wskazywać na luźne lub utlenione połączenie. |
+| Zatory lub przeciążenia w sieci | Jeśli router, interfejs lub kabel nie powiedzie się, protokoły routingu mogą przekierować ruch na inne trasy, które nie są przeznaczone do przewozu dodatkowej pojemności. Może to spowodować zatory lub wąskie gardła w niektórych częściach sieci. |
+| Wysokie wykorzystanie procesora | Wysokie wskaźniki wykorzystania procesora są objawem, że urządzenie, takie jak router, przełącznik lub serwer, działa na lub przekracza jego konstrukcyjne limity. Jeśli nie zostanie szybko rozwiązany, przeciążenie procesora może spowodować wyłączenie urządzenia lub zawieszenie. |
+| Komunikat o błędzie konsoli | Komunikaty o błędach zgłaszane na konsoli urządzenia mogą wskazywać na problem z warstwą fizyczną. Komunikaty konsoli powinny być rejestrowane na centralnym serwerze syslog. |
+
+#### 4.1.2. Przyczyny
+
+| Przyczyna problemu | Opis |
+|---|---|
+| Problemy z zasilaniem | To jest najbardziej podstawowa przyczyna awarii sieci. Sprawdź działanie wentylatorów i upewnij się, że otwory wlotowe i wylotowe są czyste. Jeśli inne pobliskie jednostki również wyłączyły się, podejrzewaj awarię głównego źródła zasilania. |
+| Usterki sprzętowe | Uszkodzone karty interfejsu sieciowego (NIC) mogą być przyczyną sieci błędy transmisji wynikające z późnych kolizji, krótkich klatek, oraz **jabber**. **Jabber** jest często definiowany jako stan, w którym urządzenie sieciowe nieustannie przesyła do sieci losowe, pozbawione znaczenia dane. Inne prawdopodobne przyczyny **jabber** to wadliwy lub uszkodzony sterownik karty sieciowej pliki, złe okablowanie lub problemy z uziemieniem. |
+| Błędy okablowania | Wiele problemów można rozwiązać, po prostu ponownie podłączając posiadane kable zostaną częściowo odłączone. Podczas kontroli fizycznej szukaj uszkodzonych kabli, niewłaściwe typy kabli i słabo zaciśnięte złącza RJ-45. Podejrzane kable należy przetestować lub wymienić na znany działający kabel. |
+| Tłumienie | Tłumienie może być spowodowane, jeśli długość kabla przekracza limit projektowy dla mediów lub gdy istnieje słabe połączenie wynikające z luźnego kabla lub brudnych lub utlenionych kontaktów. Jeśli tłumienie jest poważne, urządzenie odbiorcze nie zawsze pomyślnie odróżnijeden bit w strumieniu danych od drugiego bitu. |
+| Hałas | **Lokalne zakłócenia elektromagnetyczne (EMI)** są powszechnie znane jako **szum**. Hałas może być generowany przez wiele źródeł, takich jak stacje radiowe FM, radio policyjne, ochrona budynku i awionika dla zautomatyzowanego lądowania, przesłuch (szum wywoływany przez inne kable na tej samej ścieżce lub przyległych kabli), w pobliżu kabli elektrycznych, urządzeń z dużymi silnikami elektrycznymi, lub cokolwiek, co zawiera nadajnik bardziej potężny niż telefon komórkowy. |
+| Błędy konfiguracji interfejsu | Wiele rzeczy może być błędnie skonfigurowanych na interfejsie, aby spowodować jego przejście w dół, takie jak nieprawidłowa częstotliwość zegara, nieprawidłowe źródło zegara, oraz interfejs nie jest włączony. Czynniki te sprawiają, że łączność z podłączonymi segmentami sieci zostaje utracona. |
+| Przekroczenie limitów projektowych | Komponent może działać sub-optymalnie na warstwie fizycznej ponieważ jest używany poza specyfikacjami lub skonfigurowaną wydajnością. Podczas rozwiązywania tego typu problemów staje się oczywiste, że zasoby dla urządzenia działają na poziomie lub w pobliżu maksimum wydajności i tworzy się wzrost liczby błędów interfejsu. |
+| Przeciążenie CPU | Objawy obejmują procesy o wysokich procentach wykorzystania procesora, spadki kolejki wejściowej, niska wydajność, limity czasu SNMP, brak zdalnego dostępu lub usługi takie jak DHCP, Telnet i ping są powolne lub nie powodzą się . Na przełączniku mogą wystąpić następujące: rekonwergencja spanning-tree. Linki EtherChannel odbijają się, migają UDLD, awarie IP SLA. W przypadku routerów może nie być żadnych aktualizacji routingu, problemy z trasami lub problemy z HSRP . Jedną z przyczyn przeciążenia procesora w routerze lub przełączniku jest wysoki ruch sieciowy. Jeśli jeden lub więcej interfejsów jest regularnie przeciążony ruchem ruchowym, rozważyć przeprojektowanie przepływu ruchu w sieci lub modernizację sprzętu. |
+
+### 4.2. Warstwa łącza danych
+
+#### 4.2.1. Objawy
+
+| Objaw | Opis |
+|---|---|
+| Nieprawidłowe funkcjonowanie lub brak łączności w warstwie sieci lub wyższej | Niektóre problemy warstwy 2 mogą zatrzymać wymianę klatek przez link, podczas gdy inne powodują pogorszenie wydajności sieci. |
+| Wydajność sieci poniżej poziomów odniesienia | Istnieją dwa różne typy nieoptymalnych operacji w warstwie 2 mogące wystąpić w sieci. Po pierwsze, ramki podążają nieoptymalną ścieżką do miejsca docelowego, ale jednak docierają, powodując, że sieć doświadcza nieoczekiwanej wysokiej przepustowości na połączeniach. Po drugie, niektóre ramki są upuszczane jako identyfikowane przez licznik błędów statystyki i komunikaty o błędach konsoli, które pojawiają się na przełączniku lub routerze. Rozszerzony lub ciągły ping może pomóc ujawnić, czy ramki są porzucone. |
+| Nadmierne rozgłoszenia | Systemy operacyjne intensywnie używają emisji i multiemisji do odkrycia usług sieciowych i innych hostów. Ogólnie rzecz biorąc, nadmierne audycje są wynikiem słabo zaprogramowanych lub skonfigurowanych aplikacji, duża transmisja domeny rozgłoszeniowej warstwy 2 lub problem z siecią (np. pętle STP lub problemy z trasami). |
+| Komunikaty konsoli | Router rozpoznaje, że wystąpił problem warstwy 2 i wysyła komunikaty ostrzegawcze do konsoli. Zazwyczaj router robi to, gdy wykryje problem z interpretacjną przychodzących ramek (problemy z enkapsulowaniem lub nagłowkami) lub kiedy oczekiwane są wiadomości keepalive, ale żadne nie przybywają. Najczęstszym komunikatem konsoli wskazującym na problem w warstwie 2 jest komunikat o awarii protokołu linii |
+
+#### 4.2.2. Przyczyny 
+
+| Przyczyna problemu | Opis |
+|---|---|
+| Błędy enkapsulacji | Bity umieszczone w polu przez nadawcę nie jest tym, co odbiorca spodziewa się zobaczyć. Warunek ten występuje, gdy enkapsulacja na jednym końcu sieci WAN jest konfigurowana inaczej niż enkapsulacja używana na drugim końcu. |
+| Błędy mapowania adresu | W środowisku dynamicznym mapowanie informacji warstwy 2 i warstwy 3 może się nie powieść, ponieważ urządzenia mogły być specjalnie skonfigurowane do nieodpowiadania na żądania ARP, warstwy 2 lub warstwy 3 informacje, które są buforowane, mogły zostać fizycznie zmienione lub nieprawidłowe odpowiedzi ARP są odbierane z powodu niepoprawnej konfiguracji lub ataków na zabezpieczenia.|
+| Błędy ramek | Błąd ramki występuje, gdy ramka nie kończy się na granicy 8-bitowego bajtu. W takim przypadku odbiornik może mieć problemy z określeniem, gdzie kończy się jedna ramka, a inna ramka zaczyna. Zbyt wiele nieprawidłowych ramek może uniemożliwić prawidłową wymianę wiadomości typu keepalive. Błędy w ramkowaniu mogą być spowodowane szumami linii szeregowej, nieprawidłowo zaprojektowanym kablem.|
+| Błędy i pętle STP | Trzepoczenie portu (oscyluje między stanem w górę i w dół ), powoduje powtarzające się zmiany topologiczne i zalewanie, lub powolną konwergencję STP lub ponowna konwergencję. Może to być spowodowane niedopasowaniem między rzeczywistymi a udokumentowanymi topologiami, błedem konfiguracji, takim jak niespójna konfiguracja STP, przeciążony przełącznik CPU podczas konwergencji lub defekt oprogramowania. |
+
+### 4.3. Warstwa sieci
+
+#### 4.3.1. Objawy
+
+| Objaw | Opis |
+|---|---|
+| Awaria sieci | Awaria sieci występuje, gdy sieć jest prawie lub całkowicie niefunkcjonalna, wpływający na wszystkich użytkowników i aplikacje w sieci. Te awarie są zwykle zauważane szybko przez użytkowników i sieć administratorów i są oczywiście krytyczne dla produktywności firmy. |
+| Nieoptymalna wydajność | Problemy z optymalizacją sieci zwykle obejmują podzbiór użytkowników, aplikacji, miejsc docelowych lub typu ruchu. Problemy z optymalizacją mogą być trudne do wykrycia, a nawet trudniejsze do izolowania i diagnozy. Dzieje się tak, ponieważ zwykle obejmują wiele warstw, lub nawet pojedynczy komputer hosta. Ustalenie, że problem dotyczy warstwy sieciowej, może zająć dużo czasu. |
+
+#### 4.3.2. Przyczyny
+
+| Przyczyna problemu | Opis |
+|---|---|
+| Ogólne problemy z siecią | Często zmiana topologii, taka jak link w dół, może mieć wpływ na inne obszary sieci, które mogą nie być oczywiste w w danym czasie. Może to obejmować instalację nowych tras statycznych lub dynamicznych, lub usunięcie innych tras. Określ, czy cokolwiek w sieci ostatnio się zmieniło, i jeśli ktoś pracuje obecnie nad infrastrukturą sieciową. |
+| Problemy z łącznością | Sprawdź, czy występują problemy związane z urządzeniami i łącznością, w tym z zasilaniem problemy, takie jak przestoje i problemy środowiskowe (na przykład, przegrzanie). Sprawdź również problemy z warstwą 1, takie jak problemy z okablowaniem, złe porty i problemy z dostawą usług internetowych. |
+| Tabela routingu | Sprawdź tabelę routingu pod kątem nieoczekiwanych elementów, na przykład braków trasy lub nieoczekiwane trasy. Użyj poleceń debugowania, aby wyświetlić aktualizacje routingu i konserwację tablicy routingu. |
+| Problemy z ustanowieniem sąsiedztwa | Jeśli protokół routingu ustanawia sąsiedztwo z przylegającym urządzeniem, sprawdź czy są jakieś problemy z routerami tworzącymi sąsiedztwo. |
+| Baza danych topologii | Jeśli protokół routingu używa tabeli topologii lub bazy danych, sprawdź, czy w tabeli nie ma nieoczekiwanych elementów, takich jak brakujące wpisy lub nieoczekiwane wpisy. |
+
+### 4.4. Warstwa transportowa - Listy ACL
+
+| Błędne konfiguracje | Opis |
+|---|---|
+| Wybór strumienia ruchu | Ruch jest definiowany zarówno przez interfejs routera, przez który przechodzi ruch, jak i przez kierunek, w którym ten ruch się przemieszcza. Lista ACL musi być zastosowana do właściwego interfejsu, a do prawidłowego działania należy wybrać właściwy kierunek ruchu. |
+| Kolejność wpisów kontroli dostępu | Wpisy na liście ACL powinny mieć charakter od specyficznych do ogólnych. Chociaż lista ACL może mieć wpis, który wyraźnie zezwala na typ przepływu ruchu, pakiety nigdy nie pasują do tego wpisu, jeśli są one odrzucone przez inny wpis wcześniej na liście. Jeśli router obsługuje zarówno listy ACL, jak i NAT, kolejność, w jakiej każda z tych technologii jest stosowana do przepływu ruchu, jest ważna. Ruch przychodzący jest przetwarzany przez przychodzącą listę ACL przed przetworzeniem przez NAT z zewnątrz do wewnątrz. Ruch wychodzący jest przetwarzany przez wychodzącą listę ACL po przetworzeniu przez NAT wewnątrz-na-zewnątrz. |
+| Domyślny deny any | Gdy wysoki poziom bezpieczeństwa nie jest wymagany na liście ACL, ten niejawny element kontroli dostępu może być przyczyną nieprawidłowej konfiguracji listy ACL. |
+| Adresy i maski blankietowe IPv4 | Złożone maski blankietowe IPv4 zapewniają znaczną poprawę wydajności, ale są bardziej podatne na błędy konfiguracji. Przykładem złożonej maski blankietowej jest użycie adresu IPv4 10.0.32.0 i maska 0.0.32.15, aby wybrać pierwsze 15 hostów w sieci 10.0.0.0 lub w sieci 10.0.32.0. |
+| Wybór protokołu warstwy transportowej | Podczas konfigurowania list ACL ważne jest, aby określić tylko prawidłowe protokoły warstwy transportowej. Wielu administratorów sieci, gdy nie ma pewności, czy przepływ ruchu korzysta z portu TCP czy UDP, konfiguruje oba. Podanie obu otwiera lukę w zaporze, prawdopodobnie dając intruzom drogę do sieci. Wprowadza także dodatkowy element do listy ACL, dzięki czemu przetwarzanie listy ACL trwa dłużej, co wprowadza większe opóźnienia w komunikacji sieciowej. |
+| Porty źródłowe i docelowe | Prawidłowe sterowanie ruchem między dwoma hostami wymaga symetrycznych elementów kontroli dostępu dla przychodzących i wychodzących list ACL. Informacje o adresie i porcie dla ruchu generowanego przez hosta odpowiadającego są lustrzanym odbiciem adresu i informacji o porcie dla ruchu generowanego przez hosta inicjującego. |
+| Użycie ustalonego słowa kluczowego | Ustalone słowo kluczowe zwiększa bezpieczeństwo dostarczone przez ACL. Jeśli jednak słowo kluczowe zostanie zastosowane nieprawidłowo, mogą wystąpić nieoczekiwane wyniki. |
+| Rzadko używane protokoły | Błędnie skonfigurowane listy ACL często powodują problemy z protokołami innymi niż TCP i UDP. Niezwykłe protokoły, które zyskują na popularności to VPN i protokoły szyfrowania. |
+
+### 4.5. Warstwa transportowa - NAT dla IPv4
+
+| Objaw | Opis |
+|---|---|
+| BOOTP i DHCP | Oba protokoły zarządzają automatycznym przypisywaniem adresów IPv4 do klientów. Przypomnij sobie, że pierwszy pakiet wysłany przez nowego klienta to Pakiet transmisji IPv4 żądania DHCP. Pakiet DHCP-Request ma źródłowy adres IPv4 0.0.0.0. Ponieważ NAT wymaga zarówno prawidłowego docelowego, jak i źródłowego adresu IPv4, BOOTP i DHCP mogą mieć problemy z działaniem na routerze, na którym działa statyczny lub dynamiczny NAT. Problem może rozwiązać skonfigurowanie funkcji przekierowania IPv4. |
+| DNS | Ponieważ router z dynamicznym NAT zmienia relację między adresami wewnętrznymi i zewnętrznymi regularnie gdy wpisy tabeli wygasają i są odtworzone, serwer DNS poza routerem NAT nie mają dokładnej reprezentacji sieci wewnątrz routera. Problem może rozwiązać skonfigurowanie funkcji przekierowania IPv4. |
+| SNMP | Podobnie jak pakiety DNS, NAT nie jest w stanie zmienić informacji adresowych przechowywanych w ładunku danych pakietu. Z tego powodu stacja zarządzająca SNMP po jednej stronie NAT routera może nie być w stanie skontaktować się z agentami SNMP po drugiej stronie routera NAT. Problem może rozwiązać skonfigurowanie funkcji przekierowania IPv4. |
+| Protokoły tunelowania i szyfrowania | Protokoły szyfrowania i tunelowania często wymagają, aby ruch pochodził z określonego portu UDP lub TCP albo używał protokołu w warstwie transportowej, który nie może być przetwarzany przez NAT. Na przykład protokoły tunelowania IPsec i ogólne protokoły enkapsulacji routingu używane w implementacjach VPN nie mogą być przetwarzane przez NAT. |
