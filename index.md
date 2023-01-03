@@ -2474,3 +2474,5 @@ Syslog pozwala na wysyłanie tekstowych komunikatów do syslog server.
 | DNS | Ponieważ router z dynamicznym NAT zmienia relację między adresami wewnętrznymi i zewnętrznymi regularnie gdy wpisy tabeli wygasają i są odtworzone, serwer DNS poza routerem NAT nie mają dokładnej reprezentacji sieci wewnątrz routera. Problem może rozwiązać skonfigurowanie funkcji przekierowania IPv4. |
 | SNMP | Podobnie jak pakiety DNS, NAT nie jest w stanie zmienić informacji adresowych przechowywanych w ładunku danych pakietu. Z tego powodu stacja zarządzająca SNMP po jednej stronie NAT routera może nie być w stanie skontaktować się z agentami SNMP po drugiej stronie routera NAT. Problem może rozwiązać skonfigurowanie funkcji przekierowania IPv4. |
 | Protokoły tunelowania i szyfrowania | Protokoły szyfrowania i tunelowania często wymagają, aby ruch pochodził z określonego portu UDP lub TCP albo używał protokołu w warstwie transportowej, który nie może być przetwarzany przez NAT. Na przykład protokoły tunelowania IPsec i ogólne protokoły enkapsulacji routingu używane w implementacjach VPN nie mogą być przetwarzane przez NAT. |
+
+# XIII. Wirtualizacja sieci
