@@ -384,6 +384,48 @@
 <ul>
 <li><a href="#warstwa-fizyczna">4.1. Warstwa fizyczna</a></li>
 <li><a href="#warstwa-łącza-danych">4.2. Warstwa łącza danych</a></li>
+<li><a href="#warstwa-sieci">4.3. Warstwa sieci</a></li>
+<li><a href="#warstwa-transportowa---listy-acl">4.4. Warstwa transportowa - Listy ACL</a></li>
+<li><a href="#warstwa-transportowa---nat-dla-ipv4">4.5. Warstwa transportowa - NAT dla IPv4</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#xiii.-wirtualizacja-sieci">XIII. Wirtualizacja sieci</a>
+<ul>
+<li><a href="#przetwarzanie-w-chmurze">1. Przetwarzanie w chmurze</a>
+<ul>
+<li><a href="#rodzaje-usług-w-chmurze">1.1. Rodzaje usług w chmurze</a></li>
+<li><a href="#modele-chmury">1.2. Modele chmury</a></li>
+<li><a href="#chmura-obliczeniowa-a-centrum-danych">1.3. Chmura obliczeniowa a centrum danych</a></li>
+</ul></li>
+<li><a href="#wirtualizaja">2. Wirtualizaja</a>
+<ul>
+<li><a href="#chmura-obliczeniowa-a-wirtualizacja">2.1. Chmura obliczeniowa a wirtualizacja</a></li>
+<li><a href="#problem-z-serwerami-dedykowanymi">2.2. Problem z serwerami dedykowanymi</a></li>
+<li><a href="#hiperwizor">2.3. Hiperwizor</a></li>
+<li><a href="#zalety-wirtualizacji">2.4. Zalety wirtualizacji</a></li>
+<li><a href="#warstwy-abstrakcji">2.5. Warstwy abstrakcji</a></li>
+<li><a href="#hiperwizor-typu-2">2.6. Hiperwizor typu 2</a></li>
+</ul></li>
+<li><a href="#infrastruktura-sieci-wirtualnej">3. Infrastruktura sieci wirtualnej</a>
+<ul>
+<li><a href="#hiperwizory-typu-1">3.1. Hiperwizory typu 1</a></li>
+<li><a href="#konsola-zarządzania">3.2. Konsola zarządzania</a></li>
+<li><a href="#złożoność-wirtualizacji-sieci">3.3. Złożoność wirtualizacji sieci</a></li>
+</ul></li>
+<li><a href="#sieć-definiowana-programowo">4. Sieć definiowana programowo</a>
+<ul>
+<li><a href="#płaszczyzny-urządzeń-sieciowych">4.1. Płaszczyzny urządzeń sieciowych</a></li>
+<li><a href="#architektury-sieciowe-opracowane-do-obsługi-wirtualizacji-sieci">4.2. Architektury sieciowe opracowane do obsługi wirtualizacji sieci</a></li>
+<li><a href="#architektury-tradycyjne-a-sdn">4.3. Architektury tradycyjne, a SDN</a></li>
+</ul></li>
+<li><a href="#kontrolery-sdn">5. Kontrolery SDN</a>
+<ul>
+<li><a href="#kontroler-i-operacje-sdn">5.1. Kontroler i operacje SDn</a></li>
+<li><a href="#podstawowe-składniki-aci">5.2. Podstawowe składniki ACI</a></li>
+<li><a href="#topologia-spine-leaf">5.3. Topologia Spine-Leaf</a></li>
+<li><a href="#typy-sdn">5.4. Typy SDN</a></li>
+<li><a href="#funkcja-apic-em">5.5. Funkcja APIC-EM</a></li>
+<li><a href="#śledzenie-scieżki-apic-em">5.7. Śledzenie scieżki APIC-EM</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -2994,5 +3036,275 @@ Router#</code></pre>
 </tr>
 </tbody>
 </table>
+<h3 id="warstwa-sieci">4.3. Warstwa sieci</h3>
+<h4 id="objawy-2">4.3.1. Objawy</h4>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Objaw</th>
+<th>Opis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Awaria sieci</td>
+<td>Awaria sieci występuje, gdy sieć jest prawie lub całkowicie niefunkcjonalna, wpływający na wszystkich użytkowników i aplikacje w sieci. Te awarie są zwykle zauważane szybko przez użytkowników i sieć administratorów i są oczywiście krytyczne dla produktywności firmy.</td>
+</tr>
+<tr class="even">
+<td>Nieoptymalna wydajność</td>
+<td>Problemy z optymalizacją sieci zwykle obejmują podzbiór użytkowników, aplikacji, miejsc docelowych lub typu ruchu. Problemy z optymalizacją mogą być trudne do wykrycia, a nawet trudniejsze do izolowania i diagnozy. Dzieje się tak, ponieważ zwykle obejmują wiele warstw, lub nawet pojedynczy komputer hosta. Ustalenie, że problem dotyczy warstwy sieciowej, może zająć dużo czasu.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="przyczyny-2">4.3.2. Przyczyny</h4>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Przyczyna problemu</th>
+<th>Opis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ogólne problemy z siecią</td>
+<td>Często zmiana topologii, taka jak link w dół, może mieć wpływ na inne obszary sieci, które mogą nie być oczywiste w w danym czasie. Może to obejmować instalację nowych tras statycznych lub dynamicznych, lub usunięcie innych tras. Określ, czy cokolwiek w sieci ostatnio się zmieniło, i jeśli ktoś pracuje obecnie nad infrastrukturą sieciową.</td>
+</tr>
+<tr class="even">
+<td>Problemy z łącznością</td>
+<td>Sprawdź, czy występują problemy związane z urządzeniami i łącznością, w tym z zasilaniem problemy, takie jak przestoje i problemy środowiskowe (na przykład, przegrzanie). Sprawdź również problemy z warstwą 1, takie jak problemy z okablowaniem, złe porty i problemy z dostawą usług internetowych.</td>
+</tr>
+<tr class="odd">
+<td>Tabela routingu</td>
+<td>Sprawdź tabelę routingu pod kątem nieoczekiwanych elementów, na przykład braków trasy lub nieoczekiwane trasy. Użyj poleceń debugowania, aby wyświetlić aktualizacje routingu i konserwację tablicy routingu.</td>
+</tr>
+<tr class="even">
+<td>Problemy z ustanowieniem sąsiedztwa</td>
+<td>Jeśli protokół routingu ustanawia sąsiedztwo z przylegającym urządzeniem, sprawdź czy są jakieś problemy z routerami tworzącymi sąsiedztwo.</td>
+</tr>
+<tr class="odd">
+<td>Baza danych topologii</td>
+<td>Jeśli protokół routingu używa tabeli topologii lub bazy danych, sprawdź, czy w tabeli nie ma nieoczekiwanych elementów, takich jak brakujące wpisy lub nieoczekiwane wpisy.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="warstwa-transportowa---listy-acl">4.4. Warstwa transportowa - Listy ACL</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Błędne konfiguracje</th>
+<th>Opis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Wybór strumienia ruchu</td>
+<td>Ruch jest definiowany zarówno przez interfejs routera, przez który przechodzi ruch, jak i przez kierunek, w którym ten ruch się przemieszcza. Lista ACL musi być zastosowana do właściwego interfejsu, a do prawidłowego działania należy wybrać właściwy kierunek ruchu.</td>
+</tr>
+<tr class="even">
+<td>Kolejność wpisów kontroli dostępu</td>
+<td>Wpisy na liście ACL powinny mieć charakter od specyficznych do ogólnych. Chociaż lista ACL może mieć wpis, który wyraźnie zezwala na typ przepływu ruchu, pakiety nigdy nie pasują do tego wpisu, jeśli są one odrzucone przez inny wpis wcześniej na liście. Jeśli router obsługuje zarówno listy ACL, jak i NAT, kolejność, w jakiej każda z tych technologii jest stosowana do przepływu ruchu, jest ważna. Ruch przychodzący jest przetwarzany przez przychodzącą listę ACL przed przetworzeniem przez NAT z zewnątrz do wewnątrz. Ruch wychodzący jest przetwarzany przez wychodzącą listę ACL po przetworzeniu przez NAT wewnątrz-na-zewnątrz.</td>
+</tr>
+<tr class="odd">
+<td>Domyślny deny any</td>
+<td>Gdy wysoki poziom bezpieczeństwa nie jest wymagany na liście ACL, ten niejawny element kontroli dostępu może być przyczyną nieprawidłowej konfiguracji listy ACL.</td>
+</tr>
+<tr class="even">
+<td>Adresy i maski blankietowe IPv4</td>
+<td>Złożone maski blankietowe IPv4 zapewniają znaczną poprawę wydajności, ale są bardziej podatne na błędy konfiguracji. Przykładem złożonej maski blankietowej jest użycie adresu IPv4 10.0.32.0 i maska 0.0.32.15, aby wybrać pierwsze 15 hostów w sieci 10.0.0.0 lub w sieci 10.0.32.0.</td>
+</tr>
+<tr class="odd">
+<td>Wybór protokołu warstwy transportowej</td>
+<td>Podczas konfigurowania list ACL ważne jest, aby określić tylko prawidłowe protokoły warstwy transportowej. Wielu administratorów sieci, gdy nie ma pewności, czy przepływ ruchu korzysta z portu TCP czy UDP, konfiguruje oba. Podanie obu otwiera lukę w zaporze, prawdopodobnie dając intruzom drogę do sieci. Wprowadza także dodatkowy element do listy ACL, dzięki czemu przetwarzanie listy ACL trwa dłużej, co wprowadza większe opóźnienia w komunikacji sieciowej.</td>
+</tr>
+<tr class="even">
+<td>Porty źródłowe i docelowe</td>
+<td>Prawidłowe sterowanie ruchem między dwoma hostami wymaga symetrycznych elementów kontroli dostępu dla przychodzących i wychodzących list ACL. Informacje o adresie i porcie dla ruchu generowanego przez hosta odpowiadającego są lustrzanym odbiciem adresu i informacji o porcie dla ruchu generowanego przez hosta inicjującego.</td>
+</tr>
+<tr class="odd">
+<td>Użycie ustalonego słowa kluczowego</td>
+<td>Ustalone słowo kluczowe zwiększa bezpieczeństwo dostarczone przez ACL. Jeśli jednak słowo kluczowe zostanie zastosowane nieprawidłowo, mogą wystąpić nieoczekiwane wyniki.</td>
+</tr>
+<tr class="even">
+<td>Rzadko używane protokoły</td>
+<td>Błędnie skonfigurowane listy ACL często powodują problemy z protokołami innymi niż TCP i UDP. Niezwykłe protokoły, które zyskują na popularności to VPN i protokoły szyfrowania.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="warstwa-transportowa---nat-dla-ipv4">4.5. Warstwa transportowa - NAT dla IPv4</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Objaw</th>
+<th>Opis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>BOOTP i DHCP</td>
+<td>Oba protokoły zarządzają automatycznym przypisywaniem adresów IPv4 do klientów. Przypomnij sobie, że pierwszy pakiet wysłany przez nowego klienta to Pakiet transmisji IPv4 żądania DHCP. Pakiet DHCP-Request ma źródłowy adres IPv4 0.0.0.0. Ponieważ NAT wymaga zarówno prawidłowego docelowego, jak i źródłowego adresu IPv4, BOOTP i DHCP mogą mieć problemy z działaniem na routerze, na którym działa statyczny lub dynamiczny NAT. Problem może rozwiązać skonfigurowanie funkcji przekierowania IPv4.</td>
+</tr>
+<tr class="even">
+<td>DNS</td>
+<td>Ponieważ router z dynamicznym NAT zmienia relację między adresami wewnętrznymi i zewnętrznymi regularnie gdy wpisy tabeli wygasają i są odtworzone, serwer DNS poza routerem NAT nie mają dokładnej reprezentacji sieci wewnątrz routera. Problem może rozwiązać skonfigurowanie funkcji przekierowania IPv4.</td>
+</tr>
+<tr class="odd">
+<td>SNMP</td>
+<td>Podobnie jak pakiety DNS, NAT nie jest w stanie zmienić informacji adresowych przechowywanych w ładunku danych pakietu. Z tego powodu stacja zarządzająca SNMP po jednej stronie NAT routera może nie być w stanie skontaktować się z agentami SNMP po drugiej stronie routera NAT. Problem może rozwiązać skonfigurowanie funkcji przekierowania IPv4.</td>
+</tr>
+<tr class="even">
+<td>Protokoły tunelowania i szyfrowania</td>
+<td>Protokoły szyfrowania i tunelowania często wymagają, aby ruch pochodził z określonego portu UDP lub TCP albo używał protokołu w warstwie transportowej, który nie może być przetwarzany przez NAT. Na przykład protokoły tunelowania IPsec i ogólne protokoły enkapsulacji routingu używane w implementacjach VPN nie mogą być przetwarzane przez NAT.</td>
+</tr>
+</tbody>
+</table>
+<h1 id="xiii.-wirtualizacja-sieci">XIII. Wirtualizacja sieci</h1>
+<h2 id="przetwarzanie-w-chmurze">1. Przetwarzanie w chmurze</h2>
+<h3 id="rodzaje-usług-w-chmurze">1.1. Rodzaje usług w chmurze</h3>
+<h4 id="oprogramowanie-jako-usługa-saas">1.1.1. Oprogramowanie jako usługa (SaaS)</h4>
+<p>Zapewnia dostęp do aplikacji i usług tj. Office 365, poczta-email.</p>
+<h4 id="platforma-jako-usługa-paas">1.1.2. Platforma jako usługa (PaaS)</h4>
+<p>Zapewnia dostęp do narzędzi programistycznych i usług używanych do dostarczenia aplikacji. Użytkownik ma kontrolę nad ustawieniami środowiska hostingu aplikacji usług w chmurze.</p>
+<h4 id="infrastruktura-jako-usługa-iaas">1.1.3. Infrastruktura jako usługa (IaaS)</h4>
+<p>Zapewnia dostęp do sprzętu sieciowego, zwirtualizowanych usług sieciowcyh, infrastruktury pomocniczej.</p>
+<h4 id="it-jako-usługa-itaas">1.1.4. IT jako usługa (ITaaS)</h4>
+<p>Zapewnia wsparcie IT dla każdej z usług przetwarzania w chmurze.</p>
+<h3 id="modele-chmury">1.2. Modele chmury</h3>
+<h4 id="chmury-publiczne">1.2.1. Chmury publiczne</h4>
+<p>Usługi i aplikacje udostępnianie są ogółowi populacji. Przykłady to: Amazon Web Services, Microsoft Azure, Google Cloud Platform.</p>
+<h4 id="chmury-prywatne">1.2.2. Chmury prywatne</h4>
+<p>Usługi i aplikacje przeznaczone dla określonej grupy. Może być zbudowana w oparciu o prywatną infrastrukturę sieciową (kosztowne rozwiązanie). Chmura prywatna może być zarządzana przez firmę zewnętrzną.</p>
+<h4 id="hybrid-clouds">1.2.3. Hybrid Clouds</h4>
+<p>Składa się z więcej niż jednej chmury (np. prywatna, publiczna), gdzie każda część jest oddzielnym obiektem, ale są połączone za pomocą tej samej architektury.</p>
+<h4 id="chmury-społecznościowe">1.2.4. Chmury społecznościowe</h4>
+<p>Tworzona do użytku przez określoną społeczność. Od chmury publicznej różni się dostosowaniem funkcjonalności np. sposobu uwierzytelniania i poufności.</p>
+<h3 id="chmura-obliczeniowa-a-centrum-danych">1.3. Chmura obliczeniowa a centrum danych</h3>
+<p><strong>Centrum danych</strong>- fizyczny obiekt do przechowywania i przetwarzania danych prowardzony przez wewnętrzny dział IT lub wynajmowany poza siedzibą firmy. Jest drogi w utrzymaniu dlatego tylko duże organizacje mogą sobie na to pozwolić, te mniejsze dzierżawią usługi i pamięć od centrum danych w chmurze.</p>
+<p><strong>Obliczanie w chmurze</strong> - usługa zewnętrzna, która oferuje dostęp do zasobów obliczeniowych. Usługi w chmurze są hostowane przez dostawców używając własnych centrum danych.</p>
+<h2 id="wirtualizaja">2. Wirtualizaja</h2>
+<h3 id="chmura-obliczeniowa-a-wirtualizacja">2.1. Chmura obliczeniowa a wirtualizacja</h3>
+<p>Wirtualizacja jest podstawą chmurzy obliczeniowej i polega na oddzieleniu systemu operacyjnego od sprzętu.</p>
+<h3 id="problem-z-serwerami-dedykowanymi">2.2. Problem z serwerami dedykowanymi</h3>
+<p>Serwery dedykowane są <strong>pojedynczym punktem awarii</strong>, bowiem w razie ich awarii usługa przestaje być świadczone. Oprócz tego często pozostają bezczynne co doprowadza do marnowania zasobów (<strong>rozrost serwera</strong>).</p>
+<h3 id="hiperwizor">2.3. Hiperwizor</h3>
+<p>To program, oprogramowanie układowe lub sprzęt, który dodaje <strong>warstwę abstrakcji</strong> na fizycznym sprzęcie. <strong>Warstwa abstrakcji</strong> służy do tworzenia <strong>maszyn wirtualnych</strong>, które mają dostęp do całego sprzętu maszyny fizyczej.</p>
+<h3 id="zalety-wirtualizacji">2.4. Zalety wirtualizacji</h3>
+<ul>
+<li>Wymagana jest mniejsza ilość sprzętu</li>
+<li>Zużywa się mniej energii</li>
+<li>Jest wymagane mniej miejsca</li>
+<li>Łatwiejsze prototypowanie - łatwość tworzenia samodzielnych laboratoriów</li>
+<li>Szybsze udostępnianie serwerów</li>
+<li>Większy czas działania serwerów</li>
+<li>Ulepszone odzyskiwanie po awariach</li>
+<li>Wsparcie dle starszych wersji</li>
+</ul>
+<h3 id="warstwy-abstrakcji">2.5. Warstwy abstrakcji</h3>
+<p>Warstwy abstakcji pomagają wyjaśnić, jak działa wirtualizacja.</p>
+<p>Warstwy abstakcji:</p>
+<ul>
+<li>Usługi</li>
+<li>System operacyjny (OS)</li>
+<li>Oprogramowanie sprzętowe (ROM)</li>
+<li>Sprzęt komputerowy</li>
+</ul>
+<p>Hiperwizor jest instalowany między oprogramowaniem układowym a systemem operacyjnym.</p>
+<h3 id="hiperwizor-typu-2">2.6. Hiperwizor typu 2</h3>
+<p>Tzw. <strong>hiperwizor hostowany</strong> jest instalowany na systemie operacyjnym tj. Windows lub Linux. Tworzy on i uruchamia wystąpienia <strong>maszyn wirtualnych</strong>.</p>
+<p>Nie wymaga on oprogramowania konsoli zarządzania.</p>
+<p>Przykładami hiperwizorów typu 2 są:</p>
+<ul>
+<li>VirtualBox</li>
+<li>VMware Workstation Player</li>
+</ul>
+<h2 id="infrastruktura-sieci-wirtualnej">3. Infrastruktura sieci wirtualnej</h2>
+<h3 id="hiperwizory-typu-1">3.1. Hiperwizory typu 1</h3>
+<p>Podejście nazywane również “bare metal”, ponieważ hiperwizor jest instalowany bezpośrednio na sprzęcie.</p>
+<h3 id="konsola-zarządzania">3.2. Konsola zarządzania</h3>
+<p>Oprogramowanie zarządzające wieloma serwerami przy użyciu tego same hiperwizora. Zapewniają one funkcje tj.:</p>
+<ul>
+<li><strong>nadmierna alokacja serwera</strong> - przypisywanie instancjom więcej pamięci niż serwer może dla nich zaoferować - np. po 10 GB dla 4 instancji, kiedy serwer ma 16 GB RAM, można tak zrobić ponieważ rzadko kiedy wszystkie instancje wykorzystuje pełne 10 GB.</li>
+<li><strong>odzyskiwanie po awarii</strong> - automatyczne przenoszenia maszyny wirtualnej na inny serwer</li>
+<li><strong>automatyczna konsolidacja serwerów</strong></li>
+</ul>
+<h3 id="złożoność-wirtualizacji-sieci">3.3. Złożoność wirtualizacji sieci</h3>
+<p>Wirtualizacja serwerów może powodować problemy, jeśli centrum danych korzysta z tradycyjnej architektury sieciowej (przypisywanie VM portów przełącznika w sieci korzystającej z VLAN’ów, a przenoszenie VM między serwerami).</p>
+<figure>
+<img src="img/11.3.3.png" alt="" /><figcaption>Ruch w siedzibie</figcaption>
+</figure>
+<p><strong>Ruch północ - południe</strong> zachodzi między warstwą dystrybucyjną a warstwą podstawową (przeznaczony zwykle do zewnętrznych lokalizacji).</p>
+<p><strong>Ruch wschód - zachód</strong> ruch między serwerami wirtualnymi.</p>
+<h2 id="sieć-definiowana-programowo">4. Sieć definiowana programowo</h2>
+<h3 id="płaszczyzny-urządzeń-sieciowych">4.1. Płaszczyzny urządzeń sieciowych</h3>
+<h4 id="płaszczyzna-sterowania">4.1.1. Płaszczyzna sterowania</h4>
+<p>Uważana za mózg urządzenia. Służy do podejmowania decyzji dotyczących przekazywania. Zawiera mechanizmy przekazywania tras w warstwie 2 i 3 (tj. tablice routingu, tablice ARP itp.).</p>
+<h4 id="płaszczyzna-danych">4.1.2. Płaszczyzna danych</h4>
+<p>Nazywana również <strong>płaszczyzną przesyłania</strong> jest zwykle strukturą przelącznika łączącą różne porty sieciowe w urządzeniu. Służy ona do przesyłania strumieni ruchu.</p>
+<h4 id="płaszczyzna-zarządzania">4.1.3. Płaszczyzna zarządzania</h4>
+<p>Odpowiada za zarządzanie urządzeniem poprzez jego połączenie z siecią. Administratorzy sieci używają aplikacji tj. SSH, TFTP, HTTPS, aby uzyskać dostęp do płaszczyzny zarządzania i skonfigurować urządzenie.</p>
+<h3 id="architektury-sieciowe-opracowane-do-obsługi-wirtualizacji-sieci">4.2. Architektury sieciowe opracowane do obsługi wirtualizacji sieci</h3>
+<h4 id="software-defined-networking-sdn">4.2.1. Software-Defined Networking (SDN)</h4>
+<p>Architektura sieci, która wirtualizuje sieć, oferując nowe podejście do administrowania siecią i zarządzania nią, które ma na celu uproszczenie i usprawnienie procesu administracyjnego.</p>
+<h5 id="składniki-sdn">4.2.1.1. Składniki SDN</h5>
+<ul>
+<li>OpenFlow - zarządza ruchem między urządzeniami sieciowymi.</li>
+<li>OpenStack - platforma wirtualizacji i orkiestracji do budowy skalowalnych środowisk chmury i zapewnienia rozwiązania IaaS.</li>
+</ul>
+<h4 id="cisco-application-centric-infrastructure-aci">4.2.2. Cisco Application Centric Infrastructure (ACI)</h4>
+<p>Rozwiązanie sprzętowe do integracji przetwarzanai w chmurze i zarządzania centrum danych.</p>
+<h3 id="architektury-tradycyjne-a-sdn">4.3. Architektury tradycyjne, a SDN</h3>
+<p>W tradycyjnej architekturze płaszczyzny sterowania i danych znajdują się w tym samym urzązeniu. Natomiast w SDN scentralizowany kontroler SDN zajmuje się płaszczyzną sterowania.</p>
+<p>SDN używa <strong>interfejsów programowania aplikacji (API)</strong>. <strong>API</strong> to zestaw żądań, które definiują właściwy sposób żądania usług z innej aplikacji przez applikację.</p>
+<p><strong>API północne</strong> służy do komunikacji z aplikacjami nadrzędnymi. <strong>API południowe</strong> służy do definiowania zachowania płaszczyzny danych na dalszych przełącznikach i routerach.</p>
+<h2 id="kontrolery-sdn">5. Kontrolery SDN</h2>
+<h3 id="kontroler-i-operacje-sdn">5.1. Kontroler i operacje SDn</h3>
+<p><strong>Kontroler SDN</strong> definiuje przepływ danych między scentralizowaną płaszczyzną sterowania a płasczyznami danych na posczególnych routerach i przełącznikach. Każdy przepły przechodzący przez sieć musi uzyskać pozwolenie od kontrolera SDN.</p>
+<p>Przełączniki do zarządzania przepływem pakietów wykorzystują szereg tabel zaimplementowanych w sprzęcie lub oprogramowaniu. Dla przełącznika przepływ to sekwencja pakietó pasująca do określonego wpisu w tablicy przepływu.</p>
+<p><strong>Typy tabel:</strong></p>
+<ul>
+<li><strong>Tabela przepływu</strong> - dopasowuje przychodzące pakiety do określonego przepływu i określa funkcje, które mają być wykonywane na pakietach.</li>
+<li><strong>Tabela grupowa</strong> - przepływ może być do niej skierowany przez tabelę przepływu.</li>
+<li><strong>Tabela liczników</strong> - wyzwala działania związane z wydajnością na przepływ w tym zdolność do szybkiego ograniczenia ruchu.</li>
+</ul>
+<h3 id="podstawowe-składniki-aci">5.2. Podstawowe składniki ACI</h3>
+<h4 id="profil-sieci-aplikacji-anp">5.2.1. Profil sieci aplikacji (ANP)</h4>
+<p>Zbiór grup punktów końcowych (EPG), ich połączeń i zasad definiujących te połączenia.</p>
+<h4 id="kontroler-infrastruktury-zasad-aplikacji-apic">5.2.2. Kontroler infrastruktury zasad aplikacji (APIC)</h4>
+<p>Jest uważany za mózg architektury ACI. APIC to scentralizowany kontroler oprogramowania, który zarządza skalowalną strukturą klastorwą ACI i obsługuje ją.</p>
+<h4 id="przełączniki-cisco-nexus-z-serii-9000">5.2.3. Przełączniki Cisco Nexus z serii 9000</h4>
+<p>Przełączniki te zapewniają strukturę przełączającą obsługującą aplikacje i współpracującą z APIC w celu zarządzania wirtualną i fizyczną infrastrukturą sieiową.</p>
+<h3 id="topologia-spine-leaf">5.3. Topologia Spine-Leaf</h3>
+<p>Topologia wykorzystwana do łączenia przełączników w sieci szkieletowej ACI.</p>
+<p>Przełączniki szkieletowe “Leaf” zawsze przyczepiają się do przełączników dostępowych “Spine”, ale nigdy nie łączą się ze sobą. Podobnie podłączone sa przełączniki dostępowe.</p>
+<figure>
+<img src="img/12.5.3.png" alt="" /><figcaption>Topologia Spine-Leaf</figcaption>
+</figure>
+<h3 id="typy-sdn">5.4. Typy SDN</h3>
+<h4 id="sdn-w-opraciu-na-urządzeniu">5.4.1. SDN w opraciu na urządzeniu</h4>
+<p>Urządzenia tego typu są programowalne przez aplikacje działąjące na samym urządzeniu lub na serwerze w sieci.</p>
+<h4 id="sdn-w-opraciu-na-kontrolerze">5.4.2. SDN w opraciu na kontrolerze</h4>
+<p>Wykorzystuje scentralizowany kontroler, który ma wiedzę o wszystkich urządzeniach w sieci.</p>
+<h4 id="sdn-w-opraciu-na-zasadach">5.4.3. SDN w opraciu na zasadach</h4>
+<p>Wykorzystuje scentralizowany kontroler i zawiera dodatkową warstwę zasad, która działą na wyższym poziomie abstrakcji.</p>
+<h3 id="funkcja-apic-em">5.5. Funkcja APIC-EM</h3>
+<p>System SND oparty na zasadach jest najbardziej niezawodny, zapewniając prosty mechanizm kontroli i zarządzania politykami w całej sieci.</p>
+<p><strong>Cisco APIC-EM</strong> jest przykładem opartym na zasadach SDN. Zapewnia jeden interfejs do zarządzania siecią.</p>
+<h3 id="śledzenie-scieżki-apic-em">5.7. Śledzenie scieżki APIC-EM</h3>
+<p><strong>Narzędzie APIC-EM Path Trace</strong> umożliwia administratorowi łatwą wizualizację przepływu ruchu i wykrywanie wszelkich sprzecznych, zduplikowanych lub ukrytych wpisów ACL.</p>
 </body>
 </html>

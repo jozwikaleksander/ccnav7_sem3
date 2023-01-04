@@ -2476,3 +2476,220 @@ Syslog pozwala na wysyłanie tekstowych komunikatów do syslog server.
 | Protokoły tunelowania i szyfrowania | Protokoły szyfrowania i tunelowania często wymagają, aby ruch pochodził z określonego portu UDP lub TCP albo używał protokołu w warstwie transportowej, który nie może być przetwarzany przez NAT. Na przykład protokoły tunelowania IPsec i ogólne protokoły enkapsulacji routingu używane w implementacjach VPN nie mogą być przetwarzane przez NAT. |
 
 # XIII. Wirtualizacja sieci
+
+## 1. Przetwarzanie w chmurze
+
+### 1.1. Rodzaje usług w chmurze
+
+#### 1.1.1. Oprogramowanie jako usługa (SaaS)
+
+Zapewnia dostęp do aplikacji i usług tj. Office 365, poczta-email.
+
+#### 1.1.2. Platforma jako usługa (PaaS)
+
+Zapewnia dostęp do narzędzi programistycznych i usług używanych do dostarczenia aplikacji. Użytkownik ma kontrolę nad ustawieniami środowiska hostingu aplikacji usług w chmurze.
+
+#### 1.1.3. Infrastruktura jako usługa (IaaS)
+
+Zapewnia dostęp do sprzętu sieciowego, zwirtualizowanych usług sieciowcyh, infrastruktury pomocniczej.
+
+#### 1.1.4. IT jako usługa (ITaaS)
+
+Zapewnia wsparcie IT dla każdej z usług przetwarzania w chmurze.
+
+### 1.2. Modele chmury
+
+#### 1.2.1. Chmury publiczne
+
+Usługi i aplikacje udostępnianie są ogółowi populacji. Przykłady to: Amazon Web Services, Microsoft Azure, Google Cloud Platform.
+
+#### 1.2.2. Chmury prywatne
+
+Usługi i aplikacje przeznaczone dla określonej grupy. Może być zbudowana w oparciu o prywatną infrastrukturę sieciową (kosztowne rozwiązanie). Chmura prywatna może być zarządzana przez firmę zewnętrzną.
+
+#### 1.2.3. Hybrid Clouds
+
+Składa się z więcej niż jednej chmury (np. prywatna, publiczna), gdzie każda część jest oddzielnym obiektem, ale są połączone za pomocą tej samej architektury.
+
+#### 1.2.4. Chmury społecznościowe
+
+Tworzona do użytku przez określoną społeczność. Od chmury publicznej różni się dostosowaniem funkcjonalności np. sposobu uwierzytelniania i poufności.
+
+### 1.3. Chmura obliczeniowa a centrum danych
+
+**Centrum danych**- fizyczny obiekt do przechowywania i przetwarzania danych prowardzony przez wewnętrzny dział IT lub wynajmowany poza siedzibą firmy. Jest drogi w utrzymaniu dlatego tylko duże organizacje mogą sobie na to pozwolić, te mniejsze dzierżawią usługi i pamięć od centrum danych w chmurze.
+
+**Obliczanie w chmurze** - usługa zewnętrzna, która oferuje dostęp do zasobów obliczeniowych. Usługi w chmurze są hostowane przez dostawców używając własnych centrum danych.
+
+## 2. Wirtualizaja
+
+### 2.1. Chmura obliczeniowa a wirtualizacja
+
+Wirtualizacja jest podstawą chmurzy obliczeniowej i polega na oddzieleniu systemu operacyjnego od sprzętu.
+
+### 2.2. Problem z serwerami dedykowanymi
+
+Serwery dedykowane są **pojedynczym punktem awarii**, bowiem w razie ich awarii usługa przestaje być świadczone. Oprócz tego często pozostają bezczynne co doprowadza do marnowania zasobów (**rozrost serwera**).
+
+### 2.3. Hiperwizor
+
+To program, oprogramowanie układowe lub sprzęt, który dodaje **warstwę abstrakcji** na fizycznym sprzęcie. **Warstwa abstrakcji** służy do tworzenia **maszyn wirtualnych**, które mają dostęp do całego sprzętu maszyny fizyczej.
+
+### 2.4. Zalety wirtualizacji
+
+- Wymagana jest mniejsza ilość sprzętu
+- Zużywa się mniej energii
+- Jest wymagane mniej miejsca
+- Łatwiejsze prototypowanie - łatwość tworzenia samodzielnych laboratoriów
+- Szybsze udostępnianie serwerów
+- Większy czas działania serwerów
+- Ulepszone odzyskiwanie po awariach
+- Wsparcie dle starszych wersji
+
+### 2.5. Warstwy abstrakcji
+
+Warstwy abstakcji pomagają wyjaśnić, jak działa wirtualizacja.
+
+Warstwy abstakcji:
+
+- Usługi
+- System operacyjny (OS)
+- Oprogramowanie sprzętowe (ROM)
+- Sprzęt komputerowy
+
+Hiperwizor jest instalowany między oprogramowaniem układowym a systemem operacyjnym.
+
+### 2.6. Hiperwizor typu 2
+
+Tzw. **hiperwizor hostowany** jest instalowany na systemie operacyjnym tj. Windows lub Linux. Tworzy on i uruchamia wystąpienia **maszyn wirtualnych**.
+
+Nie wymaga on oprogramowania konsoli zarządzania.
+
+Przykładami hiperwizorów typu 2 są:
+
+- VirtualBox
+- VMware Workstation Player
+
+## 3. Infrastruktura sieci wirtualnej
+
+### 3.1. Hiperwizory typu 1
+
+Podejście nazywane również "bare metal", ponieważ hiperwizor jest instalowany bezpośrednio na sprzęcie.
+
+### 3.2. Konsola zarządzania
+
+Oprogramowanie zarządzające wieloma serwerami przy użyciu tego same hiperwizora. Zapewniają one funkcje tj.:
+
+- **nadmierna alokacja serwera** - przypisywanie instancjom więcej pamięci niż serwer może dla nich zaoferować - np. po 10 GB dla 4 instancji, kiedy serwer ma 16 GB RAM, można tak zrobić ponieważ rzadko kiedy wszystkie instancje wykorzystuje pełne 10 GB.
+- **odzyskiwanie po awarii** - automatyczne przenoszenia maszyny wirtualnej na inny serwer
+- **automatyczna konsolidacja serwerów**
+
+### 3.3. Złożoność wirtualizacji sieci
+
+Wirtualizacja serwerów może powodować problemy, jeśli centrum danych korzysta z tradycyjnej architektury sieciowej (przypisywanie VM portów przełącznika w sieci korzystającej z VLAN'ów, a przenoszenie VM między serwerami).
+
+![Ruch w siedzibie](img/11.3.3.png)
+
+**Ruch północ - południe** zachodzi między warstwą dystrybucyjną a warstwą podstawową (przeznaczony zwykle do zewnętrznych lokalizacji).
+
+**Ruch wschód - zachód** ruch między serwerami wirtualnymi.
+
+## 4. Sieć definiowana programowo
+
+### 4.1. Płaszczyzny urządzeń sieciowych
+
+#### 4.1.1. Płaszczyzna sterowania
+
+Uważana za mózg urządzenia. Służy do podejmowania decyzji dotyczących przekazywania. Zawiera mechanizmy przekazywania tras w warstwie 2 i 3 (tj. tablice routingu, tablice ARP itp.).
+
+#### 4.1.2. Płaszczyzna danych
+
+Nazywana również **płaszczyzną przesyłania** jest zwykle strukturą przelącznika łączącą różne porty sieciowe w urządzeniu. Służy ona do przesyłania strumieni ruchu.
+
+#### 4.1.3. Płaszczyzna zarządzania 
+
+Odpowiada za zarządzanie urządzeniem poprzez jego połączenie z siecią. Administratorzy sieci używają aplikacji tj. SSH, TFTP, HTTPS, aby uzyskać dostęp do płaszczyzny zarządzania i skonfigurować urządzenie.
+
+### 4.2. Architektury sieciowe opracowane do obsługi wirtualizacji sieci
+
+#### 4.2.1. Software-Defined Networking (SDN)
+
+Architektura sieci, która wirtualizuje sieć, oferując nowe podejście do administrowania siecią i zarządzania nią, które ma na celu uproszczenie i usprawnienie procesu administracyjnego.
+
+##### 4.2.1.1. Składniki SDN
+
+- OpenFlow - zarządza ruchem między urządzeniami sieciowymi.
+- OpenStack - platforma wirtualizacji i orkiestracji do budowy skalowalnych środowisk chmury i zapewnienia rozwiązania IaaS.
+
+#### 4.2.2. Cisco Application Centric Infrastructure (ACI)
+
+Rozwiązanie sprzętowe do integracji przetwarzanai w chmurze i zarządzania centrum danych.
+
+### 4.3. Architektury tradycyjne, a SDN
+
+W tradycyjnej architekturze płaszczyzny sterowania i danych znajdują się w tym samym urzązeniu. Natomiast w SDN scentralizowany kontroler SDN zajmuje się płaszczyzną sterowania.
+
+SDN używa **interfejsów programowania aplikacji (API)**. **API** to zestaw żądań, które definiują właściwy sposób żądania usług z innej aplikacji przez applikację.
+
+**API północne** służy do komunikacji z aplikacjami nadrzędnymi.
+**API południowe** służy do definiowania zachowania płaszczyzny danych na dalszych przełącznikach i routerach.
+
+## 5. Kontrolery SDN
+
+### 5.1. Kontroler i operacje SDn
+
+**Kontroler SDN** definiuje przepływ danych między scentralizowaną płaszczyzną sterowania a płasczyznami danych na posczególnych routerach i przełącznikach. Każdy przepły przechodzący przez sieć musi uzyskać pozwolenie od kontrolera SDN.
+
+Przełączniki do zarządzania przepływem pakietów wykorzystują szereg tabel zaimplementowanych w  sprzęcie lub oprogramowaniu. Dla przełącznika przepływ to sekwencja pakietó pasująca do określonego wpisu w tablicy przepływu.
+
+**Typy tabel:**
+
+- **Tabela przepływu** - dopasowuje przychodzące pakiety do określonego przepływu i określa funkcje, które mają być wykonywane na pakietach.
+- **Tabela grupowa** - przepływ może być do niej skierowany przez tabelę przepływu.
+- **Tabela liczników** - wyzwala działania związane z wydajnością na przepływ w tym zdolność do szybkiego ograniczenia ruchu.
+
+### 5.2. Podstawowe składniki ACI
+
+#### 5.2.1. Profil sieci aplikacji (ANP)
+
+Zbiór grup punktów końcowych (EPG), ich połączeń i zasad definiujących te połączenia.
+
+#### 5.2.2. Kontroler infrastruktury zasad aplikacji (APIC)
+
+Jest uważany za mózg architektury ACI. APIC to scentralizowany kontroler oprogramowania, który zarządza skalowalną strukturą klastorwą ACI i obsługuje ją.
+
+#### 5.2.3. Przełączniki Cisco Nexus z serii 9000
+
+Przełączniki te zapewniają strukturę przełączającą obsługującą aplikacje i współpracującą z APIC w celu zarządzania wirtualną i fizyczną infrastrukturą sieiową.
+
+### 5.3. Topologia Spine-Leaf
+
+Topologia wykorzystwana do łączenia przełączników w sieci szkieletowej ACI.
+
+Przełączniki szkieletowe "Leaf" zawsze przyczepiają się do przełączników dostępowych "Spine", ale nigdy nie łączą się ze sobą. Podobnie podłączone sa przełączniki dostępowe.
+
+![Topologia Spine-Leaf](img/12.5.3.png)
+
+### 5.4. Typy SDN
+
+#### 5.4.1. SDN w opraciu na urządzeniu
+
+Urządzenia tego typu są programowalne przez aplikacje działąjące na samym urządzeniu lub na serwerze w sieci.
+
+#### 5.4.2. SDN w opraciu na kontrolerze
+
+Wykorzystuje scentralizowany kontroler, który ma wiedzę o wszystkich urządzeniach w sieci.
+
+#### 5.4.3. SDN w opraciu na zasadach
+
+Wykorzystuje scentralizowany kontroler i zawiera dodatkową warstwę zasad, która działą na wyższym poziomie abstrakcji.
+
+### 5.5. Funkcja APIC-EM
+
+System SND oparty na zasadach jest najbardziej niezawodny, zapewniając prosty mechanizm kontroli i zarządzania politykami w całej sieci.
+
+**Cisco APIC-EM** jest przykładem opartym na zasadach SDN. Zapewnia jeden interfejs do zarządzania siecią.
+
+### 5.7. Śledzenie scieżki APIC-EM
+
+**Narzędzie APIC-EM Path Trace** umożliwia administratorowi łatwą wizualizację przepływu ruchu i wykrywanie wszelkich sprzecznych, zduplikowanych lub ukrytych wpisów ACL.
